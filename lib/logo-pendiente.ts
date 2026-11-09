@@ -5,7 +5,7 @@
 
 import { MAX_LADO_PX } from './estudio/logo';
 
-export const CLAVE_LOGO_PENDIENTE = 'marca:logo-pendiente';
+export const CLAVE_LOGO_PENDIENTE = 'laola:logo-pendiente';
 
 interface LogoGuardado {
   nombre: string;

@@ -3,16 +3,17 @@
 // Uso: node scripts/comprobar-movil.mjs http://localhost:3000
 import { chromium } from 'playwright';
 const base = process.argv[2] ?? 'http://localhost:3000';
-const b = await chromium.launch();
+// Chromium préinstallé si la version de Playwright du projet n'a pas le sien (CHROMIUM_PATH).
+const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 const p = await ctx.newPage();
 let fallos = 0;
-for (const ruta of ['/', '/catalogue', '/catalogue/imola', '/catalogue/zenith', '/personnaliser', '/projet', '/merci', '/avis', '/mentions-legales']) {
+for (const ruta of ['/', '/catalogue', '/catalogue/imola', '/catalogue/zenith', '/catalogue/atomic-150', '/personnaliser/atomic-150', '/projet', '/devis', '/merci', '/avis', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/campings', '/espace-client', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cgv', '/page-introuvable']) {
   await p.goto(base + ruta, { waitUntil: 'load' });
   await p.waitForTimeout(1200);
   const r = await p.evaluate(() => {
     const de = document.documentElement;
-    const menu = document.querySelector('header button[aria-expanded], header button[aria-label*="men" i], header button[aria-controls]');
+    const menu = document.querySelector('header button[aria-label*="menu" i]');
     const rect = menu?.getBoundingClientRect();
     const anchos = [...document.querySelectorAll('body *')].filter((e) => getComputedStyle(e).position !== 'fixed').map((e) => e.getBoundingClientRect().right);
     return { innerWidth, clientWidth: de.clientWidth, scrollWidth: de.scrollWidth, header: Math.round(document.querySelector('header').getBoundingClientRect().width), menuDerecha: rect ? Math.round(rect.right) : null, maxDerecha: Math.round(Math.max(...anchos)) };

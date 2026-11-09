@@ -19,7 +19,7 @@ import { IconoHoja } from '@/components/catalogo/Etiquetas';
 import { TEXTOS } from '@/lib/site';
 import type { FuncionCapturar } from './Visor2D';
 
-export const CLAVE_DISENO = 'marca:diseno'; // sessionStorage: el diseño que recoge el formulario de /projet
+export const CLAVE_DISENO = 'laola:diseno'; // sessionStorage: el diseño que recoge el formulario de /projet
 
 const LADOS: readonly { id: Lado; nombre: string }[] = [
   { id: 'delante', nombre: 'Devant' },

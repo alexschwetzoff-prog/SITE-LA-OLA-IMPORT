@@ -43,8 +43,8 @@ function SurfiBase({ className = '' }: { className?: string }, ref: ForwardedRef
           <defs>
             <linearGradient id="surfi-sillage" x1="0" x2="1" y1="0" y2="0">
               <stop offset="0" stopColor="#10e9fb" stopOpacity="0" />
-              <stop offset="0.55" stopColor="#05bcf8" stopOpacity="0.55" />
-              <stop offset="1" stopColor="#0363e9" stopOpacity="0.75" />
+              <stop offset="0.55" stopColor="#05bcf8" stopOpacity="0.3" />
+              <stop offset="1" stopColor="#0363e9" stopOpacity="0.45" />
             </linearGradient>
           </defs>
           <path d="M0 60 C 40 58 70 40 110 36 C 150 32 170 14 200 10 L 200 60 Z" fill="url(#surfi-sillage)" />

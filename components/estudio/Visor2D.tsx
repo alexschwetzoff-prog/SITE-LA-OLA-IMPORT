@@ -3,8 +3,8 @@
 // Visor 2D del estudio: la foto real de la prenda (delante o detrás), recortada sin fondo, sobre un único escenario
 // claro con una sombra de contacto, con el logo dibujado encima siguiendo el sombreado de la tela para que parezca
 // impreso y no pegado. La escala cm → px de cada foto viene calibrada con el largo de la ficha técnica
-// (data/siluetas). Al cambiar de color, Novi, el OVNI, da un remolino sobre el lienzo (fase 10; lib/ovni.ts) y la
-// escena nueva se funde sobre la anterior durante el remolino (el lienzo dibuja el fundido con `progresoCambio`);
+// (data/siluetas). Al cambiar de color, Surfi cruza el lienzo (lib/surfi.ts) y la
+// escena nueva aparece detrás de él con un barrido (el lienzo dibuja el volet con `progresoCambio`);
 // si la foto nueva no está cargada, cambio directo.
 // Sin 3D: decisión del equipo del 11/10/2026.
 
@@ -13,8 +13,8 @@ import { useStore } from 'zustand';
 import type { Posicion } from '@/data/catalogo';
 import { logoDeLado, posicionSilueta, proporcionEn, type Captura, type Colocacion, type PorLado, type StoreEstudio } from '@/lib/estudio/store';
 import { cmAFoto, fotoACm, fotosDelLado, fuenteFoto, type FotoCalibrada, type Lado } from '@/lib/estudio/siluetas';
-import { CAMBIO_OVNI, DURACION_OVNI, movimientoReducido, progresoCambio, type Reveal } from '@/lib/ovni';
-import { elementosDe, type RefsOvni } from '@/components/producto/Ovni';
+import { CAMBIO_SURFI, DURACION_SURFI, movimientoReducido, progresoCambio, surfiDesactive, type Reveal } from '@/lib/surfi';
+import { elementosDe, type RefsSurfi } from '@/components/producto/Surfi';
 
 export type FuncionCapturar = () => Promise<Captura[]>;
 
@@ -22,8 +22,8 @@ interface Props {
   store: StoreEstudio;
   fotos: Record<Lado, FotoCalibrada>; // fotos del color elegido (real o recoloreada), con su calibración
   capturarRef: RefObject<FuncionCapturar | null>;
-  /** La mascota que revela el color (components/producto/Ovni.tsx), montada sobre el lienzo. */
-  ovniRef?: RefObject<RefsOvni | null>;
+  /** Surfi, qui révèle la couleur (components/producto/Surfi.tsx), monté au-dessus du lienzo. */
+  surfiRef?: RefObject<RefsSurfi | null>;
 }
 
 const ANCHO_CAPTURA = 1200;
@@ -267,7 +267,7 @@ interface Revelacion {
   reducido: boolean;
 }
 
-export default function Visor2D({ store, fotos, capturarRef, ovniRef }: Props) {
+export default function Visor2D({ store, fotos, capturarRef, surfiRef }: Props) {
   const lienzoRef = useRef<HTMLCanvasElement>(null);
   const imagenes = useRef<Partial<Record<string, HTMLImageElement>>>({});
   const cacheLuz = useRef<{ clave: string; mapa: MapaLuz | null }>({ clave: '', mapa: null });
@@ -325,9 +325,9 @@ export default function Visor2D({ store, fotos, capturarRef, ovniRef }: Props) {
     if (!esc || !ctx) return;
     const r = revelacion.current;
     if (r) {
-      // la escena anterior entera y, encima, la nueva fundiéndose (con el remolino o, con movimiento reducido, sola)
+      // la scène précédente entière et, par-dessus, la nouvelle révélée par le volet derrière Surfi (ou en fondu)
       const t = ahora() - r.inicio;
-      const p = r.reducido ? Math.min(1, t / DURACION_OVNI.fundido) : progresoCambio(t);
+      const p = r.reducido ? Math.min(1, t / DURACION_SURFI.fundido) : progresoCambio(t);
       const nueva = document.createElement('canvas');
       nueva.width = lienzo.width;
       nueva.height = lienzo.height;
@@ -336,15 +336,19 @@ export default function Visor2D({ store, fotos, capturarRef, ovniRef }: Props) {
       dibujarEscena(nctx, esc, encajeActual(esc, nueva), null, cacheLuz.current);
       ctx.clearRect(0, 0, lienzo.width, lienzo.height);
       ctx.drawImage(r.anterior, 0, 0);
-      if (p > 0) {
+      if (p > 0 && r.reducido) {
         ctx.globalAlpha = p;
         ctx.drawImage(nueva, 0, 0);
         ctx.globalAlpha = 1;
+      } else if (p > 0) {
+        // volet de gauche à droite, synchronisé avec la planche de Surfi
+        const w = Math.round(lienzo.width * p);
+        if (w > 0) ctx.drawImage(nueva, 0, 0, w, lienzo.height, 0, 0, w, lienzo.height);
       }
-      const total = r.reducido ? DURACION_OVNI.fundido : CAMBIO_OVNI.fin;
+      const total = r.reducido ? DURACION_SURFI.fundido : CAMBIO_SURFI.fin;
       if (t < total) pedirDibujo();
       else {
-        revelacion.current = null; // el OVNI sigue yéndose; el lienzo ya enseña la escena nueva entera
+        revelacion.current = null; // Surfi finit de sortir ; le lienzo montre déjà la nouvelle scène entière
         pedirDibujo();
       }
     } else {
@@ -366,7 +370,7 @@ export default function Visor2D({ store, fotos, capturarRef, ovniRef }: Props) {
     });
   };
 
-  // Cambio de color (otra foto para el lado que se ve): si la foto nueva está cargada y la anterior dibujada, el OVNI
+  // Cambio de color (otra foto para el lado que se ve): si la foto nueva está cargada y la anterior dibujada, Surfi
   // da su remolino y la escena nueva se funde; si llega otro cambio durante la animación, se cancela y empieza la
   // nueva al instante.
   useEffect(() => {
@@ -381,15 +385,15 @@ export default function Visor2D({ store, fotos, capturarRef, ovniRef }: Props) {
     copia.width = lienzo.width;
     copia.height = lienzo.height;
     copia.getContext('2d')?.drawImage(lienzo, 0, 0);
-    const elementos = elementosDe(ovniRef?.current);
-    const reducido = movimientoReducido();
+    const elementos = elementosDe(surfiRef?.current);
+    const reducido = movimientoReducido() || surfiDesactive() || !elementos;
     const r: Revelacion = { inicio: ahora(), anterior: copia, control: null, reducido };
     revelacion.current = r;
-    if (elementos) {
-      void import('@/lib/ovni').then(({ revelar }) => {
+    if (elementos && !reducido) {
+      void import('@/lib/surfi').then(({ revelar }) => {
         if (revelacion.current !== r) return;
         r.inicio = ahora();
-        r.control = revelar({ ovni: elementos, capa: null, reducido });
+        r.control = revelar({ surfi: elementos, capa: null, reducido });
       });
     }
     pedirDibujo();

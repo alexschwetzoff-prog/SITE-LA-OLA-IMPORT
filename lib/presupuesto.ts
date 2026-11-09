@@ -11,9 +11,9 @@ import { TRAMOS, TRAMO_POR_DEFECTO, nombreTramo, textoPosicionesLinea, type Tram
 
 export { TRAMOS, TRAMO_POR_DEFECTO, nombreTramo, type Tramo };
 
-export const CLAVE_PRESUPUESTO = 'marca:presupuesto';
+export const CLAVE_PRESUPUESTO = 'laola:presupuesto';
 /** Clave que escribe el estudio al pulsar «Ajouter au panier» (components/estudio/Panel.tsx). */
-export const CLAVE_DISENO = 'marca:diseno';
+export const CLAVE_DISENO = 'laola:diseno';
 
 export interface ColocacionDiseno {
   posicion: Posicion;
@@ -183,7 +183,22 @@ interface DisenoGuardado {
  * Devuelve el elemento añadido o null si no había nada nuevo. Las capturas grandes se quedan en sessionStorage
  * para que el formulario de la fase 6 las adjunte si siguen ahí.
  */
-export async function importarDisenoDelEstudio(datosDe: (slug: string) => { tipo: string; foto?: string } | undefined): Promise<ItemPresupuesto | null> {
+let importacionEnCurso: Promise<ItemPresupuesto | null> | null = null;
+
+export function importarDisenoDelEstudio(datosDe: (slug: string) => { tipo: string; foto?: string } | undefined): Promise<ItemPresupuesto | null> {
+  // Una sola importación a la vez: si el efecto se lanza dos veces seguidas (React en modo estricto), la segunda
+  // espera a la primera y ya ve el diseño en la cesta (sin esto se añadía dos veces).
+  const previa = importacionEnCurso ?? Promise.resolve(null);
+  const actual = previa.then(() => importar(datosDe));
+  const enCola = actual.catch(() => null);
+  importacionEnCurso = enCola;
+  void enCola.then(() => {
+    if (importacionEnCurso === enCola) importacionEnCurso = null;
+  });
+  return actual;
+}
+
+async function importar(datosDe: (slug: string) => { tipo: string; foto?: string } | undefined): Promise<ItemPresupuesto | null> {
   let diseno: DisenoGuardado | null = null;
   try {
     const crudo = sessionStorage.getItem(CLAVE_DISENO);

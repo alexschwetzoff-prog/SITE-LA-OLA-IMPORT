@@ -1,6 +1,6 @@
 // Datos del formulario corto de la home (aterrizaje): se guardan en el navegador y /proyecto los precarga.
 
-export const CLAVE_ATERRIZAJE = 'marca:aterrizaje';
+export const CLAVE_ATERRIZAJE = 'laola:aterrizaje';
 
 export interface DatosAterrizaje {
   nombre: string;

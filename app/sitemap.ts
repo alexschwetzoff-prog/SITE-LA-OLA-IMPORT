@@ -19,7 +19,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...SEGMENTS.map((s) => ({ url: url(`/professionnels/${s.slug}`), priority: 0.8 })),
     { url: url('/comment-nous-travaillons'), priority: 0.6 },
     { url: url('/qui-sommes-nous'), priority: 0.6 },
-    { url: url('/projet'), priority: 0.5 },
     { url: url('/livraison-et-paiement'), priority: 0.4 },
     ...((await obtenerOpiniones()).length ? [{ url: url('/avis'), priority: 0.4 }] : []),
     ...ENLACES_LEGALES.map((e) => ({ url: url(e.href), priority: 0.2 })),

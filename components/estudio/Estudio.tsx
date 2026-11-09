@@ -17,7 +17,8 @@ import { tomarLogoPendiente } from '@/lib/logo-pendiente';
 import { textoPrecio } from '@/lib/producto';
 import { SITE, TEXTOS } from '@/lib/site';
 import { Etiquetas } from '@/components/catalogo/Etiquetas';
-import { Ovni, type RefsOvni } from '@/components/producto/Ovni';
+import { Surfi, type RefsSurfi } from '@/components/producto/Surfi';
+import { prechargerSurfi } from '@/lib/surfi';
 import Visor2D, { type FuncionCapturar } from './Visor2D';
 import Panel from './Panel';
 
@@ -39,7 +40,7 @@ export default function Estudio({ productos, slugInicial, clavesFoto }: Props) {
     [inicial],
   );
   const capturarRef = useRef<FuncionCapturar | null>(null);
-  const ovniRef = useRef<RefsOvni | null>(null);
+  const surfiRef = useRef<RefsSurfi | null>(null);
   const producto = useStore(store, (s) => s.producto);
   const silueta = useStore(store, (s) => s.silueta);
   const lado = useStore(store, (s) => s.lado);
@@ -143,16 +144,22 @@ export default function Estudio({ productos, slugInicial, clavesFoto }: Props) {
         </Link>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)] lg:gap-6">
+      {/* Le sprite de Surfi se charge à la première intention (survol, focus, appui), pas au chargement de la page. */}
+      <div
+        className="grid gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)] lg:gap-6"
+        onPointerEnter={() => void prechargerSurfi()}
+        onPointerDown={() => void prechargerSurfi()}
+        onFocusCapture={() => void prechargerSurfi()}
+      >
         {/* Lienzo del estudio */}
-        <div className="sticky top-16 z-10 lg:top-24 lg:self-start">
+        <div className="sticky top-20 z-10 lg:top-24 lg:self-start">
           {/* Un único escenario para todos los colores (fase 4.2): tono claro de la paleta, algo más frío que el blanco de la
               prenda, con una sombra de contacto que dibuja el visor. Las fotos van recortadas, sin su fondo. */}
           <div className="escenario-estudio relative h-[37svh] min-h-[240px] overflow-hidden rounded-2xl shadow-carte ring-1 ring-marine/5 lg:h-[calc(100svh-8rem)] lg:min-h-[520px]">
             <div className="absolute inset-0">
-              <Visor2D store={store} fotos={fotos} capturarRef={capturarRef} ovniRef={ovniRef} />
+              <Visor2D store={store} fotos={fotos} capturarRef={capturarRef} surfiRef={surfiRef} />
             </div>
-            <Ovni ref={ovniRef} />
+            <Surfi ref={surfiRef} />
             {!fotoLista && (
               <p className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full bg-fond/90 px-3 py-1 text-xs font-medium text-marine backdrop-blur">
                 Chargement de la photo…
