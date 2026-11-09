@@ -1,9 +1,11 @@
 // Opiniones de clientes (fase 10): de las filas del CSV publicado de la pestaña «Web» de la hoja de respuestas del
-// formulario a la lista que enseñan la home y /opiniones. Funciones puras (sin red ni React): se prueban en
+// formulario a la lista que enseñan la home y /avis. Funciones puras (sin red ni React): se prueban en
 // lib/opiniones/opiniones.test.ts.
 //
 // Contrato de columnas (cabecera exacta): empresa, opinion, mostrar_nombre, publicar, fecha.
-//   - mostrar_nombre y publicar valen SI o NO (se admiten SI/Sí/si/NO/no, sin distinguir mayúsculas ni tildes).
+//   - empresa: el nombre que se enseña si el cliente lo ha autorizado (su nombre de pila y, si lo ha aceptado, su
+//     estructura), tal como se recoge en /donner-mon-avis.
+//   - mostrar_nombre y publicar valen SI/OUI o NO/NON (sin distinguir mayúsculas ni tildes).
 //   - fecha es opcional, en formato yyyy-mm-dd.
 // Una fila se publica solo si publicar = SI y la opinión no está vacía; cualquier duda se resuelve a favor de la
 // privacidad (sin publicar, sin nombre). Ninguna otra columna sale de aquí.
@@ -11,7 +13,7 @@
 import { parsearCsv } from './csv';
 
 export interface Opinion {
-  /** Nombre que se enseña: el de la empresa si lo ha autorizado; si no, «Cliente de [MARCA]». */
+  /** Nombre que se enseña: el que ha autorizado el cliente; si no, «Client de La Ola Import». */
   nombre: string;
   /** La opinión en texto plano (sin caracteres de control), como mucho MAX_CARACTERES. */
   texto: string;
@@ -19,13 +21,13 @@ export interface Opinion {
   fecha?: string;
 }
 
-export const NOMBRE_ANONIMO = 'Cliente de [MARCA]';
+export const NOMBRE_ANONIMO = 'Client de La Ola Import';
 export const MAX_CARACTERES = 500;
 export const MAX_NOMBRE = 80;
 const COLUMNAS = ['empresa', 'opinion', 'mostrar_nombre', 'publicar', 'fecha'] as const;
 type Columna = (typeof COLUMNAS)[number];
 
-/** «SI» / «Sí» / «si» → true; cualquier otra cosa (NO, vacío, dudosa) → false. */
+/** «SI» / «Sí» / «si» / «OUI» / «oui» → true; cualquier otra cosa (NO, NON, vacío, dudosa) → false. */
 export function esSi(valor: string | undefined): boolean {
   if (!valor) return false;
   const limpio = valor
@@ -33,7 +35,7 @@ export function esSi(valor: string | undefined): boolean {
     .replace(/[̀-ͯ]/g, '')
     .trim()
     .toLowerCase();
-  return limpio === 'si';
+  return limpio === 'si' || limpio === 'oui';
 }
 
 /** Texto plano: sin caracteres de control (salvo el salto de línea), espacios compactados, saltos de línea de más fuera. */

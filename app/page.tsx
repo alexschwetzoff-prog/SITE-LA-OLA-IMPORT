@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
-import Aterrizaje from '@/components/inicio/Aterrizaje';
-import CatalogoDestacado from '@/components/inicio/CatalogoDestacado';
-import ComoTrabajamos from '@/components/inicio/ComoTrabajamos';
-import Opiniones from '@/components/inicio/Opiniones';
-import PanelDeMandos from '@/components/inicio/PanelDeMandos';
-import ParaQuien from '@/components/inicio/ParaQuien';
-import Portada from '@/components/inicio/Portada';
-import PruebaLogo from '@/components/inicio/PruebaLogo';
-import QueHacemos from '@/components/inicio/QueHacemos';
-import Visita from '@/components/inicio/Visita';
+import Accroche from '@/components/accueil/Accroche';
+import AtelierApercu from '@/components/accueil/AtelierApercu';
+import AvisApercu from '@/components/accueil/AvisApercu';
+import BandeauFinal from '@/components/accueil/BandeauFinal';
+import EquipeApercu from '@/components/accueil/EquipeApercu';
+import EssayezVotreLogo from '@/components/accueil/EssayezVotreLogo';
+import ProduitsPhares from '@/components/accueil/ProduitsPhares';
+import Segments from '@/components/accueil/Segments';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -17,22 +15,21 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-// La home es estática: el viaje en nueve escalas (sección 4), del despegue al aterrizaje.
+// Accueil statique. Ordre : l'offre dès le premier écran (accroche + catégories), les produits phares, l'aiguillage
+// par segment, puis la confiance (atelier, équipe, avis réels) et un dernier appel à l'action.
 export const ensureStatic = 'navigation';
 
-export default function Inicio() {
+export default function Accueil() {
   return (
     <>
-      <PanelDeMandos />
-      <Portada />
-      <QueHacemos />
-      <ParaQuien />
-      <CatalogoDestacado />
-      <PruebaLogo />
-      <ComoTrabajamos />
-      <Visita />
-      <Opiniones />
-      <Aterrizaje />
+      <Accroche />
+      <ProduitsPhares />
+      <Segments />
+      <AtelierApercu />
+      <EquipeApercu />
+      <EssayezVotreLogo />
+      <AvisApercu />
+      <BandeauFinal />
     </>
   );
 }

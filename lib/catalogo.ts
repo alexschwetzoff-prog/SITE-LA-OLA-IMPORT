@@ -7,7 +7,7 @@ import fotosCatalogo from '@/data/fotos-catalogo.json';
 import { CATEGORIAS } from '@/data/categorias';
 import { PRODUCTOS, type Categoria, type Color, type Etiqueta, type Producto } from '@/data/catalogo';
 import type { ColocacionDiseno } from '@/lib/diseno-ejemplo';
-import { NOMBRE_ETIQUETA, colorPorDefecto, fotoPrincipal, textoMaterial, textoPrecio, tieneEstudio } from './producto';
+import { NOMBRE_ETIQUETA, colorPorDefecto, conPrecio, fotoPrincipal, textoMaterial, textoPrecio, tieneEstudio } from './producto';
 
 export * from './producto';
 export * from './filtros';
@@ -21,8 +21,9 @@ export function conteoPorCategoria(): Record<Categoria, number> {
   return conteo;
 }
 
-/** Personalización de ejemplo que lleva una foto: el logo y la estrella de [MARCA] (Atomic 150 y Austral) o el diseño «Tu logo aquí». */
-export type Ejemplo = 'marca' | 'tu-logo-aqui';
+/** Personnalisation d'exemple dessinée sur une photo : le motif « Votre logo ici » (tous les produits, Atomic 150 et
+ * Austral compris : les fichiers de logo de l'ancienne marque ont été retirés). */
+export type Ejemplo = 'tu-logo-aqui';
 
 export interface FotosProducto {
   delante: string;
@@ -85,7 +86,7 @@ export function fotosPorColor(p: Producto): Record<string, FotosProducto | undef
   return Object.fromEntries(p.colores.map((c) => [c.nombre, fotosDe(p, c)]));
 }
 
-/** Color de la foto base de un producto (la real): para decir «Foto en natural» cuando el color elegido no se simula. */
+/** Couleur de la photo de base d'un produit (la réelle) : pour dire « Photo en … » quand la couleur choisie n'est pas simulée. */
 export function colorDeLaFoto(p: Producto): Color | undefined {
   const indice = INDICE[p.slug];
   if (indice) {
@@ -114,7 +115,7 @@ export interface DatosTarjeta {
   activo: boolean;
   orden: number;
   precio: string;
-  desde: boolean; // el precio es «Desde X € / ud»
+  desde: boolean; // le prix est un vrai prix (« À partir de X € / pièce »)
   material: string;
   conEstudio: boolean;
   colores: ColorTarjeta[];
@@ -143,7 +144,7 @@ export function datosTarjeta(p: Producto): DatosTarjeta {
     activo: p.activo,
     orden: p.orden,
     precio,
-    desde: precio.startsWith('Desde'),
+    desde: conPrecio(p),
     material: textoMaterial(p),
     conEstudio: tieneEstudio(p),
     colores: p.colores.map((c) => {

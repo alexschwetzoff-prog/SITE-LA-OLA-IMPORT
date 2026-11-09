@@ -128,7 +128,7 @@
       }
     },
     "reales": {
-      "Negro": {
+      "Noir": {
         "delante": {
           "src": "/productos/estudio/atomic-150-negro-delante.webp",
           "ancho": 1200,
@@ -156,7 +156,7 @@
           "hpsY": 17.3
         }
       },
-      "Amarillo": {
+      "Jaune": {
         "delante": {
           "src": "/productos/estudio/atomic-150-amarillo-delante.webp",
           "ancho": 1200,
@@ -184,7 +184,7 @@
           "hpsY": 17.4
         }
       },
-      "Royal": {
+      "Bleu royal": {
         "delante": {
           "src": "/productos/estudio/atomic-150-royal-delante.webp",
           "ancho": 1200,
@@ -212,7 +212,7 @@
           "hpsY": 17.3
         }
       },
-      "Turquesa": {
+      "Turquoise": {
         "delante": {
           "src": "/productos/estudio/atomic-150-turquesa-delante.webp",
           "ancho": 1200,
@@ -240,7 +240,7 @@
           "hpsY": 16.4
         }
       },
-      "Verde kelly": {
+      "Vert kelly": {
         "delante": {
           "src": "/productos/estudio/atomic-150-verde-kelly-delante.webp",
           "ancho": 1200,
@@ -268,7 +268,7 @@
           "hpsY": 17.3
         }
       },
-      "Naranja": {
+      "Orange": {
         "delante": {
           "src": "/productos/estudio/atomic-150-naranja-delante.webp",
           "ancho": 1200,
@@ -296,7 +296,7 @@
           "hpsY": 17.3
         }
       },
-      "Marino": {
+      "Bleu marine": {
         "delante": {
           "src": "/productos/estudio/atomic-150-marino-delante.webp",
           "ancho": 1200,
@@ -324,7 +324,7 @@
           "hpsY": 17.3
         }
       },
-      "Gris vigoré": {
+      "Gris chiné": {
         "delante": {
           "src": "/productos/estudio/atomic-150-gris-vigore-delante.webp",
           "ancho": 1200,
@@ -352,7 +352,7 @@
           "hpsY": 17.3
         }
       },
-      "Rojo": {
+      "Rouge": {
         "delante": {
           "src": "/productos/estudio/atomic-150-rojo-delante.webp",
           "ancho": 1200,
@@ -380,7 +380,7 @@
           "hpsY": 17.3
         }
       },
-      "Fucsia": {
+      "Fuchsia": {
         "delante": {
           "src": "/productos/estudio/atomic-150-fucsia-delante.webp",
           "ancho": 1200,

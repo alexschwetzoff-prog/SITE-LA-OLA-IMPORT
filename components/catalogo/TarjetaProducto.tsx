@@ -8,31 +8,29 @@ import FotoProducto, { precalentarReveal } from '@/components/producto/FotoProdu
 import { Etiquetas } from './Etiquetas';
 import { Muestras } from './Muestras';
 
-// La foto de la tarjeta mide 325 px CSS como mucho (3 columnas a 1440): la de 800 px le sobra incluso a 2×, y la
-// de 1200 solo pesaría el doble (Lighthouse móvil: Chrome carga las perezosas hasta 2500 px bajo el pliegue).
+// La photo de la carte mesure 325 px CSS au plus (3 colonnes à 1440) : celle de 800 px suffit même en 2×.
 const ANCHO_MAXIMO = 800;
 
 interface Props {
-  /** Datos calculados en el servidor con `datosTarjeta()`: la tarjeta no carga el catálogo ni el índice de fotos. */
+  /** Données calculées sur le serveur avec `datosTarjeta()` : la carte ne charge ni le catalogue ni l'index des photos. */
   datos: DatosTarjeta;
-  /** Las primeras tarjetas de la página cargan la foto sin esperar; 'alta' en la primera (LCP). */
+  /** Les premières cartes de la page chargent leur photo tout de suite ; 'alta' pour la première (LCP). */
   prioridad?: boolean | 'alta';
   sizes?: string;
 }
 
 function textoAlt(datos: DatosTarjeta, color: ColorTarjeta, ejemplo: Ejemplo | null): string {
-  const base = `${datos.tipo} ${datos.nombre} en ${color.nombre.toLowerCase()}`;
-  if (ejemplo === 'marca') return `${base}, con un logo de ejemplo en el corazón`;
-  if (ejemplo === 'tu-logo-aqui') return `${base}, con el diseño «Tu logo aquí» en el sitio del logo`;
+  const base = `${datos.tipo} ${datos.nombre}, coloris ${color.nombre.toLowerCase()}`;
+  if (ejemplo === 'tu-logo-aqui') return `${base}, avec le motif « Votre logo ici » à l’emplacement du marquage`;
   return base;
 }
 
 /**
- * Tarjeta de producto (sección 4): foto con la personalización de ejemplo dibujada encima (al pasar el ratón por la
- * foto, o el foco por el título, la espalda si existe), nombre, tipo, precio «desde», material y muestras de color:
- * al elegir una, el OVNI revela la foto de ese color (fase 4.2); todos los colores se eligen desde la propia tarjeta
- * (fase 4.4). Las prendas con estudio llevan la etiqueta «Diséñala» y un botón directo al estudio con el color
- * elegido. Es clara para que los colores de la prenda sean fieles.
+ * Carte produit : photo avec le motif d'exemple dessiné dessus (le dos au survol de la carte ou au focus du titre,
+ * s'il existe), nom, type, « Consulter le prix », matière et pastilles de couleur : en choisir une révèle la photo de
+ * cette couleur (animation de la mascotte, components/producto/FotoProducto.tsx). Les produits avec studio portent
+ * l'étiquette « Personnalisable » et un lien direct vers le studio dans la couleur choisie. Fond blanc pour des
+ * couleurs fidèles.
  */
 export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw' }: Props) {
   const [color, setColor] = useState<ColorTarjeta>(() => datos.colores.find((c) => c.nombre === datos.colorInicial) ?? datos.colores[0]);
@@ -47,7 +45,7 @@ export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width:
   const [tituloEnfocado, setTituloEnfocado] = useState(false);
   const precargado = useRef(false);
   const fotos = color.fotos;
-  const hrefFicha = `/catalogo/${datos.slug}`;
+  const hrefFicha = `/catalogue/${datos.slug}`;
   const disenoDelante = fotos?.diseno ?? datos.diseno?.delante;
   const disenoDetras = fotos?.disenoDetras ?? datos.diseno?.detras;
 
@@ -69,7 +67,7 @@ export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width:
 
   return (
     <article
-      className="tarjeta-nave group relative flex h-full flex-col overflow-hidden rounded-3xl bg-white text-ink-900 shadow-[0_10px_40px_-20px_rgba(5,11,42,0.6)]"
+      className="carte-produit group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white text-encre shadow-carte ring-1 ring-marine/5"
       onPointerEnter={(e) => {
         precargar();
         if (e.pointerType === 'mouse') setSobreTarjeta(true);
@@ -98,8 +96,8 @@ export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width:
             )}
           </>
         ) : (
-          <div className="flex h-full items-center justify-center p-6 text-center text-sm text-ink-900/60">
-            <span className="rounded-full px-3 py-1 font-mono text-xs ring-1 ring-ink-900/30">[FALTA foto]</span>
+          <div className="flex h-full items-center justify-center bg-perle p-6 text-center text-sm text-ardoise">
+            <span className="rounded-full px-3 py-1 font-mono text-xs ring-1 ring-marine/30">[photo à fournir]</span>
           </div>
         )}
         <div className="pointer-events-none absolute top-3 left-3 z-10">
@@ -110,33 +108,34 @@ export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width:
       <div className="flex flex-1 flex-col gap-2 p-4 pt-3">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <h3 className="font-display text-xl font-semibold leading-tight">
+            <h3 className="font-display text-xl font-extrabold leading-tight text-marine">
               <Link
                 href={hrefFicha}
-                className="after:absolute after:inset-0 after:rounded-3xl after:content-['']"
+                className="after:absolute after:inset-0 after:rounded-2xl after:content-['']"
                 onFocus={(e) => setTituloEnfocado(e.currentTarget.matches(':focus-visible'))}
                 onBlur={() => setTituloEnfocado(false)}
               >
                 {datos.nombre}
               </Link>
             </h3>
-            <p className="mt-0.5 text-sm text-ink-900/70">{datos.tipo}</p>
+            <p className="mt-0.5 text-sm text-ardoise">{datos.tipo}</p>
           </div>
-          {/* Precio limpio (fase 4.2): el aviso «sin IVA» va en el pie, en la nota de la ficha y en /proyecto. */}
-          <p className={`shrink-0 text-right font-display text-base font-semibold ${datos.desde ? 'text-nova-600' : 'text-ink-900/80'}`}>{datos.precio}</p>
+          {/* « Consulter le prix » tant qu'il n'y a pas de tarif : badge pastel, texte marine. */}
+          <p className={`shrink-0 rounded-full px-2.5 py-1 text-right text-xs font-semibold ${datos.desde ? 'text-marine' : 'bg-fuchsia-50 text-marine'}`}>{datos.precio}</p>
         </div>
-        <p className="text-xs text-ink-900/70">{datos.material}</p>
+        <p className="text-xs text-ardoise">{datos.material}</p>
         <div className="mt-auto flex items-end justify-between gap-3 pt-1">
           <div className="min-w-0" onPointerEnter={() => setSobreMuestras(true)} onPointerLeave={() => setSobreMuestras(false)}>
             <Muestras colores={datos.colores} elegido={color} onElegir={setColor} />
-            <p className="mt-1 truncate text-[11px] text-ink-900/60">{color.nombre}</p>
+            <p className="mt-1 truncate text-xs text-ardoise">{color.nombre}</p>
           </div>
           {datos.conEstudio && (
             <Link
-              href={`/disena/${datos.slug}?color=${encodeURIComponent(color.nombre)}`}
-              className="relative z-10 inline-flex shrink-0 items-center gap-1 rounded-full bg-nova-600 px-3 py-1.5 text-xs font-semibold text-white shadow-md shadow-nova-600/30 transition-colors hover:bg-nova-400"
+              href={`/personnaliser/${datos.slug}?color=${encodeURIComponent(color.nombre)}`}
+              className="relative z-10 inline-flex min-h-8 shrink-0 items-center gap-1 rounded-full border-2 border-violet-600 bg-white px-3 py-1 text-xs font-semibold text-violet-600 transition-colors hover:bg-[#F2EDFB]"
+              aria-label={`Personnaliser ${datos.nombre} avec mon logo, coloris ${color.nombre.toLowerCase()}`}
             >
-              Diséñala
+              Personnaliser
             </Link>
           )}
         </div>

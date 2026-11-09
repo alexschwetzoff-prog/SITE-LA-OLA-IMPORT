@@ -1,14 +1,16 @@
-// Diseño de ejemplo dibujado en el navegador (fase 4.2): «Tu logo aquí», o el logo y la estrella de [MARCA] en
-// Atomic 150 y Austral, van como capa aparte encima de la foto del producto, a la resolución real de la pantalla
-// (devicePixelRatio incluido) y desde el archivo de marca de mayor calidad que hay (public/marca/*.png, 1024 a
-// 1400 px), con el mismo sombreado de tela que el visor del estudio: el diseño se multiplica por la luz relativa
-// de la tela bajo él. Antes iba incrustado en la foto de 600 px y se veía borroso al ampliarse.
+// Motif d'exemple dessiné dans le navigateur : « Votre logo ici » (public/marca/tu-logo-aqui.png), sur tous les
+// produits, Atomic 150 et Austral compris (les fichiers de logo de l'ancienne marque ont été retirés). Il est posé en
+// calque au-dessus de la photo du produit, à la résolution réelle de l'écran (devicePixelRatio compris), avec le même
+// ombrage de tissu que le studio : le motif est multiplié par la lumière relative du tissu sous lui.
+// [à refaire] L'image actuelle porte encore le texte espagnol « tu logo AQUÍ » : il faut une version « Votre logo ici ».
 //
 // La colocación (centro, ancho y giro en píxeles de la foto original, la capucha que lo tapa por detrás y el tamaño
 // de la foto) la calcula scripts/fotos/preparar-fotos-productos.py (y preparar-fotos-catalogo.py) y viaja en
 // data/fotos-catalogo.json. Sin JavaScript, la foto se ve limpia, sin el diseño.
 
-export type Marca = 'tu-logo-aqui' | 'marca-logo' | 'marca-estrella';
+// Un seul motif aujourd'hui. Les anciens identifiants 'marca-logo' et 'marca-estrella' (logo et étoile de la marque de
+// la base) ne sont plus servis : data/fotos-catalogo.json pointe sur 'tu-logo-aqui' partout.
+export type Marca = 'tu-logo-aqui';
 
 export interface ColocacionDiseno {
   x: number; // centro, en px de la foto original
@@ -32,8 +34,6 @@ export interface RectFoto {
 
 const RUTAS: Record<Marca, string> = {
   'tu-logo-aqui': '/marca/tu-logo-aqui.png',
-  'marca-logo': '/marca/logo-marca-catalogo.webp',
-  'marca-estrella': '/marca/estrella-marca-catalogo.webp',
 };
 
 const FUERZA_SOMBRA = 0.9; // cuánto sigue el diseño la luz de la tela (igual que el visor del estudio)
@@ -54,7 +54,7 @@ export function cargarMarca(marca: Marca): Promise<HTMLImageElement> {
       const img = new Image();
       img.decoding = 'async';
       img.onload = () => resolve(img);
-      img.onerror = () => reject(new Error(`No se ha podido cargar ${RUTAS[marca]}`));
+      img.onerror = () => reject(new Error(`Impossible de charger ${RUTAS[marca]}`));
       img.src = RUTAS[marca];
     });
     cacheMarca.set(marca, p);
@@ -214,7 +214,7 @@ export async function dibujarDiseno(lienzo: HTMLCanvasElement, foto: HTMLImageEl
   for (let i = 0, j = 0; i < d.length; i += 4, j++) lum[j] = (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]) / 255;
   const luz = desenfocar(lum, zw, zh, Math.max(1, Math.round(1.5 * esc)));
 
-  // «Tu logo aquí» en blanco si la tela es oscura (el logo de [MARCA], siempre con sus colores).
+  // « Votre logo ici » passe en blanc si le tissu est foncé.
   const capa = document.createElement('canvas');
   capa.width = w;
   capa.height = h;
@@ -237,9 +237,7 @@ export async function dibujarDiseno(lienzo: HTMLCanvasElement, foto: HTMLImageEl
     }
   }
   const media = n ? Math.max(0.03, suma / n) : 0.5;
-  // Tela oscura bajo el diseño (se decide por la luminosidad real de la zona, delante y detrás): solo «Tu logo aquí»
-  // pasa a blanco. El logo y la estrella de [MARCA] van siempre con sus colores de marca (corrección de la fase
-  // 4.6: la versión blanca que la 4.4 les aplicaba era un error).
+  // Tissu foncé sous le motif (décidé par la luminosité réelle de la zone, devant et dos) : le motif passe en blanc.
   const oscura = colocacion.marca === 'tu-logo-aqui' && media * 255 < UMBRAL_BLANCO;
   const version: 'negro' | 'blanco' | 'marca' = colocacion.marca === 'tu-logo-aqui' ? (oscura ? 'blanco' : 'negro') : 'marca';
   if (oscura) {

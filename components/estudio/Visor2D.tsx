@@ -30,7 +30,7 @@ const ANCHO_CAPTURA = 1200;
 const ALTO_CAPTURA = 1500;
 const FUERZA_SOMBRA = 0.9; // cuánto sigue el logo las luces y sombras de la tela (0 = pegatina plana)
 const PASO_TECLADO_CM = 0.5;
-const SOMBRA_CONTACTO = 'rgba(11, 15, 31, 0.16)'; // ink-900, muy suave, bajo la prenda
+const SOMBRA_CONTACTO = 'rgba(11, 15, 31, 0.16)'; // encre, muy suave, bajo la prenda
 
 interface Encaje {
   x: number;
@@ -592,7 +592,7 @@ export default function Visor2D({ store, fotos, capturarRef, ovniRef }: Props) {
       tabIndex={0}
       role="img"
       aria-label={`Foto de la prenda por ${lado === 'delante' ? 'delante' : 'detrás'} con tu logo. Arrastra el logo o muévelo con las flechas.`}
-      className="h-full w-full touch-none select-none outline-none focus-visible:ring-2 focus-visible:ring-star-300"
+      className="h-full w-full touch-none select-none outline-none focus-visible:ring-2 focus-visible:ring-bleu-600"
     />
   );
 }

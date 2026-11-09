@@ -11,7 +11,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { enviarSolicitud } from '@/app/proyecto/acciones';
+import { enviarSolicitud } from '@/app/projet/acciones';
 import { IconoWhatsApp } from '@/components/layout/Iconos';
 import { fondoMuestra } from '@/components/catalogo/Muestras';
 import { BotonEnlace, ESTILO_BOTON } from '@/components/ui/Botones';
@@ -52,16 +52,16 @@ const NOMBRES_CAMPOS: Record<string, string> = {
 };
 
 const campo =
-  'mt-1 w-full rounded-xl border border-moon-50/15 bg-space-950/60 px-3.5 py-2.5 text-moon-50 placeholder:text-mist-300/50 focus:border-star-300 focus:outline-none focus:ring-2 focus:ring-star-300/40';
-const etiqueta = 'block text-sm font-medium text-mist-300';
+  'mt-1 w-full rounded-xl border border-marine/15 bg-fond/60 px-3.5 py-2.5 text-marine placeholder:text-ardoise/50 focus:border-bleu-600 focus:outline-none focus:ring-2 focus:ring-bleu-600/40';
+const etiqueta = 'block text-sm font-medium text-ardoise';
 const chip =
-  'cursor-pointer rounded-full border border-moon-50/20 px-3.5 py-1.5 text-sm text-mist-300 transition-colors has-[:checked]:border-star-300 has-[:checked]:bg-star-300/15 has-[:checked]:text-moon-50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-star-300';
+  'cursor-pointer rounded-full border border-marine/20 px-3.5 py-1.5 text-sm text-ardoise transition-colors has-[:checked]:border-bleu-600 has-[:checked]:bg-bleu-600/15 has-[:checked]:text-marine has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-bleu-600';
 
 function Paso({ numero, titulo, children }: { numero: number; titulo: string; children: React.ReactNode }) {
   return (
-    <fieldset className="rounded-3xl border border-moon-50/10 bg-space-900/50 p-6 sm:p-8">
-      <legend className="flex items-center gap-3 px-2 font-display text-xl font-semibold text-moon-50">
-        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-star-300/60 bg-space-950 text-sm">{numero}</span>
+    <fieldset className="rounded-3xl border border-marine/10 bg-perle/50 p-6 sm:p-8">
+      <legend className="flex items-center gap-3 px-2 font-display text-xl font-semibold text-marine">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-bleu-600/60 bg-fond text-sm">{numero}</span>
         {titulo}
       </legend>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">{children}</div>
@@ -96,7 +96,7 @@ function Tarjeta({ item, datos }: { item: ItemPresupuesto; datos?: DatosProducto
   const posiciones = textoPosiciones(item);
   const precio = datos?.precio;
   return (
-    <li className="flex gap-4 rounded-2xl border border-moon-50/10 bg-space-950/50 p-3 sm:p-4">
+    <li className="flex gap-4 rounded-2xl border border-marine/10 bg-fond/50 p-3 sm:p-4">
       <div className="flex shrink-0 gap-1.5">
         {diseno?.capturas.length ? (
           diseno.capturas.map((c) => (
@@ -106,42 +106,42 @@ function Tarjeta({ item, datos }: { item: ItemPresupuesto; datos?: DatosProducto
         ) : item.foto ? (
           <Image src={item.foto} alt="" width={96} height={96} className="h-24 w-24 rounded-xl bg-white object-contain p-1" />
         ) : (
-          <span className="flex h-24 w-24 items-center justify-center rounded-xl bg-moon-50/10 text-xs text-mist-300">Sin foto</span>
+          <span className="flex h-24 w-24 items-center justify-center rounded-xl bg-marine/10 text-xs text-ardoise">Sin foto</span>
         )}
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-display text-lg font-semibold text-moon-50">
-              <Link href={`/catalogo/${item.slug}`} className="hover:underline">
+            <p className="font-display text-lg font-semibold text-marine">
+              <Link href={`/catalogue/${item.slug}`} className="hover:underline">
                 {item.nombre}
               </Link>
             </p>
-            <p className="text-sm text-mist-300">{item.tipo}</p>
+            <p className="text-sm text-ardoise">{item.tipo}</p>
           </div>
-          <button type="button" onClick={() => quitarDelPresupuesto(item.id)} className="shrink-0 text-sm text-mist-300 underline-offset-4 hover:text-moon-50 hover:underline">
+          <button type="button" onClick={() => quitarDelPresupuesto(item.id)} className="shrink-0 text-sm text-ardoise underline-offset-4 hover:text-marine hover:underline">
             Quitar
           </button>
         </div>
-        <p className="mt-2 flex items-center gap-2 text-sm text-moon-50">
-          <span className="h-4 w-4 rounded-full border border-moon-50/30" style={{ background: fondoMuestra(item.color) }} aria-hidden="true" />
+        <p className="mt-2 flex items-center gap-2 text-sm text-marine">
+          <span className="h-4 w-4 rounded-full border border-marine/30" style={{ background: fondoMuestra(item.color) }} aria-hidden="true" />
           {item.color.nombre}
         </p>
         {/* Posición de la personalización elegida en la ficha (fase 4.1) o las del diseño del estudio */}
         {diseno ? (
-          <p className="mt-1 text-xs text-mist-300">
+          <p className="mt-1 text-xs text-ardoise">
             Diseño del estudio: {diseno.colocaciones.map((c) => `${c.nombre} · ${c.anchoCm.toLocaleString('es-ES')} cm`).join(' + ') || 'sin posiciones'} · logo{diseno.logoDetras ? ' delantero' : ''} {diseno.logo.nombre}
             {diseno.logoDetras ? ` · logo trasero ${diseno.logoDetras.nombre}` : ''}
             {diseno.logoId && <EstadoLogo id={diseno.logoId} lado={diseno.logoDetras ? 'delantero' : undefined} />}
             {diseno.logoDetras && diseno.logoIdDetras && <EstadoLogo id={diseno.logoIdDetras} lado="trasero" />}
           </p>
         ) : (
-          posiciones && <p className="mt-1 text-xs text-mist-300">Personalización: {posiciones}</p>
+          posiciones && <p className="mt-1 text-xs text-ardoise">Personalización: {posiciones}</p>
         )}
-        {precio && <p className="mt-1 text-xs text-mist-300">{precio}</p>}
-        <label className="mt-3 block text-xs font-medium text-mist-300">
+        {precio && <p className="mt-1 text-xs text-ardoise">{precio}</p>}
+        <label className="mt-3 block text-xs font-medium text-ardoise">
           Cantidad aproximada
-          <select value={item.tramo} onChange={(e) => cambiarTramo(item.id, e.target.value as Tramo)} className="mt-1 block rounded-lg border border-moon-50/15 bg-space-950/60 px-2.5 py-1.5 text-sm text-moon-50">
+          <select value={item.tramo} onChange={(e) => cambiarTramo(item.id, e.target.value as Tramo)} className="mt-1 block rounded-lg border border-marine/15 bg-fond/60 px-2.5 py-1.5 text-sm text-marine">
             {TRAMOS.map((t) => (
               <option key={t.id} value={t.id}>
                 {t.nombre}
@@ -237,7 +237,7 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
         return;
       }
       limpiarTrasEnviar();
-      router.push('/gracias');
+      router.push('/merci');
     } catch {
       setEstado({ fase: 'error', mensaje: FALLO_RED });
     }
@@ -249,18 +249,18 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
   return (
     <section className="mx-auto w-full max-w-5xl px-4 pt-28 pb-16 sm:px-6 lg:px-8 lg:pt-36">
       <div data-cielo-evitar>
-        <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-nova-400 uppercase">Tu proyecto</p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight text-moon-50 sm:text-5xl">Cuéntanos tu proyecto.</h1>
-        <p className="mt-4 max-w-2xl text-lg text-mist-300">
+        <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-fuchsia-800 uppercase">Tu proyecto</p>
+        <h1 className="font-display text-4xl font-semibold tracking-tight text-marine sm:text-5xl">Cuéntanos tu proyecto.</h1>
+        <p className="mt-4 max-w-2xl text-lg text-ardoise">
           {particular ? 'Dos pasos cortos' : 'Tres pasos cortos'}. {TEXTOS.plazoPresupuesto.replace('Presupuesto', 'Te respondemos con presupuesto')}.
         </p>
       </div>
 
       {/* Cesta */}
-      <div className="mt-10 rounded-3xl border border-moon-50/10 bg-space-900/50 p-6 sm:p-8">
+      <div className="mt-10 rounded-3xl border border-marine/10 bg-perle/50 p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-3">
-          <h2 className="font-display text-2xl font-semibold text-moon-50">Tu presupuesto</h2>
-          <p className="text-sm text-mist-300">
+          <h2 className="font-display text-2xl font-semibold text-marine">Tu presupuesto</h2>
+          <p className="text-sm text-ardoise">
             {items.length ? `${items.length} ${items.length === 1 ? 'producto' : 'productos'}` : 'Aún no has añadido nada'}
           </p>
         </div>
@@ -271,18 +271,18 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
             ))}
           </ul>
         ) : (
-          <p className="mt-4 text-mist-300">Añade productos desde el catálogo o manda tu diseño desde el estudio, y aparecerán aquí con su color, posición y cantidad.</p>
+          <p className="mt-4 text-ardoise">Añade productos desde el catálogo o manda tu diseño desde el estudio, y aparecerán aquí con su color, posición y cantidad.</p>
         )}
         {conPrecios && (
-          <p className="mt-4 text-xs leading-relaxed text-mist-300">
+          <p className="mt-4 text-xs leading-relaxed text-ardoise">
             {TEXTOS.sinIva} {TEXTOS.notaPrecios} {TEXTOS.pedidoMinimo}
           </p>
         )}
         <div className="mt-5 flex flex-wrap gap-3">
-          <BotonEnlace href="/catalogo" variante="secundario">
+          <BotonEnlace href="/catalogue" variante="secundario">
             {items.length ? 'Añadir más productos' : 'Ver el catálogo'}
           </BotonEnlace>
-          <BotonEnlace href="/disena/atomic-150" variante="secundario">
+          <BotonEnlace href="/personnaliser/atomic-150" variante="secundario">
             Diseñar una prenda con mi logo
           </BotonEnlace>
         </div>
@@ -357,7 +357,7 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
         <Paso numero={2} titulo="Qué necesitas">
           <div className="sm:col-span-2">
             <p className={etiqueta}>Productos</p>
-            <p className="mt-1 text-sm text-moon-50">
+            <p className="mt-1 text-sm text-marine">
               {items.length
                 ? items
                     .map((i) => {
@@ -385,7 +385,7 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
               </div>
             </fieldset>
           )}
-          <p className="text-sm font-medium text-moon-50/90 sm:col-span-2">{TEXTOS.pedidoMinimo}</p>
+          <p className="text-sm font-medium text-marine/90 sm:col-span-2">{TEXTOS.pedidoMinimo}</p>
           {particular ? (
             <label className={`${etiqueta} sm:col-span-2`}>
               ¿Cuál es la ocasión?
@@ -406,7 +406,7 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
           )}
           {/* La fecha nunca es obligatoria: es una petición de presupuesto (fase 4.1) */}
           <label className={etiqueta}>
-            ¿Para cuándo lo necesitas? <span className="font-normal text-mist-300/70">(opcional)</span>
+            ¿Para cuándo lo necesitas? <span className="font-normal text-ardoise/70">(opcional)</span>
             <input name="fecha_limite" type="date" className={campo} />
           </label>
           <label className={etiqueta}>
@@ -416,11 +416,11 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
               type="file"
               multiple
               accept=".png,.jpg,.jpeg,.svg,.pdf,.ai,image/png,image/jpeg,image/svg+xml,application/pdf"
-              className={`${campo} file:mr-3 file:rounded-full file:border-0 file:bg-moon-50/10 file:px-3 file:py-1 file:text-sm file:text-moon-50`}
+              className={`${campo} file:mr-3 file:rounded-full file:border-0 file:bg-marine/10 file:px-3 file:py-1 file:text-sm file:text-marine`}
             />
-            <span className="mt-1 block text-xs text-mist-300/80">PNG, JPG, SVG, PDF o AI; hasta {formatoBytes(MAX_ENVIO_BYTES)} en total por envío. Si pesa más, mándanoslo después por WhatsApp o email.</span>
+            <span className="mt-1 block text-xs text-ardoise/80">PNG, JPG, SVG, PDF o AI; hasta {formatoBytes(MAX_ENVIO_BYTES)} en total por envío. Si pesa más, mándanoslo después por WhatsApp o email.</span>
           </label>
-          {conDisenos && <p className="text-sm text-mist-300 sm:col-span-2">Tus diseños del estudio van adjuntos con sus capturas delantera y trasera y los archivos de tus logos.</p>}
+          {conDisenos && <p className="text-sm text-ardoise sm:col-span-2">Tus diseños del estudio van adjuntos con sus capturas delantera y trasera y los archivos de tus logos.</p>}
           <label className={`${etiqueta} sm:col-span-2`}>
             Comentarios
             <textarea name="mensaje" rows={4} maxLength={4000} className={campo} placeholder="Si quieres, cuéntanos qué tienes en mente: prendas, colores, cantidades, fechas…" />
@@ -447,36 +447,36 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
           </Paso>
         )}
 
-        <div className="rounded-3xl border border-moon-50/10 p-6 sm:p-8">
-          <label className="flex items-start gap-3 text-sm text-mist-300">
-            <input type="checkbox" name="privacidad" required className="mt-1 h-4 w-4 accent-star-300" />
+        <div className="rounded-3xl border border-marine/10 p-6 sm:p-8">
+          <label className="flex items-start gap-3 text-sm text-ardoise">
+            <input type="checkbox" name="privacidad" required className="mt-1 h-4 w-4 accent-bleu-600" />
             <span>
               He leído la{' '}
-              <Link href="/privacidad" className="text-nova-400 underline underline-offset-4 hover:text-star-300">
+              <Link href="/confidentialite" className="text-fuchsia-800 underline underline-offset-4 hover:text-bleu-600">
                 política de privacidad
               </Link>
               . Usaremos tus datos solo para responderte y preparar el presupuesto. *
             </span>
           </label>
-          <label className="mt-3 flex items-start gap-3 text-sm text-mist-300">
-            <input type="checkbox" name="logo_permiso" className="mt-1 h-4 w-4 accent-star-300" />
+          <label className="mt-3 flex items-start gap-3 text-sm text-ardoise">
+            <input type="checkbox" name="logo_permiso" className="mt-1 h-4 w-4 accent-bleu-600" />
             <span>Confirmo que puedo usar el logo o diseño que adjunto.</span>
           </label>
 
           {estado.fase === 'error' && (
-            <div ref={avisoRef} tabIndex={-1} role="alert" className="mt-6 rounded-2xl border border-star-300/50 bg-space-950/70 p-4 text-sm text-moon-50 focus:outline-none sm:p-5">
+            <div ref={avisoRef} tabIndex={-1} role="alert" className="mt-6 rounded-2xl border border-bleu-600/50 bg-fond/70 p-4 text-sm text-marine focus:outline-none sm:p-5">
               <p className="font-semibold">{estado.campos ? estado.mensaje : 'No se ha enviado.'}</p>
               {estado.campos ? (
-                <ul className="mt-2 list-disc space-y-1 pl-5 text-mist-300">
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-ardoise">
                   {estado.campos.map((c) => (
                     <li key={c.campo}>
-                      {NOMBRES_CAMPOS[c.campo] ? <span className="text-moon-50">{NOMBRES_CAMPOS[c.campo]}: </span> : null}
+                      {NOMBRES_CAMPOS[c.campo] ? <span className="text-marine">{NOMBRES_CAMPOS[c.campo]}: </span> : null}
                       {c.mensaje}
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="mt-1 text-mist-300">{estado.mensaje}</p>
+                <p className="mt-1 text-ardoise">{estado.mensaje}</p>
               )}
               <a
                 href={enlaceWhatsApp()}
@@ -494,12 +494,12 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
             <button type="submit" disabled={enviando} aria-busy={enviando} className={ESTILO_BOTON.principal + ' px-6 py-3 text-base'}>
               {enviando ? 'Enviando…' : 'Enviar mi proyecto'}
             </button>
-            <p id={`${id}-estado`} aria-live="polite" className="text-sm text-mist-300">
+            <p id={`${id}-estado`} aria-live="polite" className="text-sm text-ardoise">
               {enviando ? 'Preparando tus logos y tus capturas y enviando la solicitud…' : `${TEXTOS.plazoPresupuesto.replace('Presupuesto', 'Te respondemos con presupuesto')}.`}
             </p>
           </div>
-          <p className="mt-2 text-xs text-mist-300/80">Si no ves nuestro correo de confirmación, revisa la carpeta de spam o promociones.</p>
-          {particular && <p className="mt-3 text-sm text-mist-300">¿Dudas? Escríbenos por WhatsApp: es la vía rápida.</p>}
+          <p className="mt-2 text-xs text-ardoise/80">Si no ves nuestro correo de confirmación, revisa la carpeta de spam o promociones.</p>
+          {particular && <p className="mt-3 text-sm text-ardoise">¿Dudas? Escríbenos por WhatsApp: es la vía rápida.</p>}
           <a href={enlaceWhatsApp()} target="_blank" rel="noopener noreferrer" className={`${ESTILO_BOTON.secundario} mt-4`}>
             <IconoWhatsApp className="h-4 w-4" />
             Escríbenos por WhatsApp

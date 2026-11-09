@@ -7,7 +7,7 @@ const b = await chromium.launch();
 const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 const p = await ctx.newPage();
 let fallos = 0;
-for (const ruta of ['/', '/catalogo', '/catalogo/imola', '/catalogo/zenith', '/disena', '/proyecto', '/gracias', '/opiniones', '/aviso-legal']) {
+for (const ruta of ['/', '/catalogue', '/catalogue/imola', '/catalogue/zenith', '/personnaliser', '/projet', '/merci', '/avis', '/mentions-legales']) {
   await p.goto(base + ruta, { waitUntil: 'load' });
   await p.waitForTimeout(1200);
   const r = await p.evaluate(() => {

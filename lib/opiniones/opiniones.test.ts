@@ -38,6 +38,9 @@ test('solo se publican las filas con publicar = SI y opinión no vacía, en fech
 test('SI/Sí/si/NO/no sin distinguir mayúsculas ni tildes; lo dudoso es NO', () => {
   for (const v of ['SI', 'Sí', 'si', 'sí', ' Si ', 'SÍ']) assert.equal(esSi(v), true, v);
   for (const v of ['NO', 'no', '', undefined, 'yes', 'S', 'si no', 'sí.']) assert.equal(esSi(v), false, String(v));
+  // la hoja de La Ola Import puede estar en francés: OUI / NON
+  for (const v of ['OUI', 'oui', ' Oui ']) assert.equal(esSi(v), true, v);
+  for (const v of ['NON', 'non', 'ou']) assert.equal(esSi(v), false, v);
 });
 
 test('texto plano: caracteres de control fuera, espacios compactados, 500 caracteres con puntos suspensivos', () => {

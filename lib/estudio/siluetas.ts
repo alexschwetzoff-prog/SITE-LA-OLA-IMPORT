@@ -31,7 +31,7 @@ export interface FotoCalibrada {
 }
 
 export interface FotosSilueta {
-  base: Record<Lado, FotoCalibrada>; // la prenda en blanco: origen de los recoloreados y foto del color Blanco
+  base: Record<Lado, FotoCalibrada>; // la prenda en blanco: origen de los recoloreados y foto del color Blanc
   reales: Record<string, Record<Lado, FotoCalibrada>>; // fotos reales de otros colores, por nombre de color
   recoloreadas: Record<string, Record<Lado, string>>; // foto blanca teñida a cada color sin foto real (misma calibración que la base)
 }
@@ -60,7 +60,7 @@ export function fotosDeColor(silueta: Silueta, nombreColor: string): { fotos: Re
   const real = silueta.fotos.reales[nombreColor];
   if (real) return { fotos: real, origen: 'real' };
   const base = silueta.fotos.base;
-  if (nombreColor === 'Blanco') return { fotos: base, origen: 'real' };
+  if (nombreColor === 'Blanc') return { fotos: base, origen: 'real' };
   const rec = silueta.fotos.recoloreadas[nombreColor];
   if (rec) {
     return {

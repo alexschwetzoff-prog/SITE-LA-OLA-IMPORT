@@ -7,7 +7,7 @@ configurador de prendas, y se ha quitado su identidad. Lee esto entero al empeza
 ## Lo primero que hay que saber
 
 - **Toda la identidad es nueva**: nombre, colores, logo, mascota, tipografías, textos, tono, diseño y fotos de marca.
-  Vendrá de la carpeta **`brand/`** (hoy vacía). No se reutiliza nada de la marca de la base ni se inventa nada:
+  Está en **`brand/`** (logo provisional « La Ola Import » y mascota Surfi). No se reutiliza nada de la marca de la base ni se inventa nada:
   si falta un archivo de marca, se usa un marcador visible y se apunta en `PENDIENTE-DE-SUSTITUIR.md`.
 - **Lo heredado que sigue en el código** (estructura visual, textos de la home, mascota animada, fondo espacial…) es
   provisional. La lista completa está en **`PENDIENTE-DE-SUSTITUIR.md`**: consúltala antes de tocar cualquier pantalla
@@ -22,12 +22,15 @@ configurador de prendas, y se ha quitado su identidad. Lee esto entero al empeza
   Console, perfil de empresa), analítica y píxeles. No se reutiliza ninguna cuenta, proyecto, clave ni ID de la base.
 - **Nunca se suben `.env`** (ni `.env.local`, ni ninguna variante): solo `.env.example`, sin valores reales. Las claves
   viven en `.env.local` y en el panel del alojamiento. Tampoco IDs de píxel ni tokens en el código o en la documentación.
-- Esta carpeta **todavía no es un repositorio git**. Al crearlo (`git init`), en la cuenta de GitHub de La Ola Import.
+- Repositorio: `alexschwetzoff-prog/SITE-LA-OLA-IMPORT` (GitHub). Propuesta de estructura y diseño validada:
+  `docs/PROPOSITION.md`.
 
 ## Qué hay (heredado y reutilizable)
 
-- **Web**: Next.js (App Router) + TypeScript + Tailwind 4. Páginas: home, `/catalogo`, `/catalogo/[slug]` (ficha),
-  `/disena/[slug]` (estudio), `/proyecto` (cesta + formulario), `/gracias`, `/opiniones`, `/tu-opinion` y legales.
+- **Web**: Next.js (App Router) + TypeScript + Tailwind 4. Páginas: accueil, `/catalogue`, `/catalogue/[slug]` (fiche),
+  `/personnaliser/[slug]` (studio), `/projet` (panier + formulaire), `/devis`, `/merci`, `/avis`, `/donner-mon-avis`,
+  `/comment-nous-travaillons`, `/qui-sommes-nous`, `/professionnels/[segment]`, `/espace-client`,
+  `/livraison-et-paiement` y legales (`/mentions-legales`, `/confidentialite`, `/cookies`, `/cgv`).
   Detalle de carpetas en `README.md`.
 - **Catálogo**: 30 productos en `data/catalogo.ts` (categorías, tipo, material, gramaje, tallas de adulto e infantiles,
   colores con hex, posiciones de impresión con tamaño máximo en cm, etiquetas, visor). Categorías en
@@ -68,7 +71,9 @@ configurador de prendas, y se ha quitado su identidad. Lee esto entero al empeza
 - Las reglas de negocio de La Ola Import (precios, pedido mínimo, plazos, zona de servicio, visitas, IVA) **están por
   definir**: no se inventan ni se copian de la base. Pregunta antes de escribir cualquier promesa comercial.
 - Ninguna reseña inventada. Las opiniones solo se publican si son reales y con permiso.
-- Español de España salvo que La Ola Import decida otra cosa. Accesibilidad AA y `prefers-reduced-motion`.
+- **Web en francés** (decisión de La Ola Import, 09/11/2026: mercado de Monteux, Vaucluse), con URL en francés
+  (`/catalogue`, `/personnaliser`, `/projet`, `/devis`, `/merci`, `/avis`…). Los identificadores de código pueden
+  seguir en español. Accesibilidad AA y `prefers-reduced-motion`.
 - Si algo es ambiguo o choca con estas reglas, pregunta antes de construir.
 
 ## Arrancar

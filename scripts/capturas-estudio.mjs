@@ -246,7 +246,7 @@ try {
         let ruta = '';
         for (let i = 0; i < 100; i++) {
           ruta = await cdp.evaluar('location.pathname');
-          if (ruta === '/proyecto') break;
+          if (ruta === '/projet') break;
           await espera(100);
         }
         const guardado = await cdp.evaluar(

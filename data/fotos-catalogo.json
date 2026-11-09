@@ -1,9 +1,9 @@
 {
   "atomic-150": {
-    "Blanco": {
+    "Blanc": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -18,7 +18,7 @@
         "y": 319.4,
         "ancho": 130.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -30,17 +30,17 @@
         "y": 384.1,
         "ancho": 332.8,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Negro": {
+    "Noir": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -55,7 +55,7 @@
         "y": 318.5,
         "ancho": 130.5,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -67,17 +67,17 @@
         "y": 383.6,
         "ancho": 333.0,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Amarillo": {
+    "Jaune": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -92,7 +92,7 @@
         "y": 318.5,
         "ancho": 130.5,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -104,17 +104,17 @@
         "y": 383.7,
         "ancho": 333.0,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Royal": {
+    "Bleu royal": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -129,7 +129,7 @@
         "y": 319.2,
         "ancho": 130.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -141,17 +141,17 @@
         "y": 383.6,
         "ancho": 333.0,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Turquesa": {
+    "Turquoise": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -166,7 +166,7 @@
         "y": 319.5,
         "ancho": 130.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -178,17 +178,17 @@
         "y": 383.0,
         "ancho": 333.3,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Verde kelly": {
+    "Vert kelly": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -203,7 +203,7 @@
         "y": 318.7,
         "ancho": 130.5,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -215,17 +215,17 @@
         "y": 383.7,
         "ancho": 333.0,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Naranja": {
+    "Orange": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -240,7 +240,7 @@
         "y": 318.7,
         "ancho": 130.5,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -252,17 +252,17 @@
         "y": 383.6,
         "ancho": 333.0,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Marino": {
+    "Bleu marine": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -277,7 +277,7 @@
         "y": 318.0,
         "ancho": 130.6,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -289,17 +289,17 @@
         "y": 383.6,
         "ancho": 333.0,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Gris vigoré": {
+    "Gris chiné": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -314,7 +314,7 @@
         "y": 318.8,
         "ancho": 130.5,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -326,17 +326,17 @@
         "y": 383.6,
         "ancho": 333.0,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Rojo": {
+    "Rouge": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -351,7 +351,7 @@
         "y": 318.7,
         "ancho": 130.5,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -363,17 +363,17 @@
         "y": 383.6,
         "ancho": 333.0,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Fucsia": {
+    "Fuchsia": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -388,7 +388,7 @@
         "y": 319.9,
         "ancho": 130.3,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -400,7 +400,7 @@
         "y": 382.9,
         "ancho": 333.3,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -409,10 +409,10 @@
     }
   },
   "austral": {
-    "Blanco": {
+    "Blanc": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -427,7 +427,7 @@
         "y": 339.8,
         "ancho": 127.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -439,17 +439,17 @@
         "y": 418.5,
         "ancho": 318.8,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Negro": {
+    "Noir": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -464,7 +464,7 @@
         "y": 339.7,
         "ancho": 127.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -476,17 +476,17 @@
         "y": 418.2,
         "ancho": 318.9,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Amarillo": {
+    "Jaune": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -501,7 +501,7 @@
         "y": 339.5,
         "ancho": 127.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -513,17 +513,17 @@
         "y": 418.5,
         "ancho": 318.8,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Royal": {
+    "Bleu royal": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -538,7 +538,7 @@
         "y": 339.6,
         "ancho": 127.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -550,17 +550,17 @@
         "y": 418.2,
         "ancho": 318.9,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Turquesa": {
+    "Turquoise": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -575,7 +575,7 @@
         "y": 339.6,
         "ancho": 127.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -587,17 +587,17 @@
         "y": 418.6,
         "ancho": 318.7,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Verde kelly": {
+    "Vert kelly": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -612,7 +612,7 @@
         "y": 339.6,
         "ancho": 127.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -624,17 +624,17 @@
         "y": 418.6,
         "ancho": 318.7,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Marino": {
+    "Bleu marine": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -649,7 +649,7 @@
         "y": 339.7,
         "ancho": 127.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -661,17 +661,17 @@
         "y": 418.2,
         "ancho": 318.9,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
         ]
       }
     },
-    "Rojo": {
+    "Rouge": {
       "real": true,
       "realDetras": true,
-      "ejemplo": "marca",
+      "ejemplo": "tu-logo-aqui",
       "anchos": [
         1200,
         800
@@ -686,7 +686,7 @@
         "y": 339.6,
         "ancho": 127.4,
         "giro": 0,
-        "marca": "marca-logo",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -698,7 +698,7 @@
         "y": 418.7,
         "ancho": 318.7,
         "giro": 0,
-        "marca": "marca-estrella",
+        "marca": "tu-logo-aqui",
         "lienzo": [
           1200,
           1200
@@ -707,7 +707,7 @@
     }
   },
   "bull": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/bull-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -744,7 +744,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/bull-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -855,7 +855,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Coral": {
+    "Corail": {
       "delante": "/productos/catalogo/bull-coral-delante.webp",
       "real": true,
       "anchos": [
@@ -892,7 +892,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco roto": {
+    "Blanc cassé": {
       "delante": "/productos/catalogo/bull-blanco-roto-delante.webp",
       "real": true,
       "anchos": [
@@ -929,7 +929,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Salmón": {
+    "Saumon": {
       "delante": "/productos/catalogo/bull-salmon-delante.webp",
       "real": true,
       "anchos": [
@@ -966,7 +966,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris plomo": {
+    "Gris plomb": {
       "delante": "/productos/catalogo/bull-gris-plomo-delante.webp",
       "real": true,
       "anchos": [
@@ -1003,7 +1003,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul claro": {
+    "Bleu clair": {
       "delante": "/productos/catalogo/bull-azul-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -1040,7 +1040,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde menta": {
+    "Vert menthe": {
       "delante": "/productos/catalogo/bull-verde-menta-delante.webp",
       "real": true,
       "anchos": [
@@ -1077,7 +1077,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Esmeralda": {
+    "Émeraude": {
       "delante": "/productos/catalogo/bull-esmeralda-delante.webp",
       "real": true,
       "anchos": [
@@ -1114,7 +1114,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja mandarina": {
+    "Mandarine": {
       "delante": "/productos/catalogo/bull-naranja-mandarina-delante.webp",
       "real": true,
       "anchos": [
@@ -1151,7 +1151,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/bull-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -1188,7 +1188,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Malva": {
+    "Mauve": {
       "delante": "/productos/catalogo/bull-malva-delante.webp",
       "real": true,
       "anchos": [
@@ -1225,7 +1225,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Lila": {
+    "Lilas": {
       "delante": "/productos/catalogo/bull-lila-delante.webp",
       "real": true,
       "anchos": [
@@ -1264,7 +1264,7 @@
     }
   },
   "cobain": {
-    "Amarillo vainilla": {
+    "Jaune vanille": {
       "delante": "/productos/catalogo/cobain-amarillo-vainilla-delante.webp",
       "real": true,
       "anchos": [
@@ -1301,7 +1301,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris perla": {
+    "Gris perle": {
       "delante": "/productos/catalogo/cobain-gris-perla-delante.webp",
       "real": true,
       "anchos": [
@@ -1338,7 +1338,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris lavanda": {
+    "Gris lavande": {
       "delante": "/productos/catalogo/cobain-gris-lavanda-delante.webp",
       "real": true,
       "anchos": [
@@ -1375,7 +1375,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Caqui": {
+    "Kaki": {
       "delante": "/productos/catalogo/cobain-caqui-delante.webp",
       "real": true,
       "anchos": [
@@ -1412,7 +1412,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Melocotón": {
+    "Pêche": {
       "delante": "/productos/catalogo/cobain-melocoton-delante.webp",
       "real": true,
       "anchos": [
@@ -1449,7 +1449,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde salvia": {
+    "Vert sauge": {
       "delante": "/productos/catalogo/cobain-verde-salvia-delante.webp",
       "real": true,
       "anchos": [
@@ -1488,7 +1488,7 @@
     }
   },
   "jamaica": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/jamaica-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -1525,7 +1525,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/jamaica-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -1562,7 +1562,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo": {
+    "Jaune": {
       "delante": "/productos/catalogo/jamaica-amarillo-delante.webp",
       "real": true,
       "anchos": [
@@ -1599,7 +1599,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/jamaica-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -1636,7 +1636,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Celeste": {
+    "Bleu ciel": {
       "delante": "/productos/catalogo/jamaica-celeste-delante.webp",
       "real": true,
       "anchos": [
@@ -1673,7 +1673,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Celeste claro": {
+    "Bleu ciel clair": {
       "delante": "/productos/catalogo/jamaica-celeste-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -1747,7 +1747,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde manzana": {
+    "Vert pomme": {
       "delante": "/productos/catalogo/jamaica-verde-manzana-delante.webp",
       "real": true,
       "anchos": [
@@ -1784,7 +1784,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Turquesa": {
+    "Turquoise": {
       "delante": "/productos/catalogo/jamaica-turquesa-delante.webp",
       "real": true,
       "anchos": [
@@ -1821,7 +1821,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Coral": {
+    "Corail": {
       "delante": "/productos/catalogo/jamaica-coral-delante.webp",
       "real": true,
       "anchos": [
@@ -1858,7 +1858,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco roto": {
+    "Blanc cassé": {
       "delante": "/productos/catalogo/jamaica-blanco-roto-delante.webp",
       "real": true,
       "anchos": [
@@ -1895,7 +1895,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde oliva": {
+    "Vert olive": {
       "delante": "/productos/catalogo/jamaica-verde-oliva-delante.webp",
       "real": true,
       "anchos": [
@@ -1932,7 +1932,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde kelly": {
+    "Vert kelly": {
       "delante": "/productos/catalogo/jamaica-verde-kelly-delante.webp",
       "real": true,
       "anchos": [
@@ -2006,7 +2006,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde agua": {
+    "Vert d’eau": {
       "delante": "/productos/catalogo/jamaica-verde-agua-delante.webp",
       "real": true,
       "anchos": [
@@ -2043,7 +2043,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Dorado": {
+    "Doré": {
       "delante": "/productos/catalogo/jamaica-dorado-delante.webp",
       "real": true,
       "anchos": [
@@ -2080,7 +2080,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rosa palo": {
+    "Vieux rose": {
       "delante": "/productos/catalogo/jamaica-rosa-palo-delante.webp",
       "real": true,
       "anchos": [
@@ -2117,7 +2117,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja": {
+    "Orange": {
       "delante": "/productos/catalogo/jamaica-naranja-delante.webp",
       "real": true,
       "anchos": [
@@ -2154,7 +2154,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul cielo": {
+    "Bleu azur": {
       "delante": "/productos/catalogo/jamaica-azul-cielo-delante.webp",
       "real": true,
       "anchos": [
@@ -2191,7 +2191,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul petróleo": {
+    "Bleu pétrole": {
       "delante": "/productos/catalogo/jamaica-azul-petroleo-delante.webp",
       "real": true,
       "anchos": [
@@ -2228,7 +2228,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Antracita": {
+    "Anthracite": {
       "delante": "/productos/catalogo/jamaica-antracita-delante.webp",
       "real": true,
       "anchos": [
@@ -2265,7 +2265,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rosa claro": {
+    "Rose clair": {
       "delante": "/productos/catalogo/jamaica-rosa-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -2302,7 +2302,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rosa": {
+    "Rose": {
       "delante": "/productos/catalogo/jamaica-rosa-delante.webp",
       "real": true,
       "anchos": [
@@ -2339,7 +2339,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/jamaica-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -2376,7 +2376,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde botella": {
+    "Vert bouteille": {
       "delante": "/productos/catalogo/jamaica-verde-botella-delante.webp",
       "real": true,
       "anchos": [
@@ -2413,7 +2413,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Granate": {
+    "Grenat": {
       "delante": "/productos/catalogo/jamaica-granate-delante.webp",
       "real": true,
       "anchos": [
@@ -2450,7 +2450,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris vigoré": {
+    "Gris chiné": {
       "delante": "/productos/catalogo/jamaica-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -2487,7 +2487,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/jamaica-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -2524,7 +2524,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Frambuesa": {
+    "Framboise": {
       "delante": "/productos/catalogo/jamaica-frambuesa-delante.webp",
       "real": true,
       "anchos": [
@@ -2561,7 +2561,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Púrpura": {
+    "Pourpre": {
       "delante": "/productos/catalogo/jamaica-purpura-delante.webp",
       "real": true,
       "anchos": [
@@ -2598,7 +2598,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Lila": {
+    "Lilas": {
       "delante": "/productos/catalogo/jamaica-lila-delante.webp",
       "real": true,
       "anchos": [
@@ -2635,7 +2635,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Crema": {
+    "Crème": {
       "delante": "/productos/catalogo/jamaica-crema-delante.webp",
       "real": true,
       "anchos": [
@@ -2672,7 +2672,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia": {
+    "Fuchsia": {
       "delante": "/productos/catalogo/jamaica-fucsia-delante.webp",
       "real": true,
       "anchos": [
@@ -2709,7 +2709,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde primavera": {
+    "Vert printemps": {
       "delante": "/productos/catalogo/jamaica-verde-primavera-delante.webp",
       "real": true,
       "anchos": [
@@ -2746,7 +2746,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul lavanda": {
+    "Bleu lavande": {
       "delante": "/productos/catalogo/jamaica-azul-lavanda-delante.webp",
       "real": true,
       "anchos": [
@@ -2783,7 +2783,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Aguamarina": {
+    "Aigue-marine": {
       "delante": "/productos/catalogo/jamaica-aguamarina-delante.webp",
       "real": true,
       "anchos": [
@@ -2822,7 +2822,7 @@
     }
   },
   "pointer": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/pointer-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -2859,7 +2859,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/pointer-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -2896,7 +2896,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/pointer-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -2933,7 +2933,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/pointer-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -2970,7 +2970,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde botella": {
+    "Vert bouteille": {
       "delante": "/productos/catalogo/pointer-verde-botella-delante.webp",
       "real": true,
       "anchos": [
@@ -3007,7 +3007,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris vigoré": {
+    "Gris chiné": {
       "delante": "/productos/catalogo/pointer-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -3044,7 +3044,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/pointer-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -3083,7 +3083,7 @@
     }
   },
   "bahrain": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/bahrain-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -3120,7 +3120,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/bahrain-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -3157,7 +3157,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo": {
+    "Jaune": {
       "delante": "/productos/catalogo/bahrain-amarillo-delante.webp",
       "real": true,
       "anchos": [
@@ -3194,7 +3194,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/bahrain-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -3231,7 +3231,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Celeste": {
+    "Bleu ciel": {
       "delante": "/productos/catalogo/bahrain-celeste-delante.webp",
       "real": true,
       "anchos": [
@@ -3268,7 +3268,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Turquesa": {
+    "Turquoise": {
       "delante": "/productos/catalogo/bahrain-turquesa-delante.webp",
       "real": true,
       "anchos": [
@@ -3305,7 +3305,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rosa coral": {
+    "Rose corail": {
       "delante": "/productos/catalogo/bahrain-rosa-coral-delante.webp",
       "real": true,
       "anchos": [
@@ -3342,7 +3342,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde militar": {
+    "Vert militaire": {
       "delante": "/productos/catalogo/bahrain-verde-militar-delante.webp",
       "real": true,
       "anchos": [
@@ -3379,7 +3379,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Caqui": {
+    "Kaki": {
       "delante": "/productos/catalogo/bahrain-caqui-delante.webp",
       "real": true,
       "anchos": [
@@ -3416,7 +3416,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo flúor": {
+    "Jaune fluo": {
       "delante": "/productos/catalogo/bahrain-amarillo-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -3453,7 +3453,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde lima": {
+    "Vert lime": {
       "delante": "/productos/catalogo/bahrain-verde-lima-delante.webp",
       "real": true,
       "anchos": [
@@ -3490,7 +3490,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja flúor": {
+    "Orange fluo": {
       "delante": "/productos/catalogo/bahrain-naranja-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -3527,7 +3527,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde flúor": {
+    "Vert fluo": {
       "delante": "/productos/catalogo/bahrain-verde-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -3564,7 +3564,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde": {
+    "Vert": {
       "delante": "/productos/catalogo/bahrain-verde-delante.webp",
       "real": true,
       "anchos": [
@@ -3601,7 +3601,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia flúor": {
+    "Fuchsia fluo": {
       "delante": "/productos/catalogo/bahrain-fucsia-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -3638,7 +3638,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Coral flúor": {
+    "Corail fluo": {
       "delante": "/productos/catalogo/bahrain-coral-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -3675,7 +3675,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul petróleo": {
+    "Bleu pétrole": {
       "delante": "/productos/catalogo/bahrain-azul-petroleo-delante.webp",
       "real": true,
       "anchos": [
@@ -3712,7 +3712,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Antracita": {
+    "Anthracite": {
       "delante": "/productos/catalogo/bahrain-antracita-delante.webp",
       "real": true,
       "anchos": [
@@ -3786,7 +3786,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/bahrain-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -3823,7 +3823,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/bahrain-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -3860,7 +3860,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Morado": {
+    "Violet": {
       "delante": "/productos/catalogo/bahrain-morado-delante.webp",
       "real": true,
       "anchos": [
@@ -3897,7 +3897,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia": {
+    "Fuchsia": {
       "delante": "/productos/catalogo/bahrain-fucsia-delante.webp",
       "real": true,
       "anchos": [
@@ -3934,7 +3934,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Aguamarina": {
+    "Aigue-marine": {
       "delante": "/productos/catalogo/bahrain-aguamarina-delante.webp",
       "real": true,
       "anchos": [
@@ -3973,7 +3973,7 @@
     }
   },
   "imola": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/imola-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -4010,7 +4010,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/imola-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -4047,7 +4047,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo": {
+    "Jaune": {
       "delante": "/productos/catalogo/imola-amarillo-delante.webp",
       "real": true,
       "anchos": [
@@ -4084,7 +4084,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/imola-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -4121,7 +4121,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Turquesa": {
+    "Turquoise": {
       "delante": "/productos/catalogo/imola-turquesa-delante.webp",
       "real": true,
       "anchos": [
@@ -4158,7 +4158,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo flúor": {
+    "Jaune fluo": {
       "delante": "/productos/catalogo/imola-amarillo-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -4195,7 +4195,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde lima": {
+    "Vert lime": {
       "delante": "/productos/catalogo/imola-verde-lima-delante.webp",
       "real": true,
       "anchos": [
@@ -4232,7 +4232,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja flúor": {
+    "Orange fluo": {
       "delante": "/productos/catalogo/imola-naranja-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -4269,7 +4269,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde flúor": {
+    "Vert fluo": {
       "delante": "/productos/catalogo/imola-verde-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -4306,7 +4306,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde": {
+    "Vert": {
       "delante": "/productos/catalogo/imola-verde-delante.webp",
       "real": true,
       "anchos": [
@@ -4343,7 +4343,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia flúor": {
+    "Fuchsia fluo": {
       "delante": "/productos/catalogo/imola-fucsia-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -4380,7 +4380,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Coral flúor": {
+    "Corail fluo": {
       "delante": "/productos/catalogo/imola-coral-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -4417,7 +4417,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Antracita": {
+    "Anthracite": {
       "delante": "/productos/catalogo/imola-antracita-delante.webp",
       "real": true,
       "anchos": [
@@ -4454,7 +4454,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/imola-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -4491,7 +4491,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/imola-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -4528,7 +4528,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Morado": {
+    "Violet": {
       "delante": "/productos/catalogo/imola-morado-delante.webp",
       "real": true,
       "anchos": [
@@ -4565,7 +4565,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia": {
+    "Fuchsia": {
       "delante": "/productos/catalogo/imola-fucsia-delante.webp",
       "real": true,
       "anchos": [
@@ -4604,7 +4604,7 @@
     }
   },
   "andre": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/andre-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -4641,7 +4641,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/andre-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -4678,7 +4678,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/andre-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -4715,7 +4715,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Turquesa": {
+    "Turquoise": {
       "delante": "/productos/catalogo/andre-turquesa-delante.webp",
       "real": true,
       "anchos": [
@@ -4752,7 +4752,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo flúor": {
+    "Jaune fluo": {
       "delante": "/productos/catalogo/andre-amarillo-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -4789,7 +4789,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja flúor": {
+    "Orange fluo": {
       "delante": "/productos/catalogo/andre-naranja-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -4826,7 +4826,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde flúor": {
+    "Vert fluo": {
       "delante": "/productos/catalogo/andre-verde-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -4863,7 +4863,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/andre-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -4902,7 +4902,7 @@
     }
   },
   "shura": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/shura-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -4939,7 +4939,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/shura-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -4976,7 +4976,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Turquesa": {
+    "Turquoise": {
       "delante": "/productos/catalogo/shura-turquesa-delante.webp",
       "real": true,
       "anchos": [
@@ -5013,7 +5013,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo flúor": {
+    "Jaune fluo": {
       "delante": "/productos/catalogo/shura-amarillo-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -5050,7 +5050,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja flúor": {
+    "Orange fluo": {
       "delante": "/productos/catalogo/shura-naranja-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -5087,7 +5087,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde flúor": {
+    "Vert fluo": {
       "delante": "/productos/catalogo/shura-verde-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -5124,7 +5124,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/shura-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -5161,7 +5161,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia": {
+    "Fuchsia": {
       "delante": "/productos/catalogo/shura-fucsia-delante.webp",
       "real": true,
       "anchos": [
@@ -5200,7 +5200,7 @@
     }
   },
   "clasica": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/clasica-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -5237,7 +5237,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/clasica-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -5274,7 +5274,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo": {
+    "Jaune": {
       "delante": "/productos/catalogo/clasica-amarillo-delante.webp",
       "real": true,
       "anchos": [
@@ -5311,7 +5311,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/clasica-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -5348,7 +5348,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Arena": {
+    "Sable": {
       "delante": "/productos/catalogo/clasica-arena-delante.webp",
       "real": true,
       "anchos": [
@@ -5422,7 +5422,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Celeste": {
+    "Bleu ciel": {
       "delante": "/productos/catalogo/clasica-celeste-delante.webp",
       "real": true,
       "anchos": [
@@ -5459,7 +5459,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul océano": {
+    "Bleu océan": {
       "delante": "/productos/catalogo/clasica-azul-oceano-delante.webp",
       "real": true,
       "anchos": [
@@ -5533,7 +5533,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde manzana": {
+    "Vert pomme": {
       "delante": "/productos/catalogo/clasica-verde-manzana-delante.webp",
       "real": true,
       "anchos": [
@@ -5570,7 +5570,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Turquesa": {
+    "Turquoise": {
       "delante": "/productos/catalogo/clasica-turquesa-delante.webp",
       "real": true,
       "anchos": [
@@ -5607,7 +5607,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Coral": {
+    "Corail": {
       "delante": "/productos/catalogo/clasica-coral-delante.webp",
       "real": true,
       "anchos": [
@@ -5644,7 +5644,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Ciruela": {
+    "Prune": {
       "delante": "/productos/catalogo/clasica-ciruela-delante.webp",
       "real": true,
       "anchos": [
@@ -5681,7 +5681,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco roto": {
+    "Blanc cassé": {
       "delante": "/productos/catalogo/clasica-blanco-roto-delante.webp",
       "real": true,
       "anchos": [
@@ -5718,7 +5718,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde oliva": {
+    "Vert olive": {
       "delante": "/productos/catalogo/clasica-verde-oliva-delante.webp",
       "real": true,
       "anchos": [
@@ -5755,7 +5755,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Salmón": {
+    "Saumon": {
       "delante": "/productos/catalogo/clasica-salmon-delante.webp",
       "real": true,
       "anchos": [
@@ -5792,7 +5792,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Burdeos": {
+    "Bordeaux": {
       "delante": "/productos/catalogo/clasica-burdeos-delante.webp",
       "real": true,
       "anchos": [
@@ -5829,7 +5829,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul denim": {
+    "Bleu denim": {
       "delante": "/productos/catalogo/clasica-azul-denim-delante.webp",
       "real": true,
       "anchos": [
@@ -5866,7 +5866,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Mostaza": {
+    "Moutarde": {
       "delante": "/productos/catalogo/clasica-mostaza-delante.webp",
       "real": true,
       "anchos": [
@@ -5903,7 +5903,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris claro": {
+    "Gris clair": {
       "delante": "/productos/catalogo/clasica-gris-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -5940,7 +5940,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde kelly": {
+    "Vert kelly": {
       "delante": "/productos/catalogo/clasica-verde-kelly-delante.webp",
       "real": true,
       "anchos": [
@@ -6014,7 +6014,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris plomo": {
+    "Gris plomb": {
       "delante": "/productos/catalogo/clasica-gris-plomo-delante.webp",
       "real": true,
       "anchos": [
@@ -6050,7 +6050,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul claro": {
+    "Bleu clair": {
       "delante": "/productos/catalogo/clasica-azul-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -6087,7 +6087,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde menta": {
+    "Vert menthe": {
       "delante": "/productos/catalogo/clasica-verde-menta-delante.webp",
       "real": true,
       "anchos": [
@@ -6124,7 +6124,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde salvia": {
+    "Vert sauge": {
       "delante": "/productos/catalogo/clasica-verde-salvia-delante.webp",
       "real": true,
       "anchos": [
@@ -6160,7 +6160,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja": {
+    "Orange": {
       "delante": "/productos/catalogo/clasica-naranja-delante.webp",
       "real": true,
       "anchos": [
@@ -6197,7 +6197,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde petróleo": {
+    "Vert pétrole": {
       "delante": "/productos/catalogo/clasica-verde-petroleo-delante.webp",
       "real": true,
       "anchos": [
@@ -6234,7 +6234,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Antracita": {
+    "Anthracite": {
       "delante": "/productos/catalogo/clasica-antracita-delante.webp",
       "real": true,
       "anchos": [
@@ -6271,7 +6271,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rosa claro": {
+    "Rose clair": {
       "delante": "/productos/catalogo/clasica-rosa-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -6308,7 +6308,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/clasica-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -6345,7 +6345,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde botella": {
+    "Vert bouteille": {
       "delante": "/productos/catalogo/clasica-verde-botella-delante.webp",
       "real": true,
       "anchos": [
@@ -6382,7 +6382,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Granate": {
+    "Grenat": {
       "delante": "/productos/catalogo/clasica-granate-delante.webp",
       "real": true,
       "anchos": [
@@ -6419,7 +6419,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris vigoré": {
+    "Gris chiné": {
       "delante": "/productos/catalogo/clasica-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -6456,7 +6456,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/clasica-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -6493,7 +6493,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Púrpura": {
+    "Pourpre": {
       "delante": "/productos/catalogo/clasica-purpura-delante.webp",
       "real": true,
       "anchos": [
@@ -6530,7 +6530,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Lila": {
+    "Lilas": {
       "delante": "/productos/catalogo/clasica-lila-delante.webp",
       "real": true,
       "anchos": [
@@ -6567,7 +6567,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia": {
+    "Fuchsia": {
       "delante": "/productos/catalogo/clasica-fucsia-delante.webp",
       "real": true,
       "anchos": [
@@ -6606,7 +6606,7 @@
     }
   },
   "urban": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/urban-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -6721,7 +6721,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco y marino": {
+    "Blanc et bleu marine": {
       "delante": "/productos/catalogo/urban-blanco-y-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -6836,7 +6836,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/urban-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -6951,7 +6951,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro y gris vigoré": {
+    "Noir et gris chiné": {
       "delante": "/productos/catalogo/urban-negro-y-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -7066,7 +7066,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo": {
+    "Jaune": {
       "delante": "/productos/catalogo/urban-amarillo-delante.webp",
       "real": true,
       "anchos": [
@@ -7181,7 +7181,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/urban-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -7296,7 +7296,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal y blanco": {
+    "Bleu royal et blanc": {
       "delante": "/productos/catalogo/urban-royal-y-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -7411,7 +7411,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Arena": {
+    "Sable": {
       "delante": "/productos/catalogo/urban-arena-delante.webp",
       "real": true,
       "anchos": [
@@ -7641,7 +7641,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Celeste y blanco": {
+    "Bleu ciel et blanc": {
       "delante": "/productos/catalogo/urban-celeste-y-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -7871,7 +7871,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Turquesa": {
+    "Turquoise": {
       "delante": "/productos/catalogo/urban-turquesa-delante.webp",
       "real": true,
       "anchos": [
@@ -7986,7 +7986,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Coral": {
+    "Corail": {
       "delante": "/productos/catalogo/urban-coral-delante.webp",
       "real": true,
       "anchos": [
@@ -8101,7 +8101,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Ciruela": {
+    "Prune": {
       "delante": "/productos/catalogo/urban-ciruela-delante.webp",
       "real": true,
       "anchos": [
@@ -8216,7 +8216,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco roto": {
+    "Blanc cassé": {
       "delante": "/productos/catalogo/urban-blanco-roto-delante.webp",
       "real": true,
       "anchos": [
@@ -8331,7 +8331,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde oliva": {
+    "Vert olive": {
       "delante": "/productos/catalogo/urban-verde-oliva-delante.webp",
       "real": true,
       "anchos": [
@@ -8446,7 +8446,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Salmón": {
+    "Saumon": {
       "delante": "/productos/catalogo/urban-salmon-delante.webp",
       "real": true,
       "anchos": [
@@ -8561,7 +8561,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Burdeos": {
+    "Bordeaux": {
       "delante": "/productos/catalogo/urban-burdeos-delante.webp",
       "real": true,
       "anchos": [
@@ -8676,7 +8676,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul denim": {
+    "Bleu denim": {
       "delante": "/productos/catalogo/urban-azul-denim-delante.webp",
       "real": true,
       "anchos": [
@@ -8791,7 +8791,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Mostaza": {
+    "Moutarde": {
       "delante": "/productos/catalogo/urban-mostaza-delante.webp",
       "real": true,
       "anchos": [
@@ -8906,7 +8906,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris claro": {
+    "Gris clair": {
       "delante": "/productos/catalogo/urban-gris-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -9021,7 +9021,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde kelly y blanco": {
+    "Vert kelly et blanc": {
       "delante": "/productos/catalogo/urban-verde-kelly-y-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -9251,7 +9251,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris plomo": {
+    "Gris plomb": {
       "delante": "/productos/catalogo/urban-gris-plomo-delante.webp",
       "real": true,
       "anchos": [
@@ -9366,7 +9366,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul claro": {
+    "Bleu clair": {
       "delante": "/productos/catalogo/urban-azul-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -9481,7 +9481,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde menta": {
+    "Vert menthe": {
       "delante": "/productos/catalogo/urban-verde-menta-delante.webp",
       "real": true,
       "anchos": [
@@ -9596,7 +9596,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde salvia": {
+    "Vert sauge": {
       "delante": "/productos/catalogo/urban-verde-salvia-delante.webp",
       "real": true,
       "anchos": [
@@ -9711,7 +9711,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja": {
+    "Orange": {
       "delante": "/productos/catalogo/urban-naranja-delante.webp",
       "real": true,
       "anchos": [
@@ -9826,7 +9826,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde petróleo": {
+    "Vert pétrole": {
       "delante": "/productos/catalogo/urban-verde-petroleo-delante.webp",
       "real": true,
       "anchos": [
@@ -9941,7 +9941,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rosa claro": {
+    "Rose clair": {
       "delante": "/productos/catalogo/urban-rosa-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -10056,7 +10056,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rosa claro y gris vigoré": {
+    "Rose clair et gris chiné": {
       "delante": "/productos/catalogo/urban-rosa-claro-y-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -10170,7 +10170,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/urban-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -10285,7 +10285,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino y gris vigoré": {
+    "Bleu marine et gris chiné": {
       "delante": "/productos/catalogo/urban-marino-y-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -10400,7 +10400,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde botella": {
+    "Vert bouteille": {
       "delante": "/productos/catalogo/urban-verde-botella-delante.webp",
       "real": true,
       "anchos": [
@@ -10515,7 +10515,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde botella y gris vigoré": {
+    "Vert bouteille et gris chiné": {
       "delante": "/productos/catalogo/urban-verde-botella-y-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -10630,7 +10630,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Granate": {
+    "Grenat": {
       "delante": "/productos/catalogo/urban-granate-delante.webp",
       "real": true,
       "anchos": [
@@ -10745,7 +10745,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Granate y gris vigoré": {
+    "Grenat et gris chiné": {
       "delante": "/productos/catalogo/urban-granate-y-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -10860,7 +10860,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris vigoré": {
+    "Gris chiné": {
       "delante": "/productos/catalogo/urban-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -10975,7 +10975,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris vigoré y negro": {
+    "Gris chiné et noir": {
       "delante": "/productos/catalogo/urban-gris-vigore-y-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -11090,7 +11090,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/urban-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -11205,7 +11205,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo y negro": {
+    "Rouge et noir": {
       "delante": "/productos/catalogo/urban-rojo-y-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -11320,7 +11320,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Púrpura": {
+    "Pourpre": {
       "delante": "/productos/catalogo/urban-purpura-delante.webp",
       "real": true,
       "anchos": [
@@ -11435,7 +11435,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Lila": {
+    "Lilas": {
       "delante": "/productos/catalogo/urban-lila-delante.webp",
       "real": true,
       "anchos": [
@@ -11550,7 +11550,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia": {
+    "Fuchsia": {
       "delante": "/productos/catalogo/urban-fucsia-delante.webp",
       "real": true,
       "anchos": [
@@ -11667,7 +11667,7 @@
     }
   },
   "montblanc": {
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/montblanc-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -11758,7 +11758,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/montblanc-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -11849,7 +11849,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/montblanc-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -11940,7 +11940,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde botella": {
+    "Vert bouteille": {
       "delante": "/productos/catalogo/montblanc-verde-botella-delante.webp",
       "real": true,
       "anchos": [
@@ -12031,7 +12031,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Granate": {
+    "Grenat": {
       "delante": "/productos/catalogo/montblanc-granate-delante.webp",
       "real": true,
       "anchos": [
@@ -12122,7 +12122,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Gris vigoré": {
+    "Gris chiné": {
       "delante": "/productos/catalogo/montblanc-gris-vigore-delante.webp",
       "real": true,
       "anchos": [
@@ -12213,7 +12213,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/montblanc-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -12306,7 +12306,7 @@
     }
   },
   "otto": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/otto-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -12405,7 +12405,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/otto-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -12603,7 +12603,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco roto": {
+    "Blanc cassé": {
       "delante": "/productos/catalogo/otto-blanco-roto-delante.webp",
       "real": true,
       "anchos": [
@@ -12702,7 +12702,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul denim": {
+    "Bleu denim": {
       "delante": "/productos/catalogo/otto-azul-denim-delante.webp",
       "real": true,
       "anchos": [
@@ -12900,7 +12900,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/otto-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -13001,7 +13001,7 @@
     }
   },
   "estambul-woman": {
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/estambul-woman-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -13037,7 +13037,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul denim": {
+    "Bleu denim": {
       "delante": "/productos/catalogo/estambul-woman-azul-denim-delante.webp",
       "real": true,
       "anchos": [
@@ -13074,7 +13074,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde salvia": {
+    "Vert sauge": {
       "delante": "/productos/catalogo/estambul-woman-verde-salvia-delante.webp",
       "real": true,
       "anchos": [
@@ -13111,7 +13111,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja mandarina": {
+    "Mandarine": {
       "delante": "/productos/catalogo/estambul-woman-naranja-mandarina-delante.webp",
       "real": true,
       "anchos": [
@@ -13148,7 +13148,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/estambul-woman-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -13185,7 +13185,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Malva": {
+    "Mauve": {
       "delante": "/productos/catalogo/estambul-woman-malva-delante.webp",
       "real": true,
       "anchos": [
@@ -13224,7 +13224,7 @@
     }
   },
   "valier": {
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/valier-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -13261,7 +13261,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/valier-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -13298,7 +13298,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul brillante": {
+    "Bleu vif": {
       "delante": "/productos/catalogo/valier-azul-brillante-delante.webp",
       "real": true,
       "anchos": [
@@ -13335,7 +13335,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo flúor": {
+    "Jaune fluo": {
       "delante": "/productos/catalogo/valier-amarillo-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -13372,7 +13372,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde lima": {
+    "Vert lime": {
       "delante": "/productos/catalogo/valier-verde-lima-delante.webp",
       "real": true,
       "anchos": [
@@ -13409,7 +13409,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde": {
+    "Vert": {
       "delante": "/productos/catalogo/valier-verde-delante.webp",
       "real": true,
       "anchos": [
@@ -13446,7 +13446,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia flúor": {
+    "Fuchsia fluo": {
       "delante": "/productos/catalogo/valier-fucsia-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -13520,7 +13520,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/valier-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -13557,7 +13557,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/valier-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -13594,7 +13594,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Morado": {
+    "Violet": {
       "delante": "/productos/catalogo/valier-morado-delante.webp",
       "real": true,
       "anchos": [
@@ -13633,7 +13633,7 @@
     }
   },
   "freya": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/freya-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -13653,7 +13653,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco y negro": {
+    "Blanc et noir": {
       "delante": "/productos/catalogo/freya-blanco-y-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -13673,7 +13673,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco y royal": {
+    "Blanc et bleu royal": {
       "delante": "/productos/catalogo/freya-blanco-y-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -13693,7 +13693,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco y marino": {
+    "Blanc et bleu marine": {
       "delante": "/productos/catalogo/freya-blanco-y-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -13713,7 +13713,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Blanco y rojo": {
+    "Blanc et rouge": {
       "delante": "/productos/catalogo/freya-blanco-y-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -13733,7 +13733,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/freya-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -13753,7 +13753,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo": {
+    "Jaune": {
       "delante": "/productos/catalogo/freya-amarillo-delante.webp",
       "real": true,
       "anchos": [
@@ -13773,7 +13773,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/freya-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -13793,7 +13793,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde": {
+    "Vert": {
       "delante": "/productos/catalogo/freya-verde-delante.webp",
       "real": true,
       "anchos": [
@@ -13813,7 +13813,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul": {
+    "Bleu": {
       "delante": "/productos/catalogo/freya-azul-delante.webp",
       "real": true,
       "anchos": [
@@ -13833,7 +13833,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja": {
+    "Orange": {
       "delante": "/productos/catalogo/freya-naranja-delante.webp",
       "real": true,
       "anchos": [
@@ -13853,7 +13853,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rosa claro": {
+    "Rose clair": {
       "delante": "/productos/catalogo/freya-rosa-claro-delante.webp",
       "real": true,
       "anchos": [
@@ -13873,7 +13873,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/freya-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -13893,7 +13893,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/freya-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -13913,7 +13913,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Púrpura": {
+    "Pourpre": {
       "delante": "/productos/catalogo/freya-purpura-delante.webp",
       "real": true,
       "anchos": [
@@ -13935,7 +13935,7 @@
     }
   },
   "fred": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/fred-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -13955,7 +13955,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/fred-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -13975,7 +13975,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/fred-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -13995,7 +13995,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde": {
+    "Vert": {
       "delante": "/productos/catalogo/fred-verde-delante.webp",
       "real": true,
       "anchos": [
@@ -14015,7 +14015,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul acero": {
+    "Bleu acier": {
       "delante": "/productos/catalogo/fred-azul-acero-delante.webp",
       "real": true,
       "anchos": [
@@ -14035,7 +14035,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/fred-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -14057,7 +14057,7 @@
     }
   },
   "mercury": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/mercury-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -14083,7 +14083,7 @@
       ],
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/mercury-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -14109,7 +14109,7 @@
       ],
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/mercury-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -14135,7 +14135,7 @@
       ],
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo flúor": {
+    "Jaune fluo": {
       "delante": "/productos/catalogo/mercury-amarillo-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -14160,7 +14160,7 @@
       ],
       "ejemplo": "tu-logo-aqui"
     },
-    "Coral flúor": {
+    "Corail fluo": {
       "delante": "/productos/catalogo/mercury-coral-fluor-delante.webp",
       "real": true,
       "anchos": [
@@ -14188,7 +14188,7 @@
     }
   },
   "crest": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/crest-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -14225,7 +14225,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/crest-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -14262,7 +14262,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo": {
+    "Jaune": {
       "delante": "/productos/catalogo/crest-amarillo-delante.webp",
       "real": true,
       "anchos": [
@@ -14299,7 +14299,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde": {
+    "Vert": {
       "delante": "/productos/catalogo/crest-verde-delante.webp",
       "real": true,
       "anchos": [
@@ -14336,7 +14336,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Turquesa": {
+    "Turquoise": {
       "delante": "/productos/catalogo/crest-turquesa-delante.webp",
       "real": true,
       "anchos": [
@@ -14373,7 +14373,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul": {
+    "Bleu": {
       "delante": "/productos/catalogo/crest-azul-delante.webp",
       "real": true,
       "anchos": [
@@ -14410,7 +14410,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja": {
+    "Orange": {
       "delante": "/productos/catalogo/crest-naranja-delante.webp",
       "real": true,
       "anchos": [
@@ -14447,7 +14447,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/crest-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -14484,7 +14484,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde botella": {
+    "Vert bouteille": {
       "delante": "/productos/catalogo/crest-verde-botella-delante.webp",
       "real": true,
       "anchos": [
@@ -14521,7 +14521,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/crest-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -14558,7 +14558,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia": {
+    "Fuchsia": {
       "delante": "/productos/catalogo/crest-fucsia-delante.webp",
       "real": true,
       "anchos": [
@@ -14595,7 +14595,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul eléctrico": {
+    "Bleu électrique": {
       "delante": "/productos/catalogo/crest-azul-electrico-delante.webp",
       "real": true,
       "anchos": [
@@ -14634,7 +14634,7 @@
     }
   },
   "zenith": {
-    "Natural": {
+    "Naturel": {
       "delante": "/productos/catalogo/zenith-natural-delante.webp",
       "real": true,
       "anchos": [
@@ -14673,7 +14673,7 @@
     }
   },
   "tarek": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/tarek-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -14692,7 +14692,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/tarek-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -14711,7 +14711,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Amarillo": {
+    "Jaune": {
       "delante": "/productos/catalogo/tarek-amarillo-delante.webp",
       "real": true,
       "anchos": [
@@ -14731,7 +14731,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Royal": {
+    "Bleu royal": {
       "delante": "/productos/catalogo/tarek-royal-delante.webp",
       "real": true,
       "anchos": [
@@ -14750,7 +14750,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde": {
+    "Vert": {
       "delante": "/productos/catalogo/tarek-verde-delante.webp",
       "real": true,
       "anchos": [
@@ -14769,7 +14769,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Naranja": {
+    "Orange": {
       "delante": "/productos/catalogo/tarek-naranja-delante.webp",
       "real": true,
       "anchos": [
@@ -14788,7 +14788,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Fucsia": {
+    "Fuchsia": {
       "delante": "/productos/catalogo/tarek-fucsia-delante.webp",
       "real": true,
       "anchos": [
@@ -14807,7 +14807,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Plateado": {
+    "Argenté": {
       "delante": "/productos/catalogo/tarek-plateado-delante.webp",
       "real": false,
       "anchos": [
@@ -14827,7 +14827,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/tarek-marino-delante.webp",
       "real": false,
       "anchos": [
@@ -14847,7 +14847,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/tarek-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -14868,7 +14868,7 @@
     }
   },
   "kranston": {
-    "Blanco": {
+    "Blanc": {
       "delante": "/productos/catalogo/kranston-blanco-delante.webp",
       "real": true,
       "anchos": [
@@ -14888,7 +14888,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Negro": {
+    "Noir": {
       "delante": "/productos/catalogo/kranston-negro-delante.webp",
       "real": true,
       "anchos": [
@@ -14908,7 +14908,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Verde": {
+    "Vert": {
       "delante": "/productos/catalogo/kranston-verde-delante.webp",
       "real": true,
       "anchos": [
@@ -14928,7 +14928,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Marino": {
+    "Bleu marine": {
       "delante": "/productos/catalogo/kranston-marino-delante.webp",
       "real": true,
       "anchos": [
@@ -14948,7 +14948,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Rojo": {
+    "Rouge": {
       "delante": "/productos/catalogo/kranston-rojo-delante.webp",
       "real": true,
       "anchos": [
@@ -14970,7 +14970,7 @@
     }
   },
   "ranic": {
-    "Verde oliva": {
+    "Vert olive": {
       "delante": "/productos/catalogo/ranic-verde-oliva-delante.webp",
       "real": true,
       "anchos": [
@@ -14990,7 +14990,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Azul": {
+    "Bleu": {
       "delante": "/productos/catalogo/ranic-azul-delante.webp",
       "real": true,
       "anchos": [
@@ -15010,7 +15010,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Natural": {
+    "Naturel": {
       "delante": "/productos/catalogo/ranic-natural-delante.webp",
       "real": true,
       "anchos": [
@@ -15052,7 +15052,7 @@
     }
   },
   "uldon": {
-    "Bambú natural": {
+    "Bambou naturel": {
       "delante": "/productos/catalogo/uldon-bambu-natural-delante.webp",
       "real": true,
       "anchos": [
@@ -15063,7 +15063,7 @@
     }
   },
   "karby": {
-    "Bambú · rectangular": {
+    "Bambou · rectangulaire": {
       "delante": "/productos/catalogo/karby-bambu-rectangular-delante.webp",
       "real": true,
       "anchos": [
@@ -15083,7 +15083,7 @@
       },
       "ejemplo": "tu-logo-aqui"
     },
-    "Bambú · redondo": {
+    "Bambou · rond": {
       "delante": "/productos/catalogo/karby-bambu-redondo-delante.webp",
       "real": true,
       "anchos": [
@@ -15105,7 +15105,7 @@
     }
   },
   "roldi": {
-    "Bambú natural": {
+    "Bambou naturel": {
       "delante": "/productos/catalogo/roldi-bambu-natural-delante.webp",
       "real": true,
       "anchos": [
@@ -15116,7 +15116,7 @@
     }
   },
   "zora": {
-    "Plateado": {
+    "Argenté": {
       "delante": "/productos/catalogo/zora-plateado-delante.webp",
       "real": true,
       "anchos": [
@@ -15127,7 +15127,7 @@
     }
   },
   "luxor": {
-    "Piel reciclada · rectangular": {
+    "Cuir recyclé · rectangulaire": {
       "delante": "/productos/catalogo/luxor-piel-reciclada-rectangular-delante.webp",
       "real": true,
       "anchos": [
@@ -15136,7 +15136,7 @@
       ],
       "ejemplo": "tu-logo-aqui"
     },
-    "Piel reciclada · redondo": {
+    "Cuir recyclé · rond": {
       "delante": "/productos/catalogo/luxor-piel-reciclada-rectangular-delante.webp",
       "real": false,
       "anchos": [
@@ -15147,7 +15147,7 @@
     }
   },
   "davos": {
-    "Bambú natural": {
+    "Bambou naturel": {
       "delante": "/productos/catalogo/davos-bambu-natural-delante.webp",
       "real": true,
       "anchos": [

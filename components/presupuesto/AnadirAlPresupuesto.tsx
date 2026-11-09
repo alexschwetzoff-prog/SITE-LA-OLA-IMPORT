@@ -9,19 +9,19 @@ import { TRAMOS, TRAMO_POR_DEFECTO, anadirAlPresupuesto, usePresupuesto, type Po
 interface Props {
   producto: Pick<Producto, 'slug' | 'nombre' | 'tipo'>;
   color: Color;
-  /** Foto con la que se enseña el producto en ese color (la cesta la guarda). */
+  /** Photo du produit dans cette couleur (le panier la garde). */
   foto?: string;
-  /** Posiciones elegidas en la ficha (fase 4.1): obligatorias en prendas, gorras y bolsas. */
+  /** Emplacements choisis sur la fiche : obligatoires pour les textiles, casquettes et sacs. */
   posiciones?: PosicionCesta[];
-  /** Si es true, no se añade sin al menos una posición; el aviso enlaza con el selector (`idPosiciones`). */
+  /** Si true, rien n'est ajouté sans au moins un emplacement ; le message renvoie au sélecteur (`idPosiciones`). */
   requierePosicion?: boolean;
   idPosiciones?: string;
-  /** 'principal' en los productos sin estudio; 'secundario' junto a «Diséñala con tu logo». */
+  /** 'principal' : bouton fuchsia « Ajouter au panier » (le seul bouton fuchsia de la fiche) ; 'secundario' : contour. */
   variante?: 'principal' | 'secundario';
   idBoton?: string;
 }
 
-/** Cantidad aproximada por tramos y el botón «Añadir al presupuesto»; confirma en línea y enlaza a /proyecto. */
+/** Quantité approximative par tranche et bouton « Ajouter au panier » ; confirme en ligne et renvoie vers /projet. */
 export default function AnadirAlPresupuesto({ producto, color, foto, posiciones = [], requierePosicion = false, idPosiciones, variante = 'principal', idBoton }: Props) {
   const [tramo, setTramo] = useState<Tramo>(TRAMO_POR_DEFECTO);
   const [anadido, setAnadido] = useState<string | null>(null);
@@ -46,19 +46,19 @@ export default function AnadirAlPresupuesto({ producto, color, foto, posiciones 
       foto,
     });
     setFalta(false);
-    const donde = posiciones.length ? `, personalización en ${posiciones.map((p) => p.nombre.toLowerCase()).join(' y ')},` : '';
-    setAnadido(`${producto.nombre} en ${color.nombre.toLowerCase()}${donde} añadido a tu presupuesto.`);
+    const donde = posiciones.length ? `, marquage ${posiciones.map((p) => p.nombre.toLowerCase()).join(' et ')},` : '';
+    setAnadido(`${producto.nombre} coloris ${color.nombre.toLowerCase()}${donde} ajouté au panier.`);
   };
 
   return (
     <div>
       <fieldset>
-        <legend className="text-sm font-medium text-ink-900">Cantidad aproximada</legend>
+        <legend className="text-sm font-medium text-encre">Quantité approximative</legend>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {TRAMOS.map((t) => (
             <label
               key={t.id}
-              className="cursor-pointer rounded-full border border-ink-900/15 px-3 py-1.5 text-sm text-ink-900/80 transition-colors has-[:checked]:border-nova-600 has-[:checked]:bg-nova-600 has-[:checked]:text-white has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-star-300"
+              className="flex min-h-10 cursor-pointer items-center rounded-full border border-marine/20 bg-white px-3.5 py-1.5 text-sm text-marine transition-colors hover:border-marine/40 has-[:checked]:border-marine has-[:checked]:bg-marine has-[:checked]:font-semibold has-[:checked]:text-white has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-bleu-600 has-[:focus-visible]:ring-offset-2"
             >
               <input type="radio" name={`${id}-tramo`} value={t.id} checked={tramo === t.id} onChange={() => setTramo(t.id)} className="sr-only" />
               {t.nombre}
@@ -67,17 +67,17 @@ export default function AnadirAlPresupuesto({ producto, color, foto, posiciones 
         </div>
       </fieldset>
       <div className="mt-4 flex flex-wrap items-center gap-3">
-        <Boton id={idBoton} variante={variante === 'principal' ? 'principal' : 'claro'} tamano={variante === 'principal' ? 'grande' : 'normal'} onClick={anadir} aria-describedby={`${id}-estado`}>
-          Añadir al presupuesto
+        <Boton id={idBoton} variante={variante === 'principal' ? 'principal' : 'claro'} tamano={variante === 'principal' ? 'grande' : 'normal'} onClick={anadir} aria-describedby={`${id}-estado`} className="min-h-12">
+          Ajouter au panier
         </Boton>
         {items.length > 0 && (
-          <Link href="/proyecto" className="text-sm font-semibold text-nova-600 underline-offset-4 hover:underline">
-            Ver tu presupuesto ({items.length})
+          <Link href="/projet" className="text-sm font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
+            Voir mon panier ({items.length})
           </Link>
         )}
       </div>
-      <p id={`${id}-estado`} role="status" aria-live="polite" className={`mt-2 min-h-5 text-sm ${falta ? 'font-medium text-[#9a2f2f]' : 'text-ink-900/80'}`}>
-        {falta ? 'Elige antes dónde va la personalización.' : anadido}
+      <p id={`${id}-estado`} role="status" aria-live="polite" className={`mt-2 min-h-5 text-sm ${falta ? 'font-medium text-[#9a2f2f]' : 'text-marine'}`}>
+        {falta ? 'Choisissez d’abord l’emplacement du marquage.' : anadido}
       </p>
     </div>
   );

@@ -1,8 +1,8 @@
-// Fase 10: los mensajes con los que se abre el chat de WhatsApp desde la web, en un único sitio (decisión del equipo,
-// 19/10/2026). Todos los botones y enlaces de WhatsApp (cabecera, pie, botón flotante, home, catálogo, formulario,
-// /tu-opinion…) abren el chat con MENSAJE_WHATSAPP; solo la pantalla «proyecto enviado» (/gracias) y el botón del
-// email de confirmación usan MENSAJE_WHATSAPP_PROYECTO_ENVIADO. Ningún otro archivo escribe estos textos.
+// Les messages avec lesquels le site ouvre la conversation WhatsApp, à un seul endroit. Tous les boutons et liens
+// WhatsApp (en-tête, pied de page, bouton flottant, accueil, catalogue, formulaires…) ouvrent la conversation avec
+// MENSAJE_WHATSAPP ; seuls la page « demande envoyée » (/merci) et le bouton de l'email de confirmation utilisent
+// MENSAJE_WHATSAPP_PROYECTO_ENVIADO. Aucun autre fichier n'écrit ces textes.
 
-export const MENSAJE_WHATSAPP = 'Hola, me gustaría información sobre merchandising personalizado para mi negocio.';
+export const MENSAJE_WHATSAPP = "Bonjour, j'aimerais des informations sur la personnalisation de textiles ou d'objets.";
 
-export const MENSAJE_WHATSAPP_PROYECTO_ENVIADO = 'Hola, acabo de enviar mi proyecto desde la web y quería comentaros algo.';
+export const MENSAJE_WHATSAPP_PROYECTO_ENVIADO = "Bonjour, je viens d'envoyer ma demande depuis le site et je voulais vous préciser quelque chose.";

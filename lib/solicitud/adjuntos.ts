@@ -1,10 +1,10 @@
 import 'server-only';
 
-// Fase 6: recoge los archivos del envío (logos y capturas de cada diseño del estudio, más los archivos sueltos del
-// formulario), comprueba tipos y tamaños y los deja listos para adjuntar al email del equipo. Fase 10: dos logos por
-// diseño, adjuntos como logo-delantero y logo-trasero con su extensión original (con varios diseños, diseno-N-…).
+// Recoge los archivos del envío (logos y capturas de cada diseño del estudio, más los archivos sueltos del
+// formulario), comprueba tipos y tamaños y los deja listos para adjuntar al email del equipo. Dos logos por diseño,
+// adjuntos como logo-avant y logo-arriere con su extensión original (con varios diseños, visuel-N-…).
 
-import { CLAVE_ARCHIVOS, MAX_CORREO_BYTES, MAX_ENVIO_BYTES, claveCaptura, claveLogo, formatoBytes, nombreLogo, type Lado, type LineaCesta } from './comun';
+import { CLAVE_ARCHIVOS, MAX_CORREO_BYTES, MAX_ENVIO_BYTES, claveCaptura, claveLogo, formatoBytes, nombreLogo, sufijoArchivo, type Lado, type LineaCesta } from './comun';
 
 export type CategoriaAdjunto = 'logo' | 'captura' | 'archivo';
 
@@ -79,29 +79,29 @@ export async function recogerAdjuntos(fd: FormData, lineas: LineaCesta[]): Promi
       if (!esArchivo(logo)) continue;
       const original = nombreSeguro(logo.name || (lado === 'delante' ? diseno.logo.nombre : (diseno.logoDetras?.nombre ?? '')), 'logo.png');
       const ext = extensionDe(original);
-      if (!EXTENSIONES.has(ext)) return { error: `El logo ${nombreLogo(lado)} «${original}» no es PNG, JPG, SVG, PDF ni AI.` };
-      const nombre = `${disenos > 1 ? `diseno-${n}-` : ''}logo-${nombreLogo(lado)}.${ext}`;
+      if (!EXTENSIONES.has(ext)) return { error: `Le logo ${nombreLogo(lado)} « ${original} » n’est pas au format PNG, JPG, SVG, PDF ou AI.` };
+      const nombre = `${disenos > 1 ? `visuel-${n}-` : ''}logo-${lado === 'delante' ? 'avant' : 'arriere'}.${ext}`;
       adjuntos.push(await aAdjunto(logo, { categoria: 'logo', linea: i, lado }, nombre));
     }
     for (const lado of ['delante', 'detras'] as const) {
       const captura = fd.get(claveCaptura(i, lado));
       if (!esArchivo(captura)) continue;
       const ext = captura.type === 'image/png' ? 'png' : 'jpg';
-      adjuntos.push(await aAdjunto(captura, { categoria: 'captura', linea: i, lado, cid: `captura-${i}-${lado}` }, `diseno-${n}-${lado}.${ext}`));
+      adjuntos.push(await aAdjunto(captura, { categoria: 'captura', linea: i, lado, cid: `captura-${i}-${lado}` }, `visuel-${n}-${sufijoArchivo(lado)}.${ext}`));
     }
   }
   const sueltos = fd.getAll(CLAVE_ARCHIVOS).filter(esArchivo).slice(0, MAX_ARCHIVOS_SUELTOS);
   for (const archivo of sueltos) {
     const nombre = nombreSeguro(archivo.name);
-    if (!EXTENSIONES.has(extensionDe(nombre))) return { error: `El archivo «${nombre}» no es PNG, JPG, SVG, PDF ni AI.` };
+    if (!EXTENSIONES.has(extensionDe(nombre))) return { error: `Le fichier « ${nombre} » n’est pas au format PNG, JPG, SVG, PDF ou AI.` };
     adjuntos.push(await aAdjunto(archivo, { categoria: 'archivo' }, nombre));
   }
   const total = adjuntos.reduce((s, a) => s + a.tamano, 0);
   if (total > MAX_ENVIO_BYTES * 1.1) {
-    return { error: `Los archivos pesan ${formatoBytes(total)} y el máximo por envío es ${formatoBytes(MAX_ENVIO_BYTES)}. Quita alguno y mándanoslo después por WhatsApp o email.` };
+    return { error: `Vos fichiers pèsent ${formatoBytes(total)} et le maximum par envoi est de ${formatoBytes(MAX_ENVIO_BYTES)}. Retirez-en un et envoyez-le-nous ensuite par WhatsApp ou par email.` };
   }
   if (total > MAX_CORREO_BYTES) {
-    return { error: `Los archivos pesan ${formatoBytes(total)} y no caben en un email (${formatoBytes(MAX_CORREO_BYTES)}).` };
+    return { error: `Vos fichiers pèsent ${formatoBytes(total)} : c’est trop pour un email (${formatoBytes(MAX_CORREO_BYTES)} maximum).` };
   }
   return { adjuntos, total };
 }

@@ -10,11 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const url = (ruta: string) => `${SITE.url}${ruta}`;
   return [
     { url: url('/'), priority: 1 },
-    { url: url('/catalogo'), priority: 0.9 },
-    ...PRODUCTOS.filter((p) => p.activo).map((p) => ({ url: url(`/catalogo/${p.slug}`), priority: 0.8 })),
-    ...CON_ESTUDIO.map((p) => ({ url: url(`/disena/${p.slug}`), priority: 0.7 })),
-    { url: url('/proyecto'), priority: 0.7 },
-    { url: url('/opiniones'), priority: 0.4 },
+    { url: url('/catalogue'), priority: 0.9 },
+    ...PRODUCTOS.filter((p) => p.activo).map((p) => ({ url: url(`/catalogue/${p.slug}`), priority: 0.8 })),
+    ...CON_ESTUDIO.map((p) => ({ url: url(`/personnaliser/${p.slug}`), priority: 0.7 })),
+    { url: url('/projet'), priority: 0.7 },
+    { url: url('/avis'), priority: 0.4 },
     ...ENLACES_LEGALES.map((e) => ({ url: url(e.href), priority: 0.2 })),
   ];
 }

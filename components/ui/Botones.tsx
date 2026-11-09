@@ -1,17 +1,17 @@
 import type { ComponentProps, ReactNode } from 'react';
 import Link from 'next/link';
 
-// Botones de toda la web (sección 7): el principal en nova-600 con brillo al pasar, el secundario con borde fino
-// sobre fondo oscuro y la variante clara para las tarjetas y fichas (texto ink-900 sobre moon-50).
+// Boutons du site, tous en pilule : « principal » (fuchsia, réservé aux actions : devis, panier, envoi),
+// « secundario » (contour violet), « claro » (contour marine, sur cartes et panneaux clairs) et « enlace ».
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-[background-color,box-shadow,color,transform] duration-200 motion-safe:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-[background-color,box-shadow,color,transform] duration-200 motion-safe:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50';
 
 export const ESTILO_BOTON = {
-  principal: `${base} bg-nova-600 text-white shadow-lg shadow-nova-600/30 hover:bg-nova-400 hover:shadow-nova-400/40`,
-  secundario: `${base} border border-moon-50/25 text-moon-50 hover:border-moon-50/40 hover:bg-moon-50/10`,
-  claro: `${base} border border-ink-900/15 text-ink-900 hover:border-ink-900/30 hover:bg-ink-900/5`,
-  enlace: 'inline-flex items-center gap-1.5 text-sm font-semibold text-nova-400 underline-offset-4 hover:text-star-300 hover:underline',
+  principal: `${base} bg-fuchsia-700 text-white shadow-md shadow-fuchsia-700/25 hover:bg-fuchsia-800`,
+  secundario: `${base} border-2 border-violet-600 text-violet-600 hover:bg-violet-600/8`,
+  claro: `${base} border-2 border-marine/80 text-marine hover:bg-marine/5`,
+  enlace: 'inline-flex items-center gap-1.5 text-sm font-semibold text-bleu-600 underline-offset-4 hover:text-indigo-700 hover:underline',
 } as const;
 
 type Variante = keyof typeof ESTILO_BOTON;

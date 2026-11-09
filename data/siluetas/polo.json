@@ -109,7 +109,7 @@
       }
     },
     "reales": {
-      "Negro": {
+      "Noir": {
         "delante": {
           "src": "/productos/estudio/austral-negro-delante.webp",
           "ancho": 1200,
@@ -137,7 +137,7 @@
           "hpsY": 67.5
         }
       },
-      "Amarillo": {
+      "Jaune": {
         "delante": {
           "src": "/productos/estudio/austral-amarillo-delante.webp",
           "ancho": 1200,
@@ -165,7 +165,7 @@
           "hpsY": 67.8
         }
       },
-      "Royal": {
+      "Bleu royal": {
         "delante": {
           "src": "/productos/estudio/austral-royal-delante.webp",
           "ancho": 1200,
@@ -193,7 +193,7 @@
           "hpsY": 67.5
         }
       },
-      "Turquesa": {
+      "Turquoise": {
         "delante": {
           "src": "/productos/estudio/austral-turquesa-delante.webp",
           "ancho": 1200,
@@ -221,7 +221,7 @@
           "hpsY": 68.1
         }
       },
-      "Verde kelly": {
+      "Vert kelly": {
         "delante": {
           "src": "/productos/estudio/austral-verde-kelly-delante.webp",
           "ancho": 1200,
@@ -249,7 +249,7 @@
           "hpsY": 68.0
         }
       },
-      "Marino": {
+      "Bleu marine": {
         "delante": {
           "src": "/productos/estudio/austral-marino-delante.webp",
           "ancho": 1200,
@@ -277,7 +277,7 @@
           "hpsY": 67.5
         }
       },
-      "Rojo": {
+      "Rouge": {
         "delante": {
           "src": "/productos/estudio/austral-rojo-delante.webp",
           "ancho": 1200,

@@ -2,7 +2,7 @@ import 'server-only';
 
 // Fase 6 y fase 9: la única capa de envío de email de la web. Todo lo que manda un correo pasa por enviarCorreo(),
 // así que cambiar de proveedor es tocar solo este archivo. Tres transportes:
-//   - resend (fase 9): la API de Resend, desde el dominio propio («[MARCA] <hola@dominio-pendiente.example>», solo envío).
+//   - resend (fase 9): la API de Resend, desde el dominio propio («La Ola Import <bonjour@dominio-pendiente.example>», solo envío).
 //     Se activa sin tocar código con CORREO_TRANSPORTE=resend y RESEND_API_KEY. Si Resend falla y hay contraseña de
 //     Gmail, el email sale por Gmail (respaldo automático) y queda anotado en el log.
 //   - gmail: SMTP de Gmail (smtp.gmail.com, puerto 465, TLS) con la cuenta y una contraseña de aplicación de Google.
@@ -14,6 +14,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import nodemailer, { type Transporter } from 'nodemailer';
 import { Resend } from 'resend';
+import { SITE } from '@/lib/site';
 
 export interface AdjuntoCorreo {
   nombre: string;
@@ -43,7 +44,7 @@ export type Transporte = 'resend' | 'gmail' | 'archivo';
 
 export const CUENTA_POR_DEFECTO = 'email-pendiente@example.com';
 /** Remitente de Resend por defecto: solo envío; las respuestas van al buzón del equipo por el reply-to. */
-export const REMITENTE_RESEND_POR_DEFECTO = '[MARCA] <hola@dominio-pendiente.example>';
+export const REMITENTE_RESEND_POR_DEFECTO = `${SITE.nombre} <bonjour@dominio-pendiente.example>`;
 
 function leerRemitente(texto: string): Direccion {
   const m = texto.trim().match(/^(?:"?([^"<]*?)"?\s*)?<([^>]+)>$/);
@@ -65,8 +66,8 @@ export function configuracionCorreo() {
   return { usuario, contrasena, claveResend, remitenteResend, destino, transporte, carpeta, explicito };
 }
 
-/** El remitente de todos los emails: «[MARCA] <hola@dominio-pendiente.example>» con Resend; la cuenta de Gmail si no. */
-export function remitente(nombre = '[MARCA]', transporte?: Transporte): Direccion {
+/** El remitente de todos los emails: «La Ola Import <bonjour@dominio-pendiente.example>» con Resend; la cuenta de Gmail si no. */
+export function remitente(nombre: string = SITE.nombre, transporte?: Transporte): Direccion {
   const c = configuracionCorreo();
   const t = transporte ?? c.transporte;
   if (t === 'resend') return { nombre: nombre || c.remitenteResend.nombre, email: c.remitenteResend.email };
@@ -75,7 +76,7 @@ export function remitente(nombre = '[MARCA]', transporte?: Transporte): Direccio
 
 /** Buzón del equipo al que llegan las solicitudes. */
 export function destinoEquipo(): Direccion {
-  return { nombre: '[MARCA]', email: configuracionCorreo().destino };
+  return { nombre: SITE.nombre, email: configuracionCorreo().destino };
 }
 
 function textoDireccion(d: Direccion): string {

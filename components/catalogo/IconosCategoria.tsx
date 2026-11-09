@@ -1,7 +1,7 @@
 import type { SVGProps } from 'react';
 import type { Categoria } from '@/data/catalogo';
 
-// Iconos de línea de las cinco categorías (planetas del catálogo). Dibujo propio, sin marcas de terceros.
+// Icônes au trait des cinq catégories du catalogue. Dessin maison, sans marque de tiers.
 
 type Props = SVGProps<SVGSVGElement>;
 const comun = { viewBox: '0 0 32 32', fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true } as const;

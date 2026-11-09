@@ -1,14 +1,14 @@
 'use client';
 
-// Fase 6: prepara en el navegador lo que acompaña a la solicitud: la cesta sin capturas, los logos originales de cada
-// diseño (IndexedDB; fase 10: el delantero y, si lo hay, el trasero), sus capturas (IndexedDB o, si no están, las
+// Prepara en el navegador lo que acompaña a la solicitud (panier /projet o devis /devis): la cesta sin capturas, los
+// logos originales de cada diseño (IndexedDB: el delantero y, si lo hay, el trasero), sus capturas (IndexedDB o, si no están, las
 // reducidas de la cesta) pasadas a JPEG, y los archivos sueltos del formulario; todo dentro del límite por envío
 // (MAX_ENVIO_BYTES). Las capturas se comprimen por niveles hasta caber; los logos originales no se tocan salvo que
 // ellos solos no quepan (entonces el más pesado va como copia PNG reducida y se avisa en el email al equipo).
 
 import { idCaptura, leerArchivo, leerLogo } from '@/lib/logos-db';
 import type { ItemPresupuesto } from '@/lib/presupuesto';
-import { CLAVE_ARCHIVOS, LADOS, MAX_ENVIO_BYTES, claveCaptura, claveLogo, formatoBytes, nombreLogo, type Lado, type LineaCesta } from './comun';
+import { CLAVE_ARCHIVOS, LADOS, MAX_ENVIO_BYTES, claveCaptura, claveLogo, formatoBytes, nombreLogo, sufijoArchivo, type Lado, type LineaCesta } from './comun';
 
 export interface ArchivoEnvio {
   clave: string;
@@ -66,7 +66,7 @@ async function cargarImagen(blob: Blob): Promise<ImageBitmap | HTMLImageElement>
       return await new Promise<HTMLImageElement>((resolve, reject) => {
         const img = new Image();
         img.onload = () => resolve(img);
-        img.onerror = () => reject(new Error('No se ha podido leer la imagen.'));
+        img.onerror = () => reject(new Error('Impossible de lire l’image.'));
         img.src = url;
       });
     } finally {
@@ -133,7 +133,7 @@ export async function prepararEnvio(items: ItemPresupuesto[], sueltos: File[]): 
 
   for (const f of sueltos) {
     if (f.size > MAX_ENVIO_BYTES) {
-      return { error: `«${f.name}» pesa ${formatoBytes(f.size)} y el máximo por envío es ${formatoBytes(MAX_ENVIO_BYTES)}. Quítalo y mándanoslo después por WhatsApp o email.` };
+      return { error: `« ${f.name} » pèse ${formatoBytes(f.size)} et le maximum par envoi est de ${formatoBytes(MAX_ENVIO_BYTES)}. Retirez-le et envoyez-le-nous ensuite par WhatsApp ou par email.` };
     }
   }
 
@@ -151,7 +151,7 @@ export async function prepararEnvio(items: ItemPresupuesto[], sueltos: File[]): 
       if (!meta) continue;
       const logo = id ? await leerLogo(id) : null;
       if (logo) logos.push({ indice: i, lado, archivo: logo });
-      else avisos.push(`El archivo del logo ${nombreLogo(lado)} de «${items[i].nombre}» (${meta.nombre}) ya no estaba en el navegador del cliente: pídeselo.`);
+      else avisos.push(`Le fichier du logo ${nombreLogo(lado)} de « ${items[i].nombre} » (${meta.nombre}) n’était plus dans le navigateur du client : demandez-le-lui.`);
     }
     capturas.push(...(await capturasDe(items[i], i)));
   }
@@ -165,12 +165,12 @@ export async function prepararEnvio(items: ItemPresupuesto[], sueltos: File[]): 
       const reducido = await redibujar(l.archivo, LADO_LOGO_REDUCIDO, 'image/png');
       if (!reducido || reducido.size >= l.archivo.size) continue;
       const nombre = l.archivo.name.replace(/\.[^.]+$/, '') + '-reducido.png';
-      avisos.push(`El logo ${nombreLogo(l.lado)} original «${l.archivo.name}» pesa ${formatoBytes(l.archivo.size)} y no cabía en el envío: va una copia PNG de ${LADO_LOGO_REDUCIDO} px. Pídele el original al cliente.`);
+      avisos.push(`Le logo ${nombreLogo(l.lado)} d’origine « ${l.archivo.name} » pèse ${formatoBytes(l.archivo.size)} et ne tenait pas dans l’envoi : une copie PNG de ${LADO_LOGO_REDUCIDO} px est jointe. Demandez l’original au client.`);
       fijo -= l.archivo.size - reducido.size;
       l.archivo = new File([reducido], nombre, { type: 'image/png' });
     }
     if (fijo > MAX_ENVIO_BYTES) {
-      return { error: `Los archivos pesan ${formatoBytes(fijo)} y el máximo por envío es ${formatoBytes(MAX_ENVIO_BYTES)}. Quita alguno y mándanoslo después por WhatsApp o email.` };
+      return { error: `Vos fichiers pèsent ${formatoBytes(fijo)} et le maximum par envoi est de ${formatoBytes(MAX_ENVIO_BYTES)}. Retirez-en un et envoyez-le-nous ensuite par WhatsApp ou par email.` };
     }
   }
 
@@ -182,7 +182,7 @@ export async function prepararEnvio(items: ItemPresupuesto[], sueltos: File[]): 
     const intento = await Promise.all(
       capturas.map(async (c) => {
         const blob = await redibujar(c.blob, lado, 'image/jpeg', calidad);
-        return blob ? { indice: c.indice, lado: c.lado, archivo: new File([blob], `diseno-${c.lado}.jpg`, { type: 'image/jpeg' }) } : null;
+        return blob ? { indice: c.indice, lado: c.lado, archivo: new File([blob], `visuel-${sufijoArchivo(c.lado)}.jpg`, { type: 'image/jpeg' }) } : null;
       }),
     );
     const listas = intento.filter((x): x is NonNullable<typeof x> => x !== null);
@@ -194,9 +194,9 @@ export async function prepararEnvio(items: ItemPresupuesto[], sueltos: File[]): 
     }
   }
   if (capturas.length && nivel < 0) {
-    avisos.push('Las capturas del diseño no cabían en el envío ni comprimidas: va solo el logo.');
+    avisos.push('Les captures du visuel ne tenaient pas dans l’envoi, même compressées : seul le logo est joint.');
   } else if (nivel > 0) {
-    avisos.push(`Las capturas del diseño van comprimidas (${NIVELES[nivel][0]} px) para que el envío quepa en ${formatoBytes(MAX_ENVIO_BYTES)}.`);
+    avisos.push(`Les captures du visuel sont compressées (${NIVELES[nivel][0]} px) pour que l’envoi tienne dans ${formatoBytes(MAX_ENVIO_BYTES)}.`);
   }
 
   const archivos: ArchivoEnvio[] = [

@@ -78,7 +78,7 @@ export default function Estudio({ productos, slugInicial }: Props) {
   // (se mantiene la query, por ejemplo ?capturas=1 del script de capturas).
   const cambiarProducto = (p: Producto) => {
     store.getState().setProducto(p);
-    window.history.replaceState(null, '', `/disena/${p.slug}${window.location.search}`);
+    window.history.replaceState(null, '', `/personnaliser/${p.slug}${window.location.search}`);
     document.title = `Diseña tu ${p.nombre} · [MARCA]`;
   };
 
@@ -120,9 +120,9 @@ export default function Estudio({ productos, slugInicial }: Props) {
     <section className="mx-auto w-full max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-28">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3 lg:mb-6">
         <div>
-          <p className="text-sm font-medium text-nova-400">Estudio de diseño</p>
-          <h1 className="font-display text-3xl font-semibold tracking-tight text-moon-50 sm:text-4xl">Diseña tu {producto.nombre}</h1>
-          <p className="mt-1 text-sm text-mist-300">
+          <p className="text-sm font-medium text-fuchsia-800">Estudio de diseño</p>
+          <h1 className="font-display text-3xl font-semibold tracking-tight text-marine sm:text-4xl">Diseña tu {producto.nombre}</h1>
+          <p className="mt-1 text-sm text-ardoise">
             {producto.tipo} · {producto.material}
             {producto.gramaje ? ` · ${producto.gramaje} g/m²` : ''}
           </p>
@@ -130,12 +130,12 @@ export default function Estudio({ productos, slugInicial }: Props) {
           <div className="mt-2">
             <Etiquetas destacado={producto.destacado} etiquetas={producto.etiquetas} conEstudio={false} tono="oscuro" conDisena={false} />
           </div>
-          <p className="mt-2 text-sm text-moon-50">
-            <span className="font-display font-semibold text-nova-400">{precio}</span>
+          <p className="mt-2 text-sm text-marine">
+            <span className="font-display font-semibold text-fuchsia-800">{precio}</span>
           </p>
-          <p className="mt-1 max-w-2xl text-xs text-mist-300/80">{TEXTOS.pedidoMinimo}</p>
+          <p className="mt-1 max-w-2xl text-xs text-ardoise/80">{TEXTOS.pedidoMinimo}</p>
         </div>
-        <Link href={`/catalogo/${producto.slug}`} className="text-sm font-medium text-mist-300 underline-offset-4 hover:text-moon-50 hover:underline">
+        <Link href={`/catalogue/${producto.slug}`} className="text-sm font-medium text-ardoise underline-offset-4 hover:text-marine hover:underline">
           Ver la ficha del producto
         </Link>
       </div>
@@ -151,40 +151,40 @@ export default function Estudio({ productos, slugInicial }: Props) {
             </div>
             <Ovni ref={ovniRef} />
             {!fotoLista && (
-              <p className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full bg-space-950/70 px-3 py-1 text-xs font-medium text-moon-50 backdrop-blur">
+              <p className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full bg-fond/70 px-3 py-1 text-xs font-medium text-marine backdrop-blur">
                 Cargando la foto…
               </p>
             )}
 
             {/* Vistas delante / detrás y color del pedido */}
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-2 p-3">
-              <div className="pointer-events-auto inline-flex rounded-full bg-space-950/75 p-1 backdrop-blur" role="group" aria-label="Vista">
+              <div className="pointer-events-auto inline-flex rounded-full bg-fond/75 p-1 backdrop-blur" role="group" aria-label="Vista">
                 {(['delante', 'detras'] as const).map((l) => (
                   <button
                     key={l}
                     type="button"
                     onClick={() => setLado(l)}
                     aria-pressed={lado === l}
-                    className="rounded-full px-3.5 py-1.5 text-xs font-semibold text-mist-300 transition-colors aria-pressed:bg-moon-50 aria-pressed:text-ink-900 hover:text-moon-50 aria-pressed:hover:text-ink-900"
+                    className="rounded-full px-3.5 py-1.5 text-xs font-semibold text-ardoise transition-colors aria-pressed:bg-marine aria-pressed:text-white hover:text-marine aria-pressed:hover:text-white"
                   >
                     {l === 'delante' ? 'Delante' : 'Detrás'}
                   </button>
                 ))}
               </div>
               <div
-                className="pointer-events-auto flex max-w-[60%] items-center gap-2 rounded-full bg-space-950/75 py-1 pr-3 pl-1 text-xs font-medium text-moon-50 backdrop-blur"
+                className="pointer-events-auto flex max-w-[60%] items-center gap-2 rounded-full bg-fond/75 py-1 pr-3 pl-1 text-xs font-medium text-marine backdrop-blur"
                 title={origen === 'real' ? 'Foto real de este color' : 'Foto de la prenda en este color'}
               >
-                <span className="h-6 w-6 shrink-0 rounded-full border border-moon-50/30" style={{ backgroundColor: color.hex }} aria-hidden="true" />
+                <span className="h-6 w-6 shrink-0 rounded-full border border-marine/30" style={{ backgroundColor: color.hex }} aria-hidden="true" />
                 <span className="truncate">{color.nombre}</span>
               </div>
             </div>
             {aviso && (
-              <p role="status" className="absolute bottom-12 left-1/2 z-10 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl bg-space-950/85 px-4 py-2 text-center text-xs font-medium text-moon-50 backdrop-blur sm:bottom-14">
+              <p role="status" className="absolute bottom-12 left-1/2 z-10 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl bg-fond/85 px-4 py-2 text-center text-xs font-medium text-marine backdrop-blur sm:bottom-14">
                 {aviso}
               </p>
             )}
-            <p className="pointer-events-none absolute bottom-3 left-1/2 z-10 hidden -translate-x-1/2 rounded-full bg-space-950/60 px-3 py-1 text-xs text-moon-50 backdrop-blur sm:block">
+            <p className="pointer-events-none absolute bottom-3 left-1/2 z-10 hidden -translate-x-1/2 rounded-full bg-fond/60 px-3 py-1 text-xs text-marine backdrop-blur sm:block">
               Arrastra el logo para moverlo dentro de la zona punteada
             </p>
           </div>

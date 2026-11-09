@@ -1,43 +1,58 @@
 @import 'tailwindcss';
 
 /*
-  [COLOR] Tokens de color PLACEHOLDER (grises neutros). Los nombres (space, nova, star, moon, ink, mist) son de
-  la base heredada; los valores y, si se quiere, los nombres se sustituyen con la identidad de brand/.
-  Tokens de la sección 7 de la spec original.
-  No hay archivo de tokens en assets/marca/, así que son provisionales, salvo dos que se han podido
-  confirmar con los valores vectoriales exactos del PDF del catálogo de la base (ya sustituidos por grises).
-  Se vacía la paleta por defecto de Tailwind para que solo existan los colores de marca.
+  Identité La Ola Import. Couleurs relevées à la pipette sur le logo (brand/logo/), contrastes WCAG vérifiés.
+  La palette par défaut de Tailwind est vidée : seuls existent les tokens de la marque.
+  Règle 60 / 30 / 10 : fonds blanc et perle (60 %), cyan, bleu, violet et marine pour la structure (30 %),
+  fuchsia réservé aux boutons d'action (10 %).
 */
 @theme {
   --color-*: initial;
   --color-white: #ffffff;
   --color-black: #000000;
 
-  --color-space-950: #111111; /* [COLOR] placeholder neutro */
-  --color-space-900: #1c1c1c; /* [COLOR] placeholder neutro */
-  --color-nova-600: #555555; /* [COLOR] placeholder neutro */
-  --color-nova-400: #8a8a8a; /* [COLOR] placeholder neutro */
-  --color-star-300: #bdbdbd; /* [COLOR] placeholder neutro */
-  --color-moon-50: #f5f5f5; /* [COLOR] placeholder neutro */
-  --color-ink-900: #111111; /* [COLOR] placeholder neutro */
-  --color-mist-300: #b0b0b0; /* [COLOR] placeholder neutro */
+  /* Fonds */
+  --color-fond: #ffffff;
+  --color-perle: #f8f9fa;
 
-  /* Verde del distintivo ECO (fase 4.4): eco-700 sobre eco-100 o blanco (contraste 5,7:1 y 7:1, AA); eco-300 sobre
-     el fondo espacial (12:1). Solo para el distintivo de los productos eco según su ficha técnica. */
+  /* Texte : marine = contour du logo (19,2:1 sur blanc) ; ardoise = texte secondaire (5,7:1) ;
+     encre = texte sur les cartes et panneaux clairs (même valeur que le marine). */
+  --color-marine: #00063d;
+  --color-encre: #00063d;
+  --color-ardoise: #5a6785;
+
+  /* Couleurs du logo */
+  --color-cyan-300: #10e9fb; /* décor uniquement (1,5:1 en texte) */
+  --color-cyan-400: #05bcf8; /* décor uniquement */
+  --color-cyan-700: #0072a3; /* menu actif, icônes porteuses de sens : 5,3:1 */
+  --color-bleu-600: #0363e9; /* liens, focus : 5,3:1 */
+  --color-indigo-700: #0538ca; /* survol des liens, titres accentués : 8,7:1 */
+  --color-violet-600: #6106e2; /* boutons secondaires : 8,0:1 */
+  --color-fuchsia-50: #fbe3fa; /* fonds de badges */
+  --color-fuchsia-500: #f613ea; /* décor, dégradé */
+  --color-fuchsia-600: #d40be4; /* grands titres décoratifs seulement (4,2:1) */
+  --color-fuchsia-700: #b809c6; /* boutons d'action, texte blanc 5,4:1 */
+  --color-fuchsia-800: #9a0aa6; /* survol des boutons d'action, texte blanc 7,1:1 */
+  --color-soleil-400: #ffc93c; /* lettrage de Surfi : badges et étoiles, texte marine */
+
+  /* Distintivo ECO heredado (neutro de marca): eco-700 sobre eco-100 o blanco, AA. */
   --color-eco-100: #ddf5e4;
   --color-eco-300: #7ee2a2;
   --color-eco-600: #1b7f3b;
   --color-eco-700: #15693a;
 
-  /* Tipografía provisional (sección 7): Sora para titulares e Inter para texto, servidas desde el propio dominio. */
-  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  /* Nunito pour les titres (terminaisons arrondies, comme l'écume du logo), Inter pour le texte. */
+  --font-display: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --ease-nave: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-douce: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --shadow-carte: 0 4px 16px rgb(0 6 61 / 0.08);
+  --shadow-carte-survol: 0 8px 24px rgb(0 6 61 / 0.12);
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -45,329 +60,147 @@ html {
 }
 
 body {
-  /* nada desborda a lo ancho (la órbita del ojo de buey sobresale del hero): en móvil, un desbordamiento agranda el
-     viewport de maquetación y deja una franja invisible a la derecha (fase 4.6) */
+  /* rien ne doit élargir le document à 390 px : sinon Chrome agrandit le viewport et le menu sort de l'écran */
   overflow-x: clip;
-  background-color: var(--color-space-950);
-  background-image:
-    radial-gradient(ellipse 90% 55% at 50% -12%, --alpha(var(--color-nova-600) / 38%), transparent 65%),
-    linear-gradient(180deg, var(--color-space-900) 0%, var(--color-space-950) 60%, var(--color-space-950) 100%);
-  background-attachment: fixed;
-  color: var(--color-moon-50);
+  background-color: var(--color-fond);
+  color: var(--color-marine);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
 :focus-visible {
-  outline: 2px solid var(--color-star-300);
-  outline-offset: 3px;
+  outline: 3px solid var(--color-bleu-600);
+  outline-offset: 2px;
 }
 
 ::selection {
-  background: --alpha(var(--color-star-300) / 35%);
+  background: --alpha(var(--color-cyan-300) / 45%);
 }
 
-/* Navegación tipo nave: el contenido se aleja hacia el fondo y el nuevo llega desde la profundidad. */
-::view-transition {
-  pointer-events: none;
+/* Dégradé de la vague du logo : séparateurs, filets, bannières (jamais sous du texte courant). */
+.degrade-ola {
+  background-image: linear-gradient(90deg, var(--color-cyan-300), var(--color-bleu-600) 38%, var(--color-violet-600) 68%, var(--color-fuchsia-500));
 }
 
-::view-transition-old(.nave-salida) {
-  animation: 220ms var(--ease-nave) both nave-alejarse;
-}
-
-::view-transition-new(.nave-llegada) {
-  animation: 460ms var(--ease-nave) 40ms both nave-llegar;
-}
-
-/* Cabecera y pie se quedan quietos durante la transición. */
-::view-transition-group(cabecera),
-::view-transition-group(pie) {
-  animation: none;
-  z-index: 100;
-}
-
-::view-transition-old(cabecera),
-::view-transition-old(pie) {
-  display: none;
-}
-
-::view-transition-new(cabecera),
-::view-transition-new(pie) {
-  animation: none;
-}
-
-@keyframes nave-alejarse {
-  to {
-    opacity: 0;
-    transform: scale(0.975);
-  }
-}
-
-@keyframes nave-llegar {
-  from {
-    opacity: 0;
-    transform: scale(0.975) translateY(10px);
-  }
-}
-
-/* Catálogo como travesía (sección 7): al cambiar de filtro, las tarjetas se alejan y las nuevas llegan desde el
-   fondo en una cascada corta; las que se quedan se deslizan a su sitio. Nada supera los 600 ms. */
+/* Catalogue : au changement de filtre, les cartes qui partent s'effacent et les nouvelles arrivent en cascade courte.
+   Rien ne dépasse 400 ms ; annulé avec prefers-reduced-motion. */
 ::view-transition-old(.tarjeta-sale) {
-  animation: 200ms var(--ease-nave) both tarjeta-alejarse;
+  animation: 180ms var(--ease-douce) both carte-sort;
 }
 
 ::view-transition-group(.tarjeta-mueve) {
-  animation-duration: 420ms;
-  animation-timing-function: var(--ease-nave);
+  animation-duration: 360ms;
+  animation-timing-function: var(--ease-douce);
 }
 
 ::view-transition-new(.tarjeta-llega-0) {
-  animation: 360ms var(--ease-nave) 0ms both tarjeta-llegar;
+  animation: 320ms var(--ease-douce) 0ms both carte-arrive;
 }
 ::view-transition-new(.tarjeta-llega-1) {
-  animation: 360ms var(--ease-nave) 40ms both tarjeta-llegar;
+  animation: 320ms var(--ease-douce) 30ms both carte-arrive;
 }
 ::view-transition-new(.tarjeta-llega-2) {
-  animation: 360ms var(--ease-nave) 80ms both tarjeta-llegar;
+  animation: 320ms var(--ease-douce) 60ms both carte-arrive;
 }
 ::view-transition-new(.tarjeta-llega-3) {
-  animation: 360ms var(--ease-nave) 120ms both tarjeta-llegar;
+  animation: 320ms var(--ease-douce) 90ms both carte-arrive;
 }
 ::view-transition-new(.tarjeta-llega-4) {
-  animation: 360ms var(--ease-nave) 160ms both tarjeta-llegar;
+  animation: 320ms var(--ease-douce) 120ms both carte-arrive;
 }
 ::view-transition-new(.tarjeta-llega-5) {
-  animation: 360ms var(--ease-nave) 200ms both tarjeta-llegar;
+  animation: 320ms var(--ease-douce) 150ms both carte-arrive;
 }
 
-@keyframes tarjeta-alejarse {
+@keyframes carte-sort {
   to {
     opacity: 0;
-    transform: scale(0.92);
+    transform: scale(0.96);
   }
 }
 
-@keyframes tarjeta-llegar {
+@keyframes carte-arrive {
   from {
     opacity: 0;
-    transform: scale(0.9) translateY(14px);
+    transform: translateY(10px);
   }
 }
 
-/* Revelación del color con Novi, el OVNI (fase 10; lib/ovni.ts + components/producto/Ovni.tsx): la mascota
-   pre-renderizada (hoja de sprites de 4 × 4 fotogramas a 2×, con las luces del anillo latiendo) da un remolino
-   alrededor del producto con tres estelas de viento mientras la capa nueva se funde. Solo se animan transform y
-   opacity (lib/ovni.ts pone los valores en px según el recuadro); aquí va el dibujo y la geometría en reposo.
-   Sin filtros: el brillo de la nave es un degradado radial, no una sombra. */
-.ovni-escena {
-  z-index: 5;
-  contain: layout paint;
-}
-
-/* el centro del remolino: un punto sin tamaño en el centro del recuadro, que lib/ovni.ts gira, sube y se lleva */
-.ovni-orbita,
-.ovni-estelas {
-  position: absolute;
-  left: 50%;
-  top: 46%;
-  width: 0;
-  height: 0;
-  will-change: transform, opacity;
-}
-
-/* el radio de la órbita: la nave cuelga de su extremo */
-.ovni-radio {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0;
-  height: 0;
-  will-change: transform;
-}
-
-.ovni-nave {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: clamp(64px, calc(var(--ovni-ancho, 300px) * 0.24), 132px);
-  aspect-ratio: 320 / 208;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-}
-
-/* el brillo de la nave: un halo cian detrás, sin filtro */
-.ovni-brillo {
-  position: absolute;
-  inset: -22% -18%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 55%, --alpha(var(--color-star-300) / 45%), --alpha(var(--color-star-300) / 12%) 45%, transparent 70%);
-}
-
-/* la hoja de sprites: 16 fotogramas (4 columnas × 4 filas) con las luces latiendo; el flotar va en CSS */
-.ovni-sprite {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-image: url('/marca/ovni/ovni-reveal.webp');
-  background-size: 400% 400%;
-  background-repeat: no-repeat;
-  animation:
-    ovni-luces 1.4s step-end infinite,
-    ovni-flota 2.2s ease-in-out infinite alternate;
-}
-
-@keyframes ovni-luces {
-  0% { background-position: 0% 0%; }
-  6.25% { background-position: 33.333% 0%; }
-  12.5% { background-position: 66.667% 0%; }
-  18.75% { background-position: 100% 0%; }
-  25% { background-position: 0% 33.333%; }
-  31.25% { background-position: 33.333% 33.333%; }
-  37.5% { background-position: 66.667% 33.333%; }
-  43.75% { background-position: 100% 33.333%; }
-  50% { background-position: 0% 66.667%; }
-  56.25% { background-position: 33.333% 66.667%; }
-  62.5% { background-position: 66.667% 66.667%; }
-  68.75% { background-position: 100% 66.667%; }
-  75% { background-position: 0% 100%; }
-  81.25% { background-position: 33.333% 100%; }
-  87.5% { background-position: 66.667% 100%; }
-  93.75% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-@keyframes ovni-flota {
-  from { transform: translateY(-3%) rotate(-1.2deg); }
-  to { transform: translateY(3%) rotate(1.2deg); }
-}
-
-/* las estelas del remolino: tres arcos (un anillo con solo dos lados visibles) que lib/ovni.ts dimensiona y gira;
-   el contenedor va aplastado en vertical para que giren en la misma perspectiva que la nave */
-.ovni-estelas span {
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  border-top-color: --alpha(var(--color-star-300) / 80%);
-  border-right-color: --alpha(var(--color-moon-50) / 35%);
-  opacity: 0;
-  will-change: transform, opacity;
-}
-
-/* La capa de la foto nueva nace invisible: así nunca se ve entera antes de que el remolino la funda. La animación
-   (fundido) manda mientras dura; al acabar, la capa anterior desaparece y esta clase se quita. */
-.ovni-capa-nueva {
-  opacity: 0;
-  will-change: opacity;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ovni-sprite {
-    animation: none;
-  }
-}
-
-/* Escenario del estudio (fase 4.2): un único fondo para todos los colores, un tono claro de la paleta un poco más
-   frío y oscuro que el blanco de la prenda, para que se lean los bordes de la camiseta blanca sin llamar la atención. */
+/* Scène du studio : un seul fond clair pour toutes les couleurs, assez froid pour lire le bord d'un t-shirt blanc. */
 .escenario-estudio {
-  background-color: color-mix(in srgb, var(--color-moon-50) 86%, var(--color-mist-300));
+  background-color: color-mix(in srgb, var(--color-perle) 70%, #dfe4ee);
 }
 
-/* Con la barra inferior fija de la ficha (móvil), el pie deja sitio para que su última línea no quede tapada. */
+/* Avec la barre fixe de la fiche (mobile), le pied laisse la place à sa dernière ligne. */
 @media (width < 64rem) {
   body:has(.barra-inferior) footer {
     padding-bottom: 4.5rem;
   }
 }
 
-/* Tarjetas de producto: se inclinan unos grados al pasar el ratón (3D sutil, sección 7). */
+/* Cartes produit : légère élévation au survol. */
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .tarjeta-nave {
+  .carte-produit {
     transition:
-      transform 350ms var(--ease-nave),
-      box-shadow 350ms var(--ease-nave);
+      transform 250ms var(--ease-douce),
+      box-shadow 250ms var(--ease-douce);
   }
 
-  .tarjeta-nave:hover {
-    transform: perspective(900px) rotateX(2deg) rotateY(-3deg) translateY(-3px);
-    box-shadow: 0 30px 60px -28px --alpha(var(--color-nova-400) / 65%);
-  }
-}
-
-/* Ojo de buey del hero: profundidad con el ratón (variables --px/--py) y la estrella en dos capas que respiran. */
-.ojo-de-buey .ojo-ventana {
-  transform: translate3d(calc(var(--px) * 6px), calc(var(--py) * 6px), 0);
-  transition: transform 220ms ease-out;
-}
-
-.ojo-de-buey .ojo-estrella {
-  transform: translate3d(calc(var(--px) * -12px), calc(var(--py) * -10px), 0);
-  transition: transform 260ms ease-out;
-}
-
-.ojo-estrella-frente {
-  animation: estrella-respira 6s ease-in-out infinite;
-}
-
-.ojo-estrella-fondo {
-  animation: estrella-gira 28s linear infinite;
-}
-
-@keyframes estrella-respira {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.07);
+  .carte-produit:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-carte-survol);
   }
 }
 
-@keyframes estrella-gira {
-  from {
-    transform: scale(1.3) rotate(0deg);
-  }
-  to {
-    transform: scale(1.3) rotate(360deg);
-  }
+/* ------------------------------------------------------------------------------------------------------------------
+   Surfi (lib/surfi.ts, components/producto/Surfi.tsx) : au clic sur une pastille de couleur, Surfi traverse la photo
+   sur sa vague et un volet (clip-path) révèle la nouvelle couleur derrière lui. Seuls transform, opacity et clip-path
+   sont animés. La scène ne capte aucun clic.
+   ------------------------------------------------------------------------------------------------------------------ */
+.surfi-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+  contain: layout paint;
 }
 
-/* Cómo trabajamos: la constelación se dibuja al entrar en pantalla. */
-.constelacion-linea {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  opacity: 0.85;
+.surfi-voyageur {
+  position: absolute;
+  left: 0;
+  bottom: 1%;
+  height: 48%;
+  aspect-ratio: 1 / 1;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
-.constelacion[data-visible] .constelacion-linea {
-  animation: constelacion-dibujar 600ms var(--ease-nave) 100ms both;
+.surfi-cadre {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .constelacion .constelacion-paso {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  .constelacion[data-visible] .constelacion-paso {
-    animation: constelacion-aparecer 400ms var(--ease-nave) both;
-    animation-delay: calc(var(--i) * 90ms);
-  }
+/* 4 vues côte à côte dans un seul sprite (1600 × 400) : face, trois-quarts, profil, dos */
+.surfi-bande {
+  width: 400%;
+  height: 100%;
+  background: url('/marca/surfi/surfi-rotation.webp') left center / 100% 100% no-repeat;
+  will-change: transform;
 }
 
-@keyframes constelacion-dibujar {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes constelacion-aparecer {
-  to {
-    opacity: 1;
-    transform: none;
-  }
+/* La couche de la nouvelle couleur naît masquée : le volet de lib/surfi.ts la révèle derrière Surfi. */
+.surfi-capa-nueva {
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path, opacity;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -375,20 +208,8 @@ body {
     scroll-behavior: auto;
   }
 
-  .constelacion-linea {
-    stroke-dashoffset: 0;
-    animation: none !important;
-  }
-
-  .ojo-estrella-frente,
-  .ojo-estrella-fondo {
-    animation: none;
-  }
-
-  .ojo-de-buey .ojo-ventana,
-  .ojo-de-buey .ojo-estrella {
-    transform: none;
-    transition: none;
+  .surfi-scene {
+    display: none;
   }
 
   ::view-transition-old(*),

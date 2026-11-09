@@ -28,19 +28,19 @@ const LADOS: readonly { id: Lado; nombre: string }[] = [
 function Seccion({ id, titulo, abierto, onAbrir, resumen, children }: { id: string; titulo: string; abierto: boolean; onAbrir: () => void; resumen?: ReactNode; children: ReactNode }) {
   const panelId = `${id}-panel`;
   return (
-    <section className="border-b border-moon-50/10 last:border-b-0">
+    <section className="border-b border-marine/10 last:border-b-0">
       <h2>
         <button
           type="button"
           aria-expanded={abierto}
           aria-controls={panelId}
           onClick={onAbrir}
-          className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left transition-colors hover:bg-moon-50/5"
+          className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left transition-colors hover:bg-marine/5"
         >
-          <span className="font-display text-base font-semibold text-moon-50">{titulo}</span>
+          <span className="font-display text-base font-semibold text-marine">{titulo}</span>
           <span className="flex items-center gap-3">
-            {resumen && <span className="text-xs text-mist-300">{resumen}</span>}
-            <svg viewBox="0 0 20 20" aria-hidden="true" className={`h-4 w-4 text-mist-300 transition-transform ${abierto ? 'rotate-180' : ''}`}>
+            {resumen && <span className="text-xs text-ardoise">{resumen}</span>}
+            <svg viewBox="0 0 20 20" aria-hidden="true" className={`h-4 w-4 text-ardoise transition-transform ${abierto ? 'rotate-180' : ''}`}>
               <path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
@@ -65,8 +65,8 @@ function MiniPosicion({ posicion }: { posicion: Posicion }) {
   const [x, y, w, h] = rect[posicion] ?? [12, 16, 16, 20];
   return (
     <svg viewBox="0 0 40 44" aria-hidden="true" className="h-11 w-10">
-      <path d="M13 3l7 3 7-3 9 6-4 8-3-1v26H11V16l-3 1-4-8z" fill="currentColor" className="text-moon-50/15" stroke="currentColor" strokeWidth="1.2" />
-      <rect x={x} y={y} width={w} height={h} rx="1" fill="none" stroke="currentColor" strokeWidth="1.4" strokeDasharray="2 1.5" className="text-star-300" />
+      <path d="M13 3l7 3 7-3 9 6-4 8-3-1v26H11V16l-3 1-4-8z" fill="currentColor" className="text-marine/15" stroke="currentColor" strokeWidth="1.2" />
+      <rect x={x} y={y} width={w} height={h} rx="1" fill="none" stroke="currentColor" strokeWidth="1.4" strokeDasharray="2 1.5" className="text-bleu-600" />
     </svg>
   );
 }
@@ -78,7 +78,7 @@ function formatoCm(n: number): string {
 /** Vista previa de un logo sobre un tablero de transparencia. */
 function VistaLogo({ logo }: { logo: LogoProcesado }) {
   return (
-    <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-moon-50 [background-image:linear-gradient(45deg,#e6e6e6_25%,transparent_25%),linear-gradient(-45deg,#e6e6e6_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#e6e6e6_75%),linear-gradient(-45deg,transparent_75%,#e6e6e6_75%)] [background-position:0_0,0_6px,6px_-6px,-6px_0] [background-size:12px_12px]">
+    <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white [background-image:linear-gradient(45deg,#e6e6e6_25%,transparent_25%),linear-gradient(-45deg,#e6e6e6_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#e6e6e6_75%),linear-gradient(-45deg,transparent_75%,#e6e6e6_75%)] [background-position:0_0,0_6px,6px_-6px,-6px_0] [background-size:12px_12px]">
       <canvas
         aria-label="Vista previa del logo"
         className="max-h-full max-w-full"
@@ -117,9 +117,9 @@ function ZonaLogo({
   const trasero = lado === 'detras';
   return (
     <div>
-      <p className="mb-2 text-sm font-medium text-moon-50">
+      <p className="mb-2 text-sm font-medium text-marine">
         {trasero ? 'Logo trasero' : 'Logo delantero'}
-        {trasero && <span className="ml-1 font-normal text-mist-300">(opcional: si no subes otro, detrás va el mismo)</span>}
+        {trasero && <span className="ml-1 font-normal text-ardoise">(opcional: si no subes otro, detrás va el mismo)</span>}
       </p>
       <label
         htmlFor={id}
@@ -128,10 +128,10 @@ function ZonaLogo({
           e.preventDefault();
           onArchivo(e.dataTransfer.files?.[0]);
         }}
-        className="flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border border-dashed border-moon-50/30 px-4 py-5 text-center transition-colors hover:border-star-300/70 hover:bg-moon-50/5"
+        className="flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border border-dashed border-marine/30 px-4 py-5 text-center transition-colors hover:border-bleu-600/70 hover:bg-marine/5"
       >
-        <span className="text-sm font-medium text-moon-50">{procesando ? 'Procesando…' : logo ? 'Cambiar el logo' : trasero ? 'Arrastra otro logo para la espalda o elige un archivo' : 'Arrastra tu logo aquí o elige un archivo'}</span>
-        <span className="text-xs text-mist-300">PNG, JPG o SVG. Se procesa en tu navegador: no se sube nada hasta que envíes tu diseño.</span>
+        <span className="text-sm font-medium text-marine">{procesando ? 'Procesando…' : logo ? 'Cambiar el logo' : trasero ? 'Arrastra otro logo para la espalda o elige un archivo' : 'Arrastra tu logo aquí o elige un archivo'}</span>
+        <span className="text-xs text-ardoise">PNG, JPG o SVG. Se procesa en tu navegador: no se sube nada hasta que envíes tu diseño.</span>
       </label>
       <input
         id={id}
@@ -146,20 +146,20 @@ function ZonaLogo({
       {logo && (
         <div className="mt-3 flex items-center gap-3">
           <VistaLogo logo={logo} />
-          <div className="min-w-0 text-xs text-mist-300">
-            <p className="truncate text-sm text-moon-50">{logo.nombre}</p>
+          <div className="min-w-0 text-xs text-ardoise">
+            <p className="truncate text-sm text-marine">{logo.nombre}</p>
             <p>{logo.vectorial ? 'Vectorial (SVG): nítido a cualquier tamaño' : `${logo.anchoOriginal} × ${logo.altoOriginal} px`}</p>
             <div className="mt-2 flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={onAlternarFondo}
                 aria-pressed={fondoQuitado}
-                className="rounded-full border border-moon-50/25 px-3 py-1 text-xs font-medium text-moon-50 transition-colors hover:bg-moon-50/10 aria-pressed:bg-star-300 aria-pressed:text-ink-900"
+                className="rounded-full border border-marine/25 px-3 py-1 text-xs font-medium text-marine transition-colors hover:bg-marine/10 aria-pressed:bg-bleu-600 aria-pressed:text-white"
               >
                 {fondoQuitado ? 'Fondo blanco quitado' : 'Quitar fondo blanco'}
               </button>
               {onQuitar && (
-                <button type="button" onClick={onQuitar} className="rounded-full border border-moon-50/25 px-3 py-1 text-xs font-medium text-mist-300 transition-colors hover:bg-moon-50/10 hover:text-moon-50">
+                <button type="button" onClick={onQuitar} className="rounded-full border border-marine/25 px-3 py-1 text-xs font-medium text-ardoise transition-colors hover:bg-marine/10 hover:text-marine">
                   Quitar el logo trasero
                 </button>
               )}
@@ -314,7 +314,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
         // Sin sitio para las capturas (límite del navegador): se guarda el diseño sin ellas y se regeneran al enviar.
         sessionStorage.setItem(CLAVE_DISENO, JSON.stringify({ ...diseno, capturas: [] }));
       }
-      router.push('/proyecto');
+      router.push('/projet');
     } finally {
       setOcupado(null);
     }
@@ -346,10 +346,10 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
   const resumenLogos = logoDelante ? (logos.detras ? `${logoDelante.nombre} + ${logos.detras.nombre}` : logoDelante.nombre) : 'Sin subir';
 
   return (
-    <aside className="overflow-hidden rounded-3xl border border-moon-50/10 bg-space-900/60 backdrop-blur" aria-label="Pasos del estudio">
+    <aside className="overflow-hidden rounded-3xl border border-marine/10 bg-perle/60 backdrop-blur" aria-label="Pasos del estudio">
       {/* Selector de prenda: cambia la foto y conserva logos, posiciones compatibles y tamaño */}
-      <div className="border-b border-moon-50/10 px-4 py-3">
-        <p className="mb-2 text-xs font-medium text-mist-300">Prenda</p>
+      <div className="border-b border-marine/10 px-4 py-3">
+        <p className="mb-2 text-xs font-medium text-ardoise">Prenda</p>
         <div className="grid grid-cols-2 gap-2" role="group" aria-label="Prenda">
           {productos.map((p) => {
             const foto = fotoPrincipal(p);
@@ -360,7 +360,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                 type="button"
                 onClick={() => onCambiarProducto(p)}
                 aria-pressed={activo}
-                className={`flex items-center gap-2 rounded-2xl border px-2 py-1.5 text-left transition-colors hover:bg-moon-50/8 ${activo ? 'border-star-300/70 bg-moon-50/10 ring-2 ring-star-300' : 'border-moon-50/15'}`}
+                className={`flex items-center gap-2 rounded-2xl border px-2 py-1.5 text-left transition-colors hover:bg-marine/8 ${activo ? 'border-bleu-600/70 bg-marine/10 ring-2 ring-bleu-600' : 'border-marine/15'}`}
               >
                 {foto && (
                   <span className="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-white">
@@ -368,7 +368,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                   </span>
                 )}
                 <span className="min-w-0">
-                  <span className="flex items-center gap-1 truncate text-sm font-medium text-moon-50">
+                  <span className="flex items-center gap-1 truncate text-sm font-medium text-marine">
                     {p.nombre}
                     {p.etiquetas.includes('eco') && (
                       <span className="inline-flex items-center gap-0.5 rounded-full bg-eco-700/40 px-1.5 text-[10px] font-semibold text-eco-300 ring-1 ring-eco-300/50">
@@ -377,7 +377,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                       </span>
                     )}
                   </span>
-                  <span className="block truncate text-[11px] text-mist-300">{p.tipo}</span>
+                  <span className="block truncate text-[11px] text-ardoise">{p.tipo}</span>
                 </span>
               </button>
             );
@@ -396,19 +396,19 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                   onClick={() => store.getState().setColor(c)}
                   aria-pressed={seleccionado}
                   title={c.nombre}
-                  className={`flex w-full flex-col items-center gap-1.5 rounded-2xl p-1.5 text-center transition-colors hover:bg-moon-50/8 ${seleccionado ? 'bg-moon-50/10 ring-2 ring-star-300' : ''}`}
+                  className={`flex w-full flex-col items-center gap-1.5 rounded-2xl p-1.5 text-center transition-colors hover:bg-marine/8 ${seleccionado ? 'bg-marine/10 ring-2 ring-bleu-600' : ''}`}
                 >
                   <span
                     className="block h-11 w-11 rounded-full border border-white/25 shadow-inner"
                     style={{ background: c.hexSecundario ? `linear-gradient(135deg, ${c.hex} 50%, ${c.hexSecundario} 50%)` : c.hex }}
                   />
-                  <span className="text-[11px] leading-tight text-mist-300">{c.nombre}</span>
+                  <span className="text-[11px] leading-tight text-ardoise">{c.nombre}</span>
                 </button>
               </li>
             );
           })}
         </ul>
-        <p className="mt-3 text-xs text-mist-300">Te enseñamos el muestrario real en tu local.</p>
+        <p className="mt-3 text-xs text-ardoise">Te enseñamos el muestrario real en tu local.</p>
       </Seccion>
 
       <Seccion id={`${baseId}-logo`} titulo="Tus logos" abierto={paso === 'logo'} onAbrir={() => abrir('logo')} resumen={resumenLogos}>
@@ -449,7 +449,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
         onAbrir={() => abrir('posicion')}
         resumen={colocaciones.map((c) => posicionSilueta(silueta, c.posicion).nombre).join(' + ') || 'Ninguna'}
       >
-        <p className="mb-3 text-xs text-mist-300">Como mucho una delante y una detrás. Arrastra el logo dentro de la zona punteada para ajustarlo.</p>
+        <p className="mb-3 text-xs text-ardoise">Como mucho una delante y una detrás. Arrastra el logo dentro de la zona punteada para ajustarlo.</p>
         <ul className="grid grid-cols-2 gap-2" role="list">
           {posicionesProducto.map((p) => {
             const pos = posicionSilueta(silueta, p.posicion);
@@ -464,12 +464,12 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                     if (puesta && !esActiva) store.getState().setActiva(p.posicion);
                     else store.getState().alternarPosicion(p.posicion);
                   }}
-                  className={`flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-left transition-colors hover:bg-moon-50/8 ${puesta ? 'border-star-300/70 bg-moon-50/10' : 'border-moon-50/15'} ${esActiva ? 'ring-2 ring-star-300' : ''}`}
+                  className={`flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-left transition-colors hover:bg-marine/8 ${puesta ? 'border-bleu-600/70 bg-marine/10' : 'border-marine/15'} ${esActiva ? 'ring-2 ring-bleu-600' : ''}`}
                 >
                   <MiniPosicion posicion={p.posicion} />
                   <span>
-                    <span className="block text-sm font-medium text-moon-50">{pos.nombre}</span>
-                    <span className="block text-[11px] text-mist-300">
+                    <span className="block text-sm font-medium text-marine">{pos.nombre}</span>
+                    <span className="block text-[11px] text-ardoise">
                       {pos.lado === 'delante' ? 'Delante' : 'Detrás'} · hasta {p.maxCm[0]} × {p.maxCm[1]} cm
                     </span>
                   </span>
@@ -478,15 +478,15 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
             );
           })}
         </ul>
-        {producto.slug === 'austral' && <p className="mt-3 text-xs text-mist-300">El polo no admite el frontal A4: la tapeta lo impide.</p>}
-        {!logoDelante && <p className="mt-3 text-xs text-mist-300">Sube tu logo para verlo en la posición elegida.</p>}
+        {producto.slug === 'austral' && <p className="mt-3 text-xs text-ardoise">El polo no admite el frontal A4: la tapeta lo impide.</p>}
+        {!logoDelante && <p className="mt-3 text-xs text-ardoise">Sube tu logo para verlo en la posición elegida.</p>}
       </Seccion>
 
       <Seccion id={`${baseId}-tamano`} titulo="Tamaño" abierto={paso === 'tamano'} onAbrir={() => abrir('tamano')} resumen={colocacionActiva ? `${formatoCm(colocacionActiva.anchoCm)} cm de ancho` : undefined}>
         {ladosDelProducto.length > 1 && (
           <div className="mb-4">
-            <p className="mb-2 text-xs text-mist-300">Cada logo se coloca y se dimensiona por separado.</p>
-            <div className="inline-flex rounded-full bg-space-950/70 p-1" role="group" aria-label="Lado del logo">
+            <p className="mb-2 text-xs text-ardoise">Cada logo se coloca y se dimensiona por separado.</p>
+            <div className="inline-flex rounded-full bg-fond/70 p-1" role="group" aria-label="Lado del logo">
               {ladosDelProducto.map((l) => {
                 const col = colocaciones.find((c) => posicionSilueta(silueta, c.posicion).lado === l.id);
                 return (
@@ -495,7 +495,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                     type="button"
                     onClick={() => elegirLado(l.id)}
                     aria-pressed={ladoActivo === l.id && Boolean(colocacionActiva)}
-                    className="rounded-full px-3.5 py-1.5 text-xs font-semibold text-mist-300 transition-colors aria-pressed:bg-moon-50 aria-pressed:text-ink-900 hover:text-moon-50 aria-pressed:hover:text-ink-900"
+                    className="rounded-full px-3.5 py-1.5 text-xs font-semibold text-ardoise transition-colors aria-pressed:bg-marine aria-pressed:text-white hover:text-marine aria-pressed:hover:text-white"
                   >
                     {l.nombre}
                     {col ? '' : ' · añadir'}
@@ -513,7 +513,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
             const alto = colocacionActiva.anchoCm * proporcion;
             return (
               <div>
-                <label htmlFor={`${baseId}-ancho`} className="flex items-baseline justify-between gap-2 text-sm text-moon-50">
+                <label htmlFor={`${baseId}-ancho`} className="flex items-baseline justify-between gap-2 text-sm text-marine">
                   <span>{pos.nombre}</span>
                   <span className="text-right font-semibold">
                     {formatoCm(colocacionActiva.anchoCm)} cm de ancho · {formatoCm(alto)} cm de alto
@@ -527,15 +527,15 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                   step={0.5}
                   value={colocacionActiva.anchoCm}
                   onChange={(e) => store.getState().setAncho(colocacionActiva.posicion, Number(e.target.value))}
-                  className="mt-3 w-full accent-star-300"
+                  className="mt-3 w-full accent-bleu-600"
                   aria-valuetext={`${formatoCm(colocacionActiva.anchoCm)} centímetros de ancho`}
                 />
-                <p className="mt-1 flex justify-between text-[11px] text-mist-300">
+                <p className="mt-1 flex justify-between text-[11px] text-ardoise">
                   <span>2 cm</span>
                   <span>máximo {formatoCm(max)} cm</span>
                 </p>
                 {logoActivo && (
-                  <p className="mt-2 text-xs text-mist-300">
+                  <p className="mt-2 text-xs text-ardoise">
                     Logo: {logoActivo.nombre}
                     {ladoActivo === 'detras' && !logos.detras ? ' (el mismo que delante)' : ''}
                   </p>
@@ -546,18 +546,18 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                   </p>
                 )}
                 {logoActivo && !logoActivo.vectorial && !avisoCalidad && ppp !== null && (
-                  <p className="mt-3 text-xs text-mist-300">A este tamaño tu logo imprime a unos {Math.round(ppp)} ppp: suficiente.</p>
+                  <p className="mt-3 text-xs text-ardoise">A este tamaño tu logo imprime a unos {Math.round(ppp)} ppp: suficiente.</p>
                 )}
               </div>
             );
           })()
         ) : (
-          <p className="text-sm text-mist-300">Elige primero una posición.</p>
+          <p className="text-sm text-ardoise">Elige primero una posición.</p>
         )}
       </Seccion>
 
       <Seccion id={`${baseId}-envio`} titulo="Enviar" abierto={paso === 'envio'} onAbrir={() => abrir('envio')}>
-        <p className="mb-3 text-xs text-mist-300">
+        <p className="mb-3 text-xs text-ardoise">
           Al enviar, las capturas delantera y trasera de tu diseño se generan solas y van con tu solicitud de presupuesto. Te respondemos en 24 h laborables.
         </p>
         <div className="flex flex-wrap gap-2">
@@ -565,7 +565,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
             type="button"
             onClick={() => void enviarDiseno()}
             disabled={!fotoLista || !logoDelante || ocupado !== null || capturando}
-            className="rounded-full bg-nova-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-nova-600/30 transition-colors hover:bg-nova-400 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full bg-fuchsia-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-fuchsia-700/30 transition-colors hover:bg-fuchsia-800 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {ocupado === 'enviando' ? 'Preparando…' : 'Enviar mi diseño'}
           </button>
@@ -573,13 +573,13 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
             type="button"
             onClick={() => void descargarDiseno()}
             disabled={!fotoLista || !logoDelante || ocupado !== null || capturando}
-            className="rounded-full border border-moon-50/25 px-4 py-2 text-sm font-semibold text-moon-50 transition-colors hover:bg-moon-50/10 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full border border-marine/25 px-4 py-2 text-sm font-semibold text-marine transition-colors hover:bg-marine/10 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {ocupado === 'descargando' ? 'Preparando…' : 'Descargar mi diseño'}
           </button>
         </div>
-        {!logoDelante && <p className="mt-3 text-xs text-mist-300">Sube tu logo para enviar o descargar el diseño.</p>}
-        <p className="mt-4 text-xs text-mist-300">
+        {!logoDelante && <p className="mt-3 text-xs text-ardoise">Sube tu logo para enviar o descargar el diseño.</p>}
+        <p className="mt-4 text-xs text-ardoise">
           La descarga es un PNG con delante y detrás y la marca [MARCA], para enseñarlo a tu equipo. Los archivos originales de tus logos se guardan en tu navegador y solo se suben al enviar el formulario.
         </p>
       </Seccion>

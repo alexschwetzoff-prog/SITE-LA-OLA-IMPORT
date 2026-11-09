@@ -1,13 +1,15 @@
 'use client';
 
-// Catálogo interactivo (sección 4 y 7): filtros por categoría y etiqueta, barra de categorías fija tipo panel de
-// navegación con indicador que se desliza, y las tarjetas que se alejan y llegan en cascada al cambiar de filtro
-// (View Transitions de React). Los filtros van en la URL (?categoria=…&etiquetas=…) para poder compartirlos.
-// El HTML inicial lleva los 30 productos; los filtros de la URL se aplican al hidratar.
+// Catalogue interactif : filtres par catégorie et par étiquette, barre de catégories collante avec un indicateur qui
+// glisse, et cartes qui s'effacent puis arrivent en cascade au changement de filtre (View Transitions de React). Les
+// filtres vont dans l'URL (?categoria=…&etiquetas=…) pour pouvoir les partager. Le HTML initial contient les 30
+// produits ; les filtres de l'URL s'appliquent à l'hydratation.
 
 import { ViewTransition, startTransition, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import type { Categoria } from '@/data/catalogo';
 import type { DatosTarjeta } from '@/lib/catalogo';
+import { CTA } from '@/lib/site';
 import { FILTROS_ETIQUETA, esCategoria, esFiltroEtiqueta, filtrarProductos, type FiltroEtiqueta } from '@/lib/filtros';
 import { IconoCategoria } from './IconosCategoria';
 import { TarjetaProducto } from './TarjetaProducto';
@@ -95,25 +97,25 @@ export default function Catalogo({ productos, categorias, conteo }: Props) {
 
   return (
     <div>
-      <h2 className="sr-only">Productos</h2>
-      {/* Barra de categorías: panel de navegación fijo bajo la cabecera */}
-      <div className="sticky top-16 z-30 -mx-4 border-y border-moon-50/10 bg-space-950/80 backdrop-blur-md sm:-mx-6 lg:top-20 lg:-mx-8">
-        <div ref={barraRef} role="group" aria-label="Categoría" className="relative mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8 [scrollbar-width:none]">
+      <h2 className="sr-only">Produits</h2>
+      {/* Barre de catégories, collante sous l'en-tête */}
+      <div className="sticky top-16 z-30 -mx-4 border-y border-marine/10 bg-fond/80 backdrop-blur-md sm:-mx-6 lg:top-20 lg:-mx-8">
+        <div ref={barraRef} role="group" aria-label="Catégorie" className="relative mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8 [scrollbar-width:none]">
           <span
             ref={indicadorRef}
             aria-hidden="true"
-            className="pointer-events-none absolute top-2 bottom-2 left-0 w-0 rounded-full bg-moon-50/12 opacity-0 ring-1 ring-star-300/60 motion-safe:transition-[transform,width] motion-safe:duration-300 motion-safe:ease-[var(--ease-nave)]"
+            className="pointer-events-none absolute top-2 bottom-2 left-0 w-0 rounded-full bg-white opacity-0 shadow-carte ring-2 ring-marine motion-safe:transition-[transform,width] motion-safe:duration-300 motion-safe:ease-[var(--ease-douce)]"
           />
-          <BotonCategoria activo={filtros.categoria === null} onClick={() => elegirCategoria(null)} nombre="Todo" cantidad={total} />
+          <BotonCategoria activo={filtros.categoria === null} onClick={() => elegirCategoria(null)} nombre="Tout" cantidad={total} />
           {categorias.map((c) => (
             <BotonCategoria key={c.id} activo={filtros.categoria === c.id} onClick={() => elegirCategoria(c.id)} nombre={c.nombre} cantidad={conteo[c.id]} categoria={c.id} />
           ))}
         </div>
       </div>
 
-      {/* Etiquetas */}
-      <div className="mt-5 flex flex-wrap items-center gap-2" role="group" aria-label="Etiquetas">
-        <span className="mr-1 text-xs font-medium text-mist-300">Filtrar por</span>
+      {/* Étiquettes */}
+      <div className="mt-5 flex flex-wrap items-center gap-2" role="group" aria-label="Étiquettes">
+        <span className="mr-1 text-xs font-medium text-ardoise">Filtrer :</span>
         {FILTROS_ETIQUETA.map((e) => {
           const activo = filtros.etiquetas.includes(e.id);
           return (
@@ -122,7 +124,7 @@ export default function Catalogo({ productos, categorias, conteo }: Props) {
               type="button"
               aria-pressed={activo}
               onClick={() => alternarEtiqueta(e.id)}
-              className="rounded-full border border-moon-50/20 px-3 py-1 text-xs font-medium text-mist-300 transition-colors hover:border-moon-50/40 hover:text-moon-50 aria-pressed:border-star-300 aria-pressed:bg-star-300/15 aria-pressed:text-moon-50"
+              className="min-h-8 rounded-full border border-marine/20 bg-white px-3 py-1 text-xs font-medium text-ardoise transition-colors hover:border-marine/40 hover:text-marine aria-pressed:border-marine aria-pressed:bg-marine aria-pressed:text-white"
             >
               {e.nombre}
             </button>
@@ -130,15 +132,15 @@ export default function Catalogo({ productos, categorias, conteo }: Props) {
         })}
       </div>
 
-      <p id={idResultados} role="status" aria-live="polite" className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-mist-300">
+      <p id={idResultados} role="status" aria-live="polite" className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ardoise">
         <span>
-          {visibles.length === total ? `${total} productos` : `${visibles.length} de ${total} productos`}
+          {visibles.length === total ? `${total} produits` : `${visibles.length} sur ${total} produits`}
           {filtros.categoria ? ` · ${categorias.find((c) => c.id === filtros.categoria)?.nombre}` : ''}
           {filtros.etiquetas.length ? ` · ${filtros.etiquetas.map((e) => FILTROS_ETIQUETA.find((x) => x.id === e)?.nombre).join(' + ')}` : ''}
         </span>
         {hayFiltros && (
-          <button type="button" onClick={() => cambiar(SIN_FILTROS)} className="font-semibold text-nova-400 underline-offset-4 hover:text-star-300 hover:underline">
-            Quitar filtros
+          <button type="button" onClick={() => cambiar(SIN_FILTROS)} className="font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
+            Effacer les filtres
           </button>
         )}
       </p>
@@ -154,11 +156,18 @@ export default function Catalogo({ productos, categorias, conteo }: Props) {
           ))}
         </ul>
       ) : (
-        <div className="mt-8 rounded-3xl border border-dashed border-moon-50/20 p-10 text-center">
-          <p className="text-lg text-moon-50">Ningún producto cumple esos filtros.</p>
-          <button type="button" onClick={() => cambiar(SIN_FILTROS)} className="mt-3 font-semibold text-nova-400 underline-offset-4 hover:text-star-300 hover:underline">
-            Ver todo el catálogo
+        <div className="mt-8 rounded-2xl border border-dashed border-marine/20 bg-perle p-10 text-center">
+          <p className="text-lg text-marine">Aucun produit ne correspond à ces filtres.</p>
+          <button type="button" onClick={() => cambiar(SIN_FILTROS)} className="mt-3 font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
+            Voir tout le catalogue
           </button>
+          <p className="mt-4 text-sm text-ardoise">
+            Vous cherchez autre chose ?{' '}
+            <Link href={CTA.href} className="font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
+              Demandez-nous
+            </Link>
+            , nous regardons ce qu’il est possible de faire.
+          </p>
         </div>
       )}
     </div>
@@ -171,11 +180,11 @@ function BotonCategoria({ activo, onClick, nombre, cantidad, categoria }: { acti
       type="button"
       aria-pressed={activo}
       onClick={onClick}
-      className="relative z-10 flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium whitespace-nowrap text-mist-300 transition-colors hover:text-moon-50 aria-pressed:text-moon-50"
+      className="relative z-10 flex min-h-10 shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium whitespace-nowrap text-ardoise transition-colors hover:text-marine aria-pressed:font-semibold aria-pressed:text-marine"
     >
-      {categoria && <IconoCategoria categoria={categoria} className="h-4 w-4 text-star-300/90" />}
+      {categoria && <IconoCategoria categoria={categoria} className="h-4 w-4 text-bleu-600" />}
       {nombre}
-      <span className="text-xs text-mist-300/70">{cantidad}</span>
+      <span className="text-xs text-ardoise">{cantidad}</span>
     </button>
   );
 }

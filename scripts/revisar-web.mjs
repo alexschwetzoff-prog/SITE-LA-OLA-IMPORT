@@ -18,7 +18,7 @@ const PROHIBIDAS = ['lorem', 'ipsum', '[falta', '[provisional', 'provisional]', 
 // Marcadores que sí se admiten mientras el equipo no aporte el dato (se listan aparte, no cuentan como error).
 const PENDIENTES_ADMITIDOS = ['[falta número de registro]', '[plazo a confirmar]'];
 
-const RUTAS_INICIALES = ['/', '/catalogo', '/disena/atomic-150', '/disena/austral', '/proyecto', '/opiniones', '/gracias', '/tu-opinion', '/aviso-legal', '/privacidad', '/cookies', '/no-existe-404', '/sitemap.xml', '/robots.txt'];
+const RUTAS_INICIALES = ['/', '/catalogue', '/personnaliser/atomic-150', '/personnaliser/austral', '/projet', '/avis', '/merci', '/donner-mon-avis', '/mentions-legales', '/confidentialite', '/cookies', '/no-existe-404', '/sitemap.xml', '/robots.txt'];
 
 const b = await chromium.launch();
 const resultados = [];
@@ -149,7 +149,7 @@ for (const [nombreVista, opciones] of Object.entries(vistas)) {
     }
     if (consola.length) console.log(`    consola: ${consola.slice(0, 3).join(' · ')}`);
     if (peticionesMal.length) mal(`${resumen}: peticiones fallidas: ${peticionesMal.slice(0, 5).join(' · ')}`);
-    if (carpetaCapturas && ['/', '/catalogo', '/catalogo/atomic-150', '/proyecto', '/opiniones', '/gracias', '/aviso-legal', '/no-existe-404'].includes(ruta)) {
+    if (carpetaCapturas && ['/', '/catalogue', '/catalogue/atomic-150', '/projet', '/avis', '/merci', '/mentions-legales', '/no-existe-404'].includes(ruta)) {
       await mkdir(carpetaCapturas, { recursive: true });
       const nombre = ruta === '/' ? 'inicio' : ruta.replace(/^\//, '').replace(/\//g, '-');
       await p.screenshot({ path: path.join(carpetaCapturas, `${nombre}-${nombreVista}.png`), fullPage: ruta !== '/' });

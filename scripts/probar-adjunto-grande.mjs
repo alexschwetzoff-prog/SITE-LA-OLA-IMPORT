@@ -47,7 +47,7 @@ await mkdir(correos, { recursive: true });
 
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
-await p.goto(base + '/proyecto', { waitUntil: 'load' });
+await p.goto(base + '/projet', { waitUntil: 'load' });
 await p.fill('input[name="nombre"]', 'Prueba Adjunto Grande');
 await p.fill('input[name="negocio"]', 'Prueba Netlify');
 await p.fill('input[name="email"]', 'prueba.adjunto@example.com');

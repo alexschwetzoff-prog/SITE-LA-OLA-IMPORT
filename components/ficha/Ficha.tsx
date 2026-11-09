@@ -1,70 +1,90 @@
 'use client';
 
-// Ficha de producto (sección 4 con las decisiones del equipo del 11/10/2026, la fase 4.1 y la fase 4.2): galería
-// delantera y trasera con la personalización de ejemplo dibujada encima a la resolución de la pantalla, selector de
-// color que revela la foto nueva con el OVNI, datos de la ficha técnica, el selector de posición de la
-// personalización (obligatorio para añadir en prendas, gorras y bolsas) y las acciones. Atomic 150 y Austral abren el
-// estudio con el color elegido; el resto (y los goodies) añaden al presupuesto. En móvil, barra inferior fija con la
-// acción principal.
+// Fiche produit : galerie devant / dos avec le motif d'exemple dessiné à la résolution de l'écran, sélecteur de couleur
+// qui révèle la nouvelle photo (animation de la mascotte, components/producto/FotoProducto.tsx), données de la fiche
+// technique, choix de l'emplacement du marquage (obligatoire pour ajouter les textiles, casquettes et sacs) et les
+// actions (proposition §2.3) : « Ajouter au panier » (bouton fuchsia, le seul de l'écran : il alimente /projet),
+// « Personnaliser avec mon logo » (contour violet, seulement si le produit a un studio) et « Demander un devis »
+// (contour marine, vers /devis?produit=<slug>). En mobile, barre collante en bas avec le panier et le devis.
 
 import { useEffect, useId, useState } from 'react';
+import Link from 'next/link';
 import type { Color, Posicion, Producto } from '@/data/catalogo';
 import { Etiquetas } from '@/components/catalogo/Etiquetas';
 import { fondoMuestra } from '@/components/catalogo/Muestras';
 import AnadirAlPresupuesto from '@/components/presupuesto/AnadirAlPresupuesto';
 import FotoProducto, { precalentarReveal } from '@/components/producto/FotoProducto';
-import { BotonEnlace, ESTILO_BOTON } from '@/components/ui/Botones';
+import { ESTILO_BOTON } from '@/components/ui/Botones';
 import type { FotosProducto } from '@/lib/catalogo';
 import { precargarFotos } from '@/lib/fotos';
-import { POSICIONES, colorPorDefecto, esGoodie, sustantivo, textoMaterial, textoPrecio, tieneEstudio } from '@/lib/producto';
+import { POSICIONES, colorPorDefecto, conPrecio, esGoodie, textoMaterial, textoPrecio, tieneEstudio } from '@/lib/producto';
 import { TEXTOS } from '@/lib/site';
 
-// La galería mide como mucho 556 px CSS en escritorio: en pantallas 2× pide la foto de 1200 px y en móvil la de 800.
+// La galerie mesure 556 px CSS au plus en desktop : en écran 2× elle demande la photo de 1200 px, en mobile celle de 800.
 const SIZES = '(min-width: 1024px) 556px, 92vw';
 
+// Boutons secondaires de la fiche (proposition §4.4) : pilules à contour, 48 px de haut.
+const BASE_CONTOUR =
+  'inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 bg-white px-6 py-2.5 text-base font-semibold transition-colors duration-200 motion-safe:active:scale-[0.98]';
+const ESTILO_PERSONALIZAR = `${BASE_CONTOUR} border-violet-600 text-violet-600 hover:bg-[#F2EDFB]`;
+const ESTILO_DEVIS = `${BASE_CONTOUR} border-marine text-marine hover:bg-perle`;
+
 function enlaceEstudio(producto: Producto, color: Color) {
-  return `/disena/${producto.slug}?color=${encodeURIComponent(color.nombre)}`;
+  return `/personnaliser/${producto.slug}?color=${encodeURIComponent(color.nombre)}`;
+}
+
+function enlaceDevis(producto: Producto) {
+  return `/devis?produit=${encodeURIComponent(producto.slug)}`;
+}
+
+/** Icône document du bouton devis. */
+function IconoDevis({ className = 'h-5 w-5' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h4" />
+    </svg>
+  );
 }
 
 interface Props {
   producto: Producto;
-  /** Fotos de cada color (`fotosPorColor()` en el servidor): la ficha no carga el índice de fotos en el navegador. */
+  /** Photos de chaque couleur (`fotosPorColor()` côté serveur) : la fiche ne charge pas l'index des photos. */
   fotosPorColor: Record<string, FotosProducto | undefined>;
-  /** Color de la foto base (real); sin él, la nota no distingue «Foto en …». */
+  /** Couleur de la photo de base (réelle) ; sans elle, la note ne précise pas « Photo en … ». */
   colorBase?: string;
 }
 
 export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
   const [color, setColor] = useState<Color>(() => colorPorDefecto(producto));
   const [lado, setLado] = useState<'delante' | 'detras'>('delante');
-  // Posiciones elegidas para la personalización (fase 4.1): como mucho una por lado (delante / detrás, o cara A / B).
+  // Emplacements choisis pour le marquage : un seul par côté (devant / dos, ou face A / B).
   const [posiciones, setPosiciones] = useState<Posicion[]>([]);
   const id = useId();
   const fotos = fotosPorColor[color.nombre];
   const conEstudio = tieneEstudio(producto);
   const goodie = esGoodie(producto);
-  const { femenino } = sustantivo(producto);
   const precio = textoPrecio(producto);
-  const desde = precio.startsWith('Desde');
+  const desde = conPrecio(producto);
   const colorFoto = colorBase ? producto.colores.find((c) => c.nombre === colorBase) : undefined;
-  // Un color sin foto propia que se enseña con la foto base sin recolorear (goodies de un solo material).
+  // Une couleur sans photo propre, montrée avec la photo de base non recolorée (goodies d'une seule matière).
   const fotoDelBase = Boolean(fotos && !fotos.real && colorBase && colorBase !== color.nombre && fotos.delante === fotosPorColor[colorBase]?.delante);
   const detras = lado === 'detras' && Boolean(fotos?.detras);
   const fotoActual = detras ? fotos?.detras : fotos?.delante;
   const disenoActual = detras ? fotos?.disenoDetras : fotos?.diseno;
-  // Nota bajo la galería (decisión del equipo, 12/10/2026; fase 4.2: sin «color orientativo»). Fase 4.3: la vista
-  // trasera de las gorras es foto real sin diseño (solo se personaliza el frontal): ahí la nota del ejemplo sobra.
+  // Note sous la galerie. Le dos des casquettes est une photo réelle sans motif (seul le devant se personnalise) :
+  // la note du motif n'y a pas lieu d'être.
   const ladoSinDiseno = detras && Boolean(fotos?.diseno) && !fotos?.disenoDetras;
-  const notaEjemplo = ladoSinDiseno ? '' : fotos?.ejemplo === 'marca' ? 'Logo de ejemplo. ' : fotos?.ejemplo === 'tu-logo-aqui' ? '«Tu logo aquí» marca dónde va tu logo. ' : '';
-  const notaColor = fotoDelBase && colorFoto ? `Foto en ${colorFoto.nombre.toLowerCase()}. ` : '';
+  const notaEjemplo = !ladoSinDiseno && fotos?.ejemplo === 'tu-logo-aqui' ? '« Votre logo ici » montre où se place votre logo. ' : '';
+  const notaColor = fotoDelBase && colorFoto ? `Photo en ${colorFoto.nombre.toLowerCase()}. ` : '';
 
   const elegirColor = (c: Color) => {
     setColor(c);
     if (!fotosPorColor[c.nombre]?.detras) setLado('delante');
   };
 
-  // Precarga de las fotos de todos los colores de la vista actual, después de la carga inicial (sin tocar el LCP),
-  // para que el revelado del OVNI nunca enseñe un hueco.
+  // Préchargement des photos de toutes les couleurs de la vue courante, après le chargement initial (sans toucher au
+  // LCP), pour que la révélation n'affiche jamais de trou.
   useEffect(() => {
     const precargar = () => {
       const vistas = new Set<string>();
@@ -91,93 +111,101 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
     return cancelar;
   }, [producto.colores, fotosPorColor, lado]);
 
+  // Barre collante mobile : elle s'efface tant que le bouton « Ajouter au panier » de la fiche est à l'écran (un seul
+  // bouton fuchsia visible à la fois), et revient dès qu'il en sort.
+  const [ctaVisible, setCtaVisible] = useState(false);
+  useEffect(() => {
+    const boton = document.getElementById(`${id}-principal`);
+    if (!boton || !('IntersectionObserver' in window)) return;
+    const observador = new IntersectionObserver((entradas) => setCtaVisible(entradas.some((e) => e.isIntersecting)));
+    observador.observe(boton);
+    return () => observador.disconnect();
+  }, [id]);
+
   const requierePosicion = producto.posiciones.length > 0;
   const alternarPosicion = (p: Posicion) =>
     setPosiciones((actual) => (actual.includes(p) ? actual.filter((x) => x !== p) : [...actual.filter((x) => POSICIONES[x].lado !== POSICIONES[p].lado), p]));
   const posicionesCesta = producto.posiciones.filter((p) => posiciones.includes(p.posicion)).map((p) => ({ posicion: p.posicion, nombre: POSICIONES[p.posicion].nombre }));
   const idPosiciones = `${id}-posiciones`;
   const lados = Array.from(new Set(producto.posiciones.map((p) => POSICIONES[p.posicion].lado).filter(Boolean)));
-  const ayudaPosiciones =
-    lados.length > 1 ? `Elige al menos una: como mucho una ${lados.map((l) => l.toLowerCase()).join(' y una ')}.` : 'Elige dónde va tu logo.';
+  const ayudaPosiciones = lados.length > 1 ? 'Choisissez au moins un emplacement, un seul par côté.' : 'Choisissez l’emplacement de votre logo.';
+  const cm = (n: number) => n.toLocaleString('fr-FR');
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(360px,1fr)] lg:gap-12">
-      {/* Galería sobre superficie clara con halo azul */}
+      {/* Galerie sur fond blanc, carte à ombre douce */}
       <div className="lg:sticky lg:top-28 lg:self-start">
-        <div className="relative aspect-square overflow-hidden rounded-3xl bg-white shadow-[0_0_80px_-20px_rgba(84,153,239,0.45)]">
+        <div className="relative aspect-square overflow-hidden rounded-2xl bg-white shadow-carte ring-1 ring-marine/5">
           {fotoActual ? (
             <FotoProducto
               foto={{ src: fotoActual, anchos: detras ? fotos?.anchosDetras : fotos?.anchos, diseno: disenoActual }}
-              alt={`${producto.tipo} ${producto.nombre} en ${color.nombre.toLowerCase()}, vista ${detras ? 'trasera' : 'delantera'}${fotos?.ejemplo === 'marca' ? ', con un logo de ejemplo' : fotos?.ejemplo === 'tu-logo-aqui' ? ', con el diseño «Tu logo aquí»' : ''}`}
+              alt={`${producto.tipo} ${producto.nombre}, coloris ${color.nombre.toLowerCase()}, vue ${detras ? 'de dos' : 'de face'}${disenoActual?.marca === 'tu-logo-aqui' ? ', avec le motif « Votre logo ici »' : ''}`}
               sizes={SIZES}
               prioridad="alta"
               precargaLcp
               className="aspect-square h-auto w-full object-contain p-4 sm:p-6"
             />
           ) : (
-            <div className="flex aspect-square items-center justify-center">
-              <span className="rounded-full px-3 py-1 font-mono text-xs text-ink-900/70 ring-1 ring-ink-900/30">[FALTA foto]</span>
+            <div className="flex aspect-square items-center justify-center bg-perle">
+              <span className="rounded-full px-3 py-1 font-mono text-xs text-ardoise ring-1 ring-marine/30">[photo à fournir]</span>
             </div>
           )}
           {fotos?.detras && (
-            <div className="absolute top-3 left-3 z-10 inline-flex rounded-full bg-space-950/75 p-1 backdrop-blur" role="group" aria-label="Vista">
+            <div className="absolute top-3 left-3 z-10 inline-flex rounded-full bg-white/90 p-1 shadow-carte ring-1 ring-marine/10 backdrop-blur" role="group" aria-label="Vue">
               {(['delante', 'detras'] as const).map((l) => (
                 <button
                   key={l}
                   type="button"
                   onClick={() => setLado(l)}
                   aria-pressed={lado === l}
-                  className="rounded-full px-3.5 py-1.5 text-xs font-semibold text-mist-300 transition-colors hover:text-moon-50 aria-pressed:bg-moon-50 aria-pressed:text-ink-900 aria-pressed:hover:text-ink-900"
+                  className="min-h-9 rounded-full px-4 py-1.5 text-xs font-semibold text-ardoise transition-colors hover:text-marine aria-pressed:bg-marine aria-pressed:text-white aria-pressed:hover:text-white"
                 >
-                  {l === 'delante' ? 'Delante' : 'Detrás'}
+                  {l === 'delante' ? 'Devant' : 'Dos'}
                 </button>
               ))}
             </div>
           )}
         </div>
-        <p className="mt-3 text-xs text-mist-300">
+        <p className="mt-3 text-xs text-ardoise">
           {notaEjemplo}
           {notaColor}
-          Te enseñamos el muestrario real en tu local.
+          Les couleurs à l’écran sont indicatives.
         </p>
       </div>
 
-      {/* Datos y acciones sobre tarjeta clara */}
-      <div className="rounded-3xl bg-moon-50 p-5 text-ink-900 sm:p-7">
+      {/* Données et actions, sur carte perle */}
+      <div className="rounded-2xl bg-perle p-5 text-encre shadow-carte ring-1 ring-marine/5 sm:p-7">
         <Etiquetas destacado={producto.destacado} etiquetas={producto.etiquetas} conEstudio={conEstudio} />
-        <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight sm:text-4xl">{producto.nombre}</h1>
-        <p className="mt-1 text-lg text-ink-900/70">{producto.tipo}</p>
+        <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-marine sm:text-4xl">{producto.nombre}</h1>
+        <p className="mt-1 text-lg text-ardoise">{producto.tipo}</p>
 
-        {/* Precio limpio (fase 4.2); el aviso «sin IVA» va en la nota de condiciones, en letra pequeña */}
         <p className="mt-4">
-          <span className={`font-display text-2xl font-semibold ${desde ? 'text-nova-600' : ''}`}>{precio}</span>
+          <span className={`inline-flex rounded-full px-3.5 py-1.5 text-sm font-semibold text-marine ${desde ? 'bg-white ring-1 ring-marine/10' : 'bg-fuchsia-50'}`}>{precio}</span>
         </p>
-        {producto.estado === 'consultar-disponibilidad' && (
-          <p className="mt-1 text-sm text-ink-900/70">Disponibilidad pendiente de confirmar: pregúntanos y te decimos.</p>
-        )}
-        <p className="mt-2 text-xs leading-relaxed text-ink-900/60">
-          {TEXTOS.sinIva} {desde ? `${TEXTOS.notaPrecios} ` : ''}
-          {TEXTOS.pedidoMinimo}
+        {producto.estado === 'consultar-disponibilidad' && <p className="mt-2 text-sm text-ardoise">Disponibilité à confirmer : posez-nous la question.</p>}
+        <p className="mt-2 text-xs leading-relaxed text-ardoise">
+          {desde ? `${TEXTOS.sinIva} ` : ''}
+          {TEXTOS.notaPrecios} {TEXTOS.pedidoMinimo}
         </p>
 
         <dl className="mt-6 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-[auto_1fr]">
-          <dt className="font-medium text-ink-900/60">{producto.gramaje ? 'Composición y gramaje' : 'Material'}</dt>
+          <dt className="font-medium text-ardoise">{producto.gramaje ? 'Composition et grammage' : 'Matière'}</dt>
           <dd>{textoMaterial(producto)}</dd>
           {producto.tallas && (
             <>
-              <dt className="font-medium text-ink-900/60">Tallas</dt>
+              <dt className="font-medium text-ardoise">Tailles</dt>
               <dd>
                 {producto.tallas.join(' · ')}
-                {producto.tallasInfantiles && <span className="block text-ink-900/70">Infantil: {producto.tallasInfantiles.join(' · ')}</span>}
+                {producto.tallasInfantiles && <span className="block text-ardoise">Enfant : {producto.tallasInfantiles.join(' · ')}</span>}
               </dd>
             </>
           )}
         </dl>
 
-        {/* Colores con nombre; el selector cambia la imagen cuando hay foto del color */}
+        {/* Couleurs avec leur nom ; le choix change la photo quand la couleur en a une */}
         <fieldset className="mt-6">
-          <legend className="text-sm font-medium text-ink-900/60">
-            Color · <span className="font-semibold text-ink-900">{color.nombre}</span>
+          <legend className="text-sm font-medium text-ardoise">
+            Couleur · <span className="font-semibold text-marine">{color.nombre}</span>
           </legend>
           <div className="mt-2 flex flex-wrap gap-2">
             {producto.colores.map((c) => {
@@ -189,7 +217,7 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
                   onClick={() => elegirColor(c)}
                   aria-pressed={seleccionado}
                   title={c.nombre}
-                  className={`h-9 w-9 rounded-full border border-ink-900/15 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.6)] transition-transform hover:scale-105 ${seleccionado ? 'ring-2 ring-nova-600 ring-offset-2 ring-offset-moon-50' : ''}`}
+                  className={`h-9 w-9 rounded-full border border-marine/15 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.6)] transition-transform hover:scale-105 motion-reduce:transition-none ${seleccionado ? 'ring-2 ring-marine ring-offset-2 ring-offset-perle' : ''}`}
                   style={{ background: fondoMuestra(c) }}
                 >
                   <span className="sr-only">{c.nombre}</span>
@@ -197,21 +225,21 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
               );
             })}
           </div>
-          <p className="mt-2 text-xs text-ink-900/60">
-            {producto.colores.length} {producto.colores.length === 1 ? 'color' : 'colores'}
-            {producto.colores.some((c) => c.provisional) ? ' · nombres de color orientativos' : ''}
+          <p className="mt-2 text-xs text-ardoise">
+            {producto.colores.length} {producto.colores.length === 1 ? 'couleur' : 'couleurs'}
+            {producto.colores.some((c) => c.provisional) ? ' · noms de couleur indicatifs' : ''}
           </p>
         </fieldset>
 
-        {/* Posición de la personalización: solo las que admite el producto según su ficha; obligatoria para añadir */}
+        {/* Emplacement du marquage : seulement ceux que le produit accepte ; obligatoire pour ajouter au panier */}
         <div className="mt-6">
           {requierePosicion ? (
             <fieldset>
-              <legend id={idPosiciones} tabIndex={-1} className="text-sm font-medium text-ink-900/60 outline-none focus-visible:ring-2 focus-visible:ring-star-300">
-                Dónde va tu logo <span aria-hidden="true">*</span>
-                <span className="sr-only">(obligatorio)</span>
+              <legend id={idPosiciones} tabIndex={-1} className="text-sm font-medium text-ardoise outline-none focus-visible:ring-2 focus-visible:ring-bleu-600">
+                Où placer votre logo <span aria-hidden="true">*</span>
+                <span className="sr-only">(obligatoire)</span>
               </legend>
-              <p className="mt-1 text-xs text-ink-900/60">{ayudaPosiciones}</p>
+              <p className="mt-1 text-xs text-ardoise">{ayudaPosiciones}</p>
               <ul className="mt-2 grid gap-1.5 sm:grid-cols-2" aria-describedby={`${idPosiciones}-ayuda`}>
                 {producto.posiciones.map((p) => {
                   const puesta = posiciones.includes(p.posicion);
@@ -221,11 +249,11 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
                         type="button"
                         aria-pressed={puesta}
                         onClick={() => alternarPosicion(p.posicion)}
-                        className={`flex w-full items-center gap-3 rounded-xl border bg-white px-3 py-2 text-left text-sm transition-colors ${puesta ? 'border-nova-600 ring-2 ring-nova-600/60' : 'border-ink-900/10 hover:border-ink-900/30'}`}
+                        className={`flex min-h-12 w-full items-center gap-3 rounded-xl border bg-white px-3 py-2 text-left text-sm transition-colors ${puesta ? 'border-marine ring-2 ring-marine' : 'border-marine/15 hover:border-marine/40'}`}
                       >
                         <span
                           aria-hidden="true"
-                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${puesta ? 'border-nova-600 bg-nova-600 text-white' : 'border-ink-900/25'}`}
+                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${puesta ? 'border-marine bg-marine text-white' : 'border-marine/30'}`}
                         >
                           {puesta && (
                             <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -234,9 +262,9 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
                           )}
                         </span>
                         <span>
-                          <span className="block font-semibold">{POSICIONES[p.posicion].nombre}</span>
-                          <span className="block text-xs text-ink-900/70">
-                            {POSICIONES[p.posicion].lado ? `${POSICIONES[p.posicion].lado} · ` : ''}hasta {p.maxCm[0].toLocaleString('es-ES')} × {p.maxCm[1].toLocaleString('es-ES')} cm
+                          <span className="block font-semibold text-marine">{POSICIONES[p.posicion].nombre}</span>
+                          <span className="block text-xs text-ardoise">
+                            {POSICIONES[p.posicion].lado ? `${POSICIONES[p.posicion].lado} · ` : ''}jusqu’à {cm(p.maxCm[0])} × {cm(p.maxCm[1])} cm
                           </span>
                         </span>
                       </button>
@@ -244,77 +272,69 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
                   );
                 })}
               </ul>
-              <p id={`${idPosiciones}-ayuda`} className="mt-2 text-xs text-ink-900/60">
-                {posicionesCesta.length ? `Elegido: ${posicionesCesta.map((p) => p.nombre).join(' + ')}.` : 'Aún no has elegido ninguna posición.'}
-                {!goodie && lados.length > 1 ? ' Con dos diseños el precio varía: te lo decimos en el presupuesto.' : ''}
+              <p id={`${idPosiciones}-ayuda`} className="mt-2 text-xs text-ardoise">
+                {posicionesCesta.length ? `Choisi : ${posicionesCesta.map((p) => p.nombre).join(' + ')}.` : 'Aucun emplacement choisi pour l’instant.'}
+                {!goodie && lados.length > 1 ? ' Avec deux marquages, nous en tenons compte dans le devis.' : ''}
               </p>
             </fieldset>
           ) : (
             <>
-              <h2 className="text-sm font-medium text-ink-900/60">Personalización</h2>
-              <p className="mt-2 text-sm text-ink-900/80">Marcaje con tu logo en la zona del producto; te concretamos el tamaño en el presupuesto.</p>
+              <h2 className="text-sm font-medium text-ardoise">Personnalisation</h2>
+              <p className="mt-2 text-sm text-marine">Marquage de votre logo sur la zone prévue du produit : nous précisons la taille dans le devis.</p>
             </>
           )}
         </div>
 
-        {/* Acciones */}
-        <div className="mt-8 space-y-6">
-          {conEstudio ? (
-            <>
-              <div className="flex flex-wrap items-center gap-3">
-                <BotonEnlace id={`${id}-principal`} href={enlaceEstudio(producto, color)} tamano="grande">
-                  Diséñala con tu logo
-                </BotonEnlace>
-                <BotonEnlace href="/proyecto?cita=local" variante="claro">
-                  {femenino ? 'Verla' : 'Verlo'} en persona
-                </BotonEnlace>
-              </div>
-              <p className="text-xs text-ink-900/60">Sube tu logo, elige posición y tamaño y mándanos el diseño: te respondemos con presupuesto en 24 h laborables.</p>
-              <div className="border-t border-ink-900/10 pt-6">
-                <AnadirAlPresupuesto
-                  producto={producto}
-                  color={color}
-                  foto={fotos?.delante}
-                  posiciones={posicionesCesta}
-                  requierePosicion={requierePosicion}
-                  idPosiciones={idPosiciones}
-                  variante="secundario"
-                />
-              </div>
-            </>
-          ) : (
-            <>
-              <AnadirAlPresupuesto
-                producto={producto}
-                color={color}
-                foto={fotos?.delante}
-                posiciones={posicionesCesta}
-                requierePosicion={requierePosicion}
-                idPosiciones={idPosiciones}
-                idBoton={`${id}-principal`}
-              />
-              <div className="flex flex-wrap items-center gap-3 border-t border-ink-900/10 pt-6">
-                <BotonEnlace href="/proyecto?cita=local" variante="claro">
-                  {femenino ? 'Verla' : 'Verlo'} en persona
-                </BotonEnlace>
-                <span className="text-xs text-ink-900/60">Vamos a tu local, en la ciudad de Valencia, con el muestrario.</span>
-              </div>
-            </>
-          )}
+        {/* Actions : un seul bouton fuchsia (panier), puis studio (violet) et devis (marine) */}
+        <div className="mt-8 border-t border-marine/10 pt-6">
+          <AnadirAlPresupuesto
+            producto={producto}
+            color={color}
+            foto={fotos?.delante}
+            posiciones={posicionesCesta}
+            requierePosicion={requierePosicion}
+            idPosiciones={idPosiciones}
+            idBoton={`${id}-principal`}
+          />
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            {conEstudio && (
+              <Link href={enlaceEstudio(producto, color)} className={ESTILO_PERSONALIZAR}>
+                Personnaliser avec mon logo
+              </Link>
+            )}
+            <Link href={enlaceDevis(producto)} className={ESTILO_DEVIS}>
+              <IconoDevis />
+              Demander un devis
+            </Link>
+          </div>
+          <p className="mt-3 text-xs text-ardoise">
+            {conEstudio ? 'Le studio vous permet de poser votre logo sur le vêtement avant de nous l’envoyer. ' : ''}
+            Une commande pour votre entreprise, votre club ou votre camping ? Le devis est le plus direct.
+          </p>
+          <ul className="mt-5 space-y-1.5 text-sm text-marine">
+            {[TEXTOS.datosCatalogo[0], TEXTOS.datosCatalogo[1], TEXTOS.plazoPresupuesto].map((t) => (
+              <li key={t} className="flex items-start gap-2">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-cyan-700">
+                  <path d="M5 10.5l3.2 3L15 7" />
+                </svg>
+                {t}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
-      {/* Móvil: barra inferior fija con la acción principal (deja hueco al botón de WhatsApp) */}
-      <div className="barra-inferior fixed inset-x-0 bottom-0 z-30 border-t border-moon-50/10 bg-space-950/85 p-3 pr-24 backdrop-blur-md lg:hidden">
-        {conEstudio ? (
-          <BotonEnlace href={enlaceEstudio(producto, color)} className="w-full">
-            Diséñala con tu logo
-          </BotonEnlace>
-        ) : (
-          <a href={`#${id}-principal`} className={`${ESTILO_BOTON.principal} w-full`}>
-            Añadir al presupuesto
-          </a>
-        )}
+      {/* Mobile : barre collante avec le panier et le devis (laisse la place au bouton WhatsApp) */}
+      <div
+        inert={ctaVisible}
+        className={`barra-inferior fixed inset-x-0 bottom-0 z-30 flex items-center gap-2 border-t border-marine/10 bg-white/90 p-3 pr-24 backdrop-blur-md transition-[transform,opacity] duration-200 motion-reduce:transition-none lg:hidden ${ctaVisible ? 'pointer-events-none translate-y-full opacity-0' : ''}`}
+      >
+        <a href={`#${id}-principal`} className={`${ESTILO_BOTON.principal} min-h-12 flex-1`}>
+          Ajouter au panier
+        </a>
+        <Link href={enlaceDevis(producto)} aria-label="Demander un devis" title="Demander un devis" className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-marine bg-white text-marine">
+          <IconoDevis />
+        </Link>
       </div>
     </div>
   );
