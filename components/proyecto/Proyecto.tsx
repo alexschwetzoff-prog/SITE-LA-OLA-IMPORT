@@ -244,10 +244,11 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
       const el = form.querySelector(`input[name="tramo"][value="${CSS.escape(previo.tramo)}"]`);
       if (el instanceof HTMLInputElement) el.checked = true;
     }
-    // Un nom de structure venu de l'accueil : on passe en « Entreprise » pour afficher le champ, puis on le remplit.
+    // Un nom de structure venu de l'accueil : on coche « Entreprise » pour afficher le champ, puis on le remplit.
     if (previo.negocio) {
       negocioPendiente.current = previo.negocio;
-      setTipo('entreprise');
+      const radio = form.querySelector('input[name="tipo_cliente"][value="entreprise"]');
+      if (radio instanceof HTMLInputElement) radio.click();
     }
   }, []);
 

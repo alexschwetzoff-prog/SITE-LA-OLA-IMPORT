@@ -12,7 +12,6 @@ import {
   TECNICAS,
   TIPOS,
   USOS,
-  esProfesional,
   formatoBytes,
   nombreDe,
   nombreLado,

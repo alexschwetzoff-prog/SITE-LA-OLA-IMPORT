@@ -62,8 +62,19 @@ export function definirSurfi(actif: boolean) {
     if (actif) window.localStorage.removeItem(CLE_INTERRUPTEUR);
     else window.localStorage.setItem(CLE_INTERRUPTEUR, 'off');
   } catch {
-    /* stockage indisponible : l'interrupteur vaut pour la session */
+    /* stockage indisponible : l'interrupteur ne sera pas mémorisé */
   }
+  window.dispatchEvent(new Event(CLE_INTERRUPTEUR));
+}
+
+/** Abonnement pour useSyncExternalStore : l'interrupteur change (cet onglet ou un autre). */
+export function abonnerSurfi(rappel: () => void): () => void {
+  window.addEventListener(CLE_INTERRUPTEUR, rappel);
+  window.addEventListener('storage', rappel);
+  return () => {
+    window.removeEventListener(CLE_INTERRUPTEUR, rappel);
+    window.removeEventListener('storage', rappel);
+  };
 }
 
 let prechargement: Promise<boolean> | null = null;

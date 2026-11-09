@@ -7,6 +7,7 @@ import type { Posicion } from '@/data/catalogo';
 import camisetaUnisex from '@/data/siluetas/camiseta-unisex.json';
 import polo from '@/data/siluetas/polo.json';
 import { srcParaAncho } from '@/lib/fotos';
+import { POSICIONES } from '@/lib/producto';
 
 export type Lado = 'delante' | 'detras';
 
@@ -42,26 +43,48 @@ export interface Silueta {
   fotos: FotosSilueta;
 }
 
+/**
+ * Les noms publics des emplacements viennent de lib/producto.ts (POSICIONES), la même source que la fiche produit et
+ * le panier : les JSON de data/siluetas/ ne servent que pour la géométrie.
+ */
+function conNombresPublicos(s: Silueta): Silueta {
+  const posiciones = Object.fromEntries(
+    Object.entries(s.posiciones).map(([id, pos]) => [id, pos ? { ...pos, nombre: POSICIONES[id as Posicion]?.nombre ?? pos.nombre } : pos]),
+  ) as Silueta['posiciones'];
+  return { ...s, posiciones };
+}
+
 const SILUETAS: Record<string, Silueta> = {
-  'camiseta-unisex': camisetaUnisex as unknown as Silueta,
-  polo: polo as unknown as Silueta,
+  'camiseta-unisex': conNombresPublicos(camisetaUnisex as unknown as Silueta),
+  polo: conNombresPublicos(polo as unknown as Silueta),
 };
 
 export function getSilueta(id: string): Silueta {
   const s = SILUETAS[id];
-  if (!s) throw new Error(`Silueta desconocida: ${id}`);
+  if (!s) throw new Error(`Silhouette inconnue : ${id}`);
   return s;
 }
 
 export type OrigenFoto = 'real' | 'recoloreada';
 
-/** Fotos (delante y detrás) con las que se ve un color: la real si existe, si no la blanca recoloreada. */
-export function fotosDeColor(silueta: Silueta, nombreColor: string): { fotos: Record<Lado, FotoCalibrada>; origen: OrigenFoto } {
-  const real = silueta.fotos.reales[nombreColor];
-  if (real) return { fotos: real, origen: 'real' };
+/** « atomic-150-blanco » pour « /productos/…/atomic-150-blanco-delante.webp » : produit et couleur du nom de fichier (stable). */
+export function claveDeArchivo(src: string | undefined): string | undefined {
+  return src?.match(/([^/]+?)-delante(?:-\d+)?\.[a-z]+$/)?.[1];
+}
+
+/**
+ * Fotos (delante y detrás) con las que se ve un color: la real si existe, si no la blanca recoloreada. Les clés des
+ * JSON de data/siluetas/ sont des noms de couleur ; comme ces noms peuvent être traduits dans data/catalogo.ts, la
+ * correspondance passe aussi par `claveArchivo` (la couleur dans le nom du fichier photo, calculée par la page à partir
+ * de l'index des photos du catalogue). Aucun nom de couleur n'est écrit en dur ici.
+ */
+export function fotosDeColor(silueta: Silueta, nombreColor: string, claveArchivo?: string): { fotos: Record<Lado, FotoCalibrada>; origen: OrigenFoto } {
   const base = silueta.fotos.base;
-  if (nombreColor === 'Blanc') return { fotos: base, origen: 'real' };
-  const rec = silueta.fotos.recoloreadas[nombreColor];
+  const coincide = (src: string | undefined) => Boolean(claveArchivo) && claveDeArchivo(src) === claveArchivo;
+  const real = silueta.fotos.reales[nombreColor] ?? Object.values(silueta.fotos.reales).find((r) => coincide(r.delante.src));
+  if (real) return { fotos: real, origen: 'real' };
+  if (coincide(base.delante.src)) return { fotos: base, origen: 'real' };
+  const rec = silueta.fotos.recoloreadas[nombreColor] ?? Object.values(silueta.fotos.recoloreadas).find((r) => coincide(r.delante));
   if (rec) {
     return {
       fotos: { delante: { ...base.delante, src: rec.delante }, detras: { ...base.detras, src: rec.detras } },

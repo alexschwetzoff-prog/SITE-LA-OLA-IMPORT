@@ -14,11 +14,13 @@ const capturasArg = process.argv.indexOf('--capturas');
 const carpetaCapturas = capturasArg > 0 ? process.argv[capturasArg + 1] : null;
 
 // Palabras que no pueden aparecer en el texto visible ni en los metadatos (minúsculas; se busca como subcadena).
-const PROHIBIDAS = ['lorem', 'ipsum', '[falta', '[provisional', 'provisional]', 'mockup', 'muestra gratuita', 'muestra gratis', 'demo gratuita', 'demo física', 'solicitar demo', 'distribuidor oficial', 'videollamada', 'proveedor-pendiente', /* [PROVEEDOR] nombre del fabricante */ 'todo:', 'fixme', 'se activa en la fase'];
+// La Ola Import : aucun crochet visible ([à confirmer], [photo à fournir]…), aucun reste de la base (espagnol, Valence,
+// IVA, ancienne mascotte), aucune promesse non validée.
+const PROHIBIDAS = ['lorem', 'ipsum', '[à confirmer', 'à confirmer]', '[photo à fournir', '[vidéo à fournir', '[à fournir', '-pendiente', 'pendiente', '[marca]', 'valencia', ' iva', 'sin iva', 'presupuesto', 'ovni', ' 24 h', 'en 24h', 'mockup', 'proveedor', 'todo:', 'fixme'];
 // Marcadores que sí se admiten mientras el equipo no aporte el dato (se listan aparte, no cuentan como error).
-const PENDIENTES_ADMITIDOS = ['[falta número de registro]', '[plazo a confirmar]'];
+const PENDIENTES_ADMITIDOS = [];
 
-const RUTAS_INICIALES = ['/', '/catalogue', '/personnaliser/atomic-150', '/personnaliser/austral', '/projet', '/avis', '/merci', '/donner-mon-avis', '/mentions-legales', '/confidentialite', '/cookies', '/no-existe-404', '/sitemap.xml', '/robots.txt'];
+const RUTAS_INICIALES = ['/', '/catalogue', '/personnaliser/atomic-150', '/personnaliser/austral', '/projet', '/devis', '/avis', '/merci', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/clubs-sportifs', '/professionnels/campings', '/professionnels/boutiques-souvenirs', '/professionnels/entreprises', '/espace-client', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cookies', '/cgv', '/page-introuvable-404', '/sitemap.xml', '/robots.txt'];
 
 const b = await chromium.launch();
 const resultados = [];

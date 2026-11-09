@@ -16,7 +16,7 @@ import { guardarLogoPendiente } from '@/lib/logo-pendiente';
 import { IconoSubir } from './Iconos';
 
 const SILUETA = getSilueta('camiseta-unisex');
-const FOTO = fotosDeColor(SILUETA, 'Naranja').fotos.delante; // la foto real de la Atomic 150, calibrada
+const FOTO = fotosDeColor(SILUETA, 'Orange', 'atomic-150-naranja').fotos.delante; // la photo réelle (orange) de l'Atomic 150, calibrée
 const SRC_LIENZO = fuenteFoto(FOTO, 1200); // el recorte grande para el lienzo (hasta ~700 px CSS a 2×)
 const SIZES = '(min-width: 1024px) 45vw, 92vw';
 const CORAZON = SILUETA.posiciones.corazon!;

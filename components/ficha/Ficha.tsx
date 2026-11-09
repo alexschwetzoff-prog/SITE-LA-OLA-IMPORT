@@ -7,7 +7,7 @@
 // « Personnaliser avec mon logo » (contour violet, seulement si le produit a un studio) et « Demander un devis »
 // (contour marine, vers /devis?produit=<slug>). En mobile, barre collante en bas avec le panier et le devis.
 
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import type { Color, Posicion, Producto } from '@/data/catalogo';
 import { Etiquetas } from '@/components/catalogo/Etiquetas';
@@ -19,6 +19,7 @@ import type { FotosProducto } from '@/lib/catalogo';
 import { precargarFotos } from '@/lib/fotos';
 import { POSICIONES, colorPorDefecto, conPrecio, esGoodie, textoMaterial, textoPrecio, tieneEstudio } from '@/lib/producto';
 import { TEXTOS } from '@/lib/site';
+import { abonnerSurfi, definirSurfi, prechargerSurfi, surfiDesactive } from '@/lib/surfi';
 
 // La galerie mesure 556 px CSS au plus en desktop : en écran 2× elle demande la photo de 1200 px, en mobile celle de 800.
 const SIZES = '(min-width: 1024px) 556px, 92vw';
@@ -57,6 +58,13 @@ interface Props {
 
 export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
   const [color, setColor] = useState<Color>(() => colorPorDefecto(producto));
+  // Surfi sur les fiches textiles seulement ; l'interrupteur « Animation » est mémorisé sur l'appareil.
+  const textile = producto.categoria === 'camisetas-polos' || producto.categoria === 'sudaderas' || producto.categoria === 'gorras';
+  const animation = useSyncExternalStore(abonnerSurfi, () => !surfiDesactive(), () => true);
+  const MASCOTTE = textile && animation;
+  const intention = () => {
+    if (MASCOTTE) void prechargerSurfi();
+  };
   const [lado, setLado] = useState<'delante' | 'detras'>('delante');
   // Emplacements choisis pour le marquage : un seul par côté (devant / dos, ou face A / B).
   const [posiciones, setPosiciones] = useState<Posicion[]>([]);
@@ -144,6 +152,7 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
               prioridad="alta"
               precargaLcp
               className="aspect-square h-auto w-full object-contain p-4 sm:p-6"
+              mascotte={MASCOTTE}
             />
           ) : (
             <div className="flex aspect-square items-center justify-center bg-perle">
@@ -203,9 +212,12 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
         </dl>
 
         {/* Couleurs avec leur nom ; le choix change la photo quand la couleur en a une */}
-        <fieldset className="mt-6">
+        <fieldset className="mt-6" onPointerEnter={intention} onFocus={intention} onPointerDown={intention}>
           <legend className="text-sm font-medium text-ardoise">
-            Couleur · <span className="font-semibold text-marine">{color.nombre}</span>
+            Couleur ·{' '}
+            <span className="font-semibold text-marine" aria-live="polite">
+              {color.nombre}
+            </span>
           </legend>
           <div className="mt-2 flex flex-wrap gap-2">
             {producto.colores.map((c) => {
@@ -217,7 +229,7 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
                   onClick={() => elegirColor(c)}
                   aria-pressed={seleccionado}
                   title={c.nombre}
-                  className={`h-9 w-9 rounded-full border border-marine/15 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.6)] transition-transform hover:scale-105 motion-reduce:transition-none ${seleccionado ? 'ring-2 ring-marine ring-offset-2 ring-offset-perle' : ''}`}
+                  className={`h-10 w-10 rounded-full border border-marine/15 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.6)] transition-transform hover:scale-105 motion-reduce:transition-none ${seleccionado ? 'ring-2 ring-marine ring-offset-2 ring-offset-perle' : ''}`}
                   style={{ background: fondoMuestra(c) }}
                 >
                   <span className="sr-only">{c.nombre}</span>
@@ -229,6 +241,21 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
             {producto.colores.length} {producto.colores.length === 1 ? 'couleur' : 'couleurs'}
             {producto.colores.some((c) => c.provisional) ? ' · noms de couleur indicatifs' : ''}
           </p>
+          {textile && (
+            <button
+              type="button"
+              aria-pressed={animation}
+              onClick={() => {
+                definirSurfi(!animation);
+              }}
+              className="mt-2 inline-flex min-h-9 items-center gap-2 rounded-full px-1 text-xs font-medium text-ardoise hover:text-marine"
+            >
+              <span aria-hidden="true" className={`relative h-4 w-7 rounded-full transition-colors ${animation ? 'bg-cyan-700' : 'bg-marine/25'}`}>
+                <span className={`absolute top-0.5 h-3 w-3 rounded-full bg-white transition-transform ${animation ? 'translate-x-3.5' : 'translate-x-0.5'}`} />
+              </span>
+              Animation de Surfi au changement de couleur
+            </button>
+          )}
         </fieldset>
 
         {/* Emplacement du marquage : seulement ceux que le produit accepte ; obligatoire pour ajouter au panier */}

@@ -5,7 +5,8 @@
 import { z } from 'zod';
 import { CONTACTO_IDS, CONTACTO_POR_DEFECTO, FORMULARIO_IDS, TECNICA_IDS, TIPOS_CLIENTE, TRAMO_IDS, USO_IDS, esProfesional } from './comun';
 
-const texto = (max: number, nombre: string) => z.string().trim().max(max, `${nombre} : ${max} caractères maximum.`);
+const texto = (max: number, nombre: string, falta = `${nombre} : indiquez un texte.`) =>
+  z.string({ error: falta }).trim().max(max, `${nombre} : ${max} caractères maximum.`);
 const opcional = (max: number, nombre: string) => texto(max, nombre).optional().transform((v) => v || undefined);
 
 /** Quantité facultative : un nombre entier positif, ou rien. */
@@ -23,12 +24,14 @@ export const esquemaSolicitud = z
   .object({
     formulario: z.enum(FORMULARIO_IDS).catch('projet'),
     tipo_cliente: z.enum(TIPOS_CLIENTE, { error: 'Dites-nous qui vous êtes : particulier, entreprise, club…' }),
-    nombre: texto(120, 'Nom').min(2, 'Indiquez votre nom.'),
+    nombre: texto(120, 'Nom', 'Indiquez votre nom.').min(2, 'Indiquez votre nom.'),
     negocio: opcional(120, 'Structure'),
     sector: opcional(120, 'Activité'),
     ocasion: opcional(200, 'Occasion'),
     ciudad: opcional(120, 'Ville'),
-    email: z.string().trim().toLowerCase().max(200, 'Email : 200 caractères maximum.').pipe(z.email({ error: 'Vérifiez votre email : il ne semble pas valide.' })),
+    email: z
+      .string({ error: 'Indiquez votre email.' })
+      .trim().toLowerCase().max(200, 'Email : 200 caractères maximum.').pipe(z.email({ error: 'Vérifiez votre email : il ne semble pas valide.' })),
     telefono: opcional(40, 'Téléphone'),
     contacto_preferido: z.enum(CONTACTO_IDS).catch(CONTACTO_POR_DEFECTO),
     tipo_producto: opcional(120, 'Type de produit'),

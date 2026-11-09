@@ -254,7 +254,7 @@ function cargarImagen(src: string): Promise<HTMLImageElement> {
     const img = new Image();
     img.decoding = 'async';
     img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error(`No se ha podido cargar ${src}`));
+    img.onerror = () => reject(new Error(`Impossible de charger ${src}`));
     img.src = src;
   });
 }
@@ -591,7 +591,7 @@ export default function Visor2D({ store, fotos, capturarRef, ovniRef }: Props) {
       ref={lienzoRef}
       tabIndex={0}
       role="img"
-      aria-label={`Foto de la prenda por ${lado === 'delante' ? 'delante' : 'detrás'} con tu logo. Arrastra el logo o muévelo con las flechas.`}
+      aria-label={`Photo du vêtement vu ${lado === 'delante' ? 'de face' : 'de dos'} avec votre logo. Faites glisser le logo ou déplacez-le avec les flèches du clavier.`}
       className="h-full w-full touch-none select-none outline-none focus-visible:ring-2 focus-visible:ring-bleu-600"
     />
   );

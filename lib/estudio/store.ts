@@ -162,7 +162,7 @@ export function crearStoreEstudio(producto: Producto, colorInicial: Color) {
         const color = p.colores.find((c) => c.nombre === s.color.nombre) ?? colorPorDefecto(p);
         const activa = s.activa && admitidas.includes(s.activa) ? s.activa : (colocaciones[0]?.posicion ?? null);
         const aviso = perdidas.length
-          ? `${p.nombre === 'Austral' ? 'El polo' : p.nombre} no admite ${perdidas.map((c) => posicionSilueta(s.silueta, c.posicion).nombre.toLowerCase()).join(' ni ')}: se ha quitado de tu diseño.`
+          ? `${p.nombre} n’accepte pas l’emplacement ${perdidas.map((c) => posicionSilueta(s.silueta, c.posicion).nombre).join(' ni ')} : il a été retiré de votre visuel.`
           : null;
         return {
           producto: p,

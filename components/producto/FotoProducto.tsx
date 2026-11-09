@@ -1,12 +1,12 @@
 'use client';
 
-// Foto de producto con el diseño de ejemplo dibujado encima (fase 4.2) y la revelación del color con el OVNI:
+// Foto de producto con el diseño de ejemplo dibujado encima (fase 4.2) y la revelación del color con Surfi:
 //  - la foto se sirve limpia (sin diseño) y el motivo « Votre logo ici » se dibuja en un lienzo sobre ella a la
 //    resolución real de la pantalla (lib/diseno-ejemplo.ts);
 //  - fase 4.4: la foto es un <img> con `srcset` de los tamaños publicados (1200 y 800 px, lib/fotos.ts), servidos
 //    tal cual, sin pasar por next/image (ni doble compresión ni AVIF que aplane las prendas oscuras);
-//  - al cambiar `src` (otro color), si la foto nueva ya está cargada, Novi, el OVNI, da un remolino alrededor del
-//    producto y la foto nueva se funde durante el remolino (lib/ovni.ts, fase 10); si no, cambio directo sin
+//  - al cambiar `src` (otro color), si la foto nueva ya está cargada, Surfi cruza la foto sobre su ola y un barrido
+//    (clip-path) revela el color nuevo detrás de él (lib/surfi.ts; en tarjetas, fundido simple); si no, cambio directo sin
 //    animación cuando cargue, sin enseñar nunca un hueco. La capa nueva nace invisible (opacity 0), y como el
 //    navegador no carga las imágenes perezosas que no intersecan con la ventana, esa capa se carga siempre con
 //    `loading="eager"` (fase 4.4: antes se quedaba congelada);
@@ -17,22 +17,16 @@ import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 're
 import { preload } from 'react-dom';
 import type { ColocacionDiseno } from '@/lib/diseno-ejemplo';
 import { anchoDe, srcPara, srcsetDe, type FuenteFoto } from '@/lib/fotos';
-import type { Reveal } from '@/lib/ovni';
-import { Ovni, elementosDe, type RefsOvni } from './Ovni';
+import type { Reveal } from '@/lib/surfi';
+import { Surfi, elementosDe, type RefsSurfi } from './Surfi';
 
-// La mascota solo se monta cuando hay una revelación en marcha (en el catálogo hay 30 tarjetas). Fase 4.5: son unos
-// pocos div sin SVG (la nave es una hoja de sprites), así que va importada de forma estática: con `lazy` + Suspense
-// no llegaba a montarse a tiempo y el cambio se hacía directo. El módulo de la animación sigue cargándose aparte.
-const SPRITE_REVEAL = '/marca/ovni/ovni-reveal.webp';
+// Surfi n'est monté que pendant une révélation de couleur (un catalogue compte 30 cartes). Le composant est importé
+// statiquement (quelques div) pour être prêt à temps ; le module d'animation et le sprite se chargent à part.
 
-/** Carga por adelantado el código del revelado y la hoja de sprites de la mascota (al acercarse a una tarjeta, o en
- * tiempo libre en la ficha), para que el primer cambio de color no espere. */
+/** Charge à l'avance le code de la révélation (pas les images : le sprite de Surfi attend le premier survol, focus ou
+ * appui sur une pastille, via `prechargerSurfi`). */
 export function precalentarReveal(): Promise<unknown> {
-  if (typeof window !== 'undefined') {
-    const sprite = new window.Image();
-    sprite.src = SPRITE_REVEAL;
-  }
-  return import('@/lib/ovni').catch(() => undefined);
+  return import('@/lib/surfi').catch(() => undefined);
 }
 
 export interface FotoConDiseno extends FuenteFoto {
@@ -57,6 +51,8 @@ interface Props {
   className?: string;
   /** Capa superpuesta oculta mientras se revela otra (por ejemplo, la espalda al pasar el ratón en las tarjetas). */
   ocultaMientrasRevela?: boolean;
+  /** Fiches textiles : Surfi traverse la photo au changement de couleur. Sinon (cartes, objets) : fondu de 150 ms. */
+  mascotte?: boolean;
 }
 
 interface Capa extends FotoConDiseno {
@@ -215,7 +211,7 @@ function CapaFoto({
   }, [capa.diseno, capa.src, fotoCargada, imgRef]);
 
   return (
-    <div ref={divRef} className={`absolute inset-0 ${oculta ? 'invisible' : ''} ${recienLlegada ? 'ovni-capa-nueva' : ''}`}>
+    <div ref={divRef} className={`absolute inset-0 ${oculta ? 'invisible' : ''} ${recienLlegada ? 'surfi-capa-nueva' : ''}`}>
       <div ref={cajaRef} className="relative h-full w-full">
         {/* eslint-disable-next-line @next/next/no-img-element -- foto publicada ya optimizada (WebP a dos tamaños), servida tal cual */}
         <img
@@ -245,13 +241,13 @@ function CapaFoto({
 }
 
 /**
- * Foto del producto en su color con el diseño nítido y el revelado del OVNI al cambiar de color. El recuadro
+ * Foto del producto en su color con el diseño nítido y el revelado de Surfi al cambiar de color. El recuadro
  * padre debe ser `relative` con la proporción de la foto (por ejemplo `aspect-square`).
  */
-export default function FotoProducto({ foto, alt, sizes, prioridad = false, precargaLcp = false, anchoMaximo, className = '', ocultaMientrasRevela = false }: Props) {
+export default function FotoProducto({ foto, alt, sizes, prioridad = false, precargaLcp = false, anchoMaximo, className = '', ocultaMientrasRevela = false, mascotte = false }: Props) {
   const [capas, setCapas] = useState<{ actual: Capa; anterior: Capa | null }>(() => ({ actual: { ...foto, clave: 0 }, anterior: null }));
   const claveRef = useRef(0);
-  const ovniRef = useRef<RefsOvni | null>(null);
+  const surfiRef = useRef<RefsSurfi | null>(null);
   const imgActualRef = useRef<HTMLImageElement | null>(null);
   const imgAnteriorRef = useRef<HTMLImageElement | null>(null);
   const divActualRef = useRef<HTMLDivElement | null>(null);
@@ -272,7 +268,7 @@ export default function FotoProducto({ foto, alt, sizes, prioridad = false, prec
     });
   }, [foto, foto.src, foto.diseno]);
 
-  // Revelación: cuando la nueva está cargada, el remolino del OVNI la funde; si no llega a tiempo, cambio directo al cargar.
+  // Revelación: cuando la nueva está cargada, Surfi la revela; si no llega a tiempo, cambio directo al cargar.
   useEffect(() => {
     const anterior = capas.anterior;
     if (!anterior) return;
@@ -293,28 +289,28 @@ export default function FotoProducto({ foto, alt, sizes, prioridad = false, prec
         terminar();
         return;
       }
-      // la mascota se monta con la capa nueva; por si el commit llega un fotograma después, se espera un poco
-      let elementos = elementosDe(ovniRef.current);
-      for (let i = 0; i < 10 && !elementos && vivo; i++) {
+      // Surfi se monte avec la nouvelle couche ; si le commit arrive une image plus tard, on attend un peu
+      let elementos = mascotte ? elementosDe(surfiRef.current) : null;
+      for (let i = 0; mascotte && i < 10 && !elementos && vivo; i++) {
         await new Promise((r) => window.setTimeout(r, 16));
-        elementos = elementosDe(ovniRef.current);
+        elementos = elementosDe(surfiRef.current);
       }
       const capa = divActualRef.current;
-      // con la pestaña oculta las animaciones no avanzan: cambio directo
-      if (!vivo || !elementos || !capa || document.hidden) {
+      // onglet masqué : les animations n'avancent pas, changement direct
+      if (!vivo || !capa || document.hidden) {
         terminar();
         return;
       }
-      const { revelar } = await import('@/lib/ovni');
+      const { revelar } = await import('@/lib/surfi');
       if (!vivo) return;
-      revealRef.current = revelar({ ovni: elementos, capa, alFinal: terminar });
+      revealRef.current = revelar({ surfi: elementos, capa, alFinal: terminar });
     })();
     return () => {
       vivo = false;
       revealRef.current?.cancelar();
       revealRef.current = null;
     };
-  }, [capas.anterior, capas.actual.clave]);
+  }, [capas.anterior, capas.actual.clave, mascotte]);
 
   const comun = { alt, sizes, className, anchoMaximo };
   return (
@@ -330,7 +326,7 @@ export default function FotoProducto({ foto, alt, sizes, prioridad = false, prec
         oculta={ocultaMientrasRevela && Boolean(capas.anterior)}
         recienLlegada={Boolean(capas.anterior)}
       />
-      {capas.anterior && <Ovni ref={ovniRef} />}
+      {capas.anterior && mascotte && <Surfi ref={surfiRef} />}
     </>
   );
 }

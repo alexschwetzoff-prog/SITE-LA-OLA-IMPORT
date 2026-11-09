@@ -1,17 +1,21 @@
-// «Descargar mi diseño»: un solo PNG con la captura delantera y la trasera y la marca [MARCA], para que el
-// cliente lo enseñe a socios o equipo (sección 5 de la spec). Se compone en el navegador.
+// « Télécharger mon visuel » : un seul PNG avec la capture devant et la capture derrière, signé La Ola Import (logo
+// et slogan), pour que le client le montre à ses associés ou à son équipe. Composé dans le navigateur.
 
+import { SITE } from '@/lib/site';
 import type { Captura } from './store';
 
-const LOGO = '/marca/logo-marca.png';
+/** Logo transparent de La Ola Import (480 × 270, 16:9). */
+const LOGO = '/marca/logo-la-ola-import.png';
 const MARGEN = 40;
-const PIE = 170;
+const PIE = 200;
+const MARINE = '#00063D';
+const ARDOISE = '#5A6785';
 
 function cargar(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error(`No se ha podido cargar ${src}`));
+    img.onerror = () => reject(new Error(`Impossible de charger ${src}`));
     img.src = src;
   });
 }
@@ -19,10 +23,21 @@ function cargar(src: string): Promise<HTMLImageElement> {
 export interface ResumenDiseno {
   producto: string;
   color: string;
-  posiciones: string[]; // "Corazón · 8 cm", ...
+  posiciones: string[]; // « Cœur · 8 cm », ...
 }
 
-/** Compone el PNG de descarga: las dos capturas lado a lado, un pie con el logo y los datos, y una marca discreta. */
+/** Nom du fichier téléchargé : « la-ola-import-atomic-150-bleu-marine.png » (sans accents ni espaces). */
+export function nombreArchivoDescarga(slug: string, color: string): string {
+  const limpio = color
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return `la-ola-import-${slug}${limpio ? `-${limpio}` : ''}.png`;
+}
+
+/** Compose le PNG : les deux captures côte à côte, un pied avec le logo, les données du visuel et la signature. */
 export async function componerDescarga(capturas: Captura[], resumen: ResumenDiseno): Promise<Blob> {
   const imagenes = await Promise.all(capturas.map((c) => cargar(c.url)));
   let logo: HTMLImageElement | null = null;
@@ -34,54 +49,54 @@ export async function componerDescarga(capturas: Captura[], resumen: ResumenDise
   const anchoCaptura = imagenes[0]?.naturalWidth ?? 1200;
   const altoCaptura = imagenes[0]?.naturalHeight ?? 1500;
   const canvas = document.createElement('canvas');
-  canvas.width = MARGEN + imagenes.length * (anchoCaptura + MARGEN);
+  canvas.width = MARGEN + Math.max(1, imagenes.length) * (anchoCaptura + MARGEN);
   canvas.height = MARGEN + altoCaptura + PIE;
   const ctx = canvas.getContext('2d');
-  if (!ctx) throw new Error('El navegador no permite componer la imagen.');
+  if (!ctx) throw new Error('Votre navigateur ne permet pas de composer l’image.');
   const fuente = getComputedStyle(document.body).fontFamily || 'sans-serif';
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.textBaseline = 'top';
 
   imagenes.forEach((img, i) => {
     const x = MARGEN + i * (anchoCaptura + MARGEN);
     ctx.drawImage(img, x, MARGEN, anchoCaptura, altoCaptura);
-    // etiqueta de la vista
-    ctx.fillStyle = 'rgba(11, 15, 31, 0.7)';
+    // libellé de la vue
+    ctx.fillStyle = 'rgba(0, 6, 61, 0.75)';
     ctx.font = `600 30px ${fuente}`;
-    ctx.textBaseline = 'top';
-    ctx.fillText(capturas[i].lado === 'delante' ? 'Delante' : 'Detrás', x + 24, MARGEN + 20);
-    // marca discreta en la esquina de cada captura
+    ctx.fillText(capturas[i].lado === 'delante' ? 'Devant' : 'Derrière', x + 24, MARGEN + 20);
+    // logo discret dans le coin de chaque capture (proportions d'origine)
     if (logo) {
-      const alto = 56;
+      const alto = 72;
       const ancho = (logo.naturalWidth / logo.naturalHeight) * alto;
-      ctx.globalAlpha = 0.55;
-      ctx.drawImage(logo, x + anchoCaptura - ancho - 24, MARGEN + altoCaptura - alto - 20, ancho, alto);
+      ctx.globalAlpha = 0.6;
+      ctx.drawImage(logo, x + anchoCaptura - ancho - 20, MARGEN + altoCaptura - alto - 16, ancho, alto);
       ctx.globalAlpha = 1;
     }
   });
 
-  // pie: logo, datos del diseño y web
-  const yPie = MARGEN + altoCaptura + 36;
+  // pied : logo, données du visuel et signature
+  const yPie = MARGEN + altoCaptura + 30;
   let xTexto = MARGEN;
   if (logo) {
-    const alto = 84;
+    const alto = 126;
     const ancho = (logo.naturalWidth / logo.naturalHeight) * alto;
-    ctx.drawImage(logo, MARGEN, yPie, ancho, alto);
-    xTexto = MARGEN + ancho + 36;
+    ctx.drawImage(logo, MARGEN - 8, yPie, ancho, alto);
+    xTexto = MARGEN + ancho + 24;
   }
-  ctx.fillStyle = '#111111';
-  ctx.font = `600 40px ${fuente}`;
-  ctx.fillText(`${resumen.producto} · ${resumen.color}`, xTexto, yPie + 2);
-  ctx.fillStyle = '#555555';
+  ctx.textAlign = 'left';
+  ctx.fillStyle = MARINE;
+  ctx.font = `700 40px ${fuente}`;
+  ctx.fillText(`${resumen.producto} · ${resumen.color}`, xTexto, yPie + 4);
+  ctx.fillStyle = ARDOISE;
   ctx.font = `400 28px ${fuente}`;
-  ctx.fillText(resumen.posiciones.length ? resumen.posiciones.join(' · ') : 'Sin logo', xTexto, yPie + 54);
-  ctx.textAlign = 'right';
-  ctx.fillStyle = '#8a8a8a';
-  ctx.font = `600 28px ${fuente}`;
-  ctx.fillText('Diseñado en el estudio de [MARCA] · dominio-pendiente.example', canvas.width - MARGEN, yPie + 54);
+  ctx.fillText(resumen.posiciones.length ? resumen.posiciones.join(' · ') : 'Sans logo', xTexto, yPie + 56);
+  ctx.fillStyle = MARINE;
+  ctx.font = `600 26px ${fuente}`;
+  ctx.fillText(`${SITE.nombre} · ${SITE.lema}`, xTexto, yPie + 100);
 
   return new Promise((resolve, reject) => {
-    canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error('No se ha podido generar el PNG.'))), 'image/png');
+    canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error('Impossible de créer l’image PNG.'))), 'image/png');
   });
 }
 

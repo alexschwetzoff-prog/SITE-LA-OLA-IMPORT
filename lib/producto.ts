@@ -100,6 +100,6 @@ export function descripcionSeo(p: Pick<Producto, 'tipo' | 'nombre' | 'material' 
       ? 'Disponibilité à confirmer : demandez-nous.'
       : conPrecio(p)
         ? `${textoPrecio(p)}, devis sur mesure selon la quantité et la technique.`
-        : 'Prix sur devis, selon la quantité et la technique de marquage.';
+        : 'Prix sur devis, selon la quantité et la technique.';
   return `${p.tipo} ${p.nombre} personnalisé${e} avec votre logo dans notre atelier de Monteux (Vaucluse). ${textoMaterial(p)}. ${prix}`;
 }

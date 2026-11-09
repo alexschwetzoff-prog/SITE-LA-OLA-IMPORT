@@ -1,8 +1,8 @@
 'use client';
 
-// Panel del estudio: selector de prenda y pasos plegables Color · Tus logos · Posición · Tamaño · Enviar
-// (sección 5 de la spec, con las decisiones del equipo del 12/10/2026: color sobre foto, capturas automáticas
-// al enviar y un único botón «Descargar mi diseño»). Fase 10: dos logos, el delantero y, opcional, otro para la
+// Panel del estudio: selector de prenda y pasos plegables Couleur · Vos logos · Emplacement · Taille · Panier
+// (sección 5 de la spec: color sobre foto, capturas automáticas al añadir al panier y un único botón de descarga,
+// «Télécharger mon visuel»). Fase 10: dos logos, el delantero y, opcional, otro para la
 // espalda; en el paso de tamaño, un selector Delante / Detrás para colocar y dimensionar cada uno por separado.
 
 import { useId, useState, type ReactNode, type RefObject } from 'react';
@@ -10,19 +10,20 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useStore } from 'zustand';
 import { fotoPrincipal, type Posicion, type Producto } from '@/data/catalogo';
-import { componerDescarga, descargarBlob } from '@/lib/estudio/descarga';
+import { componerDescarga, descargarBlob, nombreArchivoDescarga } from '@/lib/estudio/descarga';
 import { PPP_MINIMO, procesarLogo, quitarFondoBlanco, recortarTransparente, resolucionPpp, type LogoProcesado } from '@/lib/estudio/logo';
 import type { Lado } from '@/lib/estudio/siluetas';
 import { guardarCapturaDataUrl, guardarLogo, idLogoDetras } from '@/lib/logos-db';
 import { anchoMaximo, logoDeLado, posicionPorDefecto, posicionSilueta, posicionesDe, proporcionEn, type Paso, type StoreEstudio } from '@/lib/estudio/store';
 import { IconoHoja } from '@/components/catalogo/Etiquetas';
+import { TEXTOS } from '@/lib/site';
 import type { FuncionCapturar } from './Visor2D';
 
-export const CLAVE_DISENO = 'marca:diseno'; // sessionStorage: el diseño que recoge el formulario de /proyecto
+export const CLAVE_DISENO = 'marca:diseno'; // sessionStorage: el diseño que recoge el formulario de /projet
 
 const LADOS: readonly { id: Lado; nombre: string }[] = [
-  { id: 'delante', nombre: 'Delante' },
-  { id: 'detras', nombre: 'Detrás' },
+  { id: 'delante', nombre: 'Devant' },
+  { id: 'detras', nombre: 'Derrière' },
 ];
 
 function Seccion({ id, titulo, abierto, onAbrir, resumen, children }: { id: string; titulo: string; abierto: boolean; onAbrir: () => void; resumen?: ReactNode; children: ReactNode }) {
@@ -80,7 +81,7 @@ function VistaLogo({ logo }: { logo: LogoProcesado }) {
   return (
     <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white [background-image:linear-gradient(45deg,#e6e6e6_25%,transparent_25%),linear-gradient(-45deg,#e6e6e6_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#e6e6e6_75%),linear-gradient(-45deg,transparent_75%,#e6e6e6_75%)] [background-position:0_0,0_6px,6px_-6px,-6px_0] [background-size:12px_12px]">
       <canvas
-        aria-label="Vista previa del logo"
+        aria-label="Aperçu du logo"
         className="max-h-full max-w-full"
         ref={(el) => {
           if (!el) return;
@@ -117,10 +118,20 @@ function ZonaLogo({
   const trasero = lado === 'detras';
   return (
     <div>
-      <p className="mb-2 text-sm font-medium text-marine">
-        {trasero ? 'Logo trasero' : 'Logo delantero'}
-        {trasero && <span className="ml-1 font-normal text-ardoise">(opcional: si no subes otro, detrás va el mismo)</span>}
+      <p className="mb-2 text-sm font-semibold text-marine">
+        {trasero ? 'Logo arrière' : 'Logo avant'}
+        {trasero && <span className="ml-1 font-normal text-ardoise">(facultatif : sans autre logo, le même est repris derrière)</span>}
       </p>
+      <input
+        id={id}
+        type="file"
+        accept="image/png,image/jpeg,image/svg+xml,.svg"
+        className="peer sr-only"
+        onChange={(e) => {
+          onArchivo(e.target.files?.[0]);
+          e.target.value = '';
+        }}
+      />
       <label
         htmlFor={id}
         onDragOver={(e) => e.preventDefault()}
@@ -128,27 +139,19 @@ function ZonaLogo({
           e.preventDefault();
           onArchivo(e.dataTransfer.files?.[0]);
         }}
-        className="flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border border-dashed border-marine/30 px-4 py-5 text-center transition-colors hover:border-bleu-600/70 hover:bg-marine/5"
+        className="flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border-2 border-dashed border-violet-600/40 bg-fond px-4 py-5 text-center transition-colors hover:border-violet-600 hover:bg-fuchsia-50 peer-focus-visible:ring-2 peer-focus-visible:ring-bleu-600 peer-focus-visible:ring-offset-2"
       >
-        <span className="text-sm font-medium text-marine">{procesando ? 'Procesando…' : logo ? 'Cambiar el logo' : trasero ? 'Arrastra otro logo para la espalda o elige un archivo' : 'Arrastra tu logo aquí o elige un archivo'}</span>
-        <span className="text-xs text-ardoise">PNG, JPG o SVG. Se procesa en tu navegador: no se sube nada hasta que envíes tu diseño.</span>
+        <span className="text-sm font-semibold text-marine">
+          {procesando ? 'Traitement en cours…' : logo ? 'Changer de logo' : trasero ? 'Déposer un autre logo pour le dos' : 'Déposer mon logo'}
+        </span>
+        <span className="text-xs text-ardoise">Glissez-le ici ou cliquez pour choisir un fichier PNG, JPG ou SVG. Il est traité dans votre navigateur : rien n’est envoyé avant votre demande.</span>
       </label>
-      <input
-        id={id}
-        type="file"
-        accept="image/png,image/jpeg,image/svg+xml,.svg"
-        className="sr-only"
-        onChange={(e) => {
-          onArchivo(e.target.files?.[0]);
-          e.target.value = '';
-        }}
-      />
       {logo && (
         <div className="mt-3 flex items-center gap-3">
           <VistaLogo logo={logo} />
           <div className="min-w-0 text-xs text-ardoise">
             <p className="truncate text-sm text-marine">{logo.nombre}</p>
-            <p>{logo.vectorial ? 'Vectorial (SVG): nítido a cualquier tamaño' : `${logo.anchoOriginal} × ${logo.altoOriginal} px`}</p>
+            <p>{logo.vectorial ? 'Vectoriel (SVG) : net à toutes les tailles' : `${logo.anchoOriginal} × ${logo.altoOriginal} px`}</p>
             <div className="mt-2 flex flex-wrap gap-2">
               <button
                 type="button"
@@ -156,11 +159,11 @@ function ZonaLogo({
                 aria-pressed={fondoQuitado}
                 className="rounded-full border border-marine/25 px-3 py-1 text-xs font-medium text-marine transition-colors hover:bg-marine/10 aria-pressed:bg-bleu-600 aria-pressed:text-white"
               >
-                {fondoQuitado ? 'Fondo blanco quitado' : 'Quitar fondo blanco'}
+                {fondoQuitado ? 'Fond blanc retiré' : 'Retirer le fond blanc'}
               </button>
               {onQuitar && (
                 <button type="button" onClick={onQuitar} className="rounded-full border border-marine/25 px-3 py-1 text-xs font-medium text-ardoise transition-colors hover:bg-marine/10 hover:text-marine">
-                  Quitar el logo trasero
+                  Retirer le logo arrière
                 </button>
               )}
             </div>
@@ -216,7 +219,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
       if (!s.colocaciones.length) s.alternarPosicion(posicionPorDefecto(producto, silueta, 'delante') ?? 'corazon');
       if (!s.activa) s.setActiva(store.getState().colocaciones[0]?.posicion ?? null);
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'No se ha podido leer el archivo.');
+      setError(e instanceof Error ? e.message : 'Impossible de lire ce fichier.');
     } finally {
       setProcesando(null);
     }
@@ -281,7 +284,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
   }
 
   /**
-   * Guarda el diseño (configuración y capturas) para el formulario de /proyecto y lo abre. Los archivos originales
+   * Guarda el diseño (configuración y capturas) para el formulario de /projet (« Ajouter au panier ») y lo abre. Los archivos originales
    * de los logos se guardan intactos en el navegador (IndexedDB, decisión del equipo del 12/10/2026) con la fecha
    * del diseño como identificador (el trasero, con el sufijo de lib/logos-db.ts), para adjuntarlos al enviar.
    */
@@ -320,7 +323,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
     }
   }
 
-  /** Un solo PNG con delante y detrás y la marca [MARCA]. */
+  /** Un solo PNG con delante y detrás y la marca La Ola Import. */
   async function descargarDiseno() {
     const s = store.getState();
     if (!s.logos.delante || ocupado) return;
@@ -332,9 +335,9 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
         color: s.color.nombre,
         posiciones: resumenColocaciones().map((c) => `${c.nombre} · ${formatoCm(c.anchoCm)} cm`),
       });
-      descargarBlob(blob, `marca-${producto.slug}-${s.color.nombre.toLowerCase().replace(/\s+/g, '-')}.png`);
+      descargarBlob(blob, nombreArchivoDescarga(producto.slug, s.color.nombre));
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'No se ha podido preparar la descarga.');
+      setError(e instanceof Error ? e.message : 'Impossible de préparer le téléchargement.');
     } finally {
       setOcupado(null);
     }
@@ -343,14 +346,14 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
   const logoActivo = logoDeLado(logos, ladoActivo);
   const ppp = logoActivo && colocacionActiva ? resolucionPpp(logoActivo, colocacionActiva.anchoCm) : null;
   const avisoCalidad = ppp !== null && ppp < PPP_MINIMO;
-  const resumenLogos = logoDelante ? (logos.detras ? `${logoDelante.nombre} + ${logos.detras.nombre}` : logoDelante.nombre) : 'Sin subir';
+  const resumenLogos = logoDelante ? (logos.detras ? `${logoDelante.nombre} + ${logos.detras.nombre}` : logoDelante.nombre) : 'Aucun logo';
 
   return (
-    <aside className="overflow-hidden rounded-3xl border border-marine/10 bg-perle/60 backdrop-blur" aria-label="Pasos del estudio">
+    <aside className="overflow-hidden rounded-2xl bg-fond shadow-carte ring-1 ring-marine/5" aria-label="Étapes de personnalisation">
       {/* Selector de prenda: cambia la foto y conserva logos, posiciones compatibles y tamaño */}
       <div className="border-b border-marine/10 px-4 py-3">
-        <p className="mb-2 text-xs font-medium text-ardoise">Prenda</p>
-        <div className="grid grid-cols-2 gap-2" role="group" aria-label="Prenda">
+        <p className="mb-2 text-xs font-semibold text-ardoise">Vêtement</p>
+        <div className="grid grid-cols-2 gap-2" role="group" aria-label="Vêtement">
           {productos.map((p) => {
             const foto = fotoPrincipal(p);
             const activo = p.slug === producto.slug;
@@ -371,7 +374,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                   <span className="flex items-center gap-1 truncate text-sm font-medium text-marine">
                     {p.nombre}
                     {p.etiquetas.includes('eco') && (
-                      <span className="inline-flex items-center gap-0.5 rounded-full bg-eco-700/40 px-1.5 text-[10px] font-semibold text-eco-300 ring-1 ring-eco-300/50">
+                      <span className="inline-flex items-center gap-0.5 rounded-full bg-eco-100 px-1.5 text-[10px] font-semibold text-eco-700 ring-1 ring-eco-600/30">
                         <IconoHoja className="h-3 w-3" />
                         ECO
                       </span>
@@ -385,7 +388,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
         </div>
       </div>
 
-      <Seccion id={`${baseId}-color`} titulo="Color" abierto={paso === 'color'} onAbrir={() => abrir('color')} resumen={color.nombre}>
+      <Seccion id={`${baseId}-color`} titulo="Couleur" abierto={paso === 'color'} onAbrir={() => abrir('color')} resumen={color.nombre}>
         <ul className="grid grid-cols-4 gap-2 sm:grid-cols-5 lg:grid-cols-4" role="list">
           {producto.colores.map((c) => {
             const seleccionado = c.nombre === color.nombre;
@@ -399,7 +402,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                   className={`flex w-full flex-col items-center gap-1.5 rounded-2xl p-1.5 text-center transition-colors hover:bg-marine/8 ${seleccionado ? 'bg-marine/10 ring-2 ring-bleu-600' : ''}`}
                 >
                   <span
-                    className="block h-11 w-11 rounded-full border border-white/25 shadow-inner"
+                    className="block h-11 w-11 rounded-full border border-marine/20 shadow-inner"
                     style={{ background: c.hexSecundario ? `linear-gradient(135deg, ${c.hex} 50%, ${c.hexSecundario} 50%)` : c.hex }}
                   />
                   <span className="text-[11px] leading-tight text-ardoise">{c.nombre}</span>
@@ -408,10 +411,10 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
             );
           })}
         </ul>
-        <p className="mt-3 text-xs text-ardoise">Te enseñamos el muestrario real en tu local.</p>
+        <p className="mt-3 text-xs text-ardoise">Les couleurs à l’écran peuvent légèrement différer du tissu réel.</p>
       </Seccion>
 
-      <Seccion id={`${baseId}-logo`} titulo="Tus logos" abierto={paso === 'logo'} onAbrir={() => abrir('logo')} resumen={resumenLogos}>
+      <Seccion id={`${baseId}-logo`} titulo="Vos logos" abierto={paso === 'logo'} onAbrir={() => abrir('logo')} resumen={resumenLogos}>
         <div className="space-y-5">
           <ZonaLogo
             id={`${baseId}-archivo-delante`}
@@ -436,7 +439,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
           )}
         </div>
         {error && (
-          <p role="alert" className="mt-3 text-sm text-[#ffb4b4]">
+          <p role="alert" className="mt-3 text-sm font-medium text-[#B3261E]">
             {error}
           </p>
         )}
@@ -444,12 +447,12 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
 
       <Seccion
         id={`${baseId}-posicion`}
-        titulo="Posición"
+        titulo="Emplacement"
         abierto={paso === 'posicion'}
         onAbrir={() => abrir('posicion')}
-        resumen={colocaciones.map((c) => posicionSilueta(silueta, c.posicion).nombre).join(' + ') || 'Ninguna'}
+        resumen={colocaciones.map((c) => posicionSilueta(silueta, c.posicion).nombre).join(' + ') || 'Aucun'}
       >
-        <p className="mb-3 text-xs text-ardoise">Como mucho una delante y una detrás. Arrastra el logo dentro de la zona punteada para ajustarlo.</p>
+        <p className="mb-3 text-xs text-ardoise">Un emplacement devant et un derrière au maximum. Faites glisser le logo dans la zone en pointillés pour l’ajuster.</p>
         <ul className="grid grid-cols-2 gap-2" role="list">
           {posicionesProducto.map((p) => {
             const pos = posicionSilueta(silueta, p.posicion);
@@ -470,7 +473,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                   <span>
                     <span className="block text-sm font-medium text-marine">{pos.nombre}</span>
                     <span className="block text-[11px] text-ardoise">
-                      {pos.lado === 'delante' ? 'Delante' : 'Detrás'} · hasta {p.maxCm[0]} × {p.maxCm[1]} cm
+                      {pos.lado === 'delante' ? 'Devant' : 'Derrière'} · jusqu’à {p.maxCm[0]} × {p.maxCm[1]} cm
                     </span>
                   </span>
                 </button>
@@ -478,15 +481,15 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
             );
           })}
         </ul>
-        {producto.slug === 'austral' && <p className="mt-3 text-xs text-ardoise">El polo no admite el frontal A4: la tapeta lo impide.</p>}
-        {!logoDelante && <p className="mt-3 text-xs text-ardoise">Sube tu logo para verlo en la posición elegida.</p>}
+        {producto.slug === 'austral' && <p className="mt-3 text-xs text-ardoise">Le polo n’accepte pas le grand format devant : la patte de boutonnage l’en empêche.</p>}
+        {!logoDelante && <p className="mt-3 text-xs text-ardoise">Déposez votre logo pour le voir à l’emplacement choisi.</p>}
       </Seccion>
 
-      <Seccion id={`${baseId}-tamano`} titulo="Tamaño" abierto={paso === 'tamano'} onAbrir={() => abrir('tamano')} resumen={colocacionActiva ? `${formatoCm(colocacionActiva.anchoCm)} cm de ancho` : undefined}>
+      <Seccion id={`${baseId}-tamano`} titulo="Taille" abierto={paso === 'tamano'} onAbrir={() => abrir('tamano')} resumen={colocacionActiva ? `${formatoCm(colocacionActiva.anchoCm)} cm de large` : undefined}>
         {ladosDelProducto.length > 1 && (
           <div className="mb-4">
-            <p className="mb-2 text-xs text-ardoise">Cada logo se coloca y se dimensiona por separado.</p>
-            <div className="inline-flex rounded-full bg-fond/70 p-1" role="group" aria-label="Lado del logo">
+            <p className="mb-2 text-xs text-ardoise">Chaque logo se place et se dimensionne séparément.</p>
+            <div className="inline-flex rounded-full bg-perle p-1 ring-1 ring-marine/10" role="group" aria-label="Côté du logo">
               {ladosDelProducto.map((l) => {
                 const col = colocaciones.find((c) => posicionSilueta(silueta, c.posicion).lado === l.id);
                 return (
@@ -498,7 +501,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                     className="rounded-full px-3.5 py-1.5 text-xs font-semibold text-ardoise transition-colors aria-pressed:bg-marine aria-pressed:text-white hover:text-marine aria-pressed:hover:text-white"
                   >
                     {l.nombre}
-                    {col ? '' : ' · añadir'}
+                    {col ? '' : ' · ajouter'}
                   </button>
                 );
               })}
@@ -516,7 +519,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                 <label htmlFor={`${baseId}-ancho`} className="flex items-baseline justify-between gap-2 text-sm text-marine">
                   <span>{pos.nombre}</span>
                   <span className="text-right font-semibold">
-                    {formatoCm(colocacionActiva.anchoCm)} cm de ancho · {formatoCm(alto)} cm de alto
+                    {formatoCm(colocacionActiva.anchoCm)} cm de large · {formatoCm(alto)} cm de haut
                   </span>
                 </label>
                 <input
@@ -528,59 +531,59 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
                   value={colocacionActiva.anchoCm}
                   onChange={(e) => store.getState().setAncho(colocacionActiva.posicion, Number(e.target.value))}
                   className="mt-3 w-full accent-bleu-600"
-                  aria-valuetext={`${formatoCm(colocacionActiva.anchoCm)} centímetros de ancho`}
+                  aria-valuetext={`${formatoCm(colocacionActiva.anchoCm)} centimètres de large`}
                 />
                 <p className="mt-1 flex justify-between text-[11px] text-ardoise">
                   <span>2 cm</span>
-                  <span>máximo {formatoCm(max)} cm</span>
+                  <span>maximum {formatoCm(max)} cm</span>
                 </p>
                 {logoActivo && (
                   <p className="mt-2 text-xs text-ardoise">
                     Logo: {logoActivo.nombre}
-                    {ladoActivo === 'detras' && !logos.detras ? ' (el mismo que delante)' : ''}
+                    {ladoActivo === 'detras' && !logos.detras ? ' (le même que devant)' : ''}
                   </p>
                 )}
                 {avisoCalidad && (
-                  <p role="status" className="mt-3 rounded-xl bg-[#3a2a12] px-3 py-2 text-xs text-[#ffd9a3]">
-                    Tu logo se verá pixelado a este tamaño: mándanos el vector o un PNG más grande.
+                  <p role="status" className="mt-3 rounded-xl bg-soleil-400/30 px-3 py-2 text-xs font-medium text-marine ring-1 ring-soleil-400">
+                    À cette taille, votre logo risque d’être pixelisé : envoyez-nous la version vectorielle ou un PNG plus grand.
                   </p>
                 )}
                 {logoActivo && !logoActivo.vectorial && !avisoCalidad && ppp !== null && (
-                  <p className="mt-3 text-xs text-ardoise">A este tamaño tu logo imprime a unos {Math.round(ppp)} ppp: suficiente.</p>
+                  <p className="mt-3 text-xs text-ardoise">À cette taille, votre logo s’imprime à environ {Math.round(ppp)} ppp : c’est suffisant.</p>
                 )}
               </div>
             );
           })()
         ) : (
-          <p className="text-sm text-ardoise">Elige primero una posición.</p>
+          <p className="text-sm text-ardoise">Choisissez d’abord un emplacement.</p>
         )}
       </Seccion>
 
-      <Seccion id={`${baseId}-envio`} titulo="Enviar" abierto={paso === 'envio'} onAbrir={() => abrir('envio')}>
+      <Seccion id={`${baseId}-envio`} titulo="Panier" abierto={paso === 'envio'} onAbrir={() => abrir('envio')}>
         <p className="mb-3 text-xs text-ardoise">
-          Al enviar, las capturas delantera y trasera de tu diseño se generan solas y van con tu solicitud de presupuesto. Te respondemos en 24 h laborables.
+          En ajoutant votre visuel au panier, les aperçus devant et derrière se créent tout seuls et accompagnent votre demande de devis. {TEXTOS.plazoPresupuesto}.
         </p>
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() => void enviarDiseno()}
             disabled={!fotoLista || !logoDelante || ocupado !== null || capturando}
-            className="rounded-full bg-fuchsia-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-fuchsia-700/30 transition-colors hover:bg-fuchsia-800 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full bg-fuchsia-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-fuchsia-700/30 transition-colors hover:bg-fuchsia-800 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {ocupado === 'enviando' ? 'Preparando…' : 'Enviar mi diseño'}
+            {ocupado === 'enviando' ? 'Préparation…' : 'Ajouter au panier'}
           </button>
           <button
             type="button"
             onClick={() => void descargarDiseno()}
             disabled={!fotoLista || !logoDelante || ocupado !== null || capturando}
-            className="rounded-full border border-marine/25 px-4 py-2 text-sm font-semibold text-marine transition-colors hover:bg-marine/10 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full border-2 border-violet-600 px-5 py-2 text-sm font-semibold text-violet-600 transition-colors hover:bg-[#F2EDFB] disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {ocupado === 'descargando' ? 'Preparando…' : 'Descargar mi diseño'}
+            {ocupado === 'descargando' ? 'Préparation…' : 'Télécharger mon visuel'}
           </button>
         </div>
-        {!logoDelante && <p className="mt-3 text-xs text-ardoise">Sube tu logo para enviar o descargar el diseño.</p>}
+        {!logoDelante && <p className="mt-3 text-xs text-ardoise">Déposez votre logo pour ajouter votre visuel au panier ou le télécharger.</p>}
         <p className="mt-4 text-xs text-ardoise">
-          La descarga es un PNG con delante y detrás y la marca [MARCA], para enseñarlo a tu equipo. Los archivos originales de tus logos se guardan en tu navegador y solo se suben al enviar el formulario.
+          Le téléchargement est une image PNG avec les vues devant et derrière, à partager avec votre équipe. Les fichiers d’origine de vos logos restent dans votre navigateur et ne sont envoyés qu’avec votre demande.
         </p>
       </Seccion>
     </aside>

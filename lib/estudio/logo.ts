@@ -25,17 +25,17 @@ function cargarImagen(url: string): Promise<HTMLImageElement> {
     const img = new Image();
     img.decoding = 'async';
     img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error('No se ha podido leer la imagen.'));
+    img.onerror = () => reject(new Error('Impossible de lire l’image.'));
     img.src = url;
   });
 }
 
 /** Rasteriza el archivo en un canvas de como mucho MAX_LADO_PX de lado. */
 export async function procesarLogo(archivo: File): Promise<LogoProcesado> {
-  if (archivo.size > MAX_BYTES_LOGO) throw new Error('El archivo pesa más de 20 MB.');
+  if (archivo.size > MAX_BYTES_LOGO) throw new Error('Le fichier dépasse 20 Mo.');
   const svg = esSvg(archivo);
   if (!svg && !FORMATOS_LOGO.includes(archivo.type as (typeof FORMATOS_LOGO)[number])) {
-    throw new Error('Formato no admitido para la vista previa: usa PNG, JPG o SVG.');
+    throw new Error('Format non pris en charge pour l’aperçu : utilisez un fichier PNG, JPG ou SVG.');
   }
   const url = URL.createObjectURL(archivo);
   try {
@@ -58,7 +58,7 @@ export async function procesarLogo(archivo: File): Promise<LogoProcesado> {
     canvas.width = ancho;
     canvas.height = alto;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) throw new Error('El navegador no permite procesar imágenes.');
+    if (!ctx) throw new Error('Votre navigateur ne permet pas de traiter les images.');
     ctx.drawImage(img, 0, 0, ancho, alto);
     return {
       canvas,
