@@ -1,0 +1,18 @@
+{
+  "reveal": {
+    "archivo": "/marca/ovni/ovni-reveal.webp",
+    "ancho": 320,
+    "alto": 208,
+    "columnas": 4,
+    "fotogramas": 16,
+    "escala": 2
+  },
+  "cruce": {
+    "archivo": "/marca/ovni/ovni-cruce.webp",
+    "ancho": 240,
+    "alto": 150,
+    "columnas": 4,
+    "fotogramas": 8,
+    "escala": 2
+  }
+}

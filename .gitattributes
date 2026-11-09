@@ -1,0 +1,9 @@
+# Finales de línea LF en todo el texto (Vercel y Linux); binarios sin tocar.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.woff2 binary
+*.glb binary
+*.webp binary

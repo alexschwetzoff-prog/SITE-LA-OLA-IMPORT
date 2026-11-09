@@ -1,0 +1,414 @@
+{
+  "id": "camiseta-unisex",
+  "nota": "Anclas y zonas en cm sobre la prenda de talla M (ficha: ancho 50 cm, largo 71 cm). x: lateral (+x = izquierda del que la lleva, derecha del que mira de frente); z: altura desde el bajo. Centro del pecho (fase 4.1): 8 × 8 cm centrado a la altura del corazón. El bloque fotos (calibración px/cm) lo escribe scripts/fotos/preparar-fotos-estudio.py.",
+  "posiciones": {
+    "corazon": {
+      "lado": "delante",
+      "nombre": "Corazón",
+      "ancla": {
+        "x": 9,
+        "z": 54
+      },
+      "maxCm": [
+        8,
+        8
+      ],
+      "porDefectoCm": 8,
+      "zona": {
+        "xMin": 3,
+        "xMax": 16,
+        "zMin": 46,
+        "zMax": 60
+      }
+    },
+    "centro_pecho": {
+      "lado": "delante",
+      "nombre": "Centro del pecho",
+      "ancla": {
+        "x": 0,
+        "z": 54
+      },
+      "maxCm": [
+        8,
+        8
+      ],
+      "porDefectoCm": 8,
+      "zona": {
+        "xMin": -7,
+        "xMax": 7,
+        "zMin": 46,
+        "zMax": 60
+      }
+    },
+    "frontal_a4": {
+      "lado": "delante",
+      "nombre": "Frontal A4",
+      "ancla": {
+        "x": 0,
+        "z": 44
+      },
+      "maxCm": [
+        21,
+        29.7
+      ],
+      "porDefectoCm": 21,
+      "zona": {
+        "xMin": -14,
+        "xMax": 14,
+        "zMin": 20,
+        "zMax": 61
+      }
+    },
+    "espalda_a4": {
+      "lado": "detras",
+      "nombre": "Espalda A4",
+      "ancla": {
+        "x": 0,
+        "z": 49
+      },
+      "maxCm": [
+        21,
+        29.7
+      ],
+      "porDefectoCm": 21,
+      "zona": {
+        "xMin": -14,
+        "xMax": 14,
+        "zMin": 20,
+        "zMax": 66
+      }
+    },
+    "espalda_a3": {
+      "lado": "detras",
+      "nombre": "Espalda A3",
+      "ancla": {
+        "x": 0,
+        "z": 44
+      },
+      "maxCm": [
+        29.7,
+        42
+      ],
+      "porDefectoCm": 29.7,
+      "zona": {
+        "xMin": -16,
+        "xMax": 16,
+        "zMin": 14,
+        "zMax": 66
+      }
+    }
+  },
+  "fotos": {
+    "base": {
+      "delante": {
+        "src": "/productos/estudio/atomic-150-blanco-delante.webp",
+        "ancho": 1200,
+        "alto": 1200,
+        "anchos": [
+          1200,
+          800
+        ],
+        "pxPorCm": 16.299,
+        "centroX": 600.0,
+        "bajoY": 1199.5,
+        "hpsY": 42.3
+      },
+      "detras": {
+        "src": "/productos/estudio/atomic-150-blanco-detras.webp",
+        "ancho": 1200,
+        "alto": 1200,
+        "anchos": [
+          1200,
+          800
+        ],
+        "pxPorCm": 16.64,
+        "centroX": 599.5,
+        "bajoY": 1199.5,
+        "hpsY": 18.1
+      }
+    },
+    "reales": {
+      "Negro": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-negro-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.315,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 41.1
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-negro-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.651,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 17.3
+        }
+      },
+      "Amarillo": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-amarillo-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.314,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 41.2
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-amarillo-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.649,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 17.4
+        }
+      },
+      "Royal": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-royal-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.302,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 42.0
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-royal-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.651,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 17.3
+        }
+      },
+      "Turquesa": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-turquesa-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.297,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 42.4
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-turquesa-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.664,
+          "centroX": 599.0,
+          "bajoY": 1199.5,
+          "hpsY": 16.4
+        }
+      },
+      "Verde kelly": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-verde-kelly-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.312,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 41.3
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-verde-kelly-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.65,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 17.3
+        }
+      },
+      "Naranja": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-naranja-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.312,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 41.4
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-naranja-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.651,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 17.3
+        }
+      },
+      "Marino": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-marino-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.325,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 40.5
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-marino-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.651,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 17.3
+        }
+      },
+      "Gris vigoré": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-gris-vigore-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.309,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 41.6
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-gris-vigore-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.651,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 17.3
+        }
+      },
+      "Rojo": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-rojo-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.312,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 41.4
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-rojo-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.651,
+          "centroX": 599.5,
+          "bajoY": 1199.5,
+          "hpsY": 17.3
+        }
+      },
+      "Fucsia": {
+        "delante": {
+          "src": "/productos/estudio/atomic-150-fucsia-delante.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.288,
+          "centroX": 600.0,
+          "bajoY": 1199.5,
+          "hpsY": 43.0
+        },
+        "detras": {
+          "src": "/productos/estudio/atomic-150-fucsia-detras.webp",
+          "ancho": 1200,
+          "alto": 1200,
+          "anchos": [
+            1200,
+            800
+          ],
+          "pxPorCm": 16.665,
+          "centroX": 599.0,
+          "bajoY": 1199.5,
+          "hpsY": 16.3
+        }
+      }
+    },
+    "recoloreadas": {}
+  }
+}

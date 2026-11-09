@@ -1,0 +1,63 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# herramientas locales
+/.claude/
+!.env.example
+
+# python
+__pycache__/
+
+# originales hd del proveedor (fase 4.4): se descargan en local y no se suben; solo se publican las versiones procesadas
+/assets/productos/originales-proveedor-hd/
+
+# emails de prueba del transporte "archivo" (fase 6): llevan datos de las solicitudes de prueba
+/.correo-local/
+
+# salida de la CLI de Netlify en local (fase 9)
+/.netlify/
+
+# originales «large» del proveedor (fase 10): tampoco se suben; los scripts leen de aquí (descargar-fotos-proveedor.py)
+/assets/productos/originales-proveedor/
+
+# Fase 10: recortes ampliados del barrido de marcas (entrada del OCR, se regeneran con scripts/fotos/revisar-marcas.py)
+/docs/revision-colores/marcas/recortes/

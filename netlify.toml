@@ -1,0 +1,85 @@
+# [MARCA] · web v1 · despliegue en Netlify (plan Free, sin créditos de pago). Fase 9, 18/10/2026.
+#
+# Next.js 16 (App Router) se despliega con el adaptador oficial de Netlify, @netlify/plugin-nextjs (sobre OpenNext):
+# Netlify lo detecta y lo instala solo en cada build, sin fijar versión (es lo que recomienda su documentación, así
+# recibe los parches de seguridad de Next sin tocar nada). Si algún día hiciera falta fijarlo: npm i -D
+# @netlify/plugin-nextjs@<versión> y añadir [[plugins]] package = "@netlify/plugin-nextjs".
+#
+# Qué hace el adaptador: las páginas estáticas (home, catálogo, fichas, estudio, legales) salen del build y se sirven
+# desde la CDN; una única función de Netlify atiende lo dinámico (la acción de servidor del formulario y las 404);
+# next/image pasa por la CDN de imágenes de Netlify. Límite del cuerpo de una petición a la función: 6 MB (en
+# base64, o sea unos 4,5 MB reales): el formulario deja 4 MB para los adjuntos (MAX_ENVIO_BYTES).
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
+  # sin auditoría ni avisos de npm en el log del build
+  NPM_FLAGS = "--no-audit --no-fund"
+
+# ---------------------------------------------------------------------------------------------------------------
+# Redirecciones (se evalúan en la CDN, sin funciones).
+# ---------------------------------------------------------------------------------------------------------------
+
+# www → dominio sin www, permanente. Netlify ya lo hace solo cuando el dominio principal del sitio es el apex
+# (dominio-pendiente.example); esta regla lo deja escrito y lo garantiza. Si el dominio principal fuera www, habría que
+# quitarla (crearía un bucle).
+[[redirects]]
+  from = "https://www.dominio-pendiente.example/*"
+  to = "https://dominio-pendiente.example/:splat"
+  status = 301
+  force = true
+
+# El subdominio de Netlify del despliegue de producción → dominio propio. Netlify no lo redirige solo. ACTIVAR (quitar
+# las almohadillas) cuando dominio-pendiente.example ya apunte a Netlify; antes dejaría inservible el despliegue de prueba.
+# Da por hecho que el sitio se llama «dominio-pendiente» en Netlify (Site configuration → Site details → Change site name).
+# [[redirects]]
+#   from = "https://sitio-pendiente.netlify.app/*"
+#   to = "https://dominio-pendiente.example/:splat"
+#   status = 301
+#   force = true
+
+# ---------------------------------------------------------------------------------------------------------------
+# Caché larga en el navegador para lo que pesa (public/): fotos de producto, vídeo y póster de portada, marca e
+# imágenes Open Graph. Netlify sirve lo estático con max-age=0 por defecto (el navegador revalida en cada visita);
+# con estas cabeceras una visita repetida no vuelve a descargar nada de esto y gasta menos créditos de ancho de
+# banda y de peticiones. 30 días: los archivos se regeneran con el mismo nombre cuando cambian las fotos, así que un
+# año «immutable» sería demasiado. Los archivos con hash de Next (/_next/static/*) ya van con un año e immutable.
+# ---------------------------------------------------------------------------------------------------------------
+
+[[headers]]
+  for = "/productos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/portada/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/marca/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/og/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# El catálogo PDF se sustituye con el mismo nombre en cada edición: un día de caché.
+[[headers]]
+  for = "/catalogo-marca.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Cabeceras de seguridad básicas en toda la web (no afectan al rendimiento).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
