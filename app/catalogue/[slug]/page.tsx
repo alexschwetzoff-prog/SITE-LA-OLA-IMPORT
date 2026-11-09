@@ -7,7 +7,7 @@ import { PRODUCTOS, colorPorDefecto, getProducto, textoPrecio } from '@/data/cat
 import { NOMBRE_CATEGORIA, colorDeLaFoto, descripcionSeo, fotosDe, fotosPorColor, textoMaterial, tituloSeo } from '@/lib/catalogo';
 import { SITE } from '@/lib/site';
 
-// Ruta completamente estática: los 30 slugs se generan en el build y cualquier otro devuelve 404.
+// Route entièrement statique : les 30 slugs sont générés au build, tout autre renvoie une 404.
 export const ensureStatic = 'navigation';
 
 export function generateStaticParams() {
@@ -17,17 +17,17 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/catalogue/[slug]'>): Promise<Metadata> {
   const { slug } = await params;
   const producto = getProducto(slug);
-  if (!producto) return { title: 'Producto no encontrado' };
+  if (!producto) return { title: 'Produit introuvable' };
   return {
     title: tituloSeo(producto),
     description: descripcionSeo(producto),
     alternates: { canonical: `/catalogue/${producto.slug}` },
-    // Fase 9: imagen Open Graph propia por producto (1200 × 630, scripts/marca/generar-og.py), con la foto del
-    // color predeterminado sobre tarjeta clara y el precio «desde».
+    // Image Open Graph : celle du site (la vague du logo) tant qu'il n'existe pas d'image par produit
+    // (public/og/productos/ n'existe pas : à générer avec la nouvelle identité).
     openGraph: {
-      title: `${tituloSeo(producto)} · [MARCA]`,
+      title: `${tituloSeo(producto)} · ${SITE.nombre}`,
       description: descripcionSeo(producto),
-      images: [{ url: `/og/productos/${producto.slug}.png`, width: 1200, height: 630, alt: `${producto.tipo} ${producto.nombre}` }],
+      images: [{ url: '/og/marca.png', width: 1200, height: 630, alt: `La vague de ${SITE.nombre}` }],
     },
   };
 }
@@ -40,7 +40,7 @@ export default async function PaginaFicha({ params }: PageProps<'/catalogue/[slu
   const foto = fotosDe(producto, colorPorDefecto(producto));
   const precio = textoPrecio(producto);
 
-  // Datos estructurados: producto (sin oferta: los precios son «desde», sin IVA) y migas de pan (sección 10).
+  // Données structurées : produit (sans offre : prix sur devis) et fil d'Ariane.
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -51,15 +51,15 @@ export default async function PaginaFicha({ params }: PageProps<'/catalogue/[slu
       material: textoMaterial(producto),
       color: producto.colores.map((c) => c.nombre).join(', '),
       brand: { '@type': 'Brand', name: SITE.nombre },
-      url: `${SITE.url}/catalogo/${producto.slug}`,
+      url: `${SITE.url}/catalogue/${producto.slug}`,
     },
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Catálogo', item: `${SITE.url}/catalogo` },
-        { '@type': 'ListItem', position: 2, name: categoria, item: `${SITE.url}/catalogo?categoria=${producto.categoria}` },
-        { '@type': 'ListItem', position: 3, name: producto.nombre, item: `${SITE.url}/catalogo/${producto.slug}` },
+        { '@type': 'ListItem', position: 1, name: 'Catalogue', item: `${SITE.url}/catalogue` },
+        { '@type': 'ListItem', position: 2, name: categoria, item: `${SITE.url}/catalogue?categoria=${producto.categoria}` },
+        { '@type': 'ListItem', position: 3, name: producto.nombre, item: `${SITE.url}/catalogue/${producto.slug}` },
       ],
     },
   ];
@@ -67,16 +67,16 @@ export default async function PaginaFicha({ params }: PageProps<'/catalogue/[slu
   return (
     <article className="mx-auto w-full max-w-6xl px-4 pt-24 pb-28 sm:px-6 lg:px-8 lg:pt-32 lg:pb-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
-      <nav aria-label="Migas de pan" className="mb-6 text-sm text-ardoise">
+      <nav aria-label="Fil d’Ariane" className="mb-6 text-sm text-ardoise">
         <ol className="flex flex-wrap items-center gap-1.5">
           <li>
-            <Link href="/catalogue" className="hover:text-marine">
-              Catálogo
+            <Link href="/catalogue" className="underline-offset-4 hover:text-marine hover:underline">
+              Catalogue
             </Link>
           </li>
           <li aria-hidden="true">›</li>
           <li>
-            <Link href={`/catalogue?categoria=${producto.categoria}`} className="hover:text-marine">
+            <Link href={`/catalogue?categoria=${producto.categoria}`} className="underline-offset-4 hover:text-marine hover:underline">
               {categoria}
             </Link>
           </li>

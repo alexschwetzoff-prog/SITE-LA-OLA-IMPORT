@@ -1,73 +1,191 @@
-# Textos legales · dominio-pendiente.example
+# Textes légaux · La Ola Import
 
-Adaptados el 09/10/2026 a partir de los textos de [TITULAR]: añaden el formulario de proyecto, la subida de logos, el estudio de diseño, las reseñas y los proveedores reales de la web. Actualizados el 14/10/2026 (fase 4.1): formulario para particulares (ocasión y tipo de cliente; el sector pasa a texto libre) y enlace a Google Maps en vez de OpenStreetMap. Actualizados el 18/10/2026 (fase 6): las solicitudes del formulario y sus archivos se reciben y se guardan en el correo de Google (Gmail). Actualizados el 18/10/2026 (fase 9, lanzamiento): la web se aloja en Netlify (antes Vercel); Resend aparece como encargado solo cuando el envío de emails sale por Resend (la página de privacidad lo añade sola al activar `CORREO_TRANSPORTE=resend`).
+> **Texte provisoire, à faire valider par le conseil juridique de La Ola Import.** Rédigé le 09/11/2026 pour le droit
+> français (LCEN, RGPD, loi Informatique et Libertés, Code de la consommation, Code de commerce). Tout ce qui est entre
+> crochets est à fournir ou à confirmer ; `scripts/revisar-web.mjs` bloque la mise en ligne tant qu'il reste des
+> crochets visibles. Les pages du site affichent aussi un encadré « Texte provisoire » (composant `AvisProvisoire`
+> dans `components/legal/Legal.tsx`) : à retirer une fois les textes validés.
 
-**Pendiente antes de publicar.** Dos datos y una revisión:
+## Où sont les textes
 
-1. **Número de registro de la asociación.** Resuelto el 22/10/2026: [NÚMERO DE REGISTRO], puesto en el aviso legal de abajo y, en la web, en su único sitio: `SITE.titular.registro` en `lib/site.ts` (si se vaciara, la página /aviso-legal enseñaría el marcador `[FALTA número de registro]`).
-2. **Plazo de conservación** de las solicitudes que no terminan en pedido: hoy dice 12 meses con el marcador `[plazo a confirmar]` (en `app/privacidad/page.tsx`, apartado «Conservación»). Si se confirma, basta con quitar el marcador.
-3. La revisión de la asesora legal del aviso legal y la política de privacidad.
-## Aviso legal
+| Page | Fichier | Données utilisées |
+| --- | --- | --- |
+| `/mentions-legales` | `app/mentions-legales/page.tsx` | `SITE.titular` (raison sociale, SIRET, adresse du siège, directeur de la publication), `SITE.email`, `SITE.telefonos`, `SITE.direccion` |
+| `/confidentialite` | `app/confidentialite/page.tsx` | `SITE.titular`, `SITE.email` ; Resend n'apparaît que si `CORREO_TRANSPORTE=resend` |
+| `/cookies` | `app/cookies/page.tsx` | `SITE.email` |
+| `/cgv` | `app/cgv/page.tsx` | `SITE.titular`, `SITE.email`, `SITE.telefonos` |
+| `/livraison-et-paiement` | `app/livraison-et-paiement/page.tsx` | `SITE.direccion`, `SITE.horario` |
 
-**Titular.** La web dominio-pendiente.example es titularidad de la [TITULAR LEGAL] (en adelante, [MARCA]), con NIF [NIF], domicilio en [DIRECCIÓN] · [BARRIO] · [CP] [CIUDAD] (España), inscrita en el Registro de Asociaciones de la Comunitat Valenciana con el número [NÚMERO DE REGISTRO], y correo de contacto titular-pendiente@example.com. [MARCA] es el nombre comercial con el que presta servicios de personalización textil y merchandising.
+Les valeurs de `SITE` (dans `lib/site.ts`) encore entre crochets s'affichent comme des manques (composant `Dato`). Les
+autres manques sont écrits directement dans les pages avec le composant `Falta`. Ce document reprend le fond des textes ;
+en cas d'écart, la page fait foi et ce document doit être mis à jour.
 
-**Objeto.** La web presenta los servicios, el catálogo y los canales de contacto de [MARCA], y permite solicitar presupuestos, pedir una visita y crear vistas previas de productos personalizados. En la web no se contrata: el encargo se cierra al aceptar el presupuesto. Los precios publicados son orientativos («desde»), por unidad, sin IVA y en las condiciones indicadas junto a ellos.
+## À fournir ou à valider avant la mise en ligne
 
-**Estudio de diseño.** Las vistas previas son orientativas: el color, el tamaño y la posición del diseño en el producto final pueden variar respecto a lo que se ve en pantalla, y las condiciones definitivas se fijan en el presupuesto. Quien sube un logo o un diseño declara que tiene derecho a usarlo y autoriza a [MARCA] a utilizarlo solo para preparar la vista previa, el presupuesto y, en su caso, la producción del pedido.
+**Identité de l'éditeur** (dans `lib/site.ts` puis les pages)
 
-**Reseñas.** Las opiniones publicadas proceden de clientes que han hecho un pedido y han autorizado su publicación. No se edita su contenido; solo se retiran las que contienen spam, insultos o datos personales de terceros.
+1. Raison sociale `[RAISON SOCIALE]`, forme juridique et capital social `[à confirmer]`.
+2. SIRET `[SIRET]`, ville du greffe (RCS) `[à confirmer]`, numéro de TVA intracommunautaire `[à confirmer]`.
+3. Adresse du siège `[ADRESSE DU SIÈGE]` et de l'atelier `[ADRESSE]` (84170 Monteux), téléphone `[TÉLÉPHONE]`, email
+   de contact (aujourd'hui `email-pendiente@example.com`), nom de domaine.
+4. Directeur de la publication `[DIRECTEUR DE LA PUBLICATION]` et sa fonction.
+5. Hébergeur : `[Netlify, Inc. ou Vercel Inc.]`, avec son adresse et son contact.
 
-**Uso permitido.** La persona usuaria se compromete a usar la web de forma lícita, diligente y respetuosa, sin dañar sistemas, interferir en el funcionamiento del sitio, suplantar identidades ni usar los contenidos con fines ilícitos o contrarios a la buena fe.
+**Confidentialité**
 
-**Propiedad intelectual e industrial.** Salvo indicación en contrario, los contenidos, textos, diseño, estructura visual, elementos gráficos, marcas, logotipos, fotografías, modelos 3D, vídeos, animaciones, código y demás materiales de esta web pertenecen a [MARCA] o a sus legítimos titulares. No se permite su reproducción, distribución, transformación o comunicación pública sin autorización previa, salvo en los casos permitidos por la ley. Las marcas de terceros que puedan aparecer pertenecen a sus titulares.
+6. Liste des sous-traitants : hébergeur, messagerie (réception des demandes et envoi des emails : Gmail / Google
+   Workspace, Resend ?), Google Sheets pour les avis. Encadrement des transferts hors UE pour chacun.
+7. Durées de conservation : demandes de devis sans suite, avis non publiés, journaux techniques ; archivage comptable
+   (10 ans, article L123-22 du Code de commerce, à confirmer).
 
-**Enlaces externos.** La web puede incluir enlaces a sitios de terceros, como redes sociales o mensajería. [MARCA] no controla esos sitios ni responde de sus contenidos, políticas, disponibilidad o prácticas de privacidad.
+**Cookies**
 
-**Responsabilidad.** [MARCA] trabaja para mantener la información actualizada y la web disponible, pero no garantiza la ausencia de errores, interrupciones, fallos técnicos o elementos dañinos. La información publicada tiene carácter general y puede modificarse, actualizarse o retirarse sin previo aviso.
+8. Outil de mesure d'audience éventuel. Aujourd'hui aucun. S'il en arrive un qui dépose des cookies non exemptés, il
+   faut un bandeau de consentement (refuser aussi simple qu'accepter) et la mise à jour de la page.
 
-**Legislación aplicable.** Este aviso legal se rige por la legislación española. Cuando proceda, las partes se someten a los juzgados y tribunales competentes conforme a la normativa vigente.
+**CGV et livraison**
 
-## Política de privacidad
+9. Validité des devis, acompte, quantité minimale, nombre de modifications du BAT, tolérances d'impression.
+10. Prix HT ou TTC, frais de livraison, moyens de paiement, délai de paiement et pénalités (clients professionnels).
+11. Délais de fabrication, retrait à l'atelier (horaires, frais), zones et transporteur de livraison.
+12. Vente éventuelle de produits non personnalisés (et donc droit de rétractation de 14 jours pour ceux-là).
+13. Délai de réclamation, médiateur de la consommation (nom, adresse, site), tribunal compétent pour les professionnels.
+14. Propriété des maquettes créées par l'atelier.
 
-**Responsable.** [TITULAR LEGAL] ([MARCA]), NIF [NIF], [DIRECCIÓN] · [BARRIO] · [CP] [CIUDAD] (España). Contacto: titular-pendiente@example.com.
+**Avis**
 
-**Qué datos tratamos.**
+15. Feuille Google Sheets des avis propre à La Ola Import et variable `OPINIONES_CSV_URL`. Confirmer que les avis ne
+    font l'objet d'aucune contrepartie.
 
-- Formulario *Cuéntanos tu proyecto* y petición de visita: tipo de cliente (negocio o particular), nombre, negocio y sector (si es para un negocio), la ocasión (si es para ti), ciudad, email, teléfono, preferencias de contacto y de visita, productos, cantidades, fechas, mensaje y los archivos o diseños que subas.
-- Estudio de diseño: tu logo se procesa en tu navegador y solo nos llega si envías el diseño.
-- Formulario de opinión: valoración, texto, nombre, cargo, negocio, sector, ciudad, producto y, si los aportas, foto del pedido y logo.
-- Datos técnicos mínimos de navegación (IP, dispositivo, navegador, fecha y hora) por seguridad y funcionamiento, y estadísticas de visitas agregadas, sin cookies.
+## Mentions légales
 
-**Finalidades y base jurídica.**
+En application de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN).
 
-| Finalidad | Base jurídica |
-| --- | --- |
-| Responder tu solicitud, preparar el presupuesto y organizar la visita | Medidas precontractuales a petición tuya |
-| Gestionar el pedido y la relación comercial | Ejecución del contrato y obligaciones legales (facturación) |
-| Pedirte tu opinión tras la entrega | Interés legítimo en mejorar el servicio |
-| Publicar tu opinión con el nombre de tu negocio | Tu consentimiento, que puedes retirar cuando quieras |
-| Seguridad de la web y estadísticas agregadas | Interés legítimo |
+**Éditeur du site.** Le site [nom de domaine à confirmer] est édité par [RAISON SOCIALE], nom commercial
+« La Ola Import », [forme juridique à confirmer] au capital de [montant à confirmer], RCS [ville du greffe à
+confirmer], SIRET [SIRET], TVA intracommunautaire [à confirmer]. Siège social : [ADRESSE DU SIÈGE]. Atelier :
+[ADRESSE], 84170 Monteux. Téléphone : [TÉLÉPHONE]. Email : [email à confirmer].
 
-**Conservación.** Solicitudes que no terminan en pedido: 12 meses, archivos incluidos, y después se eliminan \[plazo a confirmar\]. Clientes: mientras dure la relación y, después, bloqueados durante los plazos legales fiscales y mercantiles. Opiniones publicadas: hasta que retires tu consentimiento.
+**Directeur de la publication.** [DIRECTEUR DE LA PUBLICATION], en qualité de [fonction à confirmer].
 
-**Destinatarios y encargados.** No vendemos datos personales. Acceden a ellos, como encargados del tratamiento, los proveedores que hacen funcionar la web y el contacto: Netlify (alojamiento de la web), Resend (envío de los emails de la web; solo aparece en la página cuando está activado) y Google (correo electrónico: las solicitudes del formulario y los archivos que adjuntas se reciben y se guardan en nuestro buzón de Gmail, y desde él te respondemos). También se comunican a autoridades públicas cuando existe obligación legal.
+**Hébergeur.** [Netlify, Inc. ou Vercel Inc., à confirmer], [adresse de l'hébergeur à confirmer], [téléphone ou site
+web de l'hébergeur à confirmer].
 
-**Transferencias internacionales.** Algunos de estos proveedores tienen sede en Estados Unidos. En esos casos se aplican las garantías previstas por la normativa: decisión de adecuación (incluido el Marco de Privacidad de Datos UE-EE. UU. cuando el proveedor esté adherido) o cláusulas contractuales tipo.
+**Objet du site.** Présenter l'atelier, le catalogue et les services de personnalisation (textiles, objets
+publicitaires, souvenirs) ; demander un devis ; préparer un projet ; prévisualiser un logo sur un produit. Les
+conditions de vente sont dans les CGV.
 
-**Derechos.** Puedes solicitar el acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad de tus datos escribiendo a titular-pendiente@example.com, y retirar el consentimiento cuando el tratamiento se base en él. Si consideras que tus derechos no han sido atendidos, puedes reclamar ante la Agencia Española de Protección de Datos.
+**Aperçus du studio de personnalisation.** Indicatifs : couleur, taille et position peuvent différer de l'écran. Le
+client valide toujours un bon à tirer (BAT) avant impression. En déposant un logo, il déclare avoir le droit de
+l'utiliser et autorise La Ola Import à s'en servir uniquement pour l'aperçu, le devis et la fabrication.
 
-**Menores de edad.** Esta web no está dirigida a recoger datos de menores de 14 años sin autorización de sus representantes legales. Si detectamos que hemos recibido datos de un menor sin esa autorización, los eliminaremos.
+**Avis clients.** Publiés seulement avec l'accord du client, sans modification ; retrait des avis contenant du spam,
+des propos injurieux ou des données de tiers. Aucune contrepartie [à confirmer].
 
-**Actualizaciones.** Esta política puede actualizarse por cambios legales, técnicos u organizativos. La versión vigente es siempre la publicada en esta página.
+**Propriété intellectuelle, liens externes, responsabilité.** Contenus protégés (Code de la propriété intellectuelle) ;
+pas de responsabilité sur les sites tiers (WhatsApp, Instagram, Facebook, Google Maps) ; informations générales
+susceptibles d'évoluer.
 
-## Política de cookies
+**Droit applicable.** Droit français ; à défaut d'accord amiable, tribunaux français compétents.
 
-**Qué usa esta web.** dominio-pendiente.example no usa cookies publicitarias, analíticas ni de seguimiento. Solo usa almacenamiento técnico estrictamente necesario, por ejemplo para conservar en tu navegador el logo y el diseño mientras usas el estudio o para recordar los filtros del catálogo. Las visitas se miden de forma agregada y sin cookies.
+## Politique de confidentialité
 
-**Servicios externos.** Las fuentes tipográficas se sirven desde nuestro propio dominio. La ubicación de nuestra sede es un enlace a Google Maps, que aplica sus propias cookies al abrirlo; en la web no se carga ningún mapa. Los botones de WhatsApp e Instagram te llevan a esas plataformas, que aplican sus propias cookies y políticas al abrirlas.
+**Responsable du traitement.** [RAISON SOCIALE] (La Ola Import), SIRET [SIRET], [ADRESSE DU SIÈGE]. Contact : [email].
 
-**Base jurídica.** El almacenamiento técnico no necesita consentimiento porque es imprescindible para el servicio que pides. Si en el futuro se incorporan herramientas como Google Analytics o el píxel de Meta, esta política se actualizará y se pedirá consentimiento previo con un panel configurable.
+**Données traitées.**
 
-**Cómo gestionarlas.** Puedes permitir, bloquear o eliminar cookies y datos del sitio desde la configuración de tu navegador. Desactivar el almacenamiento técnico puede afectar al funcionamiento del estudio de diseño.
+- Demande de devis et panier : nom, structure (si professionnel ou association), email, téléphone (facultatif), code
+  postal, préférence de contact, produits, quantités, délai souhaité, message, fichiers joints (logo, visuels).
+- Studio de personnalisation : le logo est traité dans le navigateur et reste sur l'appareil ; il n'est transmis
+  qu'avec la demande.
+- Formulaire d'avis : prénom, structure (facultatif), email (jamais publié), produit (facultatif), texte de l'avis,
+  choix de publication.
+- Données techniques : adresse IP, navigateur, date et heure (sécurité, anti-spam).
 
-**Contacto.** titular-pendiente@example.com.
+**Finalités, base légale et durées.**
+
+| Finalité | Base légale | Durée |
+| --- | --- | --- |
+| Répondre aux demandes de devis et de contact | Mesures précontractuelles (art. 6.1.b RGPD) | [durée à confirmer] après le dernier contact |
+| Gérer les commandes, la facturation, le suivi | Contrat (6.1.b) et obligation légale (6.1.c) | Relation commerciale, puis archivage comptable [10 ans, à confirmer] |
+| Recueillir l'avis du client | Intérêt légitime (6.1.f) | [durée à confirmer] |
+| Publier l'avis, avec le prénom si accepté | Consentement (6.1.a), retirable à tout moment | Jusqu'au retrait du consentement |
+| Sécurité et anti-spam | Intérêt légitime (6.1.f) | [durée à confirmer] |
+
+Pas de prospection, pas de revente.
+
+**Destinataires et sous-traitants** [liste à confirmer]. Équipe de La Ola Import ; hébergement [Netlify, Inc. ou
+Vercel Inc.] ; messagerie [Google (Gmail / Google Workspace)], et Resend si `CORREO_TRANSPORTE=resend` ; Google
+Sheets pour les avis [à confirmer] ; autorités sur obligation légale.
+
+**Transferts hors UE.** Prestataires établis aux États-Unis : décision d'adéquation (cadre UE–États-Unis, pour les
+prestataires certifiés) ou clauses contractuelles types [à confirmer pour chaque prestataire].
+
+**Droits.** Accès, rectification, effacement, limitation, opposition, portabilité, directives post-mortem ; retrait du
+consentement. Par email ou courrier au siège ; réponse sous un mois.
+
+**Réclamation.** CNIL, 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, cnil.fr.
+
+**Mineurs.** Moins de 15 ans : demande faite par un parent (article 45 de la loi Informatique et Libertés).
+
+## Politique cookies
+
+- Aucun cookie publicitaire, aucune mesure d'audience pour l'instant [outil d'analytics à confirmer].
+- Stockage strictement nécessaire, exempté de consentement (article 82 de la loi Informatique et Libertés) :
+  - `localStorage` : le panier (produits, couleurs, tailles, quantités) d'une visite à l'autre ;
+  - `IndexedDB` : le fichier du logo déposé dans le studio, pour l'aperçu et l'envoi avec la demande ;
+  - `sessionStorage` : le visuel en cours dans le studio, effacé à la fermeture de l'onglet.
+- Polices servies par le site ; Google Maps ouvert seulement par lien (aucune carte chargée) ; WhatsApp, Instagram et
+  Facebook appliquent leurs propres cookies une fois ouverts.
+- Effacement possible depuis les réglages du navigateur (le panier et le logo sont alors perdus).
+
+## Conditions générales de vente (structure)
+
+1. Vendeur : identité complète (voir mentions légales).
+2. Objet et champ d'application : produits personnalisés et non personnalisés [à confirmer] ; clients particuliers et
+   professionnels ; acceptation des CGV.
+3. Produits et visuels : photos et aperçus indicatifs ; seuls le devis et le BAT validés engagent.
+4. Devis et commande : la demande n'engage pas ; devis valable [durée à confirmer] ; commande ferme à l'acceptation
+   écrite du devis et au versement de l'acompte [à confirmer] ; quantité minimale [à confirmer].
+5. BAT : obligatoire avant fabrication, validation écrite ; modifications incluses [à confirmer] ; tolérances
+   [à confirmer].
+6. Fichiers et propriété intellectuelle : le client garantit ses droits ; refus des contenus illicites ; maquettes
+   [à confirmer].
+7. Prix : en euros, [HT ou TTC à confirmer] ; prix TTC toujours indiqué aux particuliers ; frais de livraison
+   [à confirmer].
+8. Paiement : moyens [à confirmer], acompte et solde [à confirmer] ; professionnels : délai [à confirmer], pénalités
+   [au moins trois fois le taux d'intérêt légal, à confirmer] et indemnité forfaitaire de recouvrement (articles
+   L441-10 et D441-5 du Code de commerce) [montant à confirmer].
+9. Fabrication et délais : [délai à confirmer] à compter du BAT validé et de l'acompte ; à défaut de date, 30 jours
+   pour un particulier (article L216-1 du Code de la consommation).
+10. Retrait à l'atelier de Monteux [à confirmer] ou livraison [zones, transporteur, frais à confirmer] ; transfert des
+    risques à la prise de possession (particulier) ou à la remise au transporteur (professionnel) [à confirmer].
+11. Droit de rétractation : exclu pour les biens personnalisés (article L221-28, 3° du Code de la consommation) ;
+    14 jours pour les produits non personnalisés vendus à distance [si de tels produits sont vendus].
+12. Garanties légales : conformité (articles L217-3 et suivants du Code de la consommation, deux ans) et vices cachés
+    (articles 1641 et suivants du Code civil) [texte à faire valider].
+13. Réclamations : par email, sous [délai à confirmer], avec photos ; solution amiable.
+14. Médiation de la consommation (articles L612-1 et suivants) : [nom, adresse et site du médiateur à confirmer].
+15. Force majeure (article 1218 du Code civil).
+16. Données personnelles : renvoi à la politique de confidentialité.
+17. Droit français ; professionnels : tribunal de commerce de [ville à confirmer].
+
+## Livraison et paiement
+
+Page courte et rassurante : retrait à l'atelier de Monteux (adresse, horaires, frais [à confirmer]) ; livraison
+(zones, transporteur, frais, délai [à confirmer]) ; paiement (moyens [à confirmer : virement, carte bancaire, chèque,
+espèces à l'atelier], acompte et solde [à confirmer], facture [à confirmer]). Liens vers `/devis` et `/cgv`.
+
+## Avis clients : circuit et consentements
+
+1. Le client remplit `/donner-mon-avis` (page non indexée). Trois cases distinctes, jamais pré-cochées : publication de
+   l'avis ; affichage du prénom ; affichage de la structure (si elle est indiquée). Une case obligatoire autorise le
+   traitement de l'avis.
+2. L'avis arrive par email à l'équipe (`app/donner-mon-avis/acciones.ts`), avec la ligne à recopier dans la feuille
+   Google Sheets (onglet « Web ») : `empresa` (seulement ce que le client a accepté d'afficher), `opinion`,
+   `mostrar_nombre`, `publicar`, `fecha`. Rien n'est publié automatiquement.
+3. Le site lit le CSV publié de cet onglet (`OPINIONES_CSV_URL`, `lib/opiniones/`) : seules les lignes avec
+   `publicar = SI` (ou `OUI`) apparaissent ; sans accord d'affichage, l'avis est signé « Client de La Ola Import ».
+4. Tant qu'aucun avis n'est publié, `/avis` affiche « Les premiers avis arrivent bientôt » et n'est pas indexée.
+   Aucun faux témoignage.
+5. Un client peut demander le retrait de son avis à tout moment : passer `publicar` à `NO` dans la feuille.

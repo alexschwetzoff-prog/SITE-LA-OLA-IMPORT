@@ -12,7 +12,7 @@ import { TRAMOS, TRAMO_POR_DEFECTO, nombreTramo, textoPosicionesLinea, type Tram
 export { TRAMOS, TRAMO_POR_DEFECTO, nombreTramo, type Tramo };
 
 export const CLAVE_PRESUPUESTO = 'marca:presupuesto';
-/** Clave que escribe el estudio al pulsar «Enviar mi diseño» (components/estudio/Panel.tsx). */
+/** Clave que escribe el estudio al pulsar «Ajouter au panier» (components/estudio/Panel.tsx). */
 export const CLAVE_DISENO = 'marca:diseno';
 
 export interface ColocacionDiseno {
@@ -45,7 +45,7 @@ export interface DisenoCesta {
 /** Posición de la personalización elegida en la ficha antes de añadir (fase 4.1, obligatoria en prendas, gorras y bolsas). */
 export interface PosicionCesta {
   posicion: Posicion;
-  nombre: string; // nombre público («Corazón», «Espalda A4»)
+  nombre: string; // nombre público de la posición (lib/producto.ts, POSICIONES)
 }
 
 export interface ItemPresupuesto {
@@ -179,7 +179,7 @@ interface DisenoGuardado {
 }
 
 /**
- * Pasa a la cesta el diseño que el estudio dejó en sessionStorage («Enviar mi diseño»), una sola vez por diseño.
+ * Pasa a la cesta el diseño que el estudio dejó en sessionStorage («Ajouter au panier»), una sola vez por diseño.
  * Devuelve el elemento añadido o null si no había nada nuevo. Las capturas grandes se quedan en sessionStorage
  * para que el formulario de la fase 6 las adjunte si siguen ahí.
  */
@@ -198,7 +198,7 @@ export async function importarDisenoDelEstudio(datosDe: (slug: string) => { tipo
   return anadirAlPresupuesto({
     slug: diseno.producto.slug,
     nombre: diseno.producto.nombre,
-    tipo: datos?.tipo ?? 'Prenda del estudio',
+    tipo: datos?.tipo ?? 'Vêtement personnalisé dans le studio',
     color: { nombre: diseno.color.nombre, hex: diseno.color.hex },
     tramo: TRAMO_POR_DEFECTO,
     foto: capturas[0]?.url || datos?.foto,

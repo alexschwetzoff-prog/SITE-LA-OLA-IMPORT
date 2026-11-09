@@ -1,11 +1,11 @@
 'use client';
 
-// /proyecto (fases 4, 4.1 y 6): la cesta de presupuesto precargada (productos con color, posición y cantidad, y los
-// diseños enviados desde el estudio) y el formulario en pasos de la sección 4. Desde la fase 4.1 distingue negocio y
-// particular: el particular no tiene nombre de negocio ni sector, cuenta la ocasión y no se le ofrece visita. Desde la
-// fase 6 el envío es real: se preparan en el navegador el logo y las capturas de cada diseño (lib/solicitud/preparar.ts),
-// la acción de servidor valida y manda los dos emails, y la cesta se vacía solo si todo ha ido bien. Si falla, el
-// cliente ve un mensaje claro con el botón de WhatsApp y no pierde lo que ha rellenado.
+// /projet : le panier (produits avec couleur, emplacement et quantité, et visuels envoyés depuis le studio) et le
+// formulaire en deux étapes, pensé surtout pour les particuliers. Le type de client (particulier, entreprise, club,
+// camping, boutique, association) change les champs : le particulier n'a ni structure ni usage professionnel. L'envoi
+// est réel : le navigateur prépare les logos et les captures de chaque visuel (lib/solicitud/preparar.ts), l'action
+// serveur (app/projet/acciones.ts, partagée avec /devis) valide et envoie les deux emails, et le panier n'est vidé
+// qu'après un envoi réussi. En cas d'échec, le client voit un message clair avec le bouton WhatsApp et garde sa saisie.
 
 import { useEffect, useId, useRef, useState } from 'react';
 import Image from 'next/image';
@@ -18,15 +18,30 @@ import { BotonEnlace, ESTILO_BOTON } from '@/components/ui/Botones';
 import { CLAVE_ATERRIZAJE, leerAterrizaje } from '@/lib/aterrizaje';
 import { leerLogo } from '@/lib/logos-db';
 import { CLAVE_DISENO, TRAMOS, TRAMO_POR_DEFECTO, cambiarTramo, importarDisenoDelEstudio, quitarDelPresupuesto, textoPosiciones, usePresupuesto, vaciarPresupuesto, type ItemPresupuesto, type Tramo } from '@/lib/presupuesto';
-import { CAMPO_INICIO, CAMPO_TRAMPA, CITAS, CLAVE_ARCHIVOS, CLAVE_AVISOS, CLAVE_CESTA, CONTACTOS, MAX_ENVIO_BYTES, USOS, formatoBytes, type TipoCliente } from '@/lib/solicitud/comun';
+import {
+  CAMPO_INICIO,
+  CAMPO_TRAMPA,
+  CLAVE_ARCHIVOS,
+  CLAVE_AVISOS,
+  CLAVE_CESTA,
+  CONTACTOS,
+  CONTACTO_POR_DEFECTO,
+  MAX_ENVIO_BYTES,
+  TIPOS,
+  TIPO_POR_DEFECTO,
+  USOS,
+  esProfesional,
+  formatoBytes,
+  type TipoCliente,
+} from '@/lib/solicitud/comun';
 import type { ErrorCampo } from '@/lib/solicitud/esquema';
 import { prepararEnvio } from '@/lib/solicitud/preparar';
-import { TEXTOS, enlaceWhatsApp } from '@/lib/site';
+import { SITE, TEXTOS, enlaceWhatsApp } from '@/lib/site';
 
 export interface DatosProducto {
   tipo: string;
   foto?: string;
-  /** «Desde X € / ud», «Consultar precio» o «Consultar disponibilidad»: la cesta lo enseña sin IVA. */
+  /** Texte de prix du produit (« Consulter le prix » tant qu'il n'y a pas de tarif). */
   precio?: string;
 }
 
@@ -34,43 +49,66 @@ export type { TipoCliente };
 
 type Estado = { fase: 'listo' } | { fase: 'enviando' } | { fase: 'error'; mensaje: string; campos?: ErrorCampo[] };
 
-const FALLO_RED = 'No hemos podido enviar tu solicitud (parece un problema de conexión). Prueba otra vez en un momento o escríbenos por WhatsApp: lo que has rellenado sigue aquí.';
+const TITULO_FALLO = 'Oups, votre demande n’est pas partie.';
+const FALLO_RED = 'Rien n’est perdu : vos informations sont conservées. La connexion semble avoir coupé : réessayez dans un instant ou envoyez-nous votre demande sur WhatsApp.';
+const PLAZO = `${TEXTOS.plazoPresupuesto}.`;
 
 const NOMBRES_CAMPOS: Record<string, string> = {
-  nombre: 'Nombre',
-  negocio: 'Negocio',
-  sector: 'Sector',
-  ocasion: 'Ocasión',
-  ciudad: 'Ciudad',
+  tipo_cliente: 'Vous êtes',
+  nombre: 'Nom',
+  negocio: 'Structure',
+  sector: 'Activité',
+  ocasion: 'Occasion',
+  ciudad: 'Ville',
   email: 'Email',
-  telefono: 'Teléfono',
-  otro_producto: 'Otro producto',
-  fecha_limite: 'Fecha límite',
-  mensaje: 'Comentarios',
-  franja: 'Franja preferida',
-  privacidad: 'Privacidad',
+  telefono: 'Téléphone',
+  tipo_producto: 'Type de produit',
+  otro_producto: 'Autre produit',
+  cantidad: 'Quantité',
+  emplazamientos: 'Emplacements',
+  fecha_limite: 'Date souhaitée',
+  mensaje: 'Commentaires',
+  privacidad: 'Confidentialité',
+};
+
+/** Libellé du champ « structure » selon le type de client. */
+const NOMBRE_ESTRUCTURA: Record<TipoCliente, string> = {
+  particulier: 'Structure',
+  entreprise: 'Nom de l’entreprise',
+  club: 'Nom du club',
+  camping: 'Nom du camping',
+  boutique: 'Nom de la boutique',
+  association: 'Nom de l’association',
 };
 
 const campo =
-  'mt-1 w-full rounded-xl border border-marine/15 bg-fond/60 px-3.5 py-2.5 text-marine placeholder:text-ardoise/50 focus:border-bleu-600 focus:outline-none focus:ring-2 focus:ring-bleu-600/40';
-const etiqueta = 'block text-sm font-medium text-ardoise';
+  'mt-1 w-full rounded-xl border border-marine/20 bg-fond px-3.5 py-3 font-normal text-marine placeholder:text-ardoise focus:border-bleu-600 focus:outline-none focus:ring-2 focus:ring-bleu-600/40';
+const etiqueta = 'block text-sm font-semibold text-marine';
+const ayuda = 'mt-1 block text-xs font-normal text-ardoise';
 const chip =
-  'cursor-pointer rounded-full border border-marine/20 px-3.5 py-1.5 text-sm text-ardoise transition-colors has-[:checked]:border-bleu-600 has-[:checked]:bg-bleu-600/15 has-[:checked]:text-marine has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-bleu-600';
+  'cursor-pointer rounded-full border border-marine/20 bg-fond px-4 py-2 text-sm font-medium text-marine transition-colors hover:border-violet-600/60 has-[:checked]:border-violet-600 has-[:checked]:bg-fuchsia-50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-bleu-600';
+const tarjeta = 'rounded-2xl bg-fond p-6 shadow-carte ring-1 ring-marine/5 sm:p-8';
 
-function Paso({ numero, titulo, children }: { numero: number; titulo: string; children: React.ReactNode }) {
+function Paso({ numero, total, titulo, children }: { numero: number; total: number; titulo: string; children: React.ReactNode }) {
   return (
-    <fieldset className="rounded-3xl border border-marine/10 bg-perle/50 p-6 sm:p-8">
-      <legend className="flex items-center gap-3 px-2 font-display text-xl font-semibold text-marine">
-        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-bleu-600/60 bg-fond text-sm">{numero}</span>
-        {titulo}
+    <fieldset className={tarjeta}>
+      <legend className="sr-only">
+        Étape {numero} sur {total} : {titulo}
       </legend>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">{children}</div>
+      <p className="flex items-center gap-3 font-display text-xl font-bold text-marine" aria-hidden="true">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-50 text-sm">{numero}</span>
+        {titulo}
+        <span className="ml-auto text-xs font-semibold tracking-wide text-ardoise">
+          Étape {numero} sur {total}
+        </span>
+      </p>
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">{children}</div>
     </fieldset>
   );
 }
 
-/** Comprueba que el archivo original de un logo sigue guardado en el navegador (IndexedDB) y lo dice. */
-function EstadoLogo({ id, lado }: { id: string; lado?: 'delantero' | 'trasero' }) {
+/** Vérifie que le fichier d'origine d'un logo est toujours enregistré dans le navigateur (IndexedDB) et le dit. */
+function EstadoLogo({ id, lado }: { id: string; lado?: 'avant' | 'arrière' }) {
   const [archivo, setArchivo] = useState<File | null | undefined>(undefined);
   useEffect(() => {
     let vivo = true;
@@ -85,8 +123,8 @@ function EstadoLogo({ id, lado }: { id: string; lado?: 'delantero' | 'trasero' }
   return (
     <span className="block">
       {archivo
-        ? `Logo ${lado ? `${lado} ` : ''}original guardado en tu navegador (${archivo.name}, ${Math.max(1, Math.round(archivo.size / 1024))} KB): irá adjunto al enviar.`
-        : `El archivo del logo ${lado ? `${lado} ` : ''}ya no está en este navegador: te lo pediremos al responder.`}
+        ? `Fichier d’origine du logo ${lado ? `${lado} ` : ''}enregistré dans votre navigateur (${archivo.name}, ${formatoBytes(archivo.size)}) : il sera joint à l’envoi.`
+        : `Le fichier du logo ${lado ? `${lado} ` : ''}n’est plus dans ce navigateur : nous vous le demanderons en vous répondant.`}
     </span>
   );
 }
@@ -96,52 +134,57 @@ function Tarjeta({ item, datos }: { item: ItemPresupuesto; datos?: DatosProducto
   const posiciones = textoPosiciones(item);
   const precio = datos?.precio;
   return (
-    <li className="flex gap-4 rounded-2xl border border-marine/10 bg-fond/50 p-3 sm:p-4">
+    <li className="flex gap-4 rounded-2xl bg-fond p-3 ring-1 ring-marine/10 sm:p-4">
       <div className="flex shrink-0 gap-1.5">
         {diseno?.capturas.length ? (
           diseno.capturas.map((c) => (
-            // eslint-disable-next-line @next/next/no-img-element -- captura generada en el navegador (data URL)
-            <img key={c.lado} src={c.url} alt={`Tu diseño por ${c.lado === 'delante' ? 'delante' : 'detrás'}`} className="h-24 w-[4.8rem] rounded-xl bg-white object-cover" />
+            // eslint-disable-next-line @next/next/no-img-element -- capture générée dans le navigateur (data URL)
+            <img key={c.lado} src={c.url} alt={`Votre visuel ${c.lado === 'delante' ? 'devant' : 'derrière'}`} className="h-24 w-[4.8rem] rounded-xl bg-white object-cover ring-1 ring-marine/10" />
           ))
         ) : item.foto ? (
-          <Image src={item.foto} alt="" width={96} height={96} className="h-24 w-24 rounded-xl bg-white object-contain p-1" />
+          <Image src={item.foto} alt="" width={96} height={96} className="h-24 w-24 rounded-xl bg-white object-contain p-1 ring-1 ring-marine/10" />
         ) : (
-          <span className="flex h-24 w-24 items-center justify-center rounded-xl bg-marine/10 text-xs text-ardoise">Sin foto</span>
+          <span className="flex h-24 w-24 items-center justify-center rounded-xl bg-perle text-xs text-ardoise">Sans photo</span>
         )}
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-display text-lg font-semibold text-marine">
-              <Link href={`/catalogue/${item.slug}`} className="hover:underline">
+            <p className="font-display text-lg font-bold text-marine">
+              <Link href={`/catalogue/${item.slug}`} className="hover:text-indigo-700 hover:underline">
                 {item.nombre}
               </Link>
             </p>
             <p className="text-sm text-ardoise">{item.tipo}</p>
           </div>
-          <button type="button" onClick={() => quitarDelPresupuesto(item.id)} className="shrink-0 text-sm text-ardoise underline-offset-4 hover:text-marine hover:underline">
-            Quitar
+          <button
+            type="button"
+            onClick={() => quitarDelPresupuesto(item.id)}
+            aria-label={`Retirer ${item.nombre} du panier`}
+            className="shrink-0 rounded-full px-2 py-1 text-sm font-medium text-bleu-600 underline-offset-4 hover:text-indigo-700 hover:underline"
+          >
+            Retirer
           </button>
         </div>
         <p className="mt-2 flex items-center gap-2 text-sm text-marine">
           <span className="h-4 w-4 rounded-full border border-marine/30" style={{ background: fondoMuestra(item.color) }} aria-hidden="true" />
           {item.color.nombre}
         </p>
-        {/* Posición de la personalización elegida en la ficha (fase 4.1) o las del diseño del estudio */}
+        {/* Emplacement choisi sur la fiche, ou ceux du visuel du studio */}
         {diseno ? (
           <p className="mt-1 text-xs text-ardoise">
-            Diseño del estudio: {diseno.colocaciones.map((c) => `${c.nombre} · ${c.anchoCm.toLocaleString('es-ES')} cm`).join(' + ') || 'sin posiciones'} · logo{diseno.logoDetras ? ' delantero' : ''} {diseno.logo.nombre}
-            {diseno.logoDetras ? ` · logo trasero ${diseno.logoDetras.nombre}` : ''}
-            {diseno.logoId && <EstadoLogo id={diseno.logoId} lado={diseno.logoDetras ? 'delantero' : undefined} />}
-            {diseno.logoDetras && diseno.logoIdDetras && <EstadoLogo id={diseno.logoIdDetras} lado="trasero" />}
+            Visuel du studio : {diseno.colocaciones.map((c) => `${c.nombre} · ${c.anchoCm.toLocaleString('fr-FR')} cm`).join(' + ') || 'aucun emplacement'} · logo{diseno.logoDetras ? ' avant' : ''} {diseno.logo.nombre}
+            {diseno.logoDetras ? ` · logo arrière ${diseno.logoDetras.nombre}` : ''}
+            {diseno.logoId && <EstadoLogo id={diseno.logoId} lado={diseno.logoDetras ? 'avant' : undefined} />}
+            {diseno.logoDetras && diseno.logoIdDetras && <EstadoLogo id={diseno.logoIdDetras} lado="arrière" />}
           </p>
         ) : (
-          posiciones && <p className="mt-1 text-xs text-ardoise">Personalización: {posiciones}</p>
+          posiciones && <p className="mt-1 text-xs text-ardoise">Personnalisation : {posiciones}</p>
         )}
-        {precio && <p className="mt-1 text-xs text-ardoise">{precio}</p>}
-        <label className="mt-3 block text-xs font-medium text-ardoise">
-          Cantidad aproximada
-          <select value={item.tramo} onChange={(e) => cambiarTramo(item.id, e.target.value as Tramo)} className="mt-1 block rounded-lg border border-marine/15 bg-fond/60 px-2.5 py-1.5 text-sm text-marine">
+        {precio && <p className="mt-1 text-xs font-semibold text-marine">{precio}</p>}
+        <label className="mt-3 block text-xs font-semibold text-marine">
+          Quantité approximative
+          <select value={item.tramo} onChange={(e) => cambiarTramo(item.id, e.target.value as Tramo)} className="mt-1 block rounded-xl border border-marine/20 bg-fond px-3 py-2 text-sm font-normal text-marine">
             {TRAMOS.map((t) => (
               <option key={t.id} value={t.id}>
                 {t.nombre}
@@ -154,14 +197,14 @@ function Tarjeta({ item, datos }: { item: ItemPresupuesto; datos?: DatosProducto
   );
 }
 
-/** Tras un envío correcto: cesta vacía (y sus archivos fuera del navegador), y nada pendiente del estudio o de la home. */
+/** Après un envoi réussi : panier vide (et ses fichiers hors du navigateur), plus rien en attente du studio ou de l'accueil. */
 function limpiarTrasEnviar() {
   vaciarPresupuesto();
   try {
     sessionStorage.removeItem(CLAVE_DISENO);
     sessionStorage.removeItem(CLAVE_ATERRIZAJE);
   } catch {
-    // sin almacenamiento: no hay nada que limpiar
+    // pas de stockage : rien à nettoyer
   }
 }
 
@@ -169,22 +212,22 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
   const items = usePresupuesto();
   const router = useRouter();
   const id = useId();
-  const [tipo, setTipo] = useState<TipoCliente>('negocio');
+  const [tipo, setTipo] = useState<TipoCliente>(TIPO_POR_DEFECTO);
   const [estado, setEstado] = useState<Estado>({ fase: 'listo' });
   const inicioRef = useRef(0);
   const formRef = useRef<HTMLFormElement>(null);
   const avisoRef = useRef<HTMLDivElement>(null);
-  const particular = tipo === 'particular';
+  const negocioPendiente = useRef<string | null>(null);
+  const profesional = esProfesional(tipo);
   const enviando = estado.fase === 'enviando';
 
-  // El diseño que deja el estudio («Enviar mi diseño») pasa a la cesta una sola vez.
+  // Le visuel laissé par le studio (« Ajouter au panier ») passe dans le panier une seule fois.
   useEffect(() => {
     void importarDisenoDelEstudio((slug) => productos[slug]);
   }, [productos]);
 
-  // Al montar: hora de carga (antispam: tiempo mínimo de rellenado), los datos del formulario corto de la home y la
-  // visita pedida desde la ficha (?cita=local). Se rellenan sobre el HTML ya servido, sin estado, para que la página
-  // llegue prerenderizada y no salte la maqueta.
+  // Au montage : heure de chargement (antispam : temps minimum de saisie) et données du formulaire court de l'accueil.
+  // Elles sont posées sur le HTML déjà servi, sans état, pour que la page arrive prérendue sans saut de mise en page.
   useEffect(() => {
     inicioRef.current = Date.now();
     const form = formRef.current;
@@ -194,17 +237,28 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
       const el = form.elements.namedItem(nombre);
       if ((el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) && valor && !el.value) el.value = valor;
     };
-    const marcar = (nombre: string, valor: string) => {
-      const el = form.querySelector(`input[name="${nombre}"][value="${valor}"]`);
-      if (el instanceof HTMLInputElement) el.checked = true;
-    };
     poner('nombre', previo.nombre);
-    poner('negocio', previo.negocio);
     poner('mensaje', previo.mensaje);
     if (previo.contacto) poner(previo.contacto.includes('@') ? 'email' : 'telefono', previo.contacto);
-    if (previo.tramo) marcar('tramo', previo.tramo);
-    if (new URLSearchParams(window.location.search).get('cita') === 'local') marcar('cita', 'local');
+    if (previo.tramo) {
+      const el = form.querySelector(`input[name="tramo"][value="${CSS.escape(previo.tramo)}"]`);
+      if (el instanceof HTMLInputElement) el.checked = true;
+    }
+    // Un nom de structure venu de l'accueil : on passe en « Entreprise » pour afficher le champ, puis on le remplit.
+    if (previo.negocio) {
+      negocioPendiente.current = previo.negocio;
+      setTipo('entreprise');
+    }
   }, []);
+
+  useEffect(() => {
+    const valor = negocioPendiente.current;
+    const el = formRef.current?.elements.namedItem('negocio');
+    if (valor && el instanceof HTMLInputElement) {
+      if (!el.value) el.value = valor;
+      negocioPendiente.current = null;
+    }
+  }, [tipo]);
 
   useEffect(() => {
     if (estado.fase === 'error' && avisoRef.current) {
@@ -244,25 +298,20 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
   }
 
   const conDisenos = items.some((i) => i.diseno);
-  const conPrecios = items.some((i) => productos[i.slug]?.precio?.startsWith('Desde'));
+  // Un prix chiffré (quand La Ola Import aura ses tarifs) appelle la note sur les prix ; « Consulter le prix », non.
+  const conPrecios = items.some((i) => /\d/.test(productos[i.slug]?.precio ?? ''));
 
   return (
     <section className="mx-auto w-full max-w-5xl px-4 pt-28 pb-16 sm:px-6 lg:px-8 lg:pt-36">
-      <div data-cielo-evitar>
-        <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-fuchsia-800 uppercase">Tu proyecto</p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight text-marine sm:text-5xl">Cuéntanos tu proyecto.</h1>
-        <p className="mt-4 max-w-2xl text-lg text-ardoise">
-          {particular ? 'Dos pasos cortos' : 'Tres pasos cortos'}. {TEXTOS.plazoPresupuesto.replace('Presupuesto', 'Te respondemos con presupuesto')}.
-        </p>
-      </div>
+      <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-violet-600 uppercase">Mon projet</p>
+      <h1 className="font-display text-4xl font-extrabold tracking-tight text-marine sm:text-5xl">Votre panier et votre demande</h1>
+      <p className="mt-4 max-w-2xl text-lg text-ardoise">Vérifiez votre panier, puis dites-nous qui vous êtes en deux étapes courtes. {PLAZO}</p>
 
-      {/* Cesta */}
-      <div className="mt-10 rounded-3xl border border-marine/10 bg-perle/50 p-6 sm:p-8">
+      {/* Panier */}
+      <div className={`mt-10 ${tarjeta}`}>
         <div className="flex flex-wrap items-end justify-between gap-3">
-          <h2 className="font-display text-2xl font-semibold text-marine">Tu presupuesto</h2>
-          <p className="text-sm text-ardoise">
-            {items.length ? `${items.length} ${items.length === 1 ? 'producto' : 'productos'}` : 'Aún no has añadido nada'}
-          </p>
+          <h2 className="font-display text-2xl font-bold text-marine">Votre panier</h2>
+          <p className="text-sm text-ardoise">{items.length ? `${items.length} ${items.length === 1 ? 'produit' : 'produits'}` : 'Votre panier est vide pour l’instant'}</p>
         </div>
         {items.length ? (
           <ul className="mt-5 space-y-3">
@@ -271,7 +320,7 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
             ))}
           </ul>
         ) : (
-          <p className="mt-4 text-ardoise">Añade productos desde el catálogo o manda tu diseño desde el estudio, y aparecerán aquí con su color, posición y cantidad.</p>
+          <p className="mt-4 text-ardoise">Ajoutez des produits depuis le catalogue ou créez votre visuel dans le studio : ils apparaîtront ici avec leur couleur, leur emplacement et leur quantité. Vous pouvez aussi nous décrire votre projet ci-dessous.</p>
         )}
         {conPrecios && (
           <p className="mt-4 text-xs leading-relaxed text-ardoise">
@@ -280,73 +329,68 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
         )}
         <div className="mt-5 flex flex-wrap gap-3">
           <BotonEnlace href="/catalogue" variante="secundario">
-            {items.length ? 'Añadir más productos' : 'Ver el catálogo'}
+            {items.length ? 'Ajouter d’autres produits' : 'Voir le catalogue'}
           </BotonEnlace>
           <BotonEnlace href="/personnaliser/atomic-150" variante="secundario">
-            Diseñar una prenda con mi logo
+            Personnaliser avec mon logo
           </BotonEnlace>
         </div>
       </div>
 
-      {/* Formulario por pasos: la acción de servidor valida y envía (fase 6) */}
+      {/* Formulaire en étapes : l'action serveur valide et envoie */}
       <form ref={formRef} className="mt-8 space-y-6" onSubmit={(e) => void alEnviar(e)} aria-describedby={`${id}-estado`}>
-        {/* Campo trampa: oculto a las personas; un robot que lo rellene se queda sin envío */}
+        <input type="hidden" name="formulario" value="projet" />
+        {/* Champ piège : invisible pour les personnes ; un robot qui le remplit n'envoie rien */}
         <div aria-hidden="true" className="sr-only">
           <label>
-            No rellenes este campo
+            Ne remplissez pas ce champ
             <input type="text" name={CAMPO_TRAMPA} tabIndex={-1} autoComplete="off" defaultValue="" />
           </label>
         </div>
 
-        <Paso numero={1} titulo={particular ? 'Sobre ti' : 'Tu negocio'}>
-          {/* Tipo de cliente (fase 4.1): cambia el bloque y viaja con la solicitud */}
+        <Paso numero={1} total={2} titulo="Vous">
           <fieldset className="sm:col-span-2">
-            <legend className={etiqueta}>¿Es para un negocio o para ti?</legend>
+            <legend className={etiqueta}>Vous êtes… *</legend>
             <div className="mt-2 flex flex-wrap gap-2">
-              {(
-                [
-                  ['negocio', 'Negocio'],
-                  ['particular', 'Particular'],
-                ] as const
-              ).map(([valor, nombre]) => (
-                <label key={valor} className={chip}>
-                  <input type="radio" name="tipo_cliente" value={valor} checked={tipo === valor} onChange={() => setTipo(valor)} className="sr-only" />
-                  {nombre}
+              {TIPOS.map((t) => (
+                <label key={t.id} className={chip}>
+                  <input type="radio" name="tipo_cliente" value={t.id} checked={tipo === t.id} onChange={() => setTipo(t.id)} className="sr-only" />
+                  {t.nombre}
                 </label>
               ))}
             </div>
           </fieldset>
           <label className={etiqueta}>
-            Nombre *<input name="nombre" required autoComplete="name" maxLength={120} className={campo} />
+            Nom et prénom *<input name="nombre" required autoComplete="name" maxLength={120} className={campo} />
           </label>
-          {!particular && (
+          {profesional && (
             <label className={etiqueta}>
-              Negocio *<input name="negocio" required autoComplete="organization" maxLength={120} className={campo} />
+              {NOMBRE_ESTRUCTURA[tipo]} *<input name="negocio" required autoComplete="organization" maxLength={120} className={campo} />
             </label>
           )}
-          {!particular && (
+          {profesional && (
             <label className={etiqueta}>
-              Sector
-              <input name="sector" maxLength={120} className={campo} placeholder="Por ejemplo: academia, gimnasio, pádel, hostelería" />
+              Activité <span className="font-normal text-ardoise">(facultatif)</span>
+              <input name="sector" maxLength={120} className={campo} placeholder="Par exemple : restaurant, tennis, location de vacances" />
             </label>
           )}
           <label className={etiqueta}>
-            Ciudad
+            Ville ou code postal <span className="font-normal text-ardoise">(facultatif)</span>
             <input name="ciudad" autoComplete="address-level2" maxLength={120} className={campo} />
           </label>
           <label className={etiqueta}>
             Email *<input name="email" type="email" required autoComplete="email" maxLength={200} className={campo} />
           </label>
           <label className={etiqueta}>
-            Teléfono o WhatsApp
+            Téléphone ou WhatsApp <span className="font-normal text-ardoise">(facultatif)</span>
             <input name="telefono" type="tel" autoComplete="tel" maxLength={40} className={campo} />
           </label>
           <fieldset className="sm:col-span-2">
-            <legend className={etiqueta}>Cómo prefieres que te contactemos</legend>
+            <legend className={etiqueta}>Comment préférez-vous être recontacté ?</legend>
             <div className="mt-2 flex flex-wrap gap-2">
-              {CONTACTOS.map((c, i) => (
+              {CONTACTOS.map((c) => (
                 <label key={c.id} className={chip}>
-                  <input type="radio" name="contacto_preferido" value={c.id} defaultChecked={i === 0} className="sr-only" />
+                  <input type="radio" name="contacto_preferido" value={c.id} defaultChecked={c.id === CONTACTO_POR_DEFECTO} className="sr-only" />
                   {c.nombre}
                 </label>
               ))}
@@ -354,9 +398,9 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
           </fieldset>
         </Paso>
 
-        <Paso numero={2} titulo="Qué necesitas">
+        <Paso numero={2} total={2} titulo="Votre projet">
           <div className="sm:col-span-2">
-            <p className={etiqueta}>Productos</p>
+            <p className={etiqueta}>Produits</p>
             <p className="mt-1 text-sm text-marine">
               {items.length
                 ? items
@@ -365,16 +409,16 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
                       return `${i.nombre} (${i.color.nombre}${donde ? `, ${donde.toLowerCase()}` : ''}, ${TRAMOS.find((t) => t.id === i.tramo)?.nombre.toLowerCase()})`;
                     })
                     .join(' · ')
-                : 'Los que añadas a tu presupuesto, o cuéntanoslo abajo.'}
+                : 'Ceux de votre panier, ou décrivez-les plus bas.'}
             </p>
           </div>
           <label className={`${etiqueta} sm:col-span-2`}>
-            Otro producto que no está en el catálogo
-            <input name="otro_producto" maxLength={300} className={campo} placeholder="Por ejemplo: toallas de microfibra" />
+            Un autre produit, hors catalogue <span className="font-normal text-ardoise">(facultatif)</span>
+            <input name="otro_producto" maxLength={300} className={campo} placeholder="Par exemple : serviettes, mugs, magnets" />
           </label>
           {!items.length && (
             <fieldset className="sm:col-span-2">
-              <legend className={etiqueta}>Cantidad aproximada</legend>
+              <legend className={etiqueta}>Quantité approximative</legend>
               <div className="mt-2 flex flex-wrap gap-2">
                 {TRAMOS.map((t) => (
                   <label key={t.id} className={chip}>
@@ -385,15 +429,12 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
               </div>
             </fieldset>
           )}
-          <p className="text-sm font-medium text-marine/90 sm:col-span-2">{TEXTOS.pedidoMinimo}</p>
-          {particular ? (
-            <label className={`${etiqueta} sm:col-span-2`}>
-              ¿Cuál es la ocasión?
-              <input name="ocasion" maxLength={200} className={campo} placeholder="Cumpleaños, despedida, boda, equipo, viaje de grupo…" />
-            </label>
-          ) : (
+          <p className="text-sm text-ardoise sm:col-span-2">{TEXTOS.pedidoMinimo}</p>
+          {profesional && (
             <fieldset className="sm:col-span-2">
-              <legend className={etiqueta}>Para qué es</legend>
+              <legend className={etiqueta}>
+                C’est pour… <span className="font-normal text-ardoise">(facultatif)</span>
+              </legend>
               <div className="mt-2 flex flex-wrap gap-2">
                 {USOS.map((u) => (
                   <label key={u.id} className={chip}>
@@ -404,105 +445,100 @@ export default function Proyecto({ productos }: { productos: Record<string, Dato
               </div>
             </fieldset>
           )}
-          {/* La fecha nunca es obligatoria: es una petición de presupuesto (fase 4.1) */}
+          <label className={`${etiqueta} sm:col-span-2`}>
+            Quelle est l’occasion ? <span className="font-normal text-ardoise">(facultatif)</span>
+            <input
+              name="ocasion"
+              maxLength={200}
+              className={campo}
+              placeholder={profesional ? 'Saison, ouverture, tournoi, salon, cadeaux de fin d’année…' : 'Anniversaire, mariage, enterrement de vie de célibataire, sortie de groupe…'}
+            />
+          </label>
+          {/* La date n'est jamais obligatoire : c'est une demande de devis */}
           <label className={etiqueta}>
-            ¿Para cuándo lo necesitas? <span className="font-normal text-ardoise/70">(opcional)</span>
-            <input name="fecha_limite" type="date" className={campo} />
+            Date souhaitée <span className="font-normal text-ardoise">(facultatif)</span>
+            <input name="fecha_limite" type="date" className={campo} aria-describedby={`${id}-fecha`} />
+            <span id={`${id}-fecha`} className={ayuda}>
+              Pas de date précise ? Laissez vide.
+            </span>
           </label>
           <label className={etiqueta}>
-            Archivos (logo, diseño)
+            Fichiers (logo, visuel) <span className="font-normal text-ardoise">(facultatif)</span>
             <input
               name={CLAVE_ARCHIVOS}
               type="file"
               multiple
               accept=".png,.jpg,.jpeg,.svg,.pdf,.ai,image/png,image/jpeg,image/svg+xml,application/pdf"
-              className={`${campo} file:mr-3 file:rounded-full file:border-0 file:bg-marine/10 file:px-3 file:py-1 file:text-sm file:text-marine`}
+              aria-describedby={`${id}-archivos`}
+              className={`${campo} file:mr-3 file:rounded-full file:border-0 file:bg-fuchsia-50 file:px-3 file:py-1 file:text-sm file:font-semibold file:text-marine`}
             />
-            <span className="mt-1 block text-xs text-ardoise/80">PNG, JPG, SVG, PDF o AI; hasta {formatoBytes(MAX_ENVIO_BYTES)} en total por envío. Si pesa más, mándanoslo después por WhatsApp o email.</span>
+            <span id={`${id}-archivos`} className={ayuda}>
+              PNG, JPG, SVG, PDF ou AI ; {formatoBytes(MAX_ENVIO_BYTES)} maximum par envoi. Plus lourd ? Envoyez-le-nous ensuite par WhatsApp ou par email.
+            </span>
           </label>
-          {conDisenos && <p className="text-sm text-ardoise sm:col-span-2">Tus diseños del estudio van adjuntos con sus capturas delantera y trasera y los archivos de tus logos.</p>}
+          <label className="flex items-start gap-3 text-sm text-marine sm:col-span-2">
+            <input type="checkbox" name="sin_logo" className="mt-0.5 h-5 w-5 shrink-0 accent-violet-600" />
+            <span>Je n’ai pas encore de logo.</span>
+          </label>
+          {conDisenos && <p className="text-sm text-ardoise sm:col-span-2">Vos visuels du studio sont joints avec leurs aperçus devant et derrière et les fichiers de vos logos.</p>}
           <label className={`${etiqueta} sm:col-span-2`}>
-            Comentarios
-            <textarea name="mensaje" rows={4} maxLength={4000} className={campo} placeholder="Si quieres, cuéntanos qué tienes en mente: prendas, colores, cantidades, fechas…" />
+            Commentaires <span className="font-normal text-ardoise">(facultatif)</span>
+            <textarea name="mensaje" rows={4} maxLength={4000} className={campo} placeholder="Racontez-nous votre idée : produits, couleurs, quantités, texte à imprimer…" />
           </label>
         </Paso>
 
-        {!particular && (
-          <Paso numero={3} titulo="¿Quieres verlas en persona?">
-            <fieldset className="sm:col-span-2">
-              <legend className={etiqueta}>Vamos a tu local con el muestrario, en la ciudad de Valencia</legend>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {CITAS.map((c) => (
-                  <label key={c.id} className={chip}>
-                    <input type="radio" name="cita" value={c.id} defaultChecked={c.id === 'no'} className="sr-only" />
-                    {c.nombre}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-            <label className={`${etiqueta} sm:col-span-2`}>
-              Franja preferida
-              <input name="franja" maxLength={200} className={campo} placeholder="Por ejemplo: martes o jueves por la mañana" />
-            </label>
-          </Paso>
-        )}
-
-        <div className="rounded-3xl border border-marine/10 p-6 sm:p-8">
-          <label className="flex items-start gap-3 text-sm text-ardoise">
-            <input type="checkbox" name="privacidad" required className="mt-1 h-4 w-4 accent-bleu-600" />
+        <div className={tarjeta}>
+          <label className="flex items-start gap-3 text-sm text-marine">
+            <input type="checkbox" name="privacidad" required className="mt-0.5 h-5 w-5 shrink-0 accent-violet-600" />
             <span>
-              He leído la{' '}
-              <Link href="/confidentialite" className="text-fuchsia-800 underline underline-offset-4 hover:text-bleu-600">
-                política de privacidad
-              </Link>
-              . Usaremos tus datos solo para responderte y preparar el presupuesto. *
+              J’accepte que {SITE.nombre} utilise ces informations pour répondre à ma demande.{' '}
+              <Link href="/confidentialite" className="font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
+                Politique de confidentialité
+              </Link>{' '}
+              *
             </span>
           </label>
-          <label className="mt-3 flex items-start gap-3 text-sm text-ardoise">
-            <input type="checkbox" name="logo_permiso" className="mt-1 h-4 w-4 accent-bleu-600" />
-            <span>Confirmo que puedo usar el logo o diseño que adjunto.</span>
+          <label className="mt-3 flex items-start gap-3 text-sm text-marine">
+            <input type="checkbox" name="logo_permiso" className="mt-0.5 h-5 w-5 shrink-0 accent-violet-600" />
+            <span>Je confirme avoir le droit d’utiliser le logo ou le visuel que je joins.</span>
           </label>
+          <p className="mt-3 text-xs text-ardoise">* Champs obligatoires.</p>
 
           {estado.fase === 'error' && (
-            <div ref={avisoRef} tabIndex={-1} role="alert" className="mt-6 rounded-2xl border border-bleu-600/50 bg-fond/70 p-4 text-sm text-marine focus:outline-none sm:p-5">
-              <p className="font-semibold">{estado.campos ? estado.mensaje : 'No se ha enviado.'}</p>
+            <div ref={avisoRef} tabIndex={-1} role="alert" className="mt-6 rounded-2xl border-2 border-fuchsia-700/40 bg-fuchsia-50 p-4 text-sm text-marine focus:outline-none sm:p-5">
+              <p className="font-bold">{estado.campos ? estado.mensaje : TITULO_FALLO}</p>
               {estado.campos ? (
-                <ul className="mt-2 list-disc space-y-1 pl-5 text-ardoise">
+                <ul className="mt-2 list-disc space-y-1 pl-5">
                   {estado.campos.map((c) => (
                     <li key={c.campo}>
-                      {NOMBRES_CAMPOS[c.campo] ? <span className="text-marine">{NOMBRES_CAMPOS[c.campo]}: </span> : null}
+                      {NOMBRES_CAMPOS[c.campo] ? <span className="font-semibold">{NOMBRES_CAMPOS[c.campo]} : </span> : null}
                       {c.mensaje}
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="mt-1 text-ardoise">{estado.mensaje}</p>
+                <p className="mt-1">{estado.mensaje}</p>
               )}
-              <a
-                href={enlaceWhatsApp()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${ESTILO_BOTON.secundario} mt-4`}
-              >
+              <a href={enlaceWhatsApp()} target="_blank" rel="noopener noreferrer" className={`${ESTILO_BOTON.secundario} mt-4 bg-fond`}>
                 <IconoWhatsApp className="h-4 w-4" />
-                Escríbenos por WhatsApp
+                Envoyer sur WhatsApp
               </a>
             </div>
           )}
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
-            <button type="submit" disabled={enviando} aria-busy={enviando} className={ESTILO_BOTON.principal + ' px-6 py-3 text-base'}>
-              {enviando ? 'Enviando…' : 'Enviar mi proyecto'}
+            <button type="submit" disabled={enviando} aria-busy={enviando} className={`${ESTILO_BOTON.principal} px-6 py-3 text-base`}>
+              {enviando ? 'Envoi en cours…' : 'Envoyer ma demande'}
             </button>
             <p id={`${id}-estado`} aria-live="polite" className="text-sm text-ardoise">
-              {enviando ? 'Preparando tus logos y tus capturas y enviando la solicitud…' : `${TEXTOS.plazoPresupuesto.replace('Presupuesto', 'Te respondemos con presupuesto')}.`}
+              {enviando ? 'Nous préparons vos logos et vos visuels, puis nous envoyons votre demande…' : PLAZO}
             </p>
           </div>
-          <p className="mt-2 text-xs text-ardoise/80">Si no ves nuestro correo de confirmación, revisa la carpeta de spam o promociones.</p>
-          {particular && <p className="mt-3 text-sm text-ardoise">¿Dudas? Escríbenos por WhatsApp: es la vía rápida.</p>}
-          <a href={enlaceWhatsApp()} target="_blank" rel="noopener noreferrer" className={`${ESTILO_BOTON.secundario} mt-4`}>
+          <p className="mt-3 text-xs text-ardoise">Vous ne voyez pas notre email de confirmation ? Regardez dans vos courriers indésirables ou l’onglet Promotions.</p>
+          <p className="mt-5 text-sm text-marine">Une question avant d’envoyer ? Écrivez-nous sur WhatsApp.</p>
+          <a href={enlaceWhatsApp()} target="_blank" rel="noopener noreferrer" className={`${ESTILO_BOTON.secundario} mt-3`}>
             <IconoWhatsApp className="h-4 w-4" />
-            Escríbenos por WhatsApp
+            Écrire sur WhatsApp
           </a>
         </div>
       </form>

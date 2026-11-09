@@ -1,6 +1,6 @@
 'use client';
 
-// Traspaso del logo entre la home («Pruébalo con tu logo») y el estudio: se guarda en sessionStorage del navegador
+// Traspaso del logo entre la home («Essayez avec votre logo») y el estudio: se guarda en sessionStorage del navegador
 // y el estudio lo recoge al abrirse. Nada se sube a ningún servidor (sección 4 de la spec).
 
 import { MAX_LADO_PX } from './estudio/logo';

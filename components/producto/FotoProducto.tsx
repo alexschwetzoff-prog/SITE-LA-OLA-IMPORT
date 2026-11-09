@@ -1,8 +1,8 @@
 'use client';
 
 // Foto de producto con el diseño de ejemplo dibujado encima (fase 4.2) y la revelación del color con el OVNI:
-//  - la foto se sirve limpia (sin diseño) y el diseño («Tu logo aquí», o el logo y la estrella de [MARCA]) se
-//    dibuja en un lienzo sobre ella a la resolución real de la pantalla (lib/diseno-ejemplo.ts);
+//  - la foto se sirve limpia (sin diseño) y el motivo « Votre logo ici » se dibuja en un lienzo sobre ella a la
+//    resolución real de la pantalla (lib/diseno-ejemplo.ts);
 //  - fase 4.4: la foto es un <img> con `srcset` de los tamaños publicados (1200 y 800 px, lib/fotos.ts), servidos
 //    tal cual, sin pasar por next/image (ni doble compresión ni AVIF que aplane las prendas oscuras);
 //  - al cambiar `src` (otro color), si la foto nueva ya está cargada, Novi, el OVNI, da un remolino alrededor del

@@ -11,7 +11,7 @@ export function CombinaCon({ producto }: { producto: Producto }) {
       <h2 id="combina" className="font-display text-2xl font-extrabold text-marine sm:text-3xl">
         Combinez avec
       </h2>
-      <p className="mt-2 text-ardoise">D’autres articles à personnaliser aux mêmes couleurs que {producto.nombre}.</p>
+      <p className="mt-2 text-ardoise">D’autres articles à personnaliser en même temps que {producto.nombre}.</p>
       <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {relacionados.map((p) => (
           <li key={p.slug}>
