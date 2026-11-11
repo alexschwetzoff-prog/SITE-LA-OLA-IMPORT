@@ -3,11 +3,11 @@
 import { forwardRef, useImperativeHandle, useRef, type ForwardedRef } from 'react';
 import type { ElementosSurfi } from '@/lib/surfi';
 
-// Surfi, la mascotte de La Ola Import, sur sa vague (remplace Ovni.tsx de la base). Montée seulement pendant une
-// révélation de couleur ; c'est lib/surfi.ts qui l'anime. Décoratif : aria-hidden, aucun clic capté.
+// Surfi, la mascotte de La Ola Import, sur sa vague. Monté seulement pendant une révélation de couleur ; c'est
+// lib/surfi.ts qui l'anime autour du cadre de la photo. Décoratif : aria-hidden, aucun clic capté.
 //
-// Structure : la scène (couvre la photo) → le voyageur (traverse la photo) → la vague (sillage SVG, support de la
-// planche) + le cadre qui montre une des 4 vues du sprite (face, trois-quarts, profil, dos).
+// Structure : la scène (couvre la photo) → le voyageur (suit le trajet via offset-path et pivote dans les virages)
+// → la vague (SVG ondulant, sous ses pieds, plus longue derrière lui) + le cadre qui montre une des 4 vues du sprite.
 
 export interface RefsSurfi {
   readonly voyageur: HTMLDivElement | null;
@@ -38,18 +38,24 @@ function SurfiBase({ className = '' }: { className?: string }, ref: ForwardedRef
   return (
     <div aria-hidden="true" className={`surfi-scene ${className}`}>
       <div ref={voyageurRef} className="surfi-voyageur">
-        {/* Le sillage : une vague translucide sous la planche, aux couleurs du logo. */}
-        <svg viewBox="0 0 200 60" preserveAspectRatio="none" className="absolute -right-[10%] bottom-0 -left-[60%] h-[22%] w-[170%]">
-          <defs>
-            <linearGradient id="surfi-sillage" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0" stopColor="#10e9fb" stopOpacity="0" />
-              <stop offset="0.55" stopColor="#05bcf8" stopOpacity="0.3" />
-              <stop offset="1" stopColor="#0363e9" stopOpacity="0.45" />
-            </linearGradient>
-          </defs>
-          <path d="M0 60 C 40 58 70 40 110 36 C 150 32 170 14 200 10 L 200 60 Z" fill="url(#surfi-sillage)" />
-          <path d="M60 46 C 100 40 140 30 196 12" fill="none" stroke="#ffffff" strokeOpacity="0.85" strokeWidth="3" strokeLinecap="round" />
-        </svg>
+        {/* La vague : une bande ondulante aux couleurs du logo, crête blanche ; elle défile sous la planche. */}
+        <div className="surfi-vague">
+          <svg viewBox="0 0 480 60" preserveAspectRatio="none" className="surfi-vague-defile">
+            {/* deux longueurs d'onde identiques : le défilement de 240 px boucle sans raccord visible */}
+            <path
+              d="M0 30 C 30 14 60 14 90 30 S 150 46 180 30 S 210 14 240 30 C 270 14 300 14 330 30 S 390 46 420 30 S 450 14 480 30 L 480 60 L 0 60 Z"
+              fill="#05bcf8" fillOpacity="0.8"
+            />
+            <path
+              d="M0 30 C 30 14 60 14 90 30 S 150 46 180 30 S 210 14 240 30 C 270 14 300 14 330 30 S 390 46 420 30 S 450 14 480 30"
+              fill="none"
+              stroke="#ffffff"
+              strokeOpacity="0.9"
+              strokeWidth="5"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
         <div className="surfi-cadre">
           <div ref={bandeRef} className="surfi-bande" />
         </div>

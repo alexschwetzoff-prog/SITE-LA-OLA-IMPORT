@@ -138,3 +138,12 @@ Todo lo que en esta copia sigue siendo de la empresa de la que sale la base, o e
   horario, redes sociales, alojamiento (Netlify o Vercel), dominio: ver `docs/PROPOSITION.md` §8 y `docs/LEGAL.md`.
 - [ ] **Revisión jurídica** de mentions légales, confidentialité, cookies y CGV (textos provisionales con aviso).
 
+## 8. Datos de la empresa recibidos (11/11/2026)
+
+- [x] Razón social **La Ola Impression** (nombre comercial La Ola Import), teléfono **06 69 64 28 05**, email
+  **laolaimport@outlook.fr**, dirección **350 Chemin du Perussier, 84170 Monteux** (el cliente escribió 84270, que es
+  Vedène; se confirmó 84170). En `lib/site.ts`, pie, sección y página `/contact`, cabecera (escritorio ≥ 1280 px),
+  mentions légales y JSON-LD LocalBusiness (`app/layout.tsx`). Los formularios envían a esta dirección por defecto
+  (`CORREO_DESTINO` vacío).
+- [ ] Siguen pendientes: SIRET, forma jurídica, RCS, director de la publicación, horario, WhatsApp (¿mismo número?),
+  redes sociales y dominio (el JSON-LD usa aún `dominio-pendiente.example` en `url`).

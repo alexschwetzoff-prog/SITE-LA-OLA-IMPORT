@@ -4,7 +4,7 @@
 // claro con una sombra de contacto, con el logo dibujado encima siguiendo el sombreado de la tela para que parezca
 // impreso y no pegado. La escala cm → px de cada foto viene calibrada con el largo de la ficha técnica
 // (data/siluetas). Al cambiar de color, Surfi cruza el lienzo (lib/surfi.ts) y la
-// escena nueva aparece detrás de él con un barrido (el lienzo dibuja el volet con `progresoCambio`);
+// escena nueva aparece detrás de él en abanico mientras da la vuelta al marco (`poligonoBarrido`, `progresoCambio`);
 // si la foto nueva no está cargada, cambio directo.
 // Sin 3D: decisión del equipo del 11/10/2026.
 
@@ -13,7 +13,7 @@ import { useStore } from 'zustand';
 import type { Posicion } from '@/data/catalogo';
 import { logoDeLado, posicionSilueta, proporcionEn, type Captura, type Colocacion, type PorLado, type StoreEstudio } from '@/lib/estudio/store';
 import { cmAFoto, fotoACm, fotosDelLado, fuenteFoto, type FotoCalibrada, type Lado } from '@/lib/estudio/siluetas';
-import { CAMBIO_SURFI, DURACION_SURFI, movimientoReducido, progresoCambio, surfiDesactive, type Reveal } from '@/lib/surfi';
+import { CAMBIO_SURFI, DURACION_SURFI, movimientoReducido, poligonoBarrido, progresoCambio, surfiDesactive, type Reveal } from '@/lib/surfi';
 import { elementosDe, type RefsSurfi } from '@/components/producto/Surfi';
 
 export type FuncionCapturar = () => Promise<Captura[]>;
@@ -341,9 +341,17 @@ export default function Visor2D({ store, fotos, capturarRef, surfiRef }: Props) 
         ctx.drawImage(nueva, 0, 0);
         ctx.globalAlpha = 1;
       } else if (p > 0) {
-        // volet de gauche à droite, synchronisé avec la planche de Surfi
-        const w = Math.round(lienzo.width * p);
-        if (w > 0) ctx.drawImage(nueva, 0, 0, w, lienzo.height, 0, 0, w, lienzo.height);
+        // éventail dévoilé derrière Surfi pendant son tour du cadre (même géométrie que la fiche produit)
+        const pts = poligonoBarrido(p, lienzo.width, lienzo.height);
+        if (pts.length > 2) {
+          ctx.save();
+          ctx.beginPath();
+          pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+          ctx.closePath();
+          ctx.clip();
+          ctx.drawImage(nueva, 0, 0);
+          ctx.restore();
+        }
       }
       const total = r.reducido ? DURACION_SURFI.fundido : CAMBIO_SURFI.fin;
       if (t < total) pedirDibujo();

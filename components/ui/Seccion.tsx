@@ -7,14 +7,15 @@ interface Props {
   intro?: ReactNode;
   children: ReactNode;
   ancho?: 'normal' | 'ancho';
-  fond?: 'blanc' | 'perle';
+  /** 'blanc' : fond de page (var --bg-page) ; 'perle' : --bg-section-alt ; 'bleu' : --bg-section-alt-2. */
+  fond?: 'blanc' | 'perle' | 'bleu';
   className?: string;
 }
 
 /** Section de page : sur-titre violet, titre Nunito, intro et contenu. */
 export function Seccion({ id, etiqueta, titulo, intro, children, ancho = 'normal', fond = 'blanc', className = '' }: Props) {
   return (
-    <section id={id} className={`${fond === 'perle' ? 'bg-perle' : ''} scroll-mt-24`}>
+    <section id={id} className={`${fond === 'perle' ? 'fond-alt' : fond === 'bleu' ? 'fond-alt-2' : ''} scroll-mt-24`}>
       <div className={`mx-auto w-full ${ancho === 'ancho' ? 'max-w-7xl' : 'max-w-6xl'} px-4 py-14 sm:px-6 lg:px-8 lg:py-20 ${className}`}>
         <div className="max-w-3xl">
           {etiqueta && <p className="mb-2 text-sm font-bold tracking-wide text-violet-600 uppercase">{etiqueta}</p>}

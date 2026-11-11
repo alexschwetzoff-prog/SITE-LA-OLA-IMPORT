@@ -69,7 +69,7 @@ export default function Header() {
     'rounded-full px-3 py-2 text-sm font-semibold text-marine/80 transition-colors hover:bg-cyan-300/15 hover:text-marine aria-[current=page]:text-cyan-700';
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-marine/10 bg-fond/95 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-marine/10 bg-[var(--bg-entete)] backdrop-blur-sm">
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0 rounded-lg p-1" aria-label={`${SITE.nombre}, accueil`}>
           <Logo className="h-[68px] w-auto" priority />
@@ -126,6 +126,12 @@ export default function Header() {
               {item.etiqueta}
             </Link>
           ))}
+          <a
+            href={enlaceTelefono(SITE.telefonos[0])}
+            className="ml-1 hidden rounded-full px-3 py-2 text-sm font-semibold whitespace-nowrap text-marine/80 hover:bg-cyan-300/15 hover:text-marine xl:inline-flex"
+          >
+            {SITE.telefonos[0]}
+          </a>
           <BotonCesta className="ml-1" />
           <Link
             href={CTA.href}

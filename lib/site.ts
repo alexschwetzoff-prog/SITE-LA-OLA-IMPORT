@@ -11,27 +11,28 @@ export const SITE = {
   tituloPorDefecto: 'La Ola Import · Textiles et objets personnalisés à Monteux (Vaucluse)',
   descripcion:
     'Atelier de personnalisation à Monteux : t-shirts, sweats, casquettes, objets publicitaires et souvenirs à vos couleurs, pour les entreprises, les clubs, les campings, les boutiques et les particuliers.',
-  email: 'email-pendiente@example.com',
-  telefonos: ['[TÉLÉPHONE]'],
+  email: 'laolaimport@outlook.fr',
+  telefonos: ['06 69 64 28 05'],
   // Numéro WhatsApp au format international sans « + ».
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '33000000000' /* [WHATSAPP] */,
   instagram: { usuario: '@instagram-pendiente', url: 'https://www.instagram.com/instagram-pendiente/' },
   facebook: { url: 'https://www.facebook.com/facebook-pendiente' },
   direccion: {
-    calle: '[ADRESSE]',
+    calle: '350 Chemin du Perussier',
     barrio: '',
-    cp: '84170',
+    cp: '84170', // Monteux (validé le 11/11/2026 : 84170 et non 84270, qui est Vedène)
     ciudad: 'Monteux',
+    region: 'Vaucluse',
     // Lien vers la recherche Google Maps, dans un nouvel onglet : aucun service tiers n'est chargé sur le site.
-    mapaUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('La Ola Import Monteux'),
+    mapaUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('350 Chemin du Perussier, 84170 Monteux'),
   },
   horario: '[HORAIRES]',
   titular: {
-    nombre: '[RAISON SOCIALE]',
+    nombre: 'La Ola Impression', // raison sociale ; « La Ola Import » est le nom commercial
     nombreCorto: 'La Ola Import',
     nif: '[SIRET]',
-    email: 'titular-pendiente@example.com',
-    direccion: '[ADRESSE DU SIÈGE]',
+    email: 'laolaimport@outlook.fr',
+    direccion: '350 Chemin du Perussier, 84170 Monteux',
     directeurPublication: '[DIRECTEUR DE LA PUBLICATION]',
     registro: '',
   },
@@ -78,4 +79,10 @@ export function enlaceWhatsApp(texto: string = MENSAJE_WHATSAPP): string {
 
 export function enlaceTelefono(telefono: string): string {
   return `tel:+33${telefono.replace(/\s+/g, '').replace(/^0/, '')}`;
+}
+
+/** Adresse complète sur une ligne : « 350 Chemin du Perussier, 84170 Monteux ». */
+export function adresseComplete(): string {
+  const d = SITE.direccion;
+  return `${d.calle}, ${d.cp} ${d.ciudad}`;
 }

@@ -6,7 +6,7 @@ import { ETAPES } from '@/data/equipe';
 /** « Comment nous travaillons » en bref : les étapes et une vidéo B-roll de l'atelier (réelle, à fournir). */
 export default function AtelierApercu() {
   return (
-    <Seccion id="comment-nous-travaillons" etiqueta="Comment nous travaillons" titulo="Votre idée, notre atelier, votre pièce.">
+    <Seccion id="comment-nous-travaillons" etiqueta="Comment nous travaillons" titulo="Votre idée, notre atelier, votre pièce." fond="bleu">
       <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-center">
         <ol className="space-y-4">
           {ETAPES.slice(0, 4).map((e, i) => (

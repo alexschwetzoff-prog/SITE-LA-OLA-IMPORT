@@ -24,7 +24,7 @@ export default function Footer() {
           <address className="mt-4 space-y-1 text-sm not-italic text-white/80">
             <p>
               <a href={d.mapaUrl} target="_blank" rel="noopener noreferrer" className={lien}>
-                {d.calle} · {d.cp} {d.ciudad} (Vaucluse)
+                {d.calle}, {d.cp} {d.ciudad} (Vaucluse)
               </a>
             </p>
             {SITE.telefonos.map((tel) => (
@@ -83,6 +83,7 @@ export default function Footer() {
         <nav aria-label="Informations">
           <p className={titreCol}>Infos</p>
           <ul className="mt-3 space-y-2 text-sm">
+            <li><Link href="/contact" className={lien}>Contact</Link></li>
             <li><Link href="/comment-nous-travaillons" className={lien}>Comment nous travaillons</Link></li>
             <li><Link href="/qui-sommes-nous" className={lien}>Qui sommes-nous</Link></li>
             <li><Link href="/livraison-et-paiement" className={lien}>Livraison et paiement</Link></li>
@@ -105,7 +106,7 @@ export default function Footer() {
       <div className="border-t border-white/15">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 text-xs text-white/70 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <p>
-            © {SITE.nombre} · {SITE.titular.nombre} · SIRET {SITE.titular.nif}
+            © {SITE.nombre} · {SITE.titular.nombre}, {SITE.titular.direccion} · SIRET {SITE.titular.nif}
           </p>
           <ul className="flex flex-wrap gap-x-4 gap-y-2">
             {ENLACES_LEGALES.map((l) => (

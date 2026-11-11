@@ -36,7 +36,7 @@ export default async function PageSegment({ params }: PageProps<'/professionnels
 
   return (
     <>
-      <section className="bg-perle pt-28 pb-12 lg:pt-32">
+      <section className="fond-alt-2 pt-28 pb-12 lg:pt-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-sm font-bold tracking-wide text-violet-600 uppercase">Professionnels · {s.titre}</p>
           <h1 className="mt-2 max-w-3xl font-display text-4xl font-extrabold tracking-tight text-marine sm:text-5xl">{s.accroche}</h1>

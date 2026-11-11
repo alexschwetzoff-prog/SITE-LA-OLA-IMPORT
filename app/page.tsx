@@ -3,6 +3,7 @@ import Accroche from '@/components/accueil/Accroche';
 import AtelierApercu from '@/components/accueil/AtelierApercu';
 import AvisApercu from '@/components/accueil/AvisApercu';
 import BandeauFinal from '@/components/accueil/BandeauFinal';
+import Contact from '@/components/accueil/Contact';
 import EquipeApercu from '@/components/accueil/EquipeApercu';
 import EssayezVotreLogo from '@/components/accueil/EssayezVotreLogo';
 import ProduitsPhares from '@/components/accueil/ProduitsPhares';
@@ -29,6 +30,7 @@ export default function Accueil() {
       <EquipeApercu />
       <EssayezVotreLogo />
       <AvisApercu />
+      <Contact fond="perle" />
       <BandeauFinal />
     </>
   );

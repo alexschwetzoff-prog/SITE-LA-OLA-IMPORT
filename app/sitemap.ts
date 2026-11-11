@@ -17,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...CON_ESTUDIO.map((p) => ({ url: url(`/personnaliser/${p.slug}`), priority: 0.7 })),
     { url: url('/devis'), priority: 0.8 },
     ...SEGMENTS.map((s) => ({ url: url(`/professionnels/${s.slug}`), priority: 0.8 })),
+    { url: url('/contact'), priority: 0.7 },
     { url: url('/comment-nous-travaillons'), priority: 0.6 },
     { url: url('/qui-sommes-nous'), priority: 0.6 },
     { url: url('/livraison-et-paiement'), priority: 0.4 },

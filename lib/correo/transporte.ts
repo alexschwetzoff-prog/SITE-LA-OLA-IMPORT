@@ -58,7 +58,8 @@ export function configuracionCorreo() {
   const contrasena = process.env.GMAIL_CONTRASENA_APP?.replace(/\s+/g, '') || '';
   const claveResend = process.env.RESEND_API_KEY?.trim() || '';
   const remitenteResend = leerRemitente(process.env.RESEND_REMITENTE?.trim() || REMITENTE_RESEND_POR_DEFECTO);
-  const destino = process.env.CORREO_DESTINO?.trim() || usuario;
+  // Les demandes (devis, panier, avis) arrivent à l'adresse de l'atelier, sauf si CORREO_DESTINO en indique une autre.
+  const destino = process.env.CORREO_DESTINO?.trim() || SITE.email || usuario;
   const pedido = process.env.CORREO_TRANSPORTE?.trim();
   const explicito = pedido === 'archivo' || pedido === 'gmail' || pedido === 'resend';
   const transporte: Transporte = explicito ? (pedido as Transporte) : claveResend ? 'resend' : contrasena ? 'gmail' : 'archivo';

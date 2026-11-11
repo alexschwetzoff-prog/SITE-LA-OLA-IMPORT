@@ -20,7 +20,7 @@ function vignette(categoria: string): { src: string; alt: string } | null {
 export default function Accroche() {
   const conteo = conteoPorCategoria();
   return (
-    <section className="relative bg-perle pt-24 lg:pt-28">
+    <section className="fond-alt relative pt-24 lg:pt-28">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
           <div className="max-w-2xl">
@@ -89,7 +89,7 @@ export default function Accroche() {
           ))}
         </ul>
       </div>
-      <Vague couleur="var(--color-fond)" degrade className="h-12 w-full" />
+      <Vague couleur="var(--bg-page)" degrade className="h-12 w-full" />
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Apartado, Correo, Dato, Falta, Lista, PaginaLegal } from '@/components/legal/Legal';
-import { SITE } from '@/lib/site';
+import { SITE, enlaceTelefono } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Mentions légales',
@@ -38,10 +38,16 @@ export default function MentionsLegales() {
             Siège social : <Dato valor={titular.direccion} />
           </li>
           <li>
-            Atelier : <Dato valor={direccion.calle} />, {direccion.cp} {direccion.ciudad}
+            Atelier :{' '}
+            <a href={direccion.mapaUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-bleu-600 underline underline-offset-4">
+              {direccion.calle}, {direccion.cp} {direccion.ciudad}
+            </a>
           </li>
           <li>
-            Téléphone : <Dato valor={SITE.telefonos[0]} />
+            Téléphone :{' '}
+            <a href={enlaceTelefono(SITE.telefonos[0])} className="font-semibold text-bleu-600 underline underline-offset-4">
+              {SITE.telefonos[0]}
+            </a>
           </li>
           <li>
             Email : <Correo email={SITE.email} />

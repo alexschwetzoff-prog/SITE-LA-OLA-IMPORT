@@ -20,7 +20,7 @@ const PROHIBIDAS = ['lorem', 'ipsum', '[à confirmer', 'à confirmer]', '[photo 
 // Marcadores que sí se admiten mientras el equipo no aporte el dato (se listan aparte, no cuentan como error).
 const PENDIENTES_ADMITIDOS = [];
 
-const RUTAS_INICIALES = ['/', '/catalogue', '/personnaliser/atomic-150', '/personnaliser/austral', '/projet', '/devis', '/avis', '/merci', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/clubs-sportifs', '/professionnels/campings', '/professionnels/boutiques-souvenirs', '/professionnels/entreprises', '/espace-client', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cookies', '/cgv', '/page-introuvable-404', '/sitemap.xml', '/robots.txt'];
+const RUTAS_INICIALES = ['/', '/catalogue', '/personnaliser/atomic-150', '/personnaliser/austral', '/projet', '/devis', '/avis', '/merci', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/clubs-sportifs', '/professionnels/campings', '/professionnels/boutiques-souvenirs', '/professionnels/entreprises', '/espace-client', '/contact', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cookies', '/cgv', '/page-introuvable-404', '/sitemap.xml', '/robots.txt'];
 
 const b = await chromium.launch();
 const resultados = [];

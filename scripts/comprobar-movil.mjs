@@ -8,7 +8,7 @@ const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: pr
 const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 const p = await ctx.newPage();
 let fallos = 0;
-for (const ruta of ['/', '/catalogue', '/catalogue/imola', '/catalogue/zenith', '/catalogue/atomic-150', '/personnaliser/atomic-150', '/projet', '/devis', '/merci', '/avis', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/campings', '/espace-client', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cgv', '/page-introuvable']) {
+for (const ruta of ['/', '/catalogue', '/catalogue/imola', '/catalogue/zenith', '/catalogue/atomic-150', '/personnaliser/atomic-150', '/projet', '/devis', '/merci', '/avis', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/campings', '/espace-client', '/contact', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cgv', '/page-introuvable']) {
   await p.goto(base + ruta, { waitUntil: 'load' });
   await p.waitForTimeout(1200);
   const r = await p.evaluate(() => {

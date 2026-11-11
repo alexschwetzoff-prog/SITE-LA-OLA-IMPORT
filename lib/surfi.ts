@@ -1,54 +1,121 @@
-// Surfi révèle la nouvelle couleur (remplace lib/ovni.ts de la base). Au clic sur une pastille de couleur, Surfi
-// traverse la photo de gauche à droite sur sa vague en tournant sur lui-même (4 vues : face, trois-quarts, profil,
-// dos) et un volet (clip-path) révèle la nouvelle couleur juste derrière sa planche.
+// Surfi révèle la nouvelle couleur sur la photo du vêtement. Au clic sur une pastille, il fait le TOUR du cadre de la
+// photo sur sa vague : il longe le bas, remonte le côté droit, longe le haut et redescend le côté gauche, en pivotant
+// à chaque bord (posé sur sa vague, orienté dans le sens du déplacement). Derrière lui, la nouvelle couleur se dévoile
+// en éventail depuis le centre de la photo : quand il a bouclé le tour, la photo est entièrement dans la nouvelle
+// couleur.
 //
-// Règles (brief La Ola Import) :
-//   - 1,6 s au total, jamais plus de 2 s (coupe-circuit à 2 000 ms) ;
-//   - n'anime que transform, opacity et clip-path (aucun reflow, CLS 0) ; la scène ne capte aucun clic ;
-//   - un nouveau clic annule l'animation en cours (`cancelar`) et la nouvelle démarre aussitôt, sans file d'attente ;
-//   - prefers-reduced-motion, interrupteur « Animations » désactivé ou images pas prêtes à temps → simple fondu de 150 ms ;
-//   - les images (un sprite WebP de 4 vues, 80 Ko) ne sont chargées qu'au premier survol, focus ou appui sur une
-//     pastille (`prechargerSurfi`), jamais au chargement de la page ;
-//   - sans JavaScript, les pastilles restent des liens : la couleur change simplement.
+// Technique :
+//   - le trajet est un `offset-path` (rectangle arrondi calculé en px d'après le cadre) et `offset-rotate: auto` fait
+//     pivoter Surfi tout seul dans chaque virage ; on n'anime que `offset-distance` (pipeline de transform) et
+//     `opacity`, dans une seule boucle requestAnimationFrame qui pilote aussi le dévoilement (clip-path) : tout reste
+//     synchronisé ;
+//   - la vague sous ses pieds ondule en CSS (transform seulement) ;
+//   - onglet caché pendant l'animation → on termine aussitôt (changement direct) ;
+//   - prefers-reduced-motion, interrupteur « Animation » coupé, ou image pas prête à temps → simple fondu de 150 ms ;
+//   - le sprite (4 vues, 80 Ko) n'est chargé qu'au premier survol, focus ou appui sur une pastille ;
+//   - un nouveau clic annule l'animation en cours (`cancelar`) et la nouvelle démarre aussitôt.
 //
-// La couche de la nouvelle photo naît masquée (`.surfi-capa-nueva` : clip-path à 100 %). Le studio (canvas) utilise
-// `progresoCambio` pour dessiner le même volet dans son lienzo.
+// La couche de la nouvelle photo naît masquée (`.surfi-capa-nueva`). Le studio (canvas) dessine le même éventail
+// avec `poligonoBarrido` et `progresoCambio`.
 
 export const SPRITE_SURFI = '/marca/surfi/surfi-rotation.webp';
 
 export const DURACION_SURFI = {
-  total: 1600,
-  entrada: 150, // Surfi apparaît à gauche
-  salida: 250, // il sort à droite en fondu
+  total: 2400, // un tour complet du cadre : fluide sans traîner (réglable ici)
+  entrada: 180, // apparition (fondu)
+  salida: 220, // disparition (fondu)
   fundido: 150, // mouvement réduit : fondu simple
-  securite: 2000, // coupe-circuit absolu
+  securite: 3000, // coupe-circuit absolu
 } as const;
 
-/** Fenêtre du volet (ms depuis le début) : il suit la planche de Surfi. */
-export const CAMBIO_SURFI = { inicio: 150, fin: 1350 } as const;
+/** Fenêtre du dévoilement (ms depuis le début) : c'est la durée du tour. */
+export const CAMBIO_SURFI = { inicio: 0, fin: DURACION_SURFI.total } as const;
 
-/** Instants (ms) où Surfi passe à la vue suivante du sprite : face → trois-quarts → profil → dos. */
-export const VUES_SURFI = [0, 450, 750, 1050] as const;
-
-/** Courbe commune au trajet et au volet, pour que le bord du volet reste collé à la planche. */
-const COURBE = 'cubic-bezier(.45,.05,.55,.95)';
+/** Vues du sprite : 0 face, 1 trois-quarts, 2 profil (de côté, dans le sens de la marche), 3 dos. */
+const VUE_SELON_TEMPS = (ms: number, total: number): number => (ms < 140 ? 0 : ms < 300 ? 1 : ms < total - 300 ? 2 : ms < total - 140 ? 1 : 0);
 
 const CLE_INTERRUPTEUR = 'laola:surfi';
 
-function suave(t: number): number {
-  return t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
+/** Courbe douce : démarre et finit en douceur, vitesse régulière au milieu. */
+function douce(t: number): number {
+  if (t <= 0) return 0;
+  if (t >= 1) return 1;
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
-/** Avancement du volet (0 à 1) à `ms` du début : pour le studio, qui dessine le volet dans son lienzo. */
+/** Avancement du tour (0 à 1) à `ms` du début : sert au studio pour dessiner l'éventail. */
 export function progresoCambio(ms: number): number {
-  return suave((ms - CAMBIO_SURFI.inicio) / (CAMBIO_SURFI.fin - CAMBIO_SURFI.inicio));
+  return douce((ms - CAMBIO_SURFI.inicio) / (CAMBIO_SURFI.fin - CAMBIO_SURFI.inicio));
+}
+
+/** Marge entre le bord du cadre et le trajet de Surfi (px). */
+export function margeTrajet(largeur: number, hauteur: number): number {
+  return Math.round(Math.min(largeur, hauteur) * 0.035);
+}
+
+/** Rayon des virages du trajet (px). */
+function rayon(largeur: number, hauteur: number): number {
+  return Math.round(Math.min(largeur, hauteur) * 0.08);
+}
+
+/**
+ * Trajet en rectangle arrondi, dans le sens bas → droite → haut → gauche (sens inverse des aiguilles d'une montre à
+ * l'écran). Départ en bas à gauche ; avec `offset-rotate: auto`, Surfi a les pieds vers le bord extérieur partout.
+ */
+export function trajet(largeur: number, hauteur: number): string {
+  const m = margeTrajet(largeur, hauteur);
+  const r = rayon(largeur, hauteur);
+  const g = m, d = largeur - m, h = m, b = hauteur - m;
+  return [
+    `M ${g + r} ${b}`,
+    `L ${d - r} ${b}`,
+    `A ${r} ${r} 0 0 0 ${d} ${b - r}`,
+    `L ${d} ${h + r}`,
+    `A ${r} ${r} 0 0 0 ${d - r} ${h}`,
+    `L ${g + r} ${h}`,
+    `A ${r} ${r} 0 0 0 ${g} ${h + r}`,
+    `L ${g} ${b - r}`,
+    `A ${r} ${r} 0 0 0 ${g + r} ${b}`,
+    'Z',
+  ].join(' ');
+}
+
+/**
+ * Éventail déjà dévoilé quand Surfi a parcouru la fraction `p` du tour : polygone (en px) qui part du centre, passe
+ * par le point de départ, les coins déjà passés et la position actuelle. À p = 1, c'est tout le cadre.
+ */
+export function poligonoBarrido(p: number, largeur: number, hauteur: number): [number, number][] {
+  const W = largeur, H = hauteur;
+  const centre: [number, number] = [W / 2, H / 2];
+  // le même tour que le trajet, ramené sur les bords du cadre (le dévoilement couvre tout le cadre)
+  const depart: [number, number] = [0, H];
+  const sommets: [number, number][] = [[W, H], [W, 0], [0, 0], [0, H]];
+  const longueurs = [W, H, W, H];
+  const total = 2 * (W + H);
+  let reste = Math.max(0, Math.min(1, p)) * total;
+  const points: [number, number][] = [centre, depart];
+  let courant = depart;
+  for (let i = 0; i < 4 && reste > 0; i++) {
+    const [x1, y1] = sommets[i];
+    const l = longueurs[i];
+    if (reste >= l) {
+      points.push([x1, y1]);
+      courant = [x1, y1];
+      reste -= l;
+    } else {
+      const k = reste / l;
+      points.push([courant[0] + (x1 - courant[0]) * k, courant[1] + (y1 - courant[1]) * k]);
+      reste = 0;
+    }
+  }
+  return points;
 }
 
 export function movimientoReducido(): boolean {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-/** L'utilisateur a-t-il coupé les animations avec l'interrupteur de la fiche ? */
+/** L'utilisateur a-t-il coupé l'animation avec l'interrupteur de la fiche ? */
 export function surfiDesactive(): boolean {
   try {
     return typeof window !== 'undefined' && window.localStorage.getItem(CLE_INTERRUPTEUR) === 'off';
@@ -106,7 +173,7 @@ export interface Reveal {
 
 /** Les éléments de components/producto/Surfi.tsx. */
 export interface ElementosSurfi {
-  /** Le conteneur qui traverse la photo (Surfi + sa vague). */
+  /** Le conteneur qui suit le trajet (Surfi + sa vague). */
   voyageur: HTMLElement;
   /** La bande du sprite (4 vues côte à côte) que l'on décale pour changer de vue. */
   bande: HTMLElement;
@@ -114,7 +181,7 @@ export interface ElementosSurfi {
 
 interface Opciones {
   surfi: ElementosSurfi | null;
-  /** Couche de la nouvelle photo : révélée par le volet. Optionnelle (le studio dessine dans son lienzo). */
+  /** Couche de la nouvelle photo : dévoilée en éventail. Optionnelle (le studio dessine dans son lienzo). */
   capa?: HTMLElement | null;
   reducido?: boolean;
   alFinal?: () => void;
@@ -124,15 +191,19 @@ interface Opciones {
 export function revelar({ surfi, capa, reducido = movimientoReducido() || surfiDesactive(), alFinal }: Opciones): Reveal {
   const animaciones: Animation[] = [];
   const minuteurs: number[] = [];
+  let image = 0;
   let viva = true;
 
   const limpiar = () => {
     for (const a of animaciones) a.cancel();
     animaciones.length = 0;
     for (const m of minuteurs) window.clearTimeout(m);
+    if (image) cancelAnimationFrame(image);
+    document.removeEventListener('visibilitychange', siCache);
     if (surfi) {
       surfi.voyageur.style.opacity = '';
-      surfi.voyageur.style.transform = '';
+      surfi.voyageur.style.offsetPath = '';
+      surfi.voyageur.style.offsetDistance = '';
       surfi.bande.style.transform = '';
     }
     if (capa) {
@@ -147,6 +218,13 @@ export function revelar({ surfi, capa, reducido = movimientoReducido() || surfiD
     // nettoyage après que React a retiré l'ancienne couche, sinon la nouvelle « renaîtrait » masquée une image
     requestAnimationFrame(() => requestAnimationFrame(limpiar));
   };
+  // onglet caché : les images ne défilent plus, on termine tout de suite
+  function siCache() {
+    if (document.hidden) {
+      if (capa) capa.style.clipPath = 'none';
+      terminar();
+    }
+  }
   const controle: Reveal = {
     cancelar: () => {
       viva = false;
@@ -165,7 +243,7 @@ export function revelar({ surfi, capa, reducido = movimientoReducido() || surfiD
     }
   };
 
-  if (reducido || !surfi || !('animate' in surfi.voyageur)) {
+  if (reducido || !surfi || typeof CSS === 'undefined' || !CSS.supports('offset-path', 'path("M 0 0")')) {
     fondu();
     return controle;
   }
@@ -174,48 +252,43 @@ export function revelar({ surfi, capa, reducido = movimientoReducido() || surfiD
     if (!viva) return;
     if (!ok) return fondu();
     const { voyageur, bande } = surfi;
+    const cadre = voyageur.parentElement?.getBoundingClientRect();
+    const W = cadre?.width || 300;
+    const H = cadre?.height || W;
+    voyageur.style.offsetPath = `path("${trajet(W, H)}")`;
+    voyageur.style.offsetDistance = '0%';
+    document.addEventListener('visibilitychange', siCache);
+
     const T = DURACION_SURFI.total;
-    const largeur = voyageur.parentElement?.getBoundingClientRect().width || 300;
-    const lui = voyageur.getBoundingClientRect().width || largeur * 0.37;
-
-    // 1. Le trajet : de la gauche (hors cadre) à la droite (hors cadre), même courbe que le volet.
-    const depart = -lui * 0.9;
-    const arrivee = largeur + lui * 0.1;
-    animaciones.push(
-      voyageur.animate(
-        [
-          { transform: `translateX(${depart}px) translateY(6%)`, opacity: 0, offset: 0 },
-          { opacity: 1, offset: DURACION_SURFI.entrada / T },
-          { transform: `translateX(${arrivee - lui * 0.35}px) translateY(-2%)`, opacity: 1, offset: CAMBIO_SURFI.fin / T },
-          { transform: `translateX(${arrivee}px) translateY(-4%)`, opacity: 0, offset: 1 },
-        ],
-        { duration: T, easing: COURBE, fill: 'forwards' },
-      ),
-    );
-
-    // 2. Le volet : la nouvelle couleur apparaît de gauche à droite, juste derrière la planche.
-    if (capa) {
-      animaciones.push(
-        capa.animate([{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)' }], {
-          delay: CAMBIO_SURFI.inicio,
-          duration: CAMBIO_SURFI.fin - CAMBIO_SURFI.inicio,
-          easing: COURBE,
-          fill: 'both',
-        }),
-      );
-    }
-
-    // 3. La rotation : on décale la bande du sprite (pas de changement de src, donc aucun clignotement).
-    VUES_SURFI.forEach((t, i) => {
-      minuteurs.push(
-        window.setTimeout(() => {
-          bande.style.transform = `translateX(${-i * 25}%)`;
-        }, t),
-      );
-    });
-
-    animaciones[0].finished.then(terminar).catch(() => {});
-    minuteurs.push(window.setTimeout(terminar, DURACION_SURFI.securite)); // coupe-circuit
+    const debut = performance.now();
+    let vue = -1;
+    const pas = (maintenant: number) => {
+      if (!viva) return;
+      const ms = maintenant - debut;
+      const p = progresoCambio(ms);
+      // 1. le trajet et l'apparition / disparition
+      voyageur.style.offsetDistance = `${(p * 100).toFixed(3)}%`;
+      const o = Math.min(1, ms / DURACION_SURFI.entrada, (T - ms) / DURACION_SURFI.salida);
+      voyageur.style.opacity = String(Math.max(0, o));
+      // 2. la vue du sprite (on ne touche au style que quand elle change)
+      const v = VUE_SELON_TEMPS(ms, T);
+      if (v !== vue) {
+        vue = v;
+        bande.style.transform = `translateX(${-v * 25}%)`;
+      }
+      // 3. le dévoilement en éventail, derrière Surfi
+      if (capa) {
+        const pts = poligonoBarrido(p, W, H).map(([x, y]) => `${((x / W) * 100).toFixed(2)}% ${((y / H) * 100).toFixed(2)}%`);
+        capa.style.clipPath = p >= 1 ? 'none' : `polygon(${pts.join(',')})`;
+      }
+      if (ms < T) image = requestAnimationFrame(pas);
+      else terminar();
+    };
+    image = requestAnimationFrame(pas);
+    minuteurs.push(window.setTimeout(() => {
+      if (capa) capa.style.clipPath = 'none';
+      terminar();
+    }, DURACION_SURFI.securite)); // coupe-circuit
   });
 
   return controle;

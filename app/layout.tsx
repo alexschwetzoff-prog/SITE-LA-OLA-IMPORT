@@ -30,14 +30,45 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#ffffff',
+  themeColor: '#f2ebfe',
   colorScheme: 'light',
+};
+
+// Données structurées schema.org LocalBusiness (référencement local), sur toutes les pages.
+const LOCAL_BUSINESS = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE.url}/#entreprise`,
+  name: SITE.nombre,
+  legalName: SITE.titular.nombre,
+  slogan: SITE.lema,
+  description: SITE.descripcion,
+  url: SITE.url,
+  logo: `${SITE.url}/marca/logo-la-ola-import.png`,
+  image: `${SITE.url}/og/marca.png`,
+  telephone: '+33669642805',
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.direccion.calle,
+    postalCode: SITE.direccion.cp,
+    addressLocality: SITE.direccion.ciudad,
+    addressRegion: 'Provence-Alpes-Côte d’Azur',
+    addressCountry: 'FR',
+  },
+  hasMap: SITE.direccion.mapaUrl,
+  areaServed: 'Vaucluse',
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="fr" className={`${nunito.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          // JSON.stringify n'échappe pas « < » : on le remplace (recommandation de la doc Next sur le JSON-LD).
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(LOCAL_BUSINESS).replace(/</g, '\\u003c') }}
+        />
         <a
           href="#contenu"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70] focus:rounded-full focus:bg-marine focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"

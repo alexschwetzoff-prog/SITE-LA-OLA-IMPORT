@@ -250,7 +250,7 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
               }}
               className="mt-2 inline-flex min-h-9 items-center gap-2 rounded-full px-1 text-xs font-medium text-ardoise hover:text-marine"
             >
-              <span aria-hidden="true" className={`relative h-4 w-7 rounded-full transition-colors ${animation ? 'bg-cyan-700' : 'bg-marine/25'}`}>
+              <span aria-hidden="true" className={`relative inline-block h-4 w-7 shrink-0 rounded-full transition-colors ${animation ? 'bg-cyan-700' : 'bg-marine/25'}`}>
                 <span className={`absolute top-0.5 h-3 w-3 rounded-full bg-white transition-transform ${animation ? 'translate-x-3.5' : 'translate-x-0.5'}`} />
               </span>
               Animation de Surfi au changement de couleur
