@@ -54,16 +54,16 @@
 :root {
   color-scheme: light;
 
-  /* Fonds de page : proposition B « Lavande » (validée le 11/11/2026). Tout le rythme de la page se règle ici.
+  /* Fonds de page : proposition A « Lagon » (validée le 11/11/2026). Tout le rythme de la page se règle ici.
      Contrastes vérifiés (WCAG AA) sur chacun : marine ≥ 16:1, ardoise ≥ 4,8:1, liens bleu-600 ≥ 4,5:1,
      violet-600 ≥ 6,8:1, bouton fuchsia-700 ≥ 4,6:1. Les cartes et formulaires restent blancs. */
-  --bg-page: #f2ebfe; /* 60 % : lavande, teinte claire du violet du logo */
-  --bg-section-alt: #fbe8fa; /* sections alternées : teinte claire du fuchsia */
-  --bg-section-alt-2: #e7f4ff; /* troisième teinte : bleu ciel, pour rythmer */
+  --bg-page: #e3f8fc; /* 60 % : lagon, teinte claire du cyan du logo */
+  --bg-section-alt: #eaf1ff; /* sections alternées : teinte claire du bleu */
+  --bg-section-alt-2: #f1eafe; /* troisième teinte : lavande claire, pour rythmer */
   --bg-entete: color-mix(in srgb, var(--bg-page) 80%, white); /* en-tête fixe, légèrement plus clair */
-  --forme-1: rgb(97 6 226 / 0.14); /* formes douces : violet */
-  --forme-2: rgb(246 19 234 / 0.1); /* formes douces : fuchsia */
-  --forme-3: rgb(16 233 251 / 0.16); /* formes douces : cyan */
+  --forme-1: rgb(16 233 251 / 0.22); /* formes douces : cyan */
+  --forme-2: rgb(97 6 226 / 0.1); /* formes douces : violet */
+  --forme-3: rgb(3 99 233 / 0.1); /* formes douces : bleu */
 }
 
 html {
