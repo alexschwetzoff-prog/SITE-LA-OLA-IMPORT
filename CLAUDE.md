@@ -86,3 +86,24 @@ npm run dev
 
 Hasta que lleguen los archivos de `brand/` faltan imágenes de marca (logo, estrella, mascota, portada, Open Graph,
 favicon): la web arranca pero esas piezas salen rotas o vacías. Está listado en `PENDIENTE-DE-SUSTITUIR.md`.
+
+## Cómo trabajamos (Alex y Fionn)
+
+Dos personas trabajan en esta web con la misma cuenta de Claude, en sesiones distintas. Hasta que se conecte el dominio y el cliente vea la web, se trabaja directamente sobre `main`, sin ramas ni pull requests. Cada push a `main` actualiza la URL de pruebas de Vercel. Cuando se conecte el dominio o el cliente empiece a ver la web, este apartado se cambia a ramas con pull request.
+
+Reparto de zonas:
+- Alex: diseño, interfaz y contenido. Tailwind y estilos globales, maquetación, textos, información legal, catálogo (data/catalogo.ts) y brand/.
+- Fionn: interactividad, multimedia y rendimiento. lib/ (cesta, pedido, emails, estudio de diseño), data/siluetas/, configurador, efecto de cambio de color, mascota Surfi 3D, vídeos, carga diferida, componentes interactivos nuevos y public/media/.
+- Cada uno solo modifica archivos de su zona. Si necesita tocar la del otro, pregunta antes a la persona.
+- Fionn no cambia colores, tipografías, márgenes ni textos. Alex no cambia la lógica del configurador, la cesta, los scripts de animación ni los atributos de las etiquetas <video>.
+
+Flujo:
+1. Al empezar la sesión: bajar lo último de main (pull).
+2. Al terminar cada tarea: ejecutar npm run build. Si falla, arreglarlo antes de subir. No subir con el build roto.
+3. Antes de subir: pull de main otra vez y enseñar la lista de archivos cambiados. Si aparece uno de la otra zona, se deshace.
+4. Commit con mensaje que empiece por [Alex] o [Fionn], y push a main.
+5. Si hay un conflicto con un cambio del otro, no resolverlo en su zona: avisar a la persona.
+6. Subidas pequeñas y frecuentes, mejor varias al día.
+7. Una sesión de Claude por persona y por tarea. Nadie escribe en la sesión del otro.
+
+Datos: no se inventan precios, plazos, mínimos ni datos legales. Si falta algo, se deja el placeholder y se avisa. Nada de NovaPrint: ni nombre, textos, imágenes ni cuentas.
