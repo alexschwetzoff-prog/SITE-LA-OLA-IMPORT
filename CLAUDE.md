@@ -89,7 +89,7 @@ favicon): la web arranca pero esas piezas salen rotas o vacías. Está listado e
 
 ## Cómo trabajamos (Alex y Fionn)
 
-Dos personas trabajan en esta web con la misma cuenta de Claude, en sesiones distintas. La rama `main` es la web pública (Vercel la publica): nadie sube a `main` directamente.
+Dos personas trabajan en esta web con la misma cuenta de Claude, en sesiones distintas. Hasta que se conecte el dominio y el cliente vea la web, se trabaja directamente sobre `main`, sin ramas ni pull requests. Cada push a `main` actualiza la URL de pruebas de Vercel. Cuando se conecte el dominio o el cliente empiece a ver la web, este apartado se cambia a ramas con pull request.
 
 Reparto de zonas:
 - Alex: diseño, interfaz y contenido. Tailwind y estilos globales, maquetación, textos, información legal, catálogo (data/catalogo.ts) y brand/.
@@ -97,11 +97,13 @@ Reparto de zonas:
 - Cada uno solo modifica archivos de su zona. Si necesita tocar la del otro, pregunta antes a la persona.
 - Fionn no cambia colores, tipografías, márgenes ni textos. Alex no cambia la lógica del configurador, la cesta, los scripts de animación ni los atributos de las etiquetas <video>.
 
-Flujo de trabajo:
-1. Cada tarea va en una rama propia, creada desde import-base: alex-<tarea> o fionn-<tarea>.
-2. Los mensajes de commit empiezan por [Alex] o [Fionn].
-3. Al terminar, se hace push de la rama y se abre un pull request hacia import-base. Nunca hacia main.
-4. Alex decide cuándo import-base se fusiona en main, con la validación del cliente.
-5. Antes de subir, se enseña la lista de archivos cambiados. Si aparece uno de la otra zona, se deshace.
+Flujo:
+1. Al empezar la sesión: bajar lo último de main (pull).
+2. Al terminar cada tarea: ejecutar npm run build. Si falla, arreglarlo antes de subir. No subir con el build roto.
+3. Antes de subir: pull de main otra vez y enseñar la lista de archivos cambiados. Si aparece uno de la otra zona, se deshace.
+4. Commit con mensaje que empiece por [Alex] o [Fionn], y push a main.
+5. Si hay un conflicto con un cambio del otro, no resolverlo en su zona: avisar a la persona.
+6. Subidas pequeñas y frecuentes, mejor varias al día.
+7. Una sesión de Claude por persona y por tarea. Nadie escribe en la sesión del otro.
 
 Datos: no se inventan precios, plazos, mínimos ni datos legales. Si falta algo, se deja el placeholder y se avisa. Nada de NovaPrint: ni nombre, textos, imágenes ni cuentas.
