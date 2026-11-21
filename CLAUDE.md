@@ -86,3 +86,22 @@ npm run dev
 
 Hasta que lleguen los archivos de `brand/` faltan imágenes de marca (logo, estrella, mascota, portada, Open Graph,
 favicon): la web arranca pero esas piezas salen rotas o vacías. Está listado en `PENDIENTE-DE-SUSTITUIR.md`.
+
+## Cómo trabajamos (Alex y Fionn)
+
+Dos personas trabajan en esta web con la misma cuenta de Claude, en sesiones distintas. La rama `main` es la web pública (Vercel la publica): nadie sube a `main` directamente.
+
+Reparto de zonas:
+- Alex: diseño, interfaz y contenido. Tailwind y estilos globales, maquetación, textos, información legal, catálogo (data/catalogo.ts) y brand/.
+- Fionn: interactividad, multimedia y rendimiento. lib/ (cesta, pedido, emails, estudio de diseño), data/siluetas/, configurador, efecto de cambio de color, mascota Surfi 3D, vídeos, carga diferida, componentes interactivos nuevos y public/media/.
+- Cada uno solo modifica archivos de su zona. Si necesita tocar la del otro, pregunta antes a la persona.
+- Fionn no cambia colores, tipografías, márgenes ni textos. Alex no cambia la lógica del configurador, la cesta, los scripts de animación ni los atributos de las etiquetas <video>.
+
+Flujo de trabajo:
+1. Cada tarea va en una rama propia, creada desde import-base: alex-<tarea> o fionn-<tarea>.
+2. Los mensajes de commit empiezan por [Alex] o [Fionn].
+3. Al terminar, se hace push de la rama y se abre un pull request hacia import-base. Nunca hacia main.
+4. Alex decide cuándo import-base se fusiona en main, con la validación del cliente.
+5. Antes de subir, se enseña la lista de archivos cambiados. Si aparece uno de la otra zona, se deshace.
+
+Datos: no se inventan precios, plazos, mínimos ni datos legales. Si falta algo, se deja el placeholder y se avisa. Nada de NovaPrint: ni nombre, textos, imágenes ni cuentas.
