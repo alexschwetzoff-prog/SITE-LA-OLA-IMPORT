@@ -70,7 +70,8 @@
      930,
      612,
      1245
-    ]
+    ],
+    "modo": "recorte"
    }
   },
   "attrape-reves-coeur-45": {
@@ -81,8 +82,7 @@
      930,
      795,
      1240
-    ],
-    "modo": "rect"
+    ]
    },
    "noir-blanc": {
     "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
@@ -232,8 +232,7 @@
      218,
      220,
      515
-    ],
-    "modo": "rect"
+    ]
    },
    "bleu": {
     "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
@@ -352,8 +351,7 @@
      1005,
      1005,
      1218
-    ],
-    "modo": "rect"
+    ]
    }
   },
   "attrape-reves-rond-plage-11": {
@@ -512,7 +510,6 @@
      665,
      1425
     ],
-    "modo": "rect",
     "excluir": [
      [
       620,
@@ -532,7 +529,7 @@
      420,
      1000
     ],
-    "modo": "rect"
+    "modo": "ia"
    },
    "star": {
     "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
@@ -624,7 +621,7 @@
      350,
      445
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "ancres-marine": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -634,7 +631,7 @@
      655,
      445
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "flamants": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -644,7 +641,7 @@
      955,
      445
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "licorne-magic": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -654,7 +651,7 @@
      350,
      775
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "licorne-rose": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -664,7 +661,7 @@
      655,
      775
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "flamants-coeur": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -674,7 +671,7 @@
      955,
      775
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "elephant": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -684,7 +681,7 @@
      350,
      1100
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "sirene": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -694,7 +691,7 @@
      655,
      1100
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "flamants-tropical": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -704,7 +701,7 @@
      955,
      1100
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "ancres-chevrons": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -714,7 +711,7 @@
      350,
      1425
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "baleines": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -724,7 +721,7 @@
      655,
      1425
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "licorne-coeur": {
     "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
@@ -734,7 +731,7 @@
      955,
      1425
     ],
-    "modo": "rect"
+    "modo": "bolso"
    }
   },
   "sac-a-dos-peluche": {
@@ -746,7 +743,6 @@
      528,
      772
     ],
-    "modo": "rect",
     "excluir": [
      [
       420,
@@ -754,7 +750,8 @@
       640,
       270
      ]
-    ]
+    ],
+    "modo": "hull"
    },
    "lapinou-coeur": {
     "cartel": "Bolsos/2 Sacs à dos peluche pastel.png",
@@ -764,7 +761,6 @@
      1025,
      772
     ],
-    "modo": "rect",
     "excluir": [
      [
       420,
@@ -772,7 +768,8 @@
       660,
       270
      ]
-    ]
+    ],
+    "modo": "hull"
    },
    "licorne": {
     "cartel": "Bolsos/2 Sacs à dos peluche pastel.png",
@@ -782,7 +779,7 @@
      645,
      1335
     ],
-    "modo": "rect"
+    "modo": "hull"
    }
   },
   "sac-corde-marine-46x34x12": {
@@ -794,7 +791,7 @@
      262,
      708
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "flamants-plage": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -804,7 +801,7 @@
      522,
      708
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "rayures-fuchsia": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -814,7 +811,7 @@
      775,
      708
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "flamants-feuilles": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -824,7 +821,7 @@
      1032,
      708
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "flamants-bleus": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -834,7 +831,7 @@
      262,
      993
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "summer-flamants": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -844,7 +841,7 @@
      522,
      993
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "ancre-marine": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -854,7 +851,7 @@
      775,
      993
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "rayures-dorees": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -864,7 +861,7 @@
      1032,
      993
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "cocktails": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -874,7 +871,7 @@
      262,
      1258
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "attrape-reves": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -884,7 +881,7 @@
      522,
      1258
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "fruits-tropicaux": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -894,7 +891,7 @@
      775,
      1258
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "paillettes-violettes": {
     "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
@@ -904,7 +901,7 @@
      1032,
      1258
     ],
-    "modo": "rect"
+    "modo": "bolso"
    }
   },
   "sac-corde-paillete-46x34x12": {
@@ -916,7 +913,6 @@
      530,
      705
     ],
-    "modo": "rect",
     "excluir": [
      [
       470,
@@ -924,7 +920,8 @@
       545,
       292
      ]
-    ]
+    ],
+    "modo": "bolso"
    },
    "bleu-marine": {
     "cartel": "Bolsos/4 Sacs cordes Marine pailleté 46X34X12.png",
@@ -934,7 +931,6 @@
      975,
      705
     ],
-    "modo": "rect",
     "excluir": [
      [
       540,
@@ -942,7 +938,8 @@
       695,
       292
      ]
-    ]
+    ],
+    "modo": "bolso"
    },
    "rose": {
     "cartel": "Bolsos/4 Sacs cordes Marine pailleté 46X34X12.png",
@@ -952,7 +949,7 @@
      528,
      1185
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "dore": {
     "cartel": "Bolsos/4 Sacs cordes Marine pailleté 46X34X12.png",
@@ -962,7 +959,7 @@
      975,
      1185
     ],
-    "modo": "rect"
+    "modo": "bolso"
    }
   },
   "sac-de-plage-55x37x15": {
@@ -974,7 +971,7 @@
      515,
      700
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "etoiles-marine": {
     "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
@@ -984,7 +981,7 @@
      770,
      700
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "rayures-marine": {
     "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
@@ -994,7 +991,7 @@
      1005,
      700
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "ancres-marine": {
     "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
@@ -1004,7 +1001,7 @@
      226,
      938
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "cordages-noir": {
     "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
@@ -1014,7 +1011,7 @@
      424,
      938
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "ancre-rouge": {
     "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
@@ -1024,7 +1021,7 @@
      612,
      938
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "flamants-rayures": {
     "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
@@ -1034,7 +1031,7 @@
      803,
      938
     ],
-    "modo": "rect"
+    "modo": "bolso"
    },
    "flamants-noir": {
     "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
@@ -1044,7 +1041,7 @@
      1008,
      938
     ],
-    "modo": "rect"
+    "modo": "bolso"
    }
   },
   "porte-monnaie-10x13": {
@@ -1052,37 +1049,29 @@
     "cartel": "Bolsos/Porte-monnaies personnalisables aux motifs méditerranéens.png",
     "caja": [
      82,
-     552,
+     548,
      412,
-     880
+     800
     ],
-    "modo": "rect",
-    "excluir": [
-     [
-      175,
-      790,
-      500,
-      1110
-     ]
-    ]
+    "modo": "hull"
    },
    "azulejos": {
     "cartel": "Bolsos/Porte-monnaies personnalisables aux motifs méditerranéens.png",
     "caja": [
-     385,
-     532,
-     642,
-     790
+     168,
+     778,
+     500,
+     1112
     ],
-    "modo": "rect"
+    "modo": "ia"
    },
    "mosaique-fleurie": {
     "cartel": "Bolsos/Porte-monnaies personnalisables aux motifs méditerranéens.png",
     "caja": [
-     596,
-     545,
-     978,
-     885
+     466,
+     784,
+     930,
+     1040
     ],
     "modo": "rect"
    }
@@ -1096,7 +1085,6 @@
      370,
      375
     ],
-    "modo": "rect",
     "excluir": [
      [
       185,
@@ -1114,7 +1102,6 @@
      662,
      375
     ],
-    "modo": "rect",
     "excluir": [
      [
       470,
@@ -1132,7 +1119,6 @@
      942,
      375
     ],
-    "modo": "rect",
     "excluir": [
      [
       820,
@@ -1153,20 +1139,28 @@
    "fuchsia": {
     "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
     "caja": [
-     75,
+     84,
      486,
-     268,
-     604
+     258,
+     610
     ],
-    "modo": "rect"
+    "modo": "rect",
+    "excluir": [
+     [
+      84,
+      486,
+      142,
+      503
+     ]
+    ]
    },
    "turquoise": {
     "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
     "caja": [
-     315,
-     474,
-     502,
-     604
+     306,
+     476,
+     492,
+     610
     ],
     "modo": "rect"
    }
@@ -1176,19 +1170,19 @@
     "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
     "caja": [
      550,
-     478,
-     758,
-     604
+     474,
+     762,
+     610
     ],
     "modo": "rect"
    },
    "paille": {
     "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
     "caja": [
-     798,
-     458,
-     992,
-     582
+     806,
+     468,
+     996,
+     583
     ],
     "modo": "rect"
    }
@@ -1274,7 +1268,6 @@
      390,
      1075
     ],
-    "modo": "rect",
     "excluir": [
      [
       225,
@@ -1311,7 +1304,6 @@
      285,
      1318
     ],
-    "modo": "rect",
     "excluir": [
      [
       130,
@@ -1329,7 +1321,6 @@
      525,
      1318
     ],
-    "modo": "rect",
     "excluir": [
      [
       385,
@@ -1347,7 +1338,6 @@
      760,
      1318
     ],
-    "modo": "rect",
     "excluir": [
      [
       625,
@@ -1365,7 +1355,6 @@
      1003,
      1318
     ],
-    "modo": "rect",
     "excluir": [
      [
       865,
@@ -1460,7 +1449,6 @@
      995,
      755
     ],
-    "modo": "rect",
     "excluir": [
      [
       900,
@@ -1507,7 +1495,6 @@
      500,
      1285
     ],
-    "modo": "rect",
     "excluir": [
      [
       390,
@@ -1531,7 +1518,6 @@
      1005,
      1280
     ],
-    "modo": "rect",
     "excluir": [
      [
       895,
@@ -1557,7 +1543,6 @@
      495,
      1010
     ],
-    "modo": "rect",
     "excluir": [
      [
       385,
@@ -1583,7 +1568,6 @@
      412,
      535
     ],
-    "modo": "rect",
     "excluir": [
      [
       40,
@@ -1654,7 +1638,6 @@
      532,
      898
     ],
-    "modo": "rect",
     "excluir": [
      [
       340,
@@ -1674,7 +1657,6 @@
      792,
      898
     ],
-    "modo": "rect",
     "excluir": [
      [
       588,
@@ -1692,7 +1674,6 @@
      1022,
      898
     ],
-    "modo": "rect",
     "excluir": [
      [
       832,
@@ -1803,7 +1784,6 @@
      556,
      668
     ],
-    "modo": "rect",
     "excluir": [
      [
       340,
@@ -1840,7 +1820,6 @@
      432,
      900
     ],
-    "modo": "rect",
     "excluir": [
      [
       150,
@@ -1894,7 +1873,6 @@
      368,
      1222
     ],
-    "modo": "rect",
     "excluir": [
      [
       205,
@@ -1914,7 +1892,6 @@
      256,
      1440
     ],
-    "modo": "rect",
     "excluir": [
      [
       100,
@@ -1932,7 +1909,6 @@
      436,
      1440
     ],
-    "modo": "rect",
     "excluir": [
      [
       290,
@@ -1958,7 +1934,6 @@
      988,
      1205
     ],
-    "modo": "rect",
     "excluir": [
      [
       850,
@@ -1975,8 +1950,7 @@
      1235,
      660,
      1388
-    ],
-    "modo": "rect"
+    ]
    },
    "bleu-jean": {
     "cartel": "Sombreros/5 Capelines Taille 54 2.png",
@@ -1985,8 +1959,7 @@
      1238,
      872,
      1388
-    ],
-    "modo": "rect"
+    ]
    },
    "naturel": {
     "cartel": "Sombreros/5 Capelines Taille 54 2.png",
@@ -1995,8 +1968,7 @@
      1238,
      1032,
      1388
-    ],
-    "modo": "rect"
+    ]
    }
   },
   "borsalino-enfant-ruban-beige": {
@@ -2007,8 +1979,7 @@
      1038,
      760,
      1200
-    ],
-    "modo": "rect"
+    ]
    }
   },
   "eventail-fleurs": {
@@ -2214,8 +2185,7 @@
      538,
      992,
      1138
-    ],
-    "modo": "rect"
+    ]
    }
   },
   "barrette-strass": {
@@ -2353,7 +2323,7 @@
      372,
      525
     ],
-    "modo": "rect"
+    "modo": "hull"
    },
    "dinosaure": {
     "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
@@ -2363,7 +2333,7 @@
      665,
      525
     ],
-    "modo": "rect"
+    "modo": "hull"
    },
    "foot": {
     "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
@@ -2373,7 +2343,7 @@
      965,
      525
     ],
-    "modo": "rect"
+    "modo": "hull"
    },
    "licorne": {
     "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
@@ -2383,7 +2353,7 @@
      368,
      980
     ],
-    "modo": "rect"
+    "modo": "hull"
    },
    "licorne-rainbow": {
     "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
@@ -2393,7 +2363,7 @@
      668,
      980
     ],
-    "modo": "rect"
+    "modo": "hull"
    },
    "requin": {
     "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
@@ -2403,7 +2373,7 @@
      992,
      980
     ],
-    "modo": "rect"
+    "modo": "hull"
    },
    "sirene": {
     "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
@@ -2413,7 +2383,7 @@
      505,
      1410
     ],
-    "modo": "rect"
+    "modo": "hull"
    },
    "pirate": {
     "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
@@ -2423,7 +2393,7 @@
      870,
      1410
     ],
-    "modo": "rect"
+    "modo": "hull"
    }
   },
   "serviette-plage-70x140": {
@@ -2435,7 +2405,7 @@
      364,
      660
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "parasol-cocktail": {
     "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
@@ -2445,7 +2415,7 @@
      622,
      660
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "poissons-rayes": {
     "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
@@ -2455,7 +2425,7 @@
      866,
      660
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "tongs": {
     "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
@@ -2465,7 +2435,7 @@
      346,
      1038
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "poissons-tropicaux": {
     "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
@@ -2475,7 +2445,7 @@
      636,
      1038
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "surf-palmiers": {
     "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
@@ -2485,7 +2455,7 @@
      962,
      1038
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "scooter-summer": {
     "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
@@ -2495,7 +2465,7 @@
      332,
      1440
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "etoile-de-mer-fleurie": {
     "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
@@ -2505,7 +2475,7 @@
      618,
      1440
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "flamants-coeur": {
     "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
@@ -2515,7 +2485,7 @@
      926,
      1440
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "marguerites": {
     "cartel": "Toballas de playa/2 Serviettes 70X140.png",
@@ -2525,7 +2495,7 @@
      366,
      664
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "coucher-de-soleil": {
     "cartel": "Toballas de playa/2 Serviettes 70X140.png",
@@ -2535,7 +2505,7 @@
      622,
      664
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "peace-and-love": {
     "cartel": "Toballas de playa/2 Serviettes 70X140.png",
@@ -2545,7 +2515,7 @@
      908,
      664
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "ancre-marine": {
     "cartel": "Toballas de playa/2 Serviettes 70X140.png",
@@ -2555,7 +2525,7 @@
      490,
      1036
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "flamant-rose": {
     "cartel": "Toballas de playa/2 Serviettes 70X140.png",
@@ -2565,7 +2535,7 @@
      810,
      1036
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "combi-arc-en-ciel": {
     "cartel": "Toballas de playa/2 Serviettes 70X140.png",
@@ -2575,7 +2545,7 @@
      490,
      1428
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "summer-leopard": {
     "cartel": "Toballas de playa/2 Serviettes 70X140.png",
@@ -2585,7 +2555,7 @@
      826,
      1428
     ],
-    "modo": "rect"
+    "modo": "bbox"
    }
   },
   "serviette-plage-90x180": {
@@ -2597,7 +2567,7 @@
      360,
      640
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "rayures-bleues": {
     "cartel": "Toballas de playa/3 Serviettes 80x180.png",
@@ -2607,7 +2577,7 @@
      622,
      640
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "vagues-orange": {
     "cartel": "Toballas de playa/3 Serviettes 80x180.png",
@@ -2617,7 +2587,7 @@
      910,
      642
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "dauphin": {
     "cartel": "Toballas de playa/3 Serviettes 80x180.png",
@@ -2627,7 +2597,7 @@
      350,
      1006
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "etoiles-rayures": {
     "cartel": "Toballas de playa/3 Serviettes 80x180.png",
@@ -2637,7 +2607,7 @@
      616,
      1004
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "arc-en-ciel": {
     "cartel": "Toballas de playa/3 Serviettes 80x180.png",
@@ -2647,7 +2617,7 @@
      910,
      1006
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "rayures-bleu-vert": {
     "cartel": "Toballas de playa/3 Serviettes 80x180.png",
@@ -2657,7 +2627,7 @@
      352,
      1406
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "rayures-fines": {
     "cartel": "Toballas de playa/3 Serviettes 80x180.png",
@@ -2667,7 +2637,7 @@
      636,
      1406
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "hashtags": {
     "cartel": "Toballas de playa/3 Serviettes 80x180.png",
@@ -2677,7 +2647,7 @@
      930,
      1406
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "eau-turquoise": {
     "cartel": "Toballas de playa/4 Serviettes 90x180.png",
@@ -2687,7 +2657,7 @@
      360,
      640
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "tortue-mandala": {
     "cartel": "Toballas de playa/4 Serviettes 90x180.png",
@@ -2697,7 +2667,7 @@
      612,
      640
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "tortues-bleues": {
     "cartel": "Toballas de playa/4 Serviettes 90x180.png",
@@ -2707,7 +2677,7 @@
      856,
      640
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "tortues-turquoise": {
     "cartel": "Toballas de playa/4 Serviettes 90x180.png",
@@ -2717,7 +2687,7 @@
      346,
      1026
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "tortue-vagues": {
     "cartel": "Toballas de playa/4 Serviettes 90x180.png",
@@ -2727,7 +2697,7 @@
      600,
      1026
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "mandala-bleu": {
     "cartel": "Toballas de playa/4 Serviettes 90x180.png",
@@ -2737,7 +2707,7 @@
      900,
      1026
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "drapeau-americain": {
     "cartel": "Toballas de playa/4 Serviettes 90x180.png",
@@ -2747,7 +2717,7 @@
      486,
      1406
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "planches-de-surf": {
     "cartel": "Toballas de playa/4 Serviettes 90x180.png",
@@ -2757,7 +2727,7 @@
      786,
      1398
     ],
-    "modo": "rect"
+    "modo": "bbox"
    }
   },
   "serviette-plage-100x180": {
@@ -2769,7 +2739,7 @@
      366,
      540
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "flamants-coeur": {
     "cartel": "Toballas de playa/5 Serviettes 100X180.png",
@@ -2779,7 +2749,7 @@
      646,
      540
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "etoile-de-mer-fleurie": {
     "cartel": "Toballas de playa/5 Serviettes 100X180.png",
@@ -2789,7 +2759,7 @@
      946,
      540
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "paradise-summer": {
     "cartel": "Toballas de playa/5 Serviettes 100X180.png",
@@ -2799,7 +2769,7 @@
      506,
      966
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "orques": {
     "cartel": "Toballas de playa/5 Serviettes 100X180.png",
@@ -2809,7 +2779,7 @@
      810,
      966
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "palmier-plage": {
     "cartel": "Toballas de playa/5 Serviettes 100X180.png",
@@ -2819,7 +2789,7 @@
      500,
      1416
     ],
-    "modo": "rect"
+    "modo": "bbox"
    },
    "rayures-marine-ancres": {
     "cartel": "Toballas de playa/5 Serviettes 100X180.png",
@@ -2829,7 +2799,7 @@
      816,
      1416
     ],
-    "modo": "rect"
+    "modo": "bbox"
    }
   }
  }

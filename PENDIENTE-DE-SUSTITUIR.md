@@ -155,8 +155,10 @@ referencias del proveedor y notas: `docs/otros-productos/INVENTARIO.md` (ignorad
 - [ ] **Fotos HD**: todas salen de carteles de baja resolución (cada variante ocupa 150-350 px). Pedir fotos sueltas, sobre
   fondo neutro, de cada variante. Las peores: mini bolsos de bandolera, abanicos, bandeau, barrette, porte-monnaie,
   borsalino y bob bebé; la variante «Fleurs noires et roses» del abanico falta (cartel ilegible).
-- [ ] **Recortes con fondo**: varios modelos (toallas, ponchos, sombreros claros) se recortaron en rectángulo con el fondo
-  del cartel (arena, madera) porque el recorte automático fallaba. Mejorar con las fotos HD.
+- [x] **Fondo blanco** en las 230 fotos (`scripts/fotos/otros-productos.py`, recorte con IA rembg/ISNet; modos ia, hull,
+  bbox, bolso, rect por variante en `otros-productos-recortes.json`). Siguen con fondo del cartel o recorte imperfecto:
+  porte-monnaie mosaïque (paja), mandala (cortado abajo), sombreros claros (ala inferior tapada por la etiqueta del
+  cartel), toallas con un borde de arena, bob bébé. Con fotos HD se rehace en un minuto.
 - [ ] **Materiales no indicados en los carteles**: se omiten en la web (no se publica nada que el cartel no diga). Añadirlos en `data/otros-productos.ts` cuando se sepan.
 - [ ] **Nombres de variante provisionales** (`provisional: true`) y nombres de modelo por confirmar.
 - [x] **Precios y lotes** de los carteles publicados tal cual (`precioTexto`, `condiciones`, `detalles`). Confirmar HT/TTC de toallas y ponchos (el cartel no lo dice) y los modelos de lote vacío («non précisé»).
