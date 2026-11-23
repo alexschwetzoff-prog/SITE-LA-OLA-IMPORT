@@ -32,22 +32,16 @@ export function fotoPrincipal(p: Pick<Producto, 'colores'>): { delante: string; 
 }
 
 /** Le produit affiche-t-il un vrai prix (« À partir de … ») ? Aujourd'hui non : tous les prix sont à null. */
-export function conPrecio(p: Pick<Producto, 'estado' | 'precioDesde' | 'precioTexto'>): boolean {
-  return p.estado !== 'consultar-disponibilidad' && (p.precioDesde !== null || Boolean(p.precioTexto));
+export function conPrecio(p: Pick<Producto, 'estado' | 'precioDesde'>): boolean {
+  return p.estado !== 'consultar-disponibilidad' && p.precioDesde !== null;
 }
 
 /** Texte public du prix : « Consulter le prix » tant que precioDesde est null, ou « Consulter la disponibilité ». */
-export function textoPrecio(p: Pick<Producto, 'estado' | 'precioDesde' | 'precioTexto'>): string {
+export function textoPrecio(p: Pick<Producto, 'estado' | 'precioDesde'>): string {
   if (p.estado === 'consultar-disponibilidad') return 'Consulter la disponibilité';
-  if (p.precioTexto) return p.precioTexto;
   if (p.precioDesde === null) return TEXTOS.precio;
   const n = p.precioDesde.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   return `À partir de ${n} € / pièce`;
-}
-
-/** Le produit se personnalise-t-il avec un logo ? (Les produits des nouvelles familles ne le promettent que si c'est confirmé.) */
-export function sePersonaliza(p: Pick<Producto, 'personalizable'>): boolean {
-  return p.personalizable !== false;
 }
 
 export function tieneEstudio(p: Pick<Producto, 'visor'>): boolean {
@@ -60,7 +54,7 @@ export function esGoodie(p: Pick<Producto, 'categoria'>): boolean {
 
 /** « 100 % coton · 150 g/m² », « Acier inoxydable, finition mate · 790 ml ». */
 export function textoMaterial(p: Pick<Producto, 'material' | 'gramaje' | 'medidas'>): string {
-  const partes = p.material ? [p.material] : [];
+  const partes = [p.material];
   if (p.gramaje) partes.push(`${p.gramaje} g/m²`);
   if (p.medidas) partes.push(p.medidas);
   return partes.join(' · ');
@@ -92,18 +86,13 @@ export function sustantivo(p: Pick<Producto, 'tipo'>): { nombre: string; femenin
 }
 
 /** « T-shirt Atomic 150 personnalisé avec votre logo ». */
-export function tituloSeo(p: Pick<Producto, 'tipo' | 'nombre' | 'personalizable'>): string {
-  if (!sePersonaliza(p)) return `${p.tipo} ${p.nombre}`;
+export function tituloSeo(p: Pick<Producto, 'tipo' | 'nombre'>): string {
   const { nombre, femenino } = sustantivo(p);
   return `${nombre} ${p.nombre} personnalisé${femenino ? 'e' : ''} avec votre logo`;
 }
 
 /** Description SEO : personnalisation dans l'atelier de Monteux, matière, prix sur devis. Aucune promesse (délai, minimum). */
-export function descripcionSeo(p: Pick<Producto, 'tipo' | 'nombre' | 'material' | 'gramaje' | 'medidas' | 'estado' | 'precioDesde' | 'precioTexto' | 'personalizable'>): string {
-  if (!sePersonaliza(p)) {
-    const caract = textoMaterial(p);
-    return `${p.tipo} ${p.nombre} au catalogue de La Ola Import (Monteux, Vaucluse).${caract ? ` ${caract}.` : ''} ${p.precioTexto ? `${p.precioTexto}.` : 'Prix sur devis.'}`;
-  }
+export function descripcionSeo(p: Pick<Producto, 'tipo' | 'nombre' | 'material' | 'gramaje' | 'medidas' | 'estado' | 'precioDesde'>): string {
   const { femenino } = sustantivo(p);
   const e = femenino ? 'e' : '';
   const prix =
@@ -112,5 +101,5 @@ export function descripcionSeo(p: Pick<Producto, 'tipo' | 'nombre' | 'material' 
       : conPrecio(p)
         ? `${textoPrecio(p)}, devis sur mesure selon la quantité et la technique.`
         : 'Prix sur devis, selon la quantité et la technique.';
-  return `${p.tipo} ${p.nombre} personnalisé${e} avec votre logo dans notre atelier de Monteux (Vaucluse). ${textoMaterial(p) ? `${textoMaterial(p)}. ` : ''}${prix}`;
+  return `${p.tipo} ${p.nombre} personnalisé${e} avec votre logo dans notre atelier de Monteux (Vaucluse). ${textoMaterial(p)}. ${prix}`;
 }

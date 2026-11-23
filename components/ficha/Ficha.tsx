@@ -7,7 +7,7 @@
 // « Personnaliser avec mon logo » (contour violet, seulement si le produit a un studio) et « Demander un devis »
 // (contour marine, vers /devis?produit=<slug>). En mobile, barre collante en bas avec le panier et le devis.
 
-import { Fragment, useEffect, useId, useState, useSyncExternalStore } from 'react';
+import { useEffect, useId, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import type { Color, Posicion, Producto } from '@/data/catalogo';
 import { Etiquetas } from '@/components/catalogo/Etiquetas';
@@ -17,7 +17,7 @@ import FotoProducto, { precalentarReveal } from '@/components/producto/FotoProdu
 import { ESTILO_BOTON } from '@/components/ui/Botones';
 import type { FotosProducto } from '@/lib/catalogo';
 import { precargarFotos } from '@/lib/fotos';
-import { POSICIONES, colorPorDefecto, conPrecio, esGoodie, sePersonaliza, textoMaterial, textoPrecio, tieneEstudio } from '@/lib/producto';
+import { POSICIONES, colorPorDefecto, conPrecio, esGoodie, textoMaterial, textoPrecio, tieneEstudio } from '@/lib/producto';
 import { TEXTOS } from '@/lib/site';
 import { abonnerSurfi, definirSurfi, prechargerSurfi, surfiDesactive } from '@/lib/surfi';
 
@@ -72,9 +72,6 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
   const fotos = fotosPorColor[color.nombre];
   const conEstudio = tieneEstudio(producto);
   const goodie = esGoodie(producto);
-  const esDiseno = producto.tipoVariante === 'diseno';
-  const palabraVariante = esDiseno ? 'Motif' : 'Couleur';
-  const personaliza = sePersonaliza(producto);
   const precio = textoPrecio(producto);
   const desde = conPrecio(producto);
   const colorFoto = colorBase ? producto.colores.find((c) => c.nombre === colorBase) : undefined;
@@ -150,7 +147,7 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
           {fotoActual ? (
             <FotoProducto
               foto={{ src: fotoActual, anchos: detras ? fotos?.anchosDetras : fotos?.anchos, diseno: disenoActual }}
-              alt={`${producto.tipo} ${producto.nombre}, ${esDiseno ? 'motif' : 'coloris'} ${color.nombre.toLowerCase()}, vue ${detras ? 'de dos' : 'de face'}${disenoActual?.marca === 'tu-logo-aqui' ? ', avec le motif « Votre logo ici »' : ''}`}
+              alt={`${producto.tipo} ${producto.nombre}, coloris ${color.nombre.toLowerCase()}, vue ${detras ? 'de dos' : 'de face'}${disenoActual?.marca === 'tu-logo-aqui' ? ', avec le motif « Votre logo ici »' : ''}`}
               sizes={SIZES}
               prioridad="alta"
               precargaLcp
@@ -196,23 +193,13 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
         </p>
         {producto.estado === 'consultar-disponibilidad' && <p className="mt-2 text-sm text-ardoise">Disponibilité à confirmer : posez-nous la question.</p>}
         <p className="mt-2 text-xs leading-relaxed text-ardoise">
-          {desde && !producto.precioTexto ? `${TEXTOS.sinIva} ` : ''}
-          {TEXTOS.notaPrecios} {producto.precioTexto ? (producto.condiciones ? `Conditions : ${producto.condiciones}.` : '') : TEXTOS.pedidoMinimo}
+          {desde ? `${TEXTOS.sinIva} ` : ''}
+          {TEXTOS.notaPrecios} {TEXTOS.pedidoMinimo}
         </p>
 
         <dl className="mt-6 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-[auto_1fr]">
-          {textoMaterial(producto) && (
-            <>
-              <dt className="font-medium text-ardoise">{!producto.material ? 'Caractéristiques' : producto.gramaje ? 'Composition et grammage' : 'Matière'}</dt>
-              <dd>{textoMaterial(producto)}</dd>
-            </>
-          )}
-          {producto.detalles?.map((d) => (
-            <Fragment key={d}>
-              <dt className="font-medium text-ardoise">Détail</dt>
-              <dd>{d}</dd>
-            </Fragment>
-          ))}
+          <dt className="font-medium text-ardoise">{producto.gramaje ? 'Composition et grammage' : 'Matière'}</dt>
+          <dd>{textoMaterial(producto)}</dd>
           {producto.tallas && (
             <>
               <dt className="font-medium text-ardoise">Tailles</dt>
@@ -227,14 +214,13 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
         {/* Couleurs avec leur nom ; le choix change la photo quand la couleur en a une */}
         <fieldset className="mt-6" onPointerEnter={intention} onFocus={intention} onPointerDown={intention}>
           <legend className="text-sm font-medium text-ardoise">
-            {palabraVariante} ·{' '}
+            Couleur ·{' '}
             <span className="font-semibold text-marine" aria-live="polite">
               {color.nombre}
             </span>
           </legend>
           <div className="mt-2 flex flex-wrap gap-2">
             {producto.colores.map((c) => {
-              const miniatura = esDiseno ? c.fotoDelante : undefined;
               const seleccionado = c.nombre === color.nombre;
               return (
                 <button
@@ -243,21 +229,17 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
                   onClick={() => elegirColor(c)}
                   aria-pressed={seleccionado}
                   title={c.nombre}
-                  className={`${miniatura ? 'h-14 w-14 overflow-hidden rounded-lg bg-white' : 'h-10 w-10 rounded-full shadow-[inset_0_0_0_2px_rgba(255,255,255,0.6)]'} border border-marine/15 transition-transform hover:scale-105 motion-reduce:transition-none ${seleccionado ? 'ring-2 ring-marine ring-offset-2 ring-offset-perle' : ''}`}
-                  style={miniatura ? undefined : { background: fondoMuestra(c) }}
+                  className={`h-10 w-10 rounded-full border border-marine/15 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.6)] transition-transform hover:scale-105 motion-reduce:transition-none ${seleccionado ? 'ring-2 ring-marine ring-offset-2 ring-offset-perle' : ''}`}
+                  style={{ background: fondoMuestra(c) }}
                 >
-                  {miniatura && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={miniatura} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain p-0.5" />
-                  )}
                   <span className="sr-only">{c.nombre}</span>
                 </button>
               );
             })}
           </div>
           <p className="mt-2 text-xs text-ardoise">
-            {producto.colores.length} {esDiseno ? (producto.colores.length === 1 ? 'motif' : 'motifs') : producto.colores.length === 1 ? 'couleur' : 'couleurs'}
-            {producto.colores.some((c) => c.provisional) ? (esDiseno ? ' · noms de motif indicatifs' : ' · noms de couleur indicatifs') : ''}
+            {producto.colores.length} {producto.colores.length === 1 ? 'couleur' : 'couleurs'}
+            {producto.colores.some((c) => c.provisional) ? ' · noms de couleur indicatifs' : ''}
           </p>
           {textile && (
             <button
@@ -322,12 +304,12 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
                 {!goodie && lados.length > 1 ? ' Avec deux marquages, nous en tenons compte dans le devis.' : ''}
               </p>
             </fieldset>
-          ) : personaliza ? (
+          ) : (
             <>
               <h2 className="text-sm font-medium text-ardoise">Personnalisation</h2>
               <p className="mt-2 text-sm text-marine">Marquage de votre logo sur la zone prévue du produit : nous précisons la taille dans le devis.</p>
             </>
-          ) : null}
+          )}
         </div>
 
         {/* Actions : un seul bouton fuchsia (panier), puis studio (violet) et devis (marine) */}

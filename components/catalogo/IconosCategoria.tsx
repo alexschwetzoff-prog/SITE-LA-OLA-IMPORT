@@ -1,7 +1,7 @@
 import type { SVGProps } from 'react';
 import type { Categoria } from '@/data/catalogo';
 
-// Icônes au trait des catégories du catalogue. Dessin maison, sans marque de tiers.
+// Icônes au trait des cinq catégories du catalogue. Dessin maison, sans marque de tiers.
 
 type Props = SVGProps<SVGSVGElement>;
 const comun = { viewBox: '0 0 32 32', fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true } as const;
@@ -53,56 +53,12 @@ function Goodies(props: Props) {
   );
 }
 
-function AtrapaSuenos(props: Props) {
-  return (
-    <svg {...comun} {...props}>
-      <circle cx="16" cy="12" r="7" />
-      <path d="M16 5v14M9.5 8.5l13 7M22.5 8.5l-13 7" />
-      <path d="M16 19v8M12 22v4M20 22v4" />
-    </svg>
-  );
-}
-
-function BolsoMonedero(props: Props) {
-  return (
-    <svg {...comun} {...props}>
-      <path d="M6 14h20v13H6z" />
-      <path d="M11 14c0-6 10-6 10 0" />
-      <path d="M13 20h6" />
-    </svg>
-  );
-}
-
-function Sombrero(props: Props) {
-  return (
-    <svg {...comun} {...props}>
-      <path d="M10 18c0-6 2-10 6-10s6 4 6 10" />
-      <path d="M3 21c0-2 6-3 13-3s13 1 13 3-6 4-13 4S3 23 3 21z" />
-      <path d="M10 18c4 1 8 1 12 0" />
-    </svg>
-  );
-}
-
-function Toalla(props: Props) {
-  return (
-    <svg {...comun} {...props}>
-      <path d="M6 8h20v17H6z" />
-      <path d="M6 12h20M6 21h20" />
-      <path d="M9 25v3M13 25v3M19 25v3M23 25v3" />
-    </svg>
-  );
-}
-
 export const ICONO_CATEGORIA: Record<Categoria, (p: Props) => React.JSX.Element> = {
   'camisetas-polos': Camiseta,
   sudaderas: Sudadera,
   gorras: Gorra,
   bolsas: Bolsa,
   goodies: Goodies,
-  atrapasuenos: AtrapaSuenos,
-  'bolsos-monederos': BolsoMonedero,
-  'sombreros-abanicos': Sombrero,
-  'toallas-ponchos': Toalla,
 };
 
 export function IconoCategoria({ categoria, ...props }: Props & { categoria: Categoria }) {

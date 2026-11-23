@@ -20,7 +20,7 @@ interface Props {
 }
 
 function textoAlt(datos: DatosTarjeta, color: ColorTarjeta, ejemplo: Ejemplo | null): string {
-  const base = `${datos.tipo} ${datos.nombre}, ${datos.tipoVariante === 'diseno' ? 'motif' : 'coloris'} ${color.nombre.toLowerCase()}`;
+  const base = `${datos.tipo} ${datos.nombre}, coloris ${color.nombre.toLowerCase()}`;
   if (ejemplo === 'tu-logo-aqui') return `${base}, avec le motif « Votre logo ici » à l’emplacement du marquage`;
   return base;
 }
@@ -56,12 +56,12 @@ export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width:
     setCerca(true);
     void precalentarReveal();
     const delanteras = datos.colores
-      .slice(0, datos.tipoVariante === 'diseno' ? 5 : 8)
+      .slice(0, 8)
       .map((c) => c.fotos)
       .filter((f): f is NonNullable<typeof f> => Boolean(f) && f?.delante !== fotos?.delante)
       .map((f) => ({ src: f.delante, anchos: f.anchos }));
     precargarFotos(delanteras, sizes, ANCHO_MAXIMO);
-  }, [datos.colores, datos.tipoVariante, fotos?.delante, sizes]);
+  }, [datos.colores, fotos?.delante, sizes]);
 
   const espalda = Boolean(fotos?.detras) && ((sobreTarjeta && !sobreMuestras) || tituloEnfocado);
 
@@ -123,11 +123,10 @@ export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width:
           {/* « Consulter le prix » tant qu'il n'y a pas de tarif : badge pastel, texte marine. */}
           <p className={`shrink-0 rounded-full px-2.5 py-1 text-right text-xs font-semibold ${datos.desde ? 'text-marine' : 'bg-fuchsia-50 text-marine'}`}>{datos.precio}</p>
         </div>
-        {datos.material && <p className="text-xs text-ardoise">{datos.material}</p>}
-        {datos.condiciones && <p className="text-xs font-medium text-marine">{datos.condiciones}</p>}
+        <p className="text-xs text-ardoise">{datos.material}</p>
         <div className="mt-auto flex items-end justify-between gap-3 pt-1">
           <div className="min-w-0" onPointerEnter={() => setSobreMuestras(true)} onPointerLeave={() => setSobreMuestras(false)}>
-            <Muestras colores={datos.colores} elegido={color} onElegir={setColor} tipo={datos.tipoVariante} />
+            <Muestras colores={datos.colores} elegido={color} onElegir={setColor} />
             <p className="mt-1 truncate text-xs text-ardoise">{color.nombre}</p>
           </div>
           {datos.conEstudio && (

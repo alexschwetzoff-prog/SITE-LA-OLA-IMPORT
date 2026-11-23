@@ -13,16 +13,7 @@
 //  - `provisional: true` sur les noms de couleur douteux.
 //  - « Centre poitrine » (8 × 8 cm, comme le cœur) sur les t-shirts, polos et sweats.
 
-export type Categoria =
-  | 'camisetas-polos'
-  | 'sudaderas'
-  | 'gorras'
-  | 'bolsas'
-  | 'goodies'
-  | 'atrapasuenos'
-  | 'bolsos-monederos'
-  | 'sombreros-abanicos'
-  | 'toallas-ponchos';
+export type Categoria = 'camisetas-polos' | 'sudaderas' | 'gorras' | 'bolsas' | 'goodies';
 export type Posicion =
   | 'corazon'
   | 'centro_pecho' // mismo tamaño que el corazón, centrado (fase 4.1)
@@ -33,16 +24,13 @@ export type Posicion =
   | 'cara_a'
   | 'cara_b'
   | 'zona_marcaje';
-export type Etiqueta = 'eco' | 'mujer' | 'tecnica' | 'oversize' | 'manga-larga' | 'calidad-superior' | 'enfant';
+export type Etiqueta = 'eco' | 'mujer' | 'tecnica' | 'oversize' | 'manga-larga' | 'calidad-superior';
 export type Visor = '3d' | '2d' | 'ninguno';
 /** 'consultar-disponibilidad' remplace le prix tant qu'un essai technique manque (Luxor et Davos). */
 export type Estado = 'disponible' | 'consultar-disponibilidad';
 
-/** Qué cambia entre las variantes de un producto: el color (círculos) o el diseño/motivo (miniaturas con foto). */
-export type TipoVariante = 'color' | 'diseno';
-
 export interface Color {
-  nombre: string; // nombre comercial del color o del diseño (si el producto es tipoVariante 'diseno')
+  nombre: string; // nombre comercial del color
   hex: string; // del proyecto del catálogo
   hexSecundario?: string; // prendas bicolor: capucha o visera (añadido en la fase 3)
   jaspeado?: boolean; // usa textura propia en el visor
@@ -62,24 +50,17 @@ export interface Producto {
   nombre: string; // 'Atomic 150'
   categoria: Categoria;
   tipo: string; // 'Camiseta básica de manga corta'
-  material?: string; // sin valor = no se enseña (no se publica nada que el cartel no diga)
+  material: string;
   gramaje?: number; // g/m²
   medidas?: string; // '36 × 40 cm', '790 ml'
   tallas?: string[]; // adultos, según la ficha técnica: ['XS','S','M','L','XL','2XL','3XL']
   tallasInfantiles?: string[]; // niños, según la ficha técnica (añadido en la fase 3)
-  /** Precio y condiciones tal como los dan los carteles de catálogo (texto francés ya formado): sustituye al número. */
-  precioTexto?: string; // '2,95 € HT'
-  condiciones?: string; // 'Lot de 6 minimum'
-  detalles?: string[]; // otras líneas del cartel (personalización, etc.)
   precioDesde: number | null; // € [HT ou TTC à confirmer] ; null = « Consulter le prix »
   estado?: Estado; // sin valor = 'disponible' (añadido en la fase 3)
   destacado: boolean;
   etiquetas: Etiqueta[];
   posiciones: PosicionProducto[];
   visor: Visor; // 'ninguno': solo ficha, sin estudio
-  tipoVariante?: TipoVariante; // sin valor = 'color'. Las variantes de los productos nuevos llevan su propia foto (fotoDelante)
-  /** Sin valor = true (los 30 productos de la base). false: producto de catálogo sin marcaje de logo; true con `posiciones: []`: marcable pero con la zona por definir. */
-  personalizable?: boolean;
   silueta?: string; // id del GLB: 'camiseta-unisex', 'polo'
   colores: Color[];
   orden: number;
@@ -89,12 +70,10 @@ export interface Producto {
 
 // Categorías, etiquetas y ayudas puras viven en módulos ligeros (data/categorias.ts, lib/producto.ts) para que el
 // navegador no cargue los 30 productos cuando solo necesita una tarjeta; se reexportan aquí por comodidad.
-import { OTROS_PRODUCTOS } from './otros-productos';
-
 export { CATEGORIAS, ETIQUETAS } from './categorias';
 export { colorPorDefecto, fotoPrincipal, textoPrecio } from '@/lib/producto';
 
-const PRODUCTOS_BASE: Producto[] = [
+export const PRODUCTOS: Producto[] = [
   {
     slug: 'atomic-150',
     nombre: 'Atomic 150',
@@ -1063,9 +1042,6 @@ const PRODUCTOS_BASE: Producto[] = [
     activo: true,
   },
 ];
-
-// 30 productos de la base + los modelos nuevos (atrapasueños, bolsos, sombreros, toallas), definidos en otro archivo.
-export const PRODUCTOS: Producto[] = [...PRODUCTOS_BASE, ...OTROS_PRODUCTOS];
 
 export const PRODUCTOS_POR_SLUG: Record<string, Producto> = Object.fromEntries(
   PRODUCTOS.map((p) => [p.slug, p]),
