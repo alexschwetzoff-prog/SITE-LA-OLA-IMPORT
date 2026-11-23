@@ -146,15 +146,35 @@ export default function Catalogo({ productos, categorias, conteo }: Props) {
       </p>
 
       {visibles.length ? (
-        <ul className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-describedby={idResultados}>
-          {visibles.map((p, i) => (
-            <ViewTransition key={p.slug} name={`tarjeta-${p.slug}`} enter={`tarjeta-llega-${Math.min(i, 5)}`} exit="tarjeta-sale" update="tarjeta-mueve" default="tarjeta-mueve">
-              <li className="min-w-0">
-                <TarjetaProducto datos={p} prioridad={i === 0 ? 'alta' : i < 3} />
-              </li>
-            </ViewTransition>
-          ))}
-        </ul>
+        <div aria-describedby={idResultados}>
+          {/* Sans filtre de catégorie, les produits sont rangés par catégorie, chacune avec son titre */}
+          {(filtros.categoria ? [{ id: null, nombre: '', items: visibles }] : categorias.map((c) => ({ id: c.id, nombre: c.nombre, items: visibles.filter((p) => p.categoria === c.id) }))).map(
+            (grupo, g) =>
+              grupo.items.length > 0 && (
+                <section key={grupo.id ?? 'filtre'} aria-labelledby={grupo.id ? `cat-${grupo.id}` : undefined} className={g === 0 ? 'mt-5' : 'mt-10'}>
+                  {grupo.id && (
+                    <h3 id={`cat-${grupo.id}`} className="mb-4 flex items-center gap-2 font-display text-2xl font-extrabold text-marine">
+                      <IconoCategoria categoria={grupo.id} className="h-6 w-6 text-bleu-600" />
+                      {grupo.nombre}
+                      <span className="text-sm font-medium text-ardoise">{grupo.items.length}</span>
+                    </h3>
+                  )}
+                  <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    {grupo.items.map((p) => {
+                      const i = visibles.indexOf(p);
+                      return (
+                        <ViewTransition key={p.slug} name={`tarjeta-${p.slug}`} enter={`tarjeta-llega-${Math.min(i, 5)}`} exit="tarjeta-sale" update="tarjeta-mueve" default="tarjeta-mueve">
+                          <li className="min-w-0">
+                            <TarjetaProducto datos={p} prioridad={i === 0 ? 'alta' : i < 3} />
+                          </li>
+                        </ViewTransition>
+                      );
+                    })}
+                  </ul>
+                </section>
+              ),
+          )}
+        </div>
       ) : (
         <div className="mt-8 rounded-2xl border border-dashed border-marine/20 bg-perle p-10 text-center">
           <p className="text-lg text-marine">Aucun produit ne correspond à ces filtres.</p>

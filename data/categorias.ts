@@ -9,6 +9,10 @@ export const CATEGORIAS: { id: Categoria; nombre: string }[] = [
   { id: 'gorras', nombre: 'Casquettes' },
   { id: 'bolsas', nombre: 'Sacs' },
   { id: 'goodies', nombre: 'Goodies' },
+  { id: 'atrapasuenos', nombre: 'Attrape-rêves' },
+  { id: 'bolsos-monederos', nombre: 'Sacs et porte-monnaie' },
+  { id: 'sombreros-abanicos', nombre: 'Chapeaux et éventails' },
+  { id: 'toallas-ponchos', nombre: 'Serviettes et ponchos' },
 ];
 
 export const ETIQUETAS: { id: Etiqueta; nombre: string }[] = [
@@ -18,4 +22,5 @@ export const ETIQUETAS: { id: Etiqueta; nombre: string }[] = [
   { id: 'oversize', nombre: 'Oversize' },
   { id: 'manga-larga', nombre: 'Manches longues' },
   { id: 'calidad-superior', nombre: 'Qualité supérieure' },
+  { id: 'enfant', nombre: 'Enfant' },
 ];

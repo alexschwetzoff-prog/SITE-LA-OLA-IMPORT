@@ -64,6 +64,9 @@ export default function Footer() {
             <li><Link href="/catalogue?categoria=sudaderas" className={lien}>Sweats et vestes</Link></li>
             <li><Link href="/catalogue?categoria=bolsas" className={lien}>Sacs et tote bags</Link></li>
             <li><Link href="/catalogue?categoria=goodies" className={lien}>Objets publicitaires</Link></li>
+            <li><Link href="/catalogue?categoria=atrapasuenos" className={lien}>Attrape-rêves</Link></li>
+            <li><Link href="/catalogue?categoria=sombreros-abanicos" className={lien}>Chapeaux et éventails</Link></li>
+            <li><Link href="/catalogue?categoria=toallas-ponchos" className={lien}>Serviettes et ponchos</Link></li>
             <li><Link href="/personnaliser/atomic-150" className={lien}>Personnaliser un t-shirt</Link></li>
           </ul>
         </nav>

@@ -37,7 +37,7 @@ Todo lo que en esta copia sigue siendo de la empresa de la que sale la base, o e
       la base (`scripts/marca/generar-og.py`) no se copió porque dibujaba su marca: rehacerlo o usar `next/og`.
 - [x] `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png`. → **Hecho**: a partir de la ola del logo (sin texto).
 - [x] `/catalogo-marca.pdf` (`SITE.catalogoPdf` en `lib/site.ts`): el catálogo PDF propio, o quitar el enlace. → **Hecho**: enlace retirado.
-- [ ] `public/marca/tu-logo-aqui.png` **sí está**, pero es el diseño «Tu logo aquí» que hizo la base (tipografía suya).
+- [x] `public/marca/tu-logo-aqui.png` ya es el diseño propio «votre logo ICI» (olas), ver sección 9.
       También lo llevan impreso las fotos de 5 goodies (`public/productos/catalogo/davos-*`, `uldon-*`, `roldi-*`,
       `zora-*`, `luxor-*`). Conviene rehacerlo con la identidad nueva.
 
@@ -121,8 +121,7 @@ Todo lo que en esta copia sigue siendo de la empresa de la que sale la base, o e
   regenerar logo de cabecera, emails, favicon, icon, apple-icon y Open Graph.
 - [ ] **Surfi**: pedir capas separadas (Surfi sin ola + ola sola, PNG transparentes o los archivos 3D) y, si se quiere,
   una vista tres cuartos izquierda. Hoy cada vista lleva su propia ola y la estela es un SVG.
-- [ ] **`public/marca/tu-logo-aqui.png`** y las fotos de 5 goodies llevan «tu logo AQUÍ» en español: rehacer en francés
-  («Votre logo ici»).
+- [x] **`public/marca/tu-logo-aqui.png`**: rehecho como «votre logo ICI» con olas (`scripts/marque/votre-logo-ici.py`). Siguen en español las fotos de 5 goodies que lo llevan integrado.
 - [ ] **Fotos y vídeos reales** (marcadores `[photo à fournir]` / `[vidéo à fournir]`): equipo (800 × 1000), taller
   (1600 × 1000), showroom, galería (6 × 1200 × 1200), B-roll DTF y UV (1920 × 1080 y 1080 × 1350, 8–12 s, < 2 Mo).
 - [ ] **Textos [à fournir]**: historia del taller, frase de cada persona del equipo (con permiso de imagen).
@@ -147,3 +146,19 @@ Todo lo que en esta copia sigue siendo de la empresa de la que sale la base, o e
   (`CORREO_DESTINO` vacío).
 - [ ] Siguen pendientes: SIRET, forma jurídica, RCS, director de la publicación, horario, WhatsApp (¿mismo número?),
   redes sociales y dominio (el JSON-LD usa aún `dominio-pendiente.example` en `url`).
+
+## 9. Otros productos (atrapasueños, bolsos, sombreros y abanicos, toallas y ponchos)
+
+52 modelos y 230 variantes añadidos (`data/otros-productos.ts`), con el precio y las condiciones que dan los carteles. Inventario interno con
+referencias del proveedor y notas: `docs/otros-productos/INVENTARIO.md` (ignorado por git).
+
+- [ ] **Fotos HD**: todas salen de carteles de baja resolución (cada variante ocupa 150-350 px). Pedir fotos sueltas, sobre
+  fondo neutro, de cada variante. Las peores: mini bolsos de bandolera, abanicos, bandeau, barrette, porte-monnaie,
+  borsalino y bob bebé; la variante «Fleurs noires et roses» del abanico falta (cartel ilegible).
+- [ ] **Recortes con fondo**: varios modelos (toallas, ponchos, sombreros claros) se recortaron en rectángulo con el fondo
+  del cartel (arena, madera) porque el recorte automático fallaba. Mejorar con las fotos HD.
+- [ ] **Materiales no indicados en los carteles**: se omiten en la web (no se publica nada que el cartel no diga). Añadirlos en `data/otros-productos.ts` cuando se sepan.
+- [ ] **Nombres de variante provisionales** (`provisional: true`) y nombres de modelo por confirmar.
+- [x] **Precios y lotes** de los carteles publicados tal cual (`precioTexto`, `condiciones`, `detalles`). Confirmar HT/TTC de toallas y ponchos (el cartel no lo dice) y los modelos de lote vacío («non précisé»).
+- [ ] **Zona de marcaje** de los modelos personalizables (monederos, bolsos, abanicos): `posiciones: []` hasta definirla.
+- [ ] Fichas sin imagen Open Graph propia (como el resto de productos).

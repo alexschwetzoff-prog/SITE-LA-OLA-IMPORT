@@ -61,3 +61,8 @@ __pycache__/
 
 # Fase 10: recortes ampliados del barrido de marcas (entrada del OCR, se regeneran con scripts/fotos/revisar-marcas.py)
 /docs/revision-colores/marcas/recortes/
+
+# Carteles de origen de «otros productos» (con precios y referencias del proveedor): nunca se suben
+/assets/productos/otros-productos-origen/
+# Inventario interno (referencias, precios y lotes): nunca se sube
+/docs/otros-productos/

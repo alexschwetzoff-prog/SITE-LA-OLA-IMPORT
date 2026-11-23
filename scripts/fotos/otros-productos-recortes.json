@@ -1,0 +1,2836 @@
+{
+ "origen": "assets/productos/otros-productos-origen",
+ "salida": "public/productos/catalogo",
+ "modelos": {
+  "attrape-reves-xxl-triple-51": {
+   "turquoise": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     80,
+     335,
+     262,
+     702
+    ]
+   }
+  },
+  "attrape-reves-xxl-triple-45": {
+   "bleu": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     305,
+     335,
+     505,
+     702
+    ]
+   },
+   "violet": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     560,
+     335,
+     745,
+     702
+    ]
+   },
+   "naturel": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     795,
+     335,
+     985,
+     702
+    ]
+   }
+  },
+  "attrape-reves-rotin-yin-yang-45": {
+   "noir-blanc": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     40,
+     930,
+     225,
+     1240
+    ]
+   }
+  },
+  "attrape-reves-crochet-50": {
+   "ecru": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     240,
+     930,
+     420,
+     1240
+    ]
+   },
+   "noir": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     440,
+     930,
+     612,
+     1245
+    ]
+   }
+  },
+  "attrape-reves-coeur-45": {
+   "ecru": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     622,
+     930,
+     795,
+     1240
+    ],
+    "modo": "rect"
+   },
+   "noir-blanc": {
+    "cartel": "Attrapa suenos/1 Catalogue dattrape-rêves amérindiens.png",
+    "caja": [
+     838,
+     930,
+     1035,
+     1240
+    ]
+   }
+  },
+  "attrape-reves-rotin-15": {
+   "rose-fuchsia": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     90,
+     200,
+     265,
+     515
+    ]
+   },
+   "ecru": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     312,
+     200,
+     495,
+     520
+    ]
+   },
+   "turquoise": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     555,
+     200,
+     745,
+     520
+    ]
+   },
+   "violet": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     785,
+     200,
+     955,
+     520
+    ]
+   },
+   "noir-blanc": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     800,
+     645,
+     990,
+     905
+    ],
+    "excluir": [
+     [
+      935,
+      905,
+      1005,
+      940
+     ]
+    ]
+   }
+  },
+  "attrape-reves-bicolore-15": {
+   "rose-fuchsia": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     55,
+     635,
+     275,
+     955
+    ],
+    "excluir": [
+     [
+      180,
+      905,
+      280,
+      940
+     ]
+    ]
+   },
+   "multicolore": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     292,
+     640,
+     470,
+     940
+    ],
+    "excluir": [
+     [
+      425,
+      905,
+      520,
+      940
+     ]
+    ]
+   },
+   "turquoise": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     552,
+     640,
+     755,
+     945
+    ],
+    "excluir": [
+     [
+      675,
+      905,
+      770,
+      940
+     ]
+    ]
+   }
+  },
+  "attrape-reves-coeur-6": {
+   "rose-fuchsia": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     345,
+     1035,
+     495,
+     1240
+    ]
+   }
+  },
+  "attrape-reves-rond-6": {
+   "multicolore": {
+    "cartel": "Attrapa suenos/2 Catalogue Attrape-Rêves en Couleurs.png",
+    "caja": [
+     535,
+     1035,
+     722,
+     1255
+    ]
+   }
+  },
+  "attrape-reves-coeur-triple-11": {
+   "ecru": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     55,
+     218,
+     220,
+     515
+    ],
+    "modo": "rect"
+   },
+   "bleu": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     248,
+     218,
+     418,
+     515
+    ]
+   },
+   "noir": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     448,
+     222,
+     618,
+     515
+    ]
+   },
+   "rouge": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     645,
+     218,
+     825,
+     515
+    ]
+   },
+   "turquoise": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     848,
+     218,
+     1025,
+     515
+    ]
+   },
+   "rose": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     55,
+     565,
+     255,
+     862
+    ]
+   },
+   "violet": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     290,
+     580,
+     478,
+     858
+    ]
+   },
+   "multicolore": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     542,
+     580,
+     712,
+     858
+    ]
+   },
+   "fuchsia": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     788,
+     585,
+     985,
+     860
+    ]
+   }
+  },
+  "attrape-reves-rond-triple-11": {
+   "rose": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     35,
+     1005,
+     220,
+     1218
+    ]
+   },
+   "rouge": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     238,
+     1005,
+     415,
+     1215
+    ]
+   },
+   "turquoise": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     450,
+     1005,
+     625,
+     1218
+    ]
+   },
+   "violet": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     648,
+     1005,
+     815,
+     1218
+    ]
+   },
+   "blanc": {
+    "cartel": "Attrapa suenos/3 Attrape-Rêves Bohème  Tarifs par référence.png",
+    "caja": [
+     842,
+     1005,
+     1005,
+     1218
+    ],
+    "modo": "rect"
+   }
+  },
+  "attrape-reves-rond-plage-11": {
+   "noir": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     85,
+     205,
+     215,
+     392
+    ]
+   },
+   "rouge": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     268,
+     205,
+     418,
+     392
+    ]
+   },
+   "bleu": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     465,
+     205,
+     605,
+     392
+    ]
+   },
+   "multicolore": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     645,
+     205,
+     790,
+     392
+    ]
+   },
+   "marron": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     830,
+     205,
+     990,
+     392
+    ]
+   }
+  },
+  "attrape-reves-nacre-16": {
+   "multicolore": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     75,
+     556,
+     245,
+     790
+    ]
+   },
+   "bleu-roi": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     265,
+     556,
+     430,
+     790
+    ]
+   },
+   "turquoise": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     455,
+     556,
+     612,
+     790
+    ]
+   },
+   "rouge": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     638,
+     556,
+     798,
+     790
+    ]
+   },
+   "rose": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     828,
+     556,
+     990,
+     790
+    ]
+   },
+   "fuchsia": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     70,
+     826,
+     240,
+     1050
+    ]
+   },
+   "violet": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     255,
+     826,
+     425,
+     1050
+    ]
+   },
+   "noir": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     440,
+     826,
+     605,
+     1050
+    ]
+   },
+   "blanc-nacre": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     620,
+     826,
+     795,
+     1050
+    ]
+   }
+  },
+  "attrape-reves-collector-16": {
+   "noir": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     160,
+     1160,
+     350,
+     1418
+    ],
+    "excluir": [
+     [
+      318,
+      1365,
+      395,
+      1405
+     ]
+    ]
+   },
+   "ecru": {
+    "cartel": "Attrapa suenos/4 Catalogue dAttrapes-Rêves Plage & Nacre.png",
+    "caja": [
+     445,
+     1160,
+     665,
+     1425
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      620,
+      1370,
+      700,
+      1405
+     ]
+    ]
+   }
+  },
+  "sac-bandouliere-stickers": {
+   "licorne-sequins": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     20,
+     195,
+     420,
+     1000
+    ],
+    "modo": "rect"
+   },
+   "star": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     432,
+     298,
+     577,
+     368
+    ],
+    "modo": "rect"
+   },
+   "love": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     585,
+     298,
+     735,
+     368
+    ],
+    "modo": "rect"
+   },
+   "flamant": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     430,
+     392,
+     580,
+     462
+    ],
+    "modo": "rect"
+   },
+   "licorne-ocre": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     585,
+     392,
+     735,
+     462
+    ],
+    "modo": "rect"
+   },
+   "licorne-rose": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     428,
+     502,
+     585,
+     622
+    ],
+    "modo": "rect"
+   },
+   "princess": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     585,
+     502,
+     735,
+     622
+    ],
+    "modo": "rect"
+   },
+   "papillon": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     430,
+     638,
+     580,
+     732
+    ],
+    "modo": "rect"
+   },
+   "yeux": {
+    "cartel": "Bolsos/0 Sacs en bandoulière stickers.png",
+    "caja": [
+     585,
+     638,
+     735,
+     732
+    ],
+    "modo": "rect"
+   }
+  },
+  "sac-marin-enfant-28x13x5": {
+   "ancres-bleues": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     100,
+     145,
+     350,
+     445
+    ],
+    "modo": "rect"
+   },
+   "ancres-marine": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     400,
+     145,
+     655,
+     445
+    ],
+    "modo": "rect"
+   },
+   "flamants": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     700,
+     145,
+     955,
+     445
+    ],
+    "modo": "rect"
+   },
+   "licorne-magic": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     100,
+     475,
+     350,
+     775
+    ],
+    "modo": "rect"
+   },
+   "licorne-rose": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     400,
+     475,
+     655,
+     775
+    ],
+    "modo": "rect"
+   },
+   "flamants-coeur": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     700,
+     475,
+     955,
+     775
+    ],
+    "modo": "rect"
+   },
+   "elephant": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     100,
+     805,
+     350,
+     1100
+    ],
+    "modo": "rect"
+   },
+   "sirene": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     400,
+     805,
+     655,
+     1100
+    ],
+    "modo": "rect"
+   },
+   "flamants-tropical": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     700,
+     805,
+     955,
+     1100
+    ],
+    "modo": "rect"
+   },
+   "ancres-chevrons": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     100,
+     1130,
+     350,
+     1425
+    ],
+    "modo": "rect"
+   },
+   "baleines": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     400,
+     1130,
+     655,
+     1425
+    ],
+    "modo": "rect"
+   },
+   "licorne-coeur": {
+    "cartel": "Bolsos/1 Sacs corde marine   enfants 28X13X5.png",
+    "caja": [
+     700,
+     1130,
+     955,
+     1425
+    ],
+    "modo": "rect"
+   }
+  },
+  "sac-a-dos-peluche": {
+   "lapinou-aile": {
+    "cartel": "Bolsos/2 Sacs à dos peluche pastel.png",
+    "caja": [
+     28,
+     240,
+     528,
+     772
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      420,
+      225,
+      640,
+      270
+     ]
+    ]
+   },
+   "lapinou-coeur": {
+    "cartel": "Bolsos/2 Sacs à dos peluche pastel.png",
+    "caja": [
+     520,
+     240,
+     1025,
+     772
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      420,
+      225,
+      660,
+      270
+     ]
+    ]
+   },
+   "licorne": {
+    "cartel": "Bolsos/2 Sacs à dos peluche pastel.png",
+    "caja": [
+     70,
+     838,
+     645,
+     1335
+    ],
+    "modo": "rect"
+   }
+  },
+  "sac-corde-marine-46x34x12": {
+   "plage-tropicale": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     22,
+     438,
+     262,
+     708
+    ],
+    "modo": "rect"
+   },
+   "flamants-plage": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     282,
+     438,
+     522,
+     708
+    ],
+    "modo": "rect"
+   },
+   "rayures-fuchsia": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     540,
+     438,
+     775,
+     708
+    ],
+    "modo": "rect"
+   },
+   "flamants-feuilles": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     792,
+     438,
+     1032,
+     708
+    ],
+    "modo": "rect"
+   },
+   "flamants-bleus": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     22,
+     732,
+     262,
+     993
+    ],
+    "modo": "rect"
+   },
+   "summer-flamants": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     282,
+     732,
+     522,
+     993
+    ],
+    "modo": "rect"
+   },
+   "ancre-marine": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     540,
+     732,
+     775,
+     993
+    ],
+    "modo": "rect"
+   },
+   "rayures-dorees": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     792,
+     732,
+     1032,
+     993
+    ],
+    "modo": "rect"
+   },
+   "cocktails": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     22,
+     1012,
+     262,
+     1258
+    ],
+    "modo": "rect"
+   },
+   "attrape-reves": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     282,
+     1012,
+     522,
+     1258
+    ],
+    "modo": "rect"
+   },
+   "fruits-tropicaux": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     540,
+     1012,
+     775,
+     1258
+    ],
+    "modo": "rect"
+   },
+   "paillettes-violettes": {
+    "cartel": "Bolsos/3 Sacs cordes Marine 46X34X12.png",
+    "caja": [
+     792,
+     1012,
+     1032,
+     1258
+    ],
+    "modo": "rect"
+   }
+  },
+  "sac-corde-paillete-46x34x12": {
+   "turquoise": {
+    "cartel": "Bolsos/4 Sacs cordes Marine pailleté 46X34X12.png",
+    "caja": [
+     105,
+     228,
+     530,
+     705
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      470,
+      238,
+      545,
+      292
+     ]
+    ]
+   },
+   "bleu-marine": {
+    "cartel": "Bolsos/4 Sacs cordes Marine pailleté 46X34X12.png",
+    "caja": [
+     552,
+     228,
+     975,
+     705
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      540,
+      238,
+      695,
+      292
+     ]
+    ]
+   },
+   "rose": {
+    "cartel": "Bolsos/4 Sacs cordes Marine pailleté 46X34X12.png",
+    "caja": [
+     105,
+     733,
+     528,
+     1185
+    ],
+    "modo": "rect"
+   },
+   "dore": {
+    "cartel": "Bolsos/4 Sacs cordes Marine pailleté 46X34X12.png",
+    "caja": [
+     552,
+     733,
+     975,
+     1185
+    ],
+    "modo": "rect"
+   }
+  },
+  "sac-de-plage-55x37x15": {
+   "etoiles-marron": {
+    "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
+    "caja": [
+     285,
+     475,
+     515,
+     700
+    ],
+    "modo": "rect"
+   },
+   "etoiles-marine": {
+    "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
+    "caja": [
+     530,
+     475,
+     770,
+     700
+    ],
+    "modo": "rect"
+   },
+   "rayures-marine": {
+    "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
+    "caja": [
+     780,
+     475,
+     1005,
+     700
+    ],
+    "modo": "rect"
+   },
+   "ancres-marine": {
+    "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
+    "caja": [
+     18,
+     735,
+     226,
+     938
+    ],
+    "modo": "rect"
+   },
+   "cordages-noir": {
+    "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
+    "caja": [
+     228,
+     735,
+     424,
+     938
+    ],
+    "modo": "rect"
+   },
+   "ancre-rouge": {
+    "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
+    "caja": [
+     428,
+     735,
+     612,
+     938
+    ],
+    "modo": "rect"
+   },
+   "flamants-rayures": {
+    "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
+    "caja": [
+     612,
+     735,
+     803,
+     938
+    ],
+    "modo": "rect"
+   },
+   "flamants-noir": {
+    "cartel": "Bolsos/5 Sacs de plage corde marine 55X37X15 cm.png",
+    "caja": [
+     808,
+     735,
+     1008,
+     938
+    ],
+    "modo": "rect"
+   }
+  },
+  "porte-monnaie-10x13": {
+   "mandala": {
+    "cartel": "Bolsos/Porte-monnaies personnalisables aux motifs méditerranéens.png",
+    "caja": [
+     82,
+     552,
+     412,
+     880
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      175,
+      790,
+      500,
+      1110
+     ]
+    ]
+   },
+   "azulejos": {
+    "cartel": "Bolsos/Porte-monnaies personnalisables aux motifs méditerranéens.png",
+    "caja": [
+     385,
+     532,
+     642,
+     790
+    ],
+    "modo": "rect"
+   },
+   "mosaique-fleurie": {
+    "cartel": "Bolsos/Porte-monnaies personnalisables aux motifs méditerranéens.png",
+    "caja": [
+     596,
+     545,
+     978,
+     885
+    ],
+    "modo": "rect"
+   }
+  },
+  "chapeau-panama": {
+   "naturel": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     120,
+     212,
+     370,
+     375
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      185,
+      368,
+      290,
+      402
+     ]
+    ]
+   },
+   "blanc": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     405,
+     208,
+     662,
+     375
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      470,
+      368,
+      585,
+      402
+     ]
+    ]
+   },
+   "ajoure": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     690,
+     212,
+     942,
+     375
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      820,
+      205,
+      945,
+      242
+     ],
+     [
+      760,
+      368,
+      865,
+      402
+     ]
+    ]
+   }
+  },
+  "borsalino-colore": {
+   "fuchsia": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     75,
+     486,
+     268,
+     604
+    ],
+    "modo": "rect"
+   },
+   "turquoise": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     315,
+     474,
+     502,
+     604
+    ],
+    "modo": "rect"
+   }
+  },
+  "borsalino-naturel": {
+   "creme": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     550,
+     478,
+     758,
+     604
+    ],
+    "modo": "rect"
+   },
+   "paille": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     798,
+     458,
+     992,
+     582
+    ],
+    "modo": "rect"
+   }
+  },
+  "chapeau-paille-taille-56": {
+   "paille": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     835,
+     735,
+     1005,
+     880
+    ],
+    "excluir": [
+     [
+      855,
+      845,
+      950,
+      895
+     ]
+    ]
+   }
+  },
+  "casquette-lyonnaise": {
+   "bleu": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     100,
+     745,
+     310,
+     850
+    ],
+    "excluir": [
+     [
+      148,
+      846,
+      235,
+      882
+     ]
+    ]
+   },
+   "marron": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     345,
+     745,
+     550,
+     850
+    ],
+    "excluir": [
+     [
+      395,
+      846,
+      485,
+      882
+     ]
+    ]
+   },
+   "gris": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     598,
+     742,
+     795,
+     850
+    ],
+    "excluir": [
+     [
+      648,
+      846,
+      738,
+      882
+     ]
+    ]
+   }
+  },
+  "casquette-mao": {
+   "beige": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     155,
+     990,
+     390,
+     1075
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      225,
+      1072,
+      310,
+      1104
+     ]
+    ]
+   },
+   "noir": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     470,
+     985,
+     668,
+     1085
+    ],
+    "excluir": [
+     [
+      555,
+      1072,
+      640,
+      1104
+     ]
+    ]
+   }
+  },
+  "bob-imprime": {
+   "feuilles-noir-blanc": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     75,
+     1210,
+     285,
+     1318
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      130,
+      1308,
+      215,
+      1344
+     ]
+    ]
+   },
+   "feuilles-noir-rouge": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     330,
+     1210,
+     525,
+     1318
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      385,
+      1308,
+      470,
+      1344
+     ]
+    ]
+   },
+   "feuilles-kaki": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     570,
+     1210,
+     760,
+     1318
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      625,
+      1308,
+      710,
+      1344
+     ]
+    ]
+   },
+   "feuilles-bleu": {
+    "cartel": "Sombreros/0 Catalogue chapeaux hommes.png",
+    "caja": [
+     810,
+     1210,
+     1003,
+     1318
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      865,
+      1308,
+      950,
+      1344
+     ]
+    ]
+   }
+  },
+  "capeline-paille": {
+   "naturel-chine": {
+    "cartel": "Sombreros/1 Catalogue de capelines élégantes pour la plage.png",
+    "caja": [
+     125,
+     222,
+     500,
+     485
+    ],
+    "excluir": [
+     [
+      395,
+      370,
+      505,
+      482
+     ],
+     [
+      25,
+      240,
+      150,
+      372
+     ]
+    ]
+   },
+   "bleu-marine-bicolore": {
+    "cartel": "Sombreros/1 Catalogue de capelines élégantes pour la plage.png",
+    "caja": [
+     545,
+     228,
+     1005,
+     475
+    ],
+    "excluir": [
+     [
+      900,
+      370,
+      1005,
+      480
+     ],
+     [
+      525,
+      236,
+      672,
+      288
+     ],
+     [
+      525,
+      288,
+      640,
+      375
+     ]
+    ]
+   },
+   "marron": {
+    "cartel": "Sombreros/1 Catalogue de capelines élégantes pour la plage.png",
+    "caja": [
+     110,
+     482,
+     500,
+     745
+    ],
+    "excluir": [
+     [
+      398,
+      630,
+      500,
+      742
+     ],
+     [
+      25,
+      495,
+      170,
+      625
+     ]
+    ]
+   },
+   "naturel-dore": {
+    "cartel": "Sombreros/1 Catalogue de capelines élégantes pour la plage.png",
+    "caja": [
+     610,
+     488,
+     995,
+     755
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      900,
+      632,
+      1005,
+      745
+     ],
+     [
+      525,
+      495,
+      680,
+      625
+     ]
+    ]
+   },
+   "bleu-roi": {
+    "cartel": "Sombreros/1 Catalogue de capelines élégantes pour la plage.png",
+    "caja": [
+     545,
+     752,
+     1005,
+     1008
+    ],
+    "excluir": [
+     [
+      895,
+      895,
+      1005,
+      1010
+     ],
+     [
+      525,
+      755,
+      680,
+      885
+     ]
+    ]
+   },
+   "beige": {
+    "cartel": "Sombreros/1 Catalogue de capelines élégantes pour la plage.png",
+    "caja": [
+     100,
+     1020,
+     500,
+     1285
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      390,
+      1160,
+      500,
+      1275
+     ],
+     [
+      25,
+      1025,
+      170,
+      1140
+     ]
+    ]
+   },
+   "blanc": {
+    "cartel": "Sombreros/1 Catalogue de capelines élégantes pour la plage.png",
+    "caja": [
+     610,
+     1018,
+     1005,
+     1280
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      895,
+      1160,
+      1005,
+      1272
+     ],
+     [
+      525,
+      1025,
+      680,
+      1140
+     ]
+    ]
+   }
+  },
+  "capeline-crochet": {
+   "ecru": {
+    "cartel": "Sombreros/1 Catalogue de capelines élégantes pour la plage.png",
+    "caja": [
+     135,
+     750,
+     495,
+     1010
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      385,
+      895,
+      498,
+      1010
+     ],
+     [
+      25,
+      755,
+      170,
+      885
+     ]
+    ]
+   }
+  },
+  "capeline-bicolore-t54": {
+   "jaune-fuchsia": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     70,
+     315,
+     412,
+     535
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      40,
+      530,
+      120,
+      565
+     ]
+    ]
+   }
+  },
+  "chapeau-crochet-granny-t54": {
+   "bleu": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     470,
+     318,
+     722,
+     545
+    ],
+    "excluir": [
+     [
+      440,
+      535,
+      535,
+      565
+     ]
+    ]
+   },
+   "naturel": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     735,
+     318,
+     1002,
+     545
+    ],
+    "excluir": [
+     [
+      770,
+      535,
+      855,
+      565
+     ]
+    ]
+   },
+   "noir-blanc": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     45,
+     678,
+     298,
+     898
+    ],
+    "excluir": [
+     [
+      52,
+      868,
+      145,
+      902
+     ]
+    ]
+   },
+   "vert": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     296,
+     690,
+     532,
+     898
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      340,
+      868,
+      425,
+      902
+     ]
+    ]
+   }
+  },
+  "cloche-tricotee-t54": {
+   "creme": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     565,
+     668,
+     792,
+     898
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      588,
+      868,
+      655,
+      902
+     ]
+    ]
+   },
+   "beige": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     790,
+     678,
+     1022,
+     898
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      832,
+      868,
+      910,
+      902
+     ]
+    ]
+   }
+  },
+  "capeline-elegante-t54": {
+   "jaune-ruban-noir": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     15,
+     1030,
+     322,
+     1245
+    ],
+    "excluir": [
+     [
+      70,
+      1215,
+      150,
+      1250
+     ]
+    ]
+   },
+   "marron-ruban-rose": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     318,
+     1035,
+     562,
+     1232
+    ],
+    "excluir": [
+     [
+      365,
+      1208,
+      445,
+      1245
+     ]
+    ]
+   }
+  },
+  "visiere-reglable": {
+   "coloris-assortis": {
+    "cartel": "Sombreros/2 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     608,
+     1018,
+     905,
+     1332
+    ],
+    "excluir": [
+     [
+      640,
+      1295,
+      705,
+      1330
+     ]
+    ]
+   }
+  },
+  "capeline-bicolore-enfant": {
+   "bleu": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     228,
+     222,
+     552,
+     470
+    ],
+    "excluir": [
+     [
+      342,
+      412,
+      442,
+      462
+     ]
+    ]
+   },
+   "fuchsia": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     545,
+     222,
+     862,
+     470
+    ],
+    "excluir": [
+     [
+      660,
+      412,
+      752,
+      458
+     ]
+    ]
+   }
+  },
+  "capeline-dentelle-enfant": {
+   "blanc": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     192,
+     470,
+     556,
+     668
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      340,
+      675,
+      432,
+      715
+     ]
+    ]
+   },
+   "rose": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     556,
+     478,
+     895,
+     702
+    ],
+    "excluir": [
+     [
+      658,
+      675,
+      748,
+      715
+     ]
+    ]
+   }
+  },
+  "capeline-fille-t54": {
+   "beige": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     162,
+     748,
+     432,
+     900
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      150,
+      745,
+      262,
+      800
+     ]
+    ]
+   },
+   "bleu": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     415,
+     750,
+     648,
+     915
+    ],
+    "excluir": [
+     [
+      497,
+      918,
+      590,
+      948
+     ]
+    ]
+   },
+   "fuchsia": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     635,
+     750,
+     888,
+     918
+    ],
+    "excluir": [
+     [
+      700,
+      918,
+      795,
+      948
+     ]
+    ]
+   }
+  },
+  "chapeau-chaton-t54": {
+   "beige": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     62,
+     1035,
+     368,
+     1222
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      205,
+      1215,
+      285,
+      1255
+     ]
+    ]
+   }
+  },
+  "bob-bebe": {
+   "bleu": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     64,
+     1298,
+     256,
+     1440
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      100,
+      1432,
+      215,
+      1480
+     ]
+    ]
+   },
+   "rose": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     244,
+     1300,
+     436,
+     1440
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      290,
+      1290,
+      415,
+      1335
+     ],
+     [
+      300,
+      1432,
+      420,
+      1480
+     ]
+    ]
+   }
+  },
+  "borsalino-enfant-ruban-noir": {
+   "blanc-casse": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     765,
+     1058,
+     988,
+     1205
+    ],
+    "modo": "rect",
+    "excluir": [
+     [
+      850,
+      1196,
+      935,
+      1232
+     ]
+    ]
+   },
+   "blanc": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     465,
+     1235,
+     660,
+     1388
+    ],
+    "modo": "rect"
+   },
+   "bleu-jean": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     662,
+     1238,
+     872,
+     1388
+    ],
+    "modo": "rect"
+   },
+   "naturel": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     872,
+     1238,
+     1032,
+     1388
+    ],
+    "modo": "rect"
+   }
+  },
+  "borsalino-enfant-ruban-beige": {
+   "beige": {
+    "cartel": "Sombreros/5 Capelines Taille 54 2.png",
+    "caja": [
+     528,
+     1038,
+     760,
+     1200
+    ],
+    "modo": "rect"
+   }
+  },
+  "eventail-fleurs": {
+   "bleu": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     18,
+     286,
+     302,
+     422
+    ]
+   },
+   "rose": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     273,
+     286,
+     562,
+     425
+    ]
+   },
+   "blanc-rose": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     10,
+     390,
+     332,
+     568
+    ]
+   },
+   "blanc-noir": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     282,
+     393,
+     512,
+     568
+    ]
+   },
+   "bleu-fuchsia": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     405,
+     406,
+     692,
+     570
+    ]
+   },
+   "rouge": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     628,
+     406,
+     878,
+     552
+    ]
+   }
+  },
+  "eventail-mandala": {
+   "paisley-blanc": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     10,
+     700,
+     292,
+     840
+    ]
+   },
+   "paisley-marine": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     260,
+     708,
+     517,
+     842
+    ]
+   },
+   "paisley-noir": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     486,
+     708,
+     748,
+     840
+    ]
+   },
+   "mandala-orange": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     4,
+     810,
+     282,
+     948
+    ]
+   },
+   "mandala-marron": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     262,
+     820,
+     522,
+     950
+    ]
+   },
+   "mandala-rose": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     508,
+     816,
+     782,
+     950
+    ]
+   },
+   "mosaique-violette": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     10,
+     918,
+     290,
+     1060
+    ]
+   },
+   "mosaique-bleue": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     256,
+     918,
+     522,
+     1058
+    ]
+   },
+   "mosaique-multicolore": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     493,
+     918,
+     748,
+     1062
+    ]
+   }
+  },
+  "eventail-paillete": {
+   "fuchsia": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     22,
+     1180,
+     312,
+     1342
+    ]
+   },
+   "noir": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     278,
+     1180,
+     558,
+     1338
+    ]
+   },
+   "dore": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     518,
+     1176,
+     802,
+     1335
+    ]
+   },
+   "argent": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     18,
+     1310,
+     318,
+     1468
+    ]
+   },
+   "turquoise": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     278,
+     1313,
+     522,
+     1468
+    ]
+   },
+   "rose-clair": {
+    "cartel": "Sombreros/0 Catalogue tropical déventails colorés.png",
+    "caja": [
+     518,
+     1313,
+     802,
+     1468
+    ]
+   }
+  },
+  "bandeau-elastique": {
+   "assortiment": {
+    "cartel": "Sombreros/3 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     62,
+     538,
+     992,
+     1138
+    ],
+    "modo": "rect"
+   }
+  },
+  "barrette-strass": {
+   "fleurs-argentees": {
+    "cartel": "Sombreros/4 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     38,
+     355,
+     495,
+     815
+    ]
+   },
+   "coeurs-dores": {
+    "cartel": "Sombreros/4 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     560,
+     350,
+     1005,
+     885
+    ]
+   },
+   "volutes-dorees": {
+    "cartel": "Sombreros/4 Catalogue estival de chapeaux colorés.png",
+    "caja": [
+     262,
+     925,
+     710,
+     1365
+    ]
+   }
+  },
+  "casquette-enfant-t54": {
+   "licorne-arc-en-ciel": {
+    "cartel": "Sombreros/6 Casquettes enfants licornes et dragons.png",
+    "caja": [
+     75,
+     462,
+     398,
+     830
+    ],
+    "excluir": [
+     [
+      130,
+      822,
+      225,
+      890
+     ]
+    ]
+   },
+   "licorne-fleurs": {
+    "cartel": "Sombreros/6 Casquettes enfants licornes et dragons.png",
+    "caja": [
+     345,
+     458,
+     702,
+     842
+    ],
+    "excluir": [
+     [
+      455,
+      825,
+      600,
+      890
+     ]
+    ]
+   },
+   "licorne-dessin": {
+    "cartel": "Sombreros/6 Casquettes enfants licornes et dragons.png",
+    "caja": [
+     665,
+     455,
+     1010,
+     848
+    ],
+    "excluir": [
+     [
+      745,
+      830,
+      860,
+      890
+     ]
+    ]
+   },
+   "dragon-bleu": {
+    "cartel": "Sombreros/6 Casquettes enfants licornes et dragons.png",
+    "caja": [
+     12,
+     1062,
+     308,
+     1338
+    ],
+    "excluir": [
+     [
+      95,
+      1345,
+      205,
+      1410
+     ]
+    ]
+   },
+   "dragon-rouge": {
+    "cartel": "Sombreros/6 Casquettes enfants licornes et dragons.png",
+    "caja": [
+     272,
+     1062,
+     568,
+     1338
+    ]
+   },
+   "dragon-bleu-ciel": {
+    "cartel": "Sombreros/6 Casquettes enfants licornes et dragons.png",
+    "caja": [
+     518,
+     1062,
+     812,
+     1338
+    ]
+   },
+   "dragon-noir": {
+    "cartel": "Sombreros/6 Casquettes enfants licornes et dragons.png",
+    "caja": [
+     775,
+     1062,
+     1042,
+     1335
+    ]
+   }
+  },
+  "poncho-enfant": {
+   "croco": {
+    "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
+    "caja": [
+     90,
+     130,
+     372,
+     525
+    ],
+    "modo": "rect"
+   },
+   "dinosaure": {
+    "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
+    "caja": [
+     395,
+     130,
+     665,
+     525
+    ],
+    "modo": "rect"
+   },
+   "foot": {
+    "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
+    "caja": [
+     680,
+     130,
+     965,
+     525
+    ],
+    "modo": "rect"
+   },
+   "licorne": {
+    "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
+    "caja": [
+     75,
+     558,
+     368,
+     980
+    ],
+    "modo": "rect"
+   },
+   "licorne-rainbow": {
+    "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
+    "caja": [
+     385,
+     558,
+     668,
+     980
+    ],
+    "modo": "rect"
+   },
+   "requin": {
+    "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
+    "caja": [
+     690,
+     558,
+     992,
+     980
+    ],
+    "modo": "rect"
+   },
+   "sirene": {
+    "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
+    "caja": [
+     218,
+     998,
+     505,
+     1410
+    ],
+    "modo": "rect"
+   },
+   "pirate": {
+    "cartel": "Toballas de playa/0 Huit ponchos enfants LA OLA.png",
+    "caja": [
+     555,
+     998,
+     870,
+     1410
+    ],
+    "modo": "rect"
+   }
+  },
+  "serviette-plage-70x140": {
+   "combi-aloha": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     156,
+     324,
+     364,
+     660
+    ],
+    "modo": "rect"
+   },
+   "parasol-cocktail": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     426,
+     324,
+     622,
+     660
+    ],
+    "modo": "rect"
+   },
+   "poissons-rayes": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     696,
+     324,
+     866,
+     660
+    ],
+    "modo": "rect"
+   },
+   "tongs": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     124,
+     706,
+     346,
+     1038
+    ],
+    "modo": "rect"
+   },
+   "poissons-tropicaux": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     410,
+     706,
+     636,
+     1038
+    ],
+    "modo": "rect"
+   },
+   "surf-palmiers": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     712,
+     706,
+     962,
+     1038
+    ],
+    "modo": "rect"
+   },
+   "scooter-summer": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     126,
+     1076,
+     332,
+     1440
+    ],
+    "modo": "rect"
+   },
+   "etoile-de-mer-fleurie": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     422,
+     1076,
+     618,
+     1440
+    ],
+    "modo": "rect"
+   },
+   "flamants-coeur": {
+    "cartel": "Toballas de playa/1 Serviettes 70X140 1.png",
+    "caja": [
+     712,
+     1076,
+     926,
+     1440
+    ],
+    "modo": "rect"
+   },
+   "marguerites": {
+    "cartel": "Toballas de playa/2 Serviettes 70X140.png",
+    "caja": [
+     152,
+     324,
+     366,
+     664
+    ],
+    "modo": "rect"
+   },
+   "coucher-de-soleil": {
+    "cartel": "Toballas de playa/2 Serviettes 70X140.png",
+    "caja": [
+     428,
+     324,
+     622,
+     664
+    ],
+    "modo": "rect"
+   },
+   "peace-and-love": {
+    "cartel": "Toballas de playa/2 Serviettes 70X140.png",
+    "caja": [
+     698,
+     338,
+     908,
+     664
+    ],
+    "modo": "rect"
+   },
+   "ancre-marine": {
+    "cartel": "Toballas de playa/2 Serviettes 70X140.png",
+    "caja": [
+     248,
+     710,
+     490,
+     1036
+    ],
+    "modo": "rect"
+   },
+   "flamant-rose": {
+    "cartel": "Toballas de playa/2 Serviettes 70X140.png",
+    "caja": [
+     572,
+     708,
+     810,
+     1036
+    ],
+    "modo": "rect"
+   },
+   "combi-arc-en-ciel": {
+    "cartel": "Toballas de playa/2 Serviettes 70X140.png",
+    "caja": [
+     212,
+     1082,
+     490,
+     1428
+    ],
+    "modo": "rect"
+   },
+   "summer-leopard": {
+    "cartel": "Toballas de playa/2 Serviettes 70X140.png",
+    "caja": [
+     580,
+     1082,
+     826,
+     1428
+    ],
+    "modo": "rect"
+   }
+  },
+  "serviette-plage-90x180": {
+   "tie-dye-bleu": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     156,
+     320,
+     360,
+     640
+    ],
+    "modo": "rect"
+   },
+   "rayures-bleues": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     424,
+     320,
+     622,
+     640
+    ],
+    "modo": "rect"
+   },
+   "vagues-orange": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     690,
+     340,
+     910,
+     642
+    ],
+    "modo": "rect"
+   },
+   "dauphin": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     146,
+     690,
+     350,
+     1006
+    ],
+    "modo": "rect"
+   },
+   "etoiles-rayures": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     426,
+     688,
+     616,
+     1004
+    ],
+    "modo": "rect"
+   },
+   "arc-en-ciel": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     700,
+     688,
+     910,
+     1006
+    ],
+    "modo": "rect"
+   },
+   "rayures-bleu-vert": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     136,
+     1050,
+     352,
+     1406
+    ],
+    "modo": "rect"
+   },
+   "rayures-fines": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     434,
+     1050,
+     636,
+     1406
+    ],
+    "modo": "rect"
+   },
+   "hashtags": {
+    "cartel": "Toballas de playa/3 Serviettes 80x180.png",
+    "caja": [
+     712,
+     1050,
+     930,
+     1406
+    ],
+    "modo": "rect"
+   },
+   "eau-turquoise": {
+    "cartel": "Toballas de playa/4 Serviettes 90x180.png",
+    "caja": [
+     160,
+     320,
+     360,
+     640
+    ],
+    "modo": "rect"
+   },
+   "tortue-mandala": {
+    "cartel": "Toballas de playa/4 Serviettes 90x180.png",
+    "caja": [
+     424,
+     320,
+     612,
+     640
+    ],
+    "modo": "rect"
+   },
+   "tortues-bleues": {
+    "cartel": "Toballas de playa/4 Serviettes 90x180.png",
+    "caja": [
+     690,
+     320,
+     856,
+     640
+    ],
+    "modo": "rect"
+   },
+   "tortues-turquoise": {
+    "cartel": "Toballas de playa/4 Serviettes 90x180.png",
+    "caja": [
+     166,
+     690,
+     346,
+     1026
+    ],
+    "modo": "rect"
+   },
+   "tortue-vagues": {
+    "cartel": "Toballas de playa/4 Serviettes 90x180.png",
+    "caja": [
+     430,
+     690,
+     600,
+     1026
+    ],
+    "modo": "rect"
+   },
+   "mandala-bleu": {
+    "cartel": "Toballas de playa/4 Serviettes 90x180.png",
+    "caja": [
+     700,
+     690,
+     900,
+     1026
+    ],
+    "modo": "rect"
+   },
+   "drapeau-americain": {
+    "cartel": "Toballas de playa/4 Serviettes 90x180.png",
+    "caja": [
+     270,
+     1074,
+     486,
+     1406
+    ],
+    "modo": "rect"
+   },
+   "planches-de-surf": {
+    "cartel": "Toballas de playa/4 Serviettes 90x180.png",
+    "caja": [
+     570,
+     1074,
+     786,
+     1398
+    ],
+    "modo": "rect"
+   }
+  },
+  "serviette-plage-100x180": {
+   "flamants-feel-this-summer": {
+    "cartel": "Toballas de playa/5 Serviettes 100X180.png",
+    "caja": [
+     112,
+     116,
+     366,
+     540
+    ],
+    "modo": "rect"
+   },
+   "flamants-coeur": {
+    "cartel": "Toballas de playa/5 Serviettes 100X180.png",
+    "caja": [
+     412,
+     116,
+     646,
+     540
+    ],
+    "modo": "rect"
+   },
+   "etoile-de-mer-fleurie": {
+    "cartel": "Toballas de playa/5 Serviettes 100X180.png",
+    "caja": [
+     694,
+     116,
+     946,
+     540
+    ],
+    "modo": "rect"
+   },
+   "paradise-summer": {
+    "cartel": "Toballas de playa/5 Serviettes 100X180.png",
+    "caja": [
+     242,
+     586,
+     506,
+     966
+    ],
+    "modo": "rect"
+   },
+   "orques": {
+    "cartel": "Toballas de playa/5 Serviettes 100X180.png",
+    "caja": [
+     550,
+     590,
+     810,
+     966
+    ],
+    "modo": "rect"
+   },
+   "palmier-plage": {
+    "cartel": "Toballas de playa/5 Serviettes 100X180.png",
+    "caja": [
+     238,
+     1010,
+     500,
+     1416
+    ],
+    "modo": "rect"
+   },
+   "rayures-marine-ancres": {
+    "cartel": "Toballas de playa/5 Serviettes 100X180.png",
+    "caja": [
+     552,
+     1010,
+     816,
+     1416
+    ],
+    "modo": "rect"
+   }
+  }
+ }
+}
