@@ -34,8 +34,12 @@ export const MENU_CATALOGUE: ColonneMenu[] = [
     ],
   },
   {
-    titre: 'Souvenirs',
-    liens: [{ href: '/professionnels/boutiques-souvenirs', etiqueta: 'Souvenirs pour boutiques' }],
+    titre: 'Plage et souvenirs',
+    liens: [
+      { href: '/catalogue?categoria=sombreros', etiqueta: 'Chapeaux' },
+      { href: '/catalogue?categoria=toallas-ponchos', etiqueta: 'Serviettes et ponchos' },
+      { href: '/professionnels/boutiques-souvenirs', etiqueta: 'Souvenirs pour boutiques' },
+    ],
   },
   {
     titre: 'Vous êtes…',

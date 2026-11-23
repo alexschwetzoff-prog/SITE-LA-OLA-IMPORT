@@ -7,9 +7,9 @@ import { CATEGORIAS } from '@/data/categorias';
 import { PRODUCTOS_ACTIVOS, conteoPorCategoria, datosTarjeta } from '@/lib/catalogo';
 
 export const metadata: Metadata = {
-  title: 'Catalogue : textiles et objets personnalisés avec votre logo',
+  title: 'Catalogue : textiles, objets et articles de plage',
   description:
-    'T-shirts, polos, sweats, casquettes, sacs et goodies personnalisés avec votre logo dans notre atelier de Monteux (Vaucluse). Prix sur devis, selon la quantité et la technique.',
+    'T-shirts, polos, sweats, casquettes, sacs, goodies, chapeaux, serviettes et ponchos : le catalogue de La Ola Import, à Monteux (Vaucluse). Personnalisation avec votre logo sur devis.',
   alternates: { canonical: '/catalogue' },
 };
 
@@ -36,7 +36,7 @@ export default function PaginaCatalogo() {
         <div className="max-w-2xl">
           <h1 className="font-display text-4xl font-extrabold tracking-tight text-marine sm:text-5xl">Catalogue</h1>
           <p className="mt-3 text-lg text-ardoise">
-            Textiles et objets à personnaliser avec votre logo dans notre atelier de Monteux. Choisissez un article : nous vous
+            Textiles, objets et articles de plage, à personnaliser avec votre logo dans notre atelier de Monteux quand c’est possible. Choisissez un article : nous vous
             préparons un devis sur mesure.
           </p>
         </div>

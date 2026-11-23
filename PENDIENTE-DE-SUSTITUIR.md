@@ -147,3 +147,20 @@ Todo lo que en esta copia sigue siendo de la empresa de la que sale la base, o e
   (`CORREO_DESTINO` vacío).
 - [ ] Siguen pendientes: SIRET, forma jurídica, RCS, director de la publicación, horario, WhatsApp (¿mismo número?),
   redes sociales y dominio (el JSON-LD usa aún `dominio-pendiente.example` en `url`).
+
+## 9. Otros productos: «La Ola autres produits» (serviettes, ponchos, chapeaux, casquettes)
+
+32 modelos y 132 variantes en `data/otros-productos.ts` (fotos sueltas del proveedor, recortadas con
+`scripts/fotos/otros-productos.py --json scripts/fotos/la-ola-autres-produits-recortes.json`). Sin precio ni lotes en la web
+(`precioDesde: null`); inventario interno con referencias, precios y lotes: `docs/otros-productos/INVENTARIO-LA-OLA.md` (ignorado por git).
+
+- [ ] **Fotos HD** (hoy menos de 400 px de lado): serviettes 70×140 (6 de 16), 87×170 (7 de 17) y 100×180 (3 de 7), ponchos (6 de 8,
+  solo el dinosaurio es grande), cowboy daim (3 de 12), casquette Mao (2), chapeau marguerites (3), capeline dentelle (2), bob bébé (2),
+  borsalinos de paille T56 y T60, borsalino enfant ruban beige, capeline bicolore. No se amplía nada: salen pequeñas en pantalla grande.
+- [ ] **Poncho pirate**: el archivo está corrupto en Drive; se usó una captura de pantalla (590×832). Pedir la foto buena.
+- [ ] **Medidas de las serviettes**: la carpeta dice 87X170 y 100X180, los nombres de archivo dicen 90X170/90X180: confirmar.
+- [ ] **Materiales**: solo serviettes y ponchos (microfibre) tienen material; los demás no se muestran hasta saberlo.
+- [ ] **Nombres de variante provisionales** (`provisional: true`): ver la lista del inventario.
+- [ ] **Precios y lotes**: no publicados; decidir si se muestran. Zona de marcaje: ninguno es personalizable de momento (`personalizable: false`).
+- [ ] **Categorías creadas**: `sombreros` («Chapeaux») y `toallas-ponchos` («Serviettes et ponchos»); las casquettes van a «Casquettes».
+- [ ] **Fotos de baja calidad con restos de fondo**: poncho pirate (esquina gris), chapeau noir cowboy (línea de sombra).

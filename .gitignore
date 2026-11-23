@@ -66,3 +66,6 @@ __pycache__/
 /assets/productos/otros-productos-origen/
 # Inventario interno (referencias, precios y lotes): nunca se sube
 /docs/otros-productos/
+
+# Origen de las fotos «La Ola autres produits» (no se sube: son fotos del proveedor)
+/assets/productos/la-ola-autres-produits-origen/

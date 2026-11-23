@@ -1,6 +1,6 @@
 // Comprobación (fase 4.6): a 390 px en emulación móvil, el documento tiene que medir 390 px y el botón del menú quedar en
 // pantalla en todas las rutas. Si algo sobresale, Chrome agranda el viewport de maquetación y la cabecera se sale.
-// Uso: node scripts/comprobar-movil.mjs http://localhost:3000
+// Uso: node scripts/comprobar-movil.mjs http://localhost:3000   (RUTAS_EXTRA=/catalogue/x,/catalogue/y para añadir rutas)
 import { chromium } from 'playwright';
 const base = process.argv[2] ?? 'http://localhost:3000';
 // Chromium préinstallé si la version de Playwright du projet n'a pas le sien (CHROMIUM_PATH).
@@ -8,7 +8,7 @@ const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: pr
 const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 const p = await ctx.newPage();
 let fallos = 0;
-for (const ruta of ['/', '/catalogue', '/catalogue/imola', '/catalogue/zenith', '/catalogue/atomic-150', '/personnaliser/atomic-150', '/projet', '/devis', '/merci', '/avis', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/campings', '/espace-client', '/contact', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cgv', '/page-introuvable']) {
+for (const ruta of ['/', '/catalogue', '/catalogue/imola', '/catalogue/zenith', '/catalogue/atomic-150', '/personnaliser/atomic-150', '/projet', '/devis', '/merci', '/avis', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/campings', '/espace-client', '/contact', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cgv', '/page-introuvable', ...(process.env.RUTAS_EXTRA ? process.env.RUTAS_EXTRA.split(',') : [])]) {
   await p.goto(base + ruta, { waitUntil: 'load' });
   await p.waitForTimeout(1200);
   const r = await p.evaluate(() => {

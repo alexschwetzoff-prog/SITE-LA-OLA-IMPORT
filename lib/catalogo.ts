@@ -102,6 +102,8 @@ export interface ColorTarjeta {
   hex: string;
   hexSecundario?: string;
   fotos?: FotosProducto;
+  /** Miniatura de la variante (solo productos de tipoVariante 'diseno'): la foto de ese diseño. */
+  miniatura?: string;
 }
 
 export interface DatosTarjeta {
@@ -117,9 +119,11 @@ export interface DatosTarjeta {
   precio: string;
   desde: boolean; // le prix est un vrai prix (« À partir de X € / pièce »)
   material: string;
+  condiciones?: string;
   conEstudio: boolean;
   colores: ColorTarjeta[];
   colorInicial: string;
+  tipoVariante: 'color' | 'diseno';
   /** Colocación del diseño común a los colores (las fotos de cada color solo la llevan cuando es distinta). */
   diseno?: { delante?: ColocacionDiseno; detras?: ColocacionDiseno };
 }
@@ -146,6 +150,7 @@ export function datosTarjeta(p: Producto): DatosTarjeta {
     precio,
     desde: conPrecio(p),
     material: textoMaterial(p),
+    condiciones: p.condiciones,
     conEstudio: tieneEstudio(p),
     colores: p.colores.map((c) => {
       const fotos = fotosDe(p, c);
@@ -154,9 +159,10 @@ export function datosTarjeta(p: Producto): DatosTarjeta {
         if (mismaColocacion(fotos.diseno, diseno.delante)) delete fotos.diseno;
         if (mismaColocacion(fotos.disenoDetras, diseno.detras)) delete fotos.disenoDetras;
       }
-      return { nombre: c.nombre, hex: c.hex, hexSecundario: c.hexSecundario, fotos };
+      return { nombre: c.nombre, hex: c.hex, hexSecundario: c.hexSecundario, fotos, miniatura: p.tipoVariante === 'diseno' ? c.fotoDelante : undefined };
     }),
     colorInicial: inicial.nombre,
+    tipoVariante: p.tipoVariante ?? 'color',
     diseno,
   };
 }
@@ -167,6 +173,8 @@ const PREFERENCIA_COMBINA: Record<Categoria, Categoria[]> = {
   gorras: ['camisetas-polos', 'sudaderas', 'bolsas'],
   bolsas: ['camisetas-polos', 'goodies', 'gorras'],
   goodies: ['goodies', 'bolsas', 'camisetas-polos'],
+  sombreros: ['sombreros', 'gorras', 'toallas-ponchos'],
+  'toallas-ponchos': ['toallas-ponchos', 'sombreros', 'bolsas'],
 };
 
 /** Tres productos relacionados: uno por categoría preferida, primero los destacados y luego el siguiente en orden. */

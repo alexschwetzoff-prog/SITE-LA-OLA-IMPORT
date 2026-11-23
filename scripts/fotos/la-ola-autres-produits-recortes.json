@@ -1,0 +1,1390 @@
+{
+ "origen": "assets/productos/la-ola-autres-produits-origen",
+ "salida": "public/productos/catalogo",
+ "modelos": {
+  "serviette-plage-70x140": {
+   "combi-aloha": {
+    "cartel": "fotos/serviette-plage-70x140/combi-aloha.jpg",
+    "caja": [
+     0,
+     0,
+     428,
+     777
+    ],
+    "modo": "blanco"
+   },
+   "parasol-cocktail": {
+    "cartel": "fotos/serviette-plage-70x140/parasol-cocktail.jpg",
+    "caja": [
+     0,
+     0,
+     589,
+     952
+    ],
+    "modo": "blanco"
+   },
+   "poissons-rayes": {
+    "cartel": "fotos/serviette-plage-70x140/poissons-rayes.jpg",
+    "caja": [
+     0,
+     0,
+     201,
+     376
+    ],
+    "modo": "blanco"
+   },
+   "tongs": {
+    "cartel": "fotos/serviette-plage-70x140/tongs.jpg",
+    "caja": [
+     0,
+     0,
+     567,
+     1084
+    ],
+    "modo": "blanco"
+   },
+   "poissons-tropicaux": {
+    "cartel": "fotos/serviette-plage-70x140/poissons-tropicaux.jpg",
+    "caja": [
+     0,
+     0,
+     228,
+     417
+    ],
+    "modo": "blanco"
+   },
+   "surf-palmiers": {
+    "cartel": "fotos/serviette-plage-70x140/surf-palmiers.jpg",
+    "caja": [
+     0,
+     0,
+     176,
+     367
+    ],
+    "modo": "blanco"
+   },
+   "scooter-summer": {
+    "cartel": "fotos/serviette-plage-70x140/scooter-summer.jpg",
+    "caja": [
+     0,
+     0,
+     238,
+     383
+    ],
+    "modo": "blanco"
+   },
+   "etoile-de-mer-fleurie": {
+    "cartel": "fotos/serviette-plage-70x140/etoile-de-mer-fleurie.jpg",
+    "caja": [
+     0,
+     0,
+     298,
+     531
+    ],
+    "modo": "blanco"
+   },
+   "flamants-coeur": {
+    "cartel": "fotos/serviette-plage-70x140/flamants-coeur.jpg",
+    "caja": [
+     0,
+     0,
+     203,
+     360
+    ],
+    "modo": "blanco"
+   },
+   "marguerites": {
+    "cartel": "fotos/serviette-plage-70x140/marguerites.jpg",
+    "caja": [
+     0,
+     0,
+     496,
+     810
+    ],
+    "modo": "blanco"
+   },
+   "coucher-de-soleil": {
+    "cartel": "fotos/serviette-plage-70x140/coucher-de-soleil.jpg",
+    "caja": [
+     0,
+     0,
+     188,
+     406
+    ],
+    "modo": "blanco"
+   },
+   "peace-and-love": {
+    "cartel": "fotos/serviette-plage-70x140/peace-and-love.jpg",
+    "caja": [
+     0,
+     0,
+     233,
+     397
+    ],
+    "modo": "blanco"
+   },
+   "ancre-marine": {
+    "cartel": "fotos/serviette-plage-70x140/ancre-marine.jpg",
+    "caja": [
+     0,
+     0,
+     578,
+     993
+    ],
+    "modo": "blanco"
+   },
+   "flamant-rose": {
+    "cartel": "fotos/serviette-plage-70x140/flamant-rose.jpg",
+    "caja": [
+     0,
+     0,
+     222,
+     351
+    ],
+    "modo": "blanco"
+   },
+   "combi-arc-en-ciel": {
+    "cartel": "fotos/serviette-plage-70x140/combi-arc-en-ciel.png",
+    "caja": [
+     0,
+     0,
+     1049,
+     1499
+    ],
+    "modo": "blanco"
+   },
+   "summer-leopard": {
+    "cartel": "fotos/serviette-plage-70x140/summer-leopard.png",
+    "caja": [
+     0,
+     0,
+     887,
+     1774
+    ],
+    "modo": "blanco"
+   }
+  },
+  "serviette-plage-87x170": {
+   "tie-dye-bleu": {
+    "cartel": "fotos/serviette-plage-87x170/tie-dye-bleu.jpg",
+    "caja": [
+     0,
+     0,
+     210,
+     359
+    ],
+    "modo": "blanco"
+   },
+   "rayures-bleues": {
+    "cartel": "fotos/serviette-plage-87x170/rayures-bleues.jpg",
+    "caja": [
+     0,
+     0,
+     220,
+     364
+    ],
+    "modo": "blanco"
+   },
+   "vagues-orange": {
+    "cartel": "fotos/serviette-plage-87x170/vagues-orange.jpg",
+    "caja": [
+     0,
+     0,
+     102,
+     176
+    ],
+    "modo": "blanco"
+   },
+   "dauphin": {
+    "cartel": "fotos/serviette-plage-87x170/dauphin.jpg",
+    "caja": [
+     0,
+     0,
+     106,
+     181
+    ],
+    "modo": "blanco"
+   },
+   "etoiles-rayures": {
+    "cartel": "fotos/serviette-plage-87x170/etoiles-rayures.jpg",
+    "caja": [
+     0,
+     0,
+     104,
+     182
+    ],
+    "modo": "blanco"
+   },
+   "arc-en-ciel": {
+    "cartel": "fotos/serviette-plage-87x170/arc-en-ciel.jpg",
+    "caja": [
+     0,
+     0,
+     100,
+     183
+    ],
+    "modo": "blanco"
+   },
+   "rayures-bleu-vert": {
+    "cartel": "fotos/serviette-plage-87x170/rayures-bleu-vert.jpg",
+    "caja": [
+     0,
+     0,
+     316,
+     566
+    ],
+    "modo": "blanco"
+   },
+   "rayures-fines": {
+    "cartel": "fotos/serviette-plage-87x170/rayures-fines.jpg",
+    "caja": [
+     0,
+     0,
+     206,
+     367
+    ],
+    "modo": "blanco"
+   },
+   "hashtags": {
+    "cartel": "fotos/serviette-plage-87x170/hashtags.jpg",
+    "caja": [
+     0,
+     0,
+     274,
+     417
+    ],
+    "modo": "blanco"
+   },
+   "eau-turquoise": {
+    "cartel": "fotos/serviette-plage-87x170/eau-turquoise.jpg",
+    "caja": [
+     0,
+     0,
+     639,
+     1056
+    ],
+    "modo": "blanco"
+   },
+   "tortue-mandala": {
+    "cartel": "fotos/serviette-plage-87x170/tortue-mandala.jpg",
+    "caja": [
+     0,
+     0,
+     609,
+     1063
+    ],
+    "modo": "blanco"
+   },
+   "tortues-bleues": {
+    "cartel": "fotos/serviette-plage-87x170/tortues-bleues.jpg",
+    "caja": [
+     0,
+     0,
+     630,
+     1068
+    ],
+    "modo": "blanco"
+   },
+   "tortues-turquoise": {
+    "cartel": "fotos/serviette-plage-87x170/tortues-turquoise.jpg",
+    "caja": [
+     0,
+     0,
+     617,
+     1080
+    ],
+    "modo": "blanco"
+   },
+   "tortue-vagues": {
+    "cartel": "fotos/serviette-plage-87x170/tortue-vagues.jpg",
+    "caja": [
+     0,
+     0,
+     596,
+     1031
+    ],
+    "modo": "blanco"
+   },
+   "mandala-bleu": {
+    "cartel": "fotos/serviette-plage-87x170/mandala-bleu.jpg",
+    "caja": [
+     0,
+     0,
+     601,
+     1047
+    ],
+    "modo": "blanco"
+   },
+   "drapeau-americain": {
+    "cartel": "fotos/serviette-plage-87x170/drapeau-americain.jpg",
+    "caja": [
+     0,
+     0,
+     641,
+     1010
+    ],
+    "modo": "blanco"
+   },
+   "planches-de-surf": {
+    "cartel": "fotos/serviette-plage-87x170/planches-de-surf.png",
+    "caja": [
+     0,
+     0,
+     1024,
+     1536
+    ],
+    "modo": "blanco"
+   }
+  },
+  "serviette-plage-100x180": {
+   "flamants-feel-this-summer": {
+    "cartel": "fotos/serviette-plage-100x180/flamants-feel-this-summer.jpg",
+    "caja": [
+     0,
+     0,
+     294,
+     508
+    ],
+    "modo": "blanco"
+   },
+   "flamants-coeur": {
+    "cartel": "fotos/serviette-plage-100x180/flamants-coeur.jpg",
+    "caja": [
+     0,
+     0,
+     203,
+     360
+    ],
+    "modo": "blanco"
+   },
+   "etoile-de-mer-fleurie": {
+    "cartel": "fotos/serviette-plage-100x180/etoile-de-mer-fleurie.jpg",
+    "caja": [
+     0,
+     0,
+     298,
+     531
+    ],
+    "modo": "blanco"
+   },
+   "paradise-summer": {
+    "cartel": "fotos/serviette-plage-100x180/paradise-summer.jpg",
+    "caja": [
+     0,
+     0,
+     209,
+     373
+    ],
+    "modo": "blanco"
+   },
+   "orques": {
+    "cartel": "fotos/serviette-plage-100x180/orques.jpg",
+    "caja": [
+     0,
+     0,
+     2438,
+     3693
+    ],
+    "modo": "bbox"
+   },
+   "palmier-plage": {
+    "cartel": "fotos/serviette-plage-100x180/palmier-plage.jpg",
+    "caja": [
+     0,
+     0,
+     208,
+     376
+    ],
+    "modo": "blanco"
+   },
+   "rayures-marine-ancres": {
+    "cartel": "fotos/serviette-plage-100x180/rayures-marine-ancres.jpg",
+    "caja": [
+     0,
+     0,
+     294,
+     529
+    ],
+    "modo": "blanco"
+   }
+  },
+  "poncho-enfant": {
+   "croco": {
+    "cartel": "fotos/poncho-enfant/croco.jpg",
+    "caja": [
+     0,
+     0,
+     225,
+     225
+    ],
+    "modo": "blanco"
+   },
+   "dinosaure": {
+    "cartel": "fotos/poncho-enfant/dinosaure.jpg",
+    "caja": [
+     0,
+     0,
+     3000,
+     4000
+    ],
+    "modo": "ia"
+   },
+   "foot": {
+    "cartel": "fotos/poncho-enfant/foot.jpg",
+    "caja": [
+     0,
+     0,
+     225,
+     225
+    ],
+    "modo": "blanco"
+   },
+   "licorne": {
+    "cartel": "fotos/poncho-enfant/licorne.jpg",
+    "caja": [
+     0,
+     0,
+     225,
+     225
+    ],
+    "modo": "blanco"
+   },
+   "licorne-rainbow": {
+    "cartel": "fotos/poncho-enfant/licorne-rainbow.jpg",
+    "caja": [
+     0,
+     0,
+     225,
+     225
+    ],
+    "modo": "blanco"
+   },
+   "requin": {
+    "cartel": "fotos/poncho-enfant/requin.jpg",
+    "caja": [
+     0,
+     0,
+     225,
+     225
+    ],
+    "modo": "blanco"
+   },
+   "sirene": {
+    "cartel": "fotos/poncho-enfant/sirene.jpg",
+    "caja": [
+     0,
+     0,
+     190,
+     265
+    ],
+    "modo": "blanco"
+   },
+   "pirate": {
+    "cartel": "fotos/poncho-enfant/pirate.jpg",
+    "caja": [
+     6,
+     0,
+     584,
+     796
+    ],
+    "modo": "rect"
+   }
+  },
+  "chapeau-cowboy-enfant-paille": {
+   "fuchsia-clair": {
+    "cartel": "fotos/chapeau-cowboy-enfant-paille/fuchsia-clair.jpg",
+    "caja": [
+     0,
+     0,
+     445,
+     382
+    ],
+    "modo": "blanco"
+   },
+   "marron-clair": {
+    "cartel": "fotos/chapeau-cowboy-enfant-paille/marron-clair.jpg",
+    "caja": [
+     0,
+     0,
+     453,
+     401
+    ],
+    "modo": "blanco"
+   },
+   "noir": {
+    "cartel": "fotos/chapeau-cowboy-enfant-paille/noir.jpg",
+    "caja": [
+     0,
+     0,
+     438,
+     401
+    ],
+    "modo": "blanco"
+   },
+   "turquoise-clair": {
+    "cartel": "fotos/chapeau-cowboy-enfant-paille/turquoise-clair.jpg",
+    "caja": [
+     0,
+     0,
+     437,
+     399
+    ],
+    "modo": "blanco"
+   }
+  },
+  "chapeau-cowboy-sherif-enfant": {
+   "marron": {
+    "cartel": "fotos/chapeau-cowboy-sherif-enfant/marron.jpg",
+    "caja": [
+     0,
+     0,
+     590,
+     369
+    ],
+    "modo": "blanco"
+   },
+   "noir": {
+    "cartel": "fotos/chapeau-cowboy-sherif-enfant/noir.jpg",
+    "caja": [
+     0,
+     0,
+     578,
+     388
+    ],
+    "modo": "blanco"
+   },
+   "rose": {
+    "cartel": "fotos/chapeau-cowboy-sherif-enfant/rose.jpg",
+    "caja": [
+     0,
+     0,
+     586,
+     399
+    ],
+    "modo": "blanco"
+   },
+   "rouge": {
+    "cartel": "fotos/chapeau-cowboy-sherif-enfant/rouge.jpg",
+    "caja": [
+     0,
+     0,
+     560,
+     343
+    ],
+    "modo": "blanco"
+   }
+  },
+  "chapeau-cowboy-daim": {
+   "kaki": {
+    "cartel": "fotos/chapeau-cowboy-daim/kaki.jpg",
+    "caja": [
+     0,
+     0,
+     296,
+     394
+    ],
+    "modo": "blanco"
+   },
+   "blanc": {
+    "cartel": "fotos/chapeau-cowboy-daim/blanc.jpg",
+    "caja": [
+     0,
+     0,
+     286,
+     410
+    ],
+    "modo": "blanco"
+   },
+   "bleu": {
+    "cartel": "fotos/chapeau-cowboy-daim/bleu.jpg",
+    "caja": [
+     0,
+     0,
+     419,
+     420
+    ],
+    "modo": "blanco"
+   },
+   "marron-fonce": {
+    "cartel": "fotos/chapeau-cowboy-daim/marron-fonce.jpg",
+    "caja": [
+     0,
+     0,
+     414,
+     408
+    ],
+    "modo": "blanco"
+   },
+   "marron": {
+    "cartel": "fotos/chapeau-cowboy-daim/marron.jpg",
+    "caja": [
+     0,
+     0,
+     329,
+     406
+    ],
+    "modo": "blanco"
+   },
+   "marron-clair": {
+    "cartel": "fotos/chapeau-cowboy-daim/marron-clair.jpg",
+    "caja": [
+     0,
+     0,
+     423,
+     410
+    ],
+    "modo": "blanco"
+   },
+   "noir": {
+    "cartel": "fotos/chapeau-cowboy-daim/noir.jpg",
+    "caja": [
+     0,
+     0,
+     345,
+     395
+    ],
+    "modo": "blanco"
+   },
+   "rose-clair": {
+    "cartel": "fotos/chapeau-cowboy-daim/rose-clair.jpg",
+    "caja": [
+     0,
+     0,
+     319,
+     387
+    ],
+    "modo": "blanco"
+   },
+   "rouge": {
+    "cartel": "fotos/chapeau-cowboy-daim/rouge.jpg",
+    "caja": [
+     0,
+     0,
+     415,
+     427
+    ],
+    "modo": "blanco"
+   },
+   "beige": {
+    "cartel": "fotos/chapeau-cowboy-daim/beige.jpg",
+    "caja": [
+     0,
+     0,
+     399,
+     400
+    ],
+    "modo": "blanco"
+   },
+   "violet": {
+    "cartel": "fotos/chapeau-cowboy-daim/violet.jpg",
+    "caja": [
+     0,
+     0,
+     421,
+     403
+    ],
+    "modo": "blanco"
+   },
+   "bleu-nuit": {
+    "cartel": "fotos/chapeau-cowboy-daim/bleu-nuit.jpg",
+    "caja": [
+     0,
+     0,
+     405,
+     406
+    ],
+    "modo": "blanco"
+   }
+  },
+  "capeline-femme-t57": {
+   "bleu-paille": {
+    "cartel": "fotos/capeline-femme-t57/bleu-paille.png",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "modo": "blanco"
+   },
+   "bleu-roi": {
+    "cartel": "fotos/capeline-femme-t57/bleu-roi.png",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "modo": "blanco"
+   },
+   "marron-pois": {
+    "cartel": "fotos/capeline-femme-t57/marron-pois.png",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "modo": "blanco"
+   },
+   "orange-pois": {
+    "cartel": "fotos/capeline-femme-t57/orange-pois.png",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "modo": "blanco"
+   },
+   "beige-perles": {
+    "cartel": "fotos/capeline-femme-t57/beige-perles.jpg",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "modo": "blanco"
+   },
+   "bicolore-rafia": {
+    "cartel": "fotos/capeline-femme-t57/bicolore-rafia.jpg",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "modo": "blanco"
+   },
+   "provencale": {
+    "cartel": "fotos/capeline-femme-t57/provencale.jpg",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "modo": "blanco"
+   }
+  },
+  "capeline-crochet-ajustable": {
+   "ecru": {
+    "cartel": "fotos/capeline-crochet-ajustable/ecru.jpg",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "modo": "blanco"
+   }
+  },
+  "cloche-crochet-pliable": {
+   "beige": {
+    "cartel": "fotos/cloche-crochet-pliable/beige.jpg",
+    "caja": [
+     0,
+     0,
+     420,
+     389
+    ],
+    "modo": "blanco"
+   },
+   "marron-clair": {
+    "cartel": "fotos/cloche-crochet-pliable/marron-clair.jpg",
+    "caja": [
+     0,
+     0,
+     470,
+     400
+    ],
+    "modo": "blanco"
+   }
+  },
+  "bob-crochet-unisexe": {
+   "bleu": {
+    "cartel": "fotos/bob-crochet-unisexe/bleu.jpg",
+    "caja": [
+     0,
+     0,
+     468,
+     368
+    ],
+    "modo": "blanco"
+   },
+   "marron-clair": {
+    "cartel": "fotos/bob-crochet-unisexe/marron-clair.jpg",
+    "caja": [
+     0,
+     0,
+     490,
+     396
+    ],
+    "modo": "blanco"
+   },
+   "noir": {
+    "cartel": "fotos/bob-crochet-unisexe/noir.jpg",
+    "caja": [
+     0,
+     0,
+     444,
+     371
+    ],
+    "modo": "blanco"
+   },
+   "vert": {
+    "cartel": "fotos/bob-crochet-unisexe/vert.jpg",
+    "caja": [
+     0,
+     0,
+     489,
+     375
+    ],
+    "modo": "blanco"
+   }
+  },
+  "chapeau-paille-ruban-noir-t56": {
+   "naturel": {
+    "cartel": "fotos/chapeau-paille-ruban-noir-t56/naturel.jpg",
+    "caja": [
+     0,
+     0,
+     800,
+     800
+    ],
+    "modo": "blanco"
+   }
+  },
+  "chapeau-paille-ruban-satin-t57": {
+   "naturel": {
+    "cartel": "fotos/chapeau-paille-ruban-satin-t57/naturel.jpg",
+    "caja": [
+     0,
+     0,
+     488,
+     395
+    ],
+    "modo": "blanco"
+   }
+  },
+  "capeline-bicolore-fuchsia-t57": {
+   "jaune-fuchsia": {
+    "cartel": "fotos/capeline-bicolore-fuchsia-t57/jaune-fuchsia.jpg",
+    "caja": [
+     0,
+     0,
+     343,
+     372
+    ],
+    "modo": "blanco"
+   }
+  },
+  "visiere-sport-elastique": {
+   "assortis": {
+    "cartel": "fotos/visiere-sport-elastique/assortis.jpg",
+    "caja": [
+     0,
+     0,
+     328,
+     420
+    ],
+    "modo": "blanco"
+   }
+  },
+  "bob-feuillages": {
+   "gris-bleu": {
+    "cartel": "fotos/bob-feuillages/gris-bleu.jpg",
+    "caja": [
+     0,
+     0,
+     483,
+     411
+    ],
+    "modo": "blanco"
+   },
+   "noir-blanc": {
+    "cartel": "fotos/bob-feuillages/noir-blanc.jpg",
+    "caja": [
+     0,
+     0,
+     489,
+     416
+    ],
+    "modo": "blanco"
+   },
+   "kaki": {
+    "cartel": "fotos/bob-feuillages/kaki.jpg",
+    "caja": [
+     0,
+     0,
+     491,
+     393
+    ],
+    "modo": "blanco"
+   },
+   "blanc": {
+    "cartel": "fotos/bob-feuillages/blanc.jpg",
+    "caja": [
+     0,
+     0,
+     495,
+     403
+    ],
+    "modo": "blanco"
+   }
+  },
+  "borsalino-colore": {
+   "fuchsia": {
+    "cartel": "fotos/borsalino-colore/fuchsia.jpg",
+    "caja": [
+     0,
+     0,
+     800,
+     800
+    ],
+    "modo": "blanco"
+   },
+   "turquoise": {
+    "cartel": "fotos/borsalino-colore/turquoise.jpg",
+    "caja": [
+     0,
+     0,
+     800,
+     800
+    ],
+    "modo": "blanco"
+   }
+  },
+  "borsalino-paille-t60": {
+   "paille": {
+    "cartel": "fotos/borsalino-paille-t60/paille.jpg",
+    "caja": [
+     0,
+     0,
+     240,
+     249
+    ],
+    "modo": "blanco"
+   }
+  },
+  "borsalino-paille-t56": {
+   "paille": {
+    "cartel": "fotos/borsalino-paille-t56/paille.jpg",
+    "caja": [
+     0,
+     0,
+     346,
+     332
+    ],
+    "modo": "blanco"
+   }
+  },
+  "casquette-lyonnaise": {
+   "gris": {
+    "cartel": "fotos/casquette-lyonnaise/gris.jpg",
+    "caja": [
+     0,
+     0,
+     497,
+     382
+    ],
+    "modo": "blanco"
+   },
+   "marron": {
+    "cartel": "fotos/casquette-lyonnaise/marron.jpg",
+    "caja": [
+     0,
+     0,
+     485,
+     391
+    ],
+    "modo": "blanco"
+   },
+   "noir": {
+    "cartel": "fotos/casquette-lyonnaise/noir.jpg",
+    "caja": [
+     0,
+     0,
+     482,
+     313
+    ],
+    "modo": "blanco"
+   }
+  },
+  "casquette-mao": {
+   "beige": {
+    "cartel": "fotos/casquette-mao/beige.jpg",
+    "caja": [
+     0,
+     0,
+     335,
+     294
+    ],
+    "modo": "blanco"
+   },
+   "noir": {
+    "cartel": "fotos/casquette-mao/noir.jpg",
+    "caja": [
+     0,
+     0,
+     346,
+     301
+    ],
+    "modo": "blanco"
+   }
+  },
+  "chapeau-panama": {
+   "creme": {
+    "cartel": "fotos/chapeau-panama/creme.jpg",
+    "caja": [
+     0,
+     0,
+     800,
+     800
+    ],
+    "modo": "blanco"
+   },
+   "beige-gris": {
+    "cartel": "fotos/chapeau-panama/beige-gris.jpg",
+    "caja": [
+     0,
+     0,
+     481,
+     387
+    ],
+    "modo": "blanco"
+   }
+  },
+  "chapeau-enfant-ruban-coeur-t54": {
+   "creme": {
+    "cartel": "fotos/chapeau-enfant-ruban-coeur-t54/creme.jpg",
+    "caja": [
+     0,
+     0,
+     498,
+     386
+    ],
+    "modo": "blanco"
+   },
+   "fuchsia": {
+    "cartel": "fotos/chapeau-enfant-ruban-coeur-t54/fuchsia.png",
+    "caja": [
+     0,
+     0,
+     326,
+     294
+    ],
+    "modo": "blanco"
+   },
+   "jaune": {
+    "cartel": "fotos/chapeau-enfant-ruban-coeur-t54/jaune.jpg",
+    "caja": [
+     0,
+     0,
+     541,
+     387
+    ],
+    "modo": "blanco"
+   },
+   "turquoise": {
+    "cartel": "fotos/chapeau-enfant-ruban-coeur-t54/turquoise.jpg",
+    "caja": [
+     0,
+     0,
+     513,
+     383
+    ],
+    "modo": "blanco"
+   },
+   "violet": {
+    "cartel": "fotos/chapeau-enfant-ruban-coeur-t54/violet.jpg",
+    "caja": [
+     0,
+     0,
+     491,
+     384
+    ],
+    "modo": "blanco"
+   }
+  },
+  "borsalino-enfant-t54": {
+   "beige": {
+    "cartel": "fotos/borsalino-enfant-t54/beige.jpg",
+    "caja": [
+     0,
+     0,
+     500,
+     378
+    ],
+    "modo": "blanco"
+   },
+   "blanc": {
+    "cartel": "fotos/borsalino-enfant-t54/blanc.jpg",
+    "caja": [
+     0,
+     0,
+     498,
+     378
+    ],
+    "modo": "blanco"
+   },
+   "bleu": {
+    "cartel": "fotos/borsalino-enfant-t54/bleu.jpg",
+    "caja": [
+     0,
+     0,
+     501,
+     387
+    ],
+    "modo": "blanco"
+   },
+   "marron": {
+    "cartel": "fotos/borsalino-enfant-t54/marron.jpg",
+    "caja": [
+     0,
+     0,
+     513,
+     404
+    ],
+    "modo": "blanco"
+   }
+  },
+  "borsalino-enfant-ruban-beige-t54": {
+   "creme": {
+    "cartel": "fotos/borsalino-enfant-ruban-beige-t54/creme.jpg",
+    "caja": [
+     0,
+     0,
+     282,
+     346
+    ],
+    "modo": "blanco"
+   }
+  },
+  "casquette-jean-bebe": {
+   "jean": {
+    "cartel": "fotos/casquette-jean-bebe/jean.jpg",
+    "caja": [
+     0,
+     0,
+     800,
+     800
+    ],
+    "modo": "blanco"
+   }
+  },
+  "casquette-enfant-licorne-dragon": {
+   "licorne-arc-en-ciel": {
+    "cartel": "fotos/casquette-enfant-licorne-dragon/licorne-arc-en-ciel.jpg",
+    "caja": [
+     0,
+     0,
+     313,
+     393
+    ],
+    "modo": "blanco"
+   },
+   "licorne-fleurs": {
+    "cartel": "fotos/casquette-enfant-licorne-dragon/licorne-fleurs.jpg",
+    "caja": [
+     0,
+     0,
+     1200,
+     1500
+    ],
+    "modo": "blanco"
+   },
+   "licorne-rose": {
+    "cartel": "fotos/casquette-enfant-licorne-dragon/licorne-rose.webp",
+    "caja": [
+     0,
+     0,
+     403,
+     376
+    ],
+    "modo": "blanco"
+   },
+   "dragon-bleu": {
+    "cartel": "fotos/casquette-enfant-licorne-dragon/dragon-bleu.jpg",
+    "caja": [
+     0,
+     0,
+     417,
+     403
+    ],
+    "modo": "blanco"
+   },
+   "dragon-rouge": {
+    "cartel": "fotos/casquette-enfant-licorne-dragon/dragon-rouge.jpg",
+    "caja": [
+     0,
+     0,
+     410,
+     417
+    ],
+    "modo": "blanco"
+   },
+   "dragon-bleu-ciel": {
+    "cartel": "fotos/casquette-enfant-licorne-dragon/dragon-bleu-ciel.jpg",
+    "caja": [
+     0,
+     0,
+     416,
+     407
+    ],
+    "modo": "blanco"
+   },
+   "dragon-flammes-bleu": {
+    "cartel": "fotos/casquette-enfant-licorne-dragon/dragon-flammes-bleu.jpg",
+    "caja": [
+     0,
+     0,
+     500,
+     500
+    ],
+    "modo": "blanco"
+   },
+   "dragon-flammes-noir": {
+    "cartel": "fotos/casquette-enfant-licorne-dragon/dragon-flammes-noir.jpg",
+    "caja": [
+     0,
+     0,
+     418,
+     398
+    ],
+    "modo": "blanco"
+   }
+  },
+  "chapeau-enfant-marguerites-t54": {
+   "beige": {
+    "cartel": "fotos/chapeau-enfant-marguerites-t54/beige.png",
+    "caja": [
+     0,
+     0,
+     332,
+     290
+    ],
+    "modo": "blanco"
+   },
+   "bleu": {
+    "cartel": "fotos/chapeau-enfant-marguerites-t54/bleu.png",
+    "caja": [
+     0,
+     0,
+     314,
+     305
+    ],
+    "modo": "blanco"
+   },
+   "fuchsia": {
+    "cartel": "fotos/chapeau-enfant-marguerites-t54/fuchsia.png",
+    "caja": [
+     0,
+     0,
+     300,
+     293
+    ],
+    "modo": "blanco"
+   }
+  },
+  "capeline-dentelle-enfant-t54": {
+   "blanc": {
+    "cartel": "fotos/capeline-dentelle-enfant-t54/blanc.jpg",
+    "caja": [
+     0,
+     0,
+     287,
+     211
+    ],
+    "modo": "blanco"
+   },
+   "rose-blanc": {
+    "cartel": "fotos/capeline-dentelle-enfant-t54/rose-blanc.jpg",
+    "caja": [
+     0,
+     0,
+     452,
+     380
+    ],
+    "modo": "blanco"
+   },
+   "rose": {
+    "cartel": "fotos/capeline-dentelle-enfant-t54/rose.png",
+    "caja": [
+     0,
+     0,
+     311,
+     344
+    ],
+    "modo": "blanco"
+   }
+  },
+  "capeline-bicolore-enfant-t54": {
+   "fuchsia": {
+    "cartel": "fotos/capeline-bicolore-enfant-t54/fuchsia.jpg",
+    "caja": [
+     0,
+     0,
+     517,
+     405
+    ],
+    "modo": "blanco"
+   },
+   "turquoise": {
+    "cartel": "fotos/capeline-bicolore-enfant-t54/turquoise.png",
+    "caja": [
+     0,
+     0,
+     316,
+     313
+    ],
+    "modo": "blanco"
+   }
+  },
+  "chapeau-chaton-t54": {
+   "creme": {
+    "cartel": "fotos/chapeau-chaton-t54/creme.jpg",
+    "caja": [
+     0,
+     0,
+     445,
+     356
+    ],
+    "modo": "blanco"
+   }
+  },
+  "bob-bebe": {
+   "bleu": {
+    "cartel": "fotos/bob-bebe/bleu.jpg",
+    "caja": [
+     0,
+     0,
+     358,
+     389
+    ],
+    "modo": "blanco"
+   },
+   "bleu-rose": {
+    "cartel": "fotos/bob-bebe/bleu-rose.jpg",
+    "caja": [
+     0,
+     0,
+     237,
+     264
+    ],
+    "modo": "blanco"
+   },
+   "rose": {
+    "cartel": "fotos/bob-bebe/rose.jpg",
+    "caja": [
+     0,
+     0,
+     620,
+     659
+    ],
+    "modo": "blanco"
+   }
+  }
+ }
+}
