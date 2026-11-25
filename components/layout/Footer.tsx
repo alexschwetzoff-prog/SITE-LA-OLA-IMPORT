@@ -65,6 +65,7 @@ export default function Footer() {
             <li><Link href="/catalogue?categoria=bolsas" className={lien}>Sacs et tote bags</Link></li>
             <li><Link href="/catalogue?categoria=goodies" className={lien}>Objets publicitaires</Link></li>
             <li><Link href="/catalogue?categoria=sombreros" className={lien}>Chapeaux</Link></li>
+            <li><Link href="/catalogue?categoria=couteaux" className={lien}>Couteaux</Link></li>
             <li><Link href="/catalogue?categoria=toallas-ponchos" className={lien}>Serviettes et ponchos</Link></li>
             <li><Link href="/personnaliser/atomic-150" className={lien}>Personnaliser un t-shirt</Link></li>
           </ul>
@@ -78,7 +79,7 @@ export default function Footer() {
                 <Link href={`/professionnels/${s.slug}`} className={lien}>{s.nom}</Link>
               </li>
             ))}
-            <li><Link href="/devis" className={lien}>Demander un devis</Link></li>
+            <li><Link href="/inscription" className={lien}>Compte professionnel</Link></li>
           </ul>
         </nav>
 
@@ -90,7 +91,7 @@ export default function Footer() {
             <li><Link href="/qui-sommes-nous" className={lien}>Qui sommes-nous</Link></li>
             <li><Link href="/livraison-et-paiement" className={lien}>Livraison et paiement</Link></li>
             <li><Link href="/avis" className={lien}>Avis clients</Link></li>
-            <li><Link href="/espace-client" className={lien}>Espace client</Link></li>
+            <li><Link href="/compte" className={lien}>Espace client</Link></li>
           </ul>
           <div className="mt-5 flex gap-3">
             <a href={SITE.instagram.url} target="_blank" rel="noopener noreferrer" aria-label="Instagram de La Ola Import" className="rounded-full p-2 text-white/80 hover:bg-white/10 hover:text-white">

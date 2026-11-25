@@ -7,6 +7,8 @@
 
 import { useId, useState, type ReactNode, type RefObject } from 'react';
 import Image from 'next/image';
+import { useCuenta } from '@/components/cuenta/almacen';
+import { loteMinimo } from '@/lib/carrito/calculo';
 import { useRouter } from 'next/navigation';
 import { useStore } from 'zustand';
 import { fotoPrincipal, type Posicion, type Producto } from '@/data/catalogo';
@@ -16,7 +18,6 @@ import type { Lado } from '@/lib/estudio/siluetas';
 import { guardarCapturaDataUrl, guardarLogo, idLogoDetras } from '@/lib/logos-db';
 import { anchoMaximo, logoDeLado, posicionPorDefecto, posicionSilueta, posicionesDe, proporcionEn, type Paso, type StoreEstudio } from '@/lib/estudio/store';
 import { IconoHoja } from '@/components/catalogo/Etiquetas';
-import { TEXTOS } from '@/lib/site';
 import type { FuncionCapturar } from './Visor2D';
 
 export const CLAVE_DISENO = 'laola:diseno'; // sessionStorage: el diseño que recoge el formulario de /projet
@@ -284,7 +285,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
   }
 
   /**
-   * Guarda el diseño (configuración y capturas) para el formulario de /projet (« Ajouter au panier ») y lo abre. Los archivos originales
+   * Guarda el diseño (capturas y logos originales en el navegador) y lo añade al carrito (« Ajouter au panier »). Los archivos originales
    * de los logos se guardan intactos en el navegador (IndexedDB, decisión del equipo del 12/10/2026) con la fecha
    * del diseño como identificador (el trasero, con el sufijo de lib/logos-db.ts), para adjuntarlos al enviar.
    */
@@ -311,13 +312,19 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
         colocaciones: resumenColocaciones(),
         capturas: capturasListas,
       };
-      try {
-        sessionStorage.setItem(CLAVE_DISENO, JSON.stringify(diseno));
-      } catch {
-        // Sin sitio para las capturas (límite del navegador): se guarda el diseño sin ellas y se regeneran al enviar.
-        sessionStorage.setItem(CLAVE_DISENO, JSON.stringify({ ...diseno, capturas: [] }));
-      }
-      router.push('/projet');
+      // El diseño va con la línea del carrito: técnica/posición y la referencia del logo (archivo original en IndexedDB, que
+      // se adjuntará al pedido en la fase de pedidos). Sin cuenta validada se abre el aviso de conexión y no se pierde nada.
+      const cuenta = useCuenta.getState();
+      const lote = Math.max(1, loteMinimo(cuenta.precios, producto.slug, s.color.nombre));
+      const r = await cuenta.anadir({
+        slug: producto.slug,
+        nombre: producto.nombre,
+        variante: s.color.nombre,
+        talla: '',
+        cantidad: lote,
+        personalizacion: { posiciones: diseno.colocaciones.map((c) => c.nombre), ...(logoGuardado ? { logo_ref: fecha } : {}) },
+      });
+      if (r.ok) router.push('/compte/panier');
     } finally {
       setOcupado(null);
     }
@@ -561,7 +568,7 @@ export default function Panel({ store, capturarRef, productos, onCambiarProducto
 
       <Seccion id={`${baseId}-envio`} titulo="Panier" abierto={paso === 'envio'} onAbrir={() => abrir('envio')}>
         <p className="mb-3 text-xs text-ardoise">
-          En ajoutant votre visuel au panier, les aperçus devant et derrière se créent tout seuls et accompagnent votre demande de devis. {TEXTOS.plazoPresupuesto}.
+          En ajoutant votre visuel au panier, les aperçus devant et derrière se créent tout seuls et accompagnent votre commande.
         </p>
         <div className="flex flex-wrap gap-2">
           <button

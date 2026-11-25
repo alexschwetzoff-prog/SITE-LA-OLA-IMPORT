@@ -1,0 +1,255 @@
+{
+ "origen": "assets/productos/drive-nuevos",
+ "salida": "public/productos/catalogo",
+ "modelos": {
+  "barny": {
+   "blanc-rouge": {
+    "cartel": "fotos/barny/blanc-rouge.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "blanc-bleu": {
+    "cartel": "fotos/barny/blanc-bleu.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "blanc-noir": {
+    "cartel": "fotos/barny/blanc-noir.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   }
+  },
+  "calisto": {
+   "rouge": {
+    "cartel": "fotos/calisto/rouge.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "rouge-detras": {
+    "cartel": "fotos/calisto/rouge-detras.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   }
+  },
+  "eris": {
+   "blanc": {
+    "cartel": "fotos/eris/blanc.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "bleu-roi": {
+    "cartel": "fotos/eris/bleu-roi.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "orange": {
+    "cartel": "fotos/eris/orange.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "bleu-marine": {
+    "cartel": "fotos/eris/bleu-marine.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "noir": {
+    "cartel": "fotos/eris/noir.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "rouge": {
+    "cartel": "fotos/eris/rouge.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "vert-citron": {
+    "cartel": "fotos/eris/vert-citron.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "turquoise": {
+    "cartel": "fotos/eris/turquoise.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   }
+  },
+  "tarvos": {
+   "ecru": {
+    "cartel": "fotos/tarvos/ecru.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "ecru-detras": {
+    "cartel": "fotos/tarvos/ecru-detras.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   }
+  },
+  "couteau-kaide": {
+   "bambou": {
+    "cartel": "fotos/couteau-kaide/bambou.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "bambou-detras": {
+    "cartel": "fotos/couteau-kaide/bambou-detras.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   }
+  },
+  "couteau-multifonction-illustre": {
+   "avignon": {
+    "cartel": "fotos/couteau-multifonction-illustre/avignon.png",
+    "caja": [
+     0,
+     0,
+     1448,
+     1086
+    ],
+    "modo": "blanco"
+   }
+  },
+  "couteau-bois-grave": {
+   "noyer": {
+    "cartel": "fotos/couteau-bois-grave/noyer.png",
+    "caja": [
+     0,
+     0,
+     1448,
+     1086
+    ],
+    "modo": "blanco"
+   }
+  },
+  "couteau-multifonction-noir": {
+   "noir": {
+    "cartel": "fotos/couteau-multifonction-noir/noir.png",
+    "caja": [
+     0,
+     0,
+     1536,
+     1024
+    ]
+   }
+  },
+  "couteau-multifonction-bois": {
+   "bois": {
+    "cartel": "fotos/couteau-multifonction-bois/bois.png",
+    "caja": [
+     0,
+     0,
+     720,
+     524
+    ],
+    "modo": "blanco"
+   }
+  },
+  "zora": {
+   "argente": {
+    "cartel": "fotos/zora/argente.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   },
+   "argente-detras": {
+    "cartel": "fotos/zora/argente-detras.jpg",
+    "caja": [
+     0,
+     0,
+     600,
+     600
+    ],
+    "modo": "blanco"
+   }
+  }
+ }
+}

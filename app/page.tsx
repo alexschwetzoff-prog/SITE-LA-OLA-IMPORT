@@ -8,6 +8,7 @@ import EquipeApercu from '@/components/accueil/EquipeApercu';
 import EssayezVotreLogo from '@/components/accueil/EssayezVotreLogo';
 import ProduitsPhares from '@/components/accueil/ProduitsPhares';
 import Segments from '@/components/accueil/Segments';
+import Techniques from '@/components/accueil/Techniques';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-// Accueil statique. Ordre : l'offre dès le premier écran (accroche + catégories), les produits phares, l'aiguillage
+// Accueil statique. Ordre : l'offre dès le premier écran (accroche + produits personnalisables), les techniques, les produits phares, l'aiguillage
 // par segment, puis la confiance (atelier, équipe, avis réels) et un dernier appel à l'action.
 export const ensureStatic = 'navigation';
 
@@ -24,6 +25,7 @@ export default function Accueil() {
   return (
     <>
       <Accroche />
+      <Techniques />
       <ProduitsPhares />
       <Segments />
       <AtelierApercu />

@@ -1,0 +1,78 @@
+# Pila local mínima de Supabase para desarrollar el espacio cliente SIN el CLI de Supabase: Postgres, GoTrue (Auth),
+# PostgREST (API REST con RLS) y un buzón de pruebas (Mailpit). Todas las imágenes salen de Docker Hub. Un nginx
+# reparte /auth/v1 y /rest/v1 como el gateway de Supabase, así que supabase-js funciona sin cambios con
+# NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321.
+#
+#   docker compose --env-file supabase/local/.env.local-stack -f supabase/local/docker-compose.yml up -d
+#   node scripts/supabase-local.mjs migrar        # aplica supabase/migrations/*.sql
+#   node scripts/supabase-local.mjs crear-admin correo@ejemplo.fr   # promueve a admin una cuenta ya registrada
+#
+# Con el CLI oficial (docker + acceso a public.ecr.aws) `supabase start` hace lo mismo usando supabase/config.toml.
+name: laola-supabase-local
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports: ['54322:5432']
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d:ro
+      - db-datos:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 3s
+      retries: 20
+  auth:
+    image: supabase/gotrue:v2.170.0
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: 9999
+      API_EXTERNAL_URL: http://localhost:54321
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://supabase_auth_admin:postgres@db:5432/postgres
+      GOTRUE_DB_NAMESPACE: auth
+      GOTRUE_SITE_URL: http://localhost:3000
+      GOTRUE_URI_ALLOW_LIST: http://localhost:3000/**
+      GOTRUE_DISABLE_SIGNUP: 'false'
+      GOTRUE_JWT_SECRET: ${JWT_SECRET}
+      GOTRUE_JWT_EXP: 3600
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      GOTRUE_JWT_ADMIN_ROLES: service_role
+      GOTRUE_JWT_AUD: authenticated
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: 'true'
+      GOTRUE_MAILER_AUTOCONFIRM: ${MAILER_AUTOCONFIRM:-false}
+      GOTRUE_SMTP_HOST: mail
+      GOTRUE_SMTP_PORT: 1025
+      GOTRUE_SMTP_ADMIN_EMAIL: no-reply@laola.local
+      GOTRUE_SMTP_SENDER_NAME: La Ola Import (local)
+      GOTRUE_MAILER_URLPATHS_CONFIRMATION: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_RECOVERY: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_INVITE: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: /auth/v1/verify
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:9999/health']
+      interval: 3s
+      retries: 20
+  rest:
+    image: postgrest/postgrest:latest
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      PGRST_DB_URI: postgres://authenticator:postgres@db:5432/postgres
+      PGRST_DB_SCHEMAS: public
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: ${JWT_SECRET}
+      PGRST_DB_USE_LEGACY_GUCS: 'false'
+  mail:
+    image: axllent/mailpit:latest
+    ports: ['54324:8025']
+  gateway:
+    image: nginx:alpine
+    depends_on: [auth, rest]
+    ports: ['54321:80']
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+volumes:
+  db-datos:

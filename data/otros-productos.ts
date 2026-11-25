@@ -14,7 +14,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     material: "Microfibre",
     gramaje: 230,
     medidas: "70 × 140 cm",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -50,7 +49,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     material: "Microfibre",
     gramaje: 230,
     medidas: "87 × 170 cm",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -87,7 +85,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     material: "Microfibre",
     gramaje: 230,
     medidas: "100 × 180 cm",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -114,7 +111,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     material: "Microfibre",
     gramaje: 250,
     medidas: "L 60 × H 85 cm",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -140,7 +136,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau cowboy enfant en paille à étoile",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -162,7 +157,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau cowboy shérif enfant à étoile argentée",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -184,7 +178,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau cowboy effet daim, adulte et enfant",
     medidas: "Tailles 58 et 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -214,7 +207,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Capeline femme",
     medidas: "Taille 57",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['mujer'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -239,7 +231,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Capeline crochet ajustable",
     medidas: "Tailles 57-58",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['mujer'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -258,7 +249,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau cloche en crochet pliable",
     medidas: "Tailles 57-58",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['mujer'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -277,7 +267,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     nombre: "Bob crochet ajustable",
     categoria: 'sombreros',
     tipo: "Bob unisexe en crochet ajustable",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -299,7 +288,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau de paille femme",
     medidas: "Taille 56",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['mujer'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -318,7 +306,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau de paille femme",
     medidas: "Taille 57",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['mujer'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -337,7 +324,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Capeline femme",
     medidas: "Taille 57",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['mujer'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -355,7 +341,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     nombre: "Visière sport à élastique",
     categoria: 'sombreros',
     tipo: "Visière sport avec élastique",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -374,7 +359,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Bob imprimé feuillages",
     medidas: "Taille 57-58",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -396,7 +380,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Borsalino",
     medidas: "Tailles 57-58",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -416,7 +399,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Borsalino de paille",
     medidas: "Taille 60",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -435,7 +417,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Borsalino de paille",
     medidas: "Taille 56",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -454,7 +435,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'gorras',
     tipo: "Casquette lyonnaise à élastique",
     medidas: "Taille 58",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -474,7 +454,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     nombre: "Casquette Mao",
     categoria: 'gorras',
     tipo: "Casquette style Mao",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -494,7 +473,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau style panama",
     medidas: "Tailles 59-60",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: [],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -514,7 +492,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau de paille enfant à ruban et cœur",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -537,7 +514,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Borsalino enfant",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -559,7 +535,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Borsalino enfant",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -577,7 +552,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     nombre: "Casquette jean bébé",
     categoria: 'gorras',
     tipo: "Casquette bébé en jean",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -595,7 +569,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     nombre: "Casquette enfant licorne et dragon",
     categoria: 'gorras',
     tipo: "Casquette enfant",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -621,7 +594,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau de paille enfant à marguerites",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -642,7 +614,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Capeline dentelle enfant",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -663,7 +634,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Capeline bicolore enfant à fleur",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -683,7 +653,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     categoria: 'sombreros',
     tipo: "Chapeau chaton enfant",
     medidas: "Taille 54",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import
@@ -701,7 +670,6 @@ export const OTROS_PRODUCTOS: Producto[] = [
     nombre: "Bob bébé",
     categoria: 'sombreros',
     tipo: "Bob bébé",
-    precioDesde: null, // [PRECIO] pendiente de confirmación
     destacado: false,
     etiquetas: ['enfant'],
     posiciones: [], // [ZONE DE MARQUAGE] à définir avec La Ola Import

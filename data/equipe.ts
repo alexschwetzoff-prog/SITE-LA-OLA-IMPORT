@@ -9,6 +9,8 @@ export interface Membre {
   specialite: string;
   /** Chemin de la photo réelle (4:5, 800 × 1000) une fois fournie. */
   photo?: string;
+  /** Texte alternatif de la photo ; par défaut « Prénom, rôle chez La Ola Import ». */
+  alt?: string;
 }
 
 export const EQUIPE: Membre[] = [
@@ -23,6 +25,8 @@ export const EQUIPE: Membre[] = [
     role: 'Technicien',
     phrase: '[Phrase personnelle à fournir]',
     specialite: 'Impression DTF et UV, finitions',
+    photo: '/equipo/arthur.webp',
+    alt: 'Arthur, de La Ola Import',
   },
 ];
 

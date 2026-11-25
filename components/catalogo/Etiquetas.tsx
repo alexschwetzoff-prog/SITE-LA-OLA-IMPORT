@@ -9,7 +9,9 @@ interface Props {
   conEstudio: boolean;
   /** Conservé pour compatibilité (studio) : le thème est clair partout, les deux tons donnent le même rendu. */
   tono?: 'claro' | 'oscuro';
-  conDisena?: boolean; // étiquette « Personnalisable » sur les produits qui ont un studio
+  conDisena?: boolean; // étiquette « Personnalisable » / « Article boutique »
+  /** false : article de la boutique (non personnalisable). true ou absent : personnalisable si le produit a un studio ou si true. */
+  personalizable?: boolean;
 }
 
 /** Feuille du badge ÉCO : le même symbole sur la carte, la fiche et le studio. */
@@ -23,16 +25,17 @@ export function IconoHoja({ className = '' }: { className?: string }) {
 }
 
 /**
- * Étiquettes d'un produit : Incontournable (badge soleil), Personnalisable (produits avec studio), le badge ÉCO (vert,
+ * Étiquettes d'un produit : Incontournable (badge soleil), Personnalisable ou Article boutique (non personnalisable), le badge ÉCO (vert,
  * avec feuille : seulement les produits éco selon leur fiche technique) et les autres étiquettes du catalogue.
  * Thème clair : texte marine (ou vert foncé pour ÉCO) sur fond pastel opaque, AA partout, y compris posé sur la photo.
  */
-export function Etiquetas({ destacado, etiquetas, conEstudio, conDisena = true }: Props) {
+export function Etiquetas({ destacado, etiquetas, conEstudio, conDisena = true, personalizable }: Props) {
   const chip = 'bg-perle text-marine ring-1 ring-marine/10';
   const eco = 'bg-eco-100 text-eco-700 ring-1 ring-eco-600/30';
   const items: { id: string; nombre: string; estilo: string; icono?: 'destello' | 'hoja' }[] = [];
   if (destacado) items.push({ id: 'destacado', nombre: 'Incontournable', estilo: 'bg-soleil-400 text-marine', icono: 'destello' });
-  if (conDisena && conEstudio) items.push({ id: 'disena', nombre: 'Personnalisable', estilo: 'bg-fuchsia-50 text-marine ring-1 ring-fuchsia-700/20' });
+  if (conDisena && personalizable === false) items.push({ id: 'boutique', nombre: 'Article boutique', estilo: 'bg-white text-ardoise ring-1 ring-marine/15' });
+  else if (conDisena && (conEstudio || personalizable)) items.push({ id: 'disena', nombre: 'Personnalisable', estilo: 'bg-fuchsia-50 text-marine ring-1 ring-fuchsia-700/20' });
   if (etiquetas.includes('eco')) items.push({ id: 'eco', nombre: 'ÉCO', estilo: eco, icono: 'hoja' });
   for (const e of etiquetas) if (e !== 'eco') items.push({ id: e, nombre: NOMBRE_ETIQUETA[e], estilo: chip });
   if (!items.length) return null;

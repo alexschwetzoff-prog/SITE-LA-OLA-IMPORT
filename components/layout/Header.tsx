@@ -3,14 +3,15 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import BotonCesta from '@/components/presupuesto/BotonCesta';
+import BotonCesta from '@/components/cuenta/BotonCesta';
+import MenuCuenta from '@/components/cuenta/MenuCuenta';
 import { CTA, NAV, SITE, enlaceTelefono, enlaceWhatsApp } from '@/lib/site';
 import { MENU_CATALOGUE } from '@/lib/menu';
 import { IconoCerrar, IconoMenu, IconoWhatsApp } from './Iconos';
 import Logo from './Logo';
 
 // En-tête fixe (toujours blanc) : logo, Catalogue (méga-menu), Comment nous travaillons, Qui sommes-nous, Espace
-// client, panier et bouton « Demander un devis ». En mobile, un burger ouvre un tiroir plein écran avec les mêmes
+// client, panier et bouton « Compte professionnel ». En mobile, un burger ouvre un tiroir plein écran avec les mêmes
 // entrées (Catalogue en accordéon). Le reste de la page devient inerte tant que le tiroir est ouvert.
 export default function Header() {
   const [tiroir, setTiroir] = useState(false);
@@ -132,6 +133,7 @@ export default function Header() {
           >
             {SITE.telefonos[0]}
           </a>
+          <MenuCuenta />
           <BotonCesta className="ml-1" />
           <Link
             href={CTA.href}
@@ -206,6 +208,9 @@ export default function Header() {
               </Link>
             </li>
           ))}
+          <li className="pt-2">
+            <MenuCuenta enTiroir />
+          </li>
           <li className="pt-4">
             <Link href={CTA.href} className="block rounded-full bg-fuchsia-700 px-4 py-3.5 text-center text-base font-semibold text-white hover:bg-fuchsia-800">
               {CTA.etiqueta}

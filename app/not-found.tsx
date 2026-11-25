@@ -14,8 +14,8 @@ export default function Introuvable() {
           <Link href="/catalogue" className="inline-flex min-h-11 items-center rounded-full bg-fuchsia-700 px-5 font-semibold text-white hover:bg-fuchsia-800">
             Voir le catalogue
           </Link>
-          <Link href="/devis" className="inline-flex min-h-11 items-center rounded-full border-2 border-violet-600 px-5 font-semibold text-violet-600 hover:bg-violet-600/8">
-            Demander un devis
+          <Link href="/contact" className="inline-flex min-h-11 items-center rounded-full border-2 border-violet-600 px-5 font-semibold text-violet-600 hover:bg-violet-600/8">
+            Nous contacter
           </Link>
           <Link href="/" className="inline-flex min-h-11 items-center rounded-full px-5 font-semibold text-bleu-600 underline underline-offset-4">
             Retour à l’accueil

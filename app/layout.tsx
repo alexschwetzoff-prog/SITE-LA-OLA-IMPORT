@@ -4,6 +4,8 @@ import './globals.css';
 import { esDespliegueDeProduccion } from '@/lib/entorno';
 import { SITE } from '@/lib/site';
 import Header from '@/components/layout/Header';
+import AvisoConexion from '@/components/cuenta/AvisoConexion';
+import IniciadorCuenta from '@/components/cuenta/IniciadorCuenta';
 import Footer from '@/components/layout/Footer';
 import WhatsAppFlotante from '@/components/layout/WhatsAppFlotante';
 
@@ -82,6 +84,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         </main>
         <Footer />
         <WhatsAppFlotante />
+        <IniciadorCuenta />
+        <AvisoConexion />
       </body>
     </html>
   );

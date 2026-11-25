@@ -20,6 +20,7 @@ export type Categoria =
   | 'bolsas'
   | 'goodies'
   | 'sombreros'
+  | 'couteaux'
   | 'toallas-ponchos';
 export type Posicion =
   | 'corazon'
@@ -65,11 +66,7 @@ export interface Producto {
   medidas?: string; // '36 × 40 cm', '790 ml'
   tallas?: string[]; // adultos, según la ficha técnica: ['XS','S','M','L','XL','2XL','3XL']
   tallasInfantiles?: string[]; // niños, según la ficha técnica (añadido en la fase 3)
-  /** Precio y condiciones tal como los dan los carteles de catálogo (texto francés ya formado): sustituye al número. */
-  precioTexto?: string; // '2,95 € HT'
-  condiciones?: string; // 'Lot de 6 minimum'
-  detalles?: string[]; // otras líneas del cartel (personalización, etc.)
-  precioDesde: number | null; // € [HT ou TTC à confirmer] ; null = « Consulter le prix »
+  detalles?: string[]; // otras líneas de la ficha (personalización, etc.). NUNCA precios: viven en la tabla `precios` de Supabase.
   estado?: Estado; // sin valor = 'disponible' (añadido en la fase 3)
   destacado: boolean;
   etiquetas: Etiqueta[];
@@ -87,10 +84,11 @@ export interface Producto {
 
 // Categorías, etiquetas y ayudas puras viven en módulos ligeros (data/categorias.ts, lib/producto.ts) para que el
 // navegador no cargue los 30 productos cuando solo necesita una tarjeta; se reexportan aquí por comodidad.
+import { DRIVE_NUEVOS_PRODUCTOS } from './drive-nuevos';
 import { OTROS_PRODUCTOS } from './otros-productos';
 
 export { CATEGORIAS, ETIQUETAS } from './categorias';
-export { colorPorDefecto, fotoPrincipal, textoPrecio } from '@/lib/producto';
+export { colorPorDefecto, fotoPrincipal } from '@/lib/producto';
 
 const PRODUCTOS_BASE: Producto[] = [
   {
@@ -101,7 +99,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '100 % coton',
     gramaje: 150,
     tallas: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: true,
     etiquetas: [],
     posiciones: [
@@ -137,7 +134,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '100 % coton piqué',
     gramaje: 180,
     tallas: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: true,
     etiquetas: [],
     posiciones: [
@@ -169,7 +165,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '100 % coton épais',
     gramaje: 210,
     tallas: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['calidad-superior', 'oversize'],
     posiciones: [
@@ -208,7 +203,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '100 % coton piqué',
     gramaje: 200,
     tallas: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['calidad-superior'],
     posiciones: [
@@ -238,7 +232,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 155,
     tallas: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
     tallasInfantiles: ['1/2', '3/4', '5/6', '7/8', '9/10', '11/12'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['mujer'],
     posiciones: [
@@ -298,7 +291,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '100 % coton',
     gramaje: 165,
     tallas: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['manga-larga'],
     posiciones: [
@@ -330,7 +322,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 135,
     tallas: ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'],
     tallasInfantiles: ['4', '8', '12', '16'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: true, // fase 4.4: destacado en la home (decisión del equipo, 17/10/2026)
     etiquetas: ['tecnica'],
     posiciones: [
@@ -379,7 +370,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 135,
     tallas: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
     tallasInfantiles: ['4', '8', '12', '16'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['tecnica', 'eco'],
     posiciones: [
@@ -421,7 +411,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 140,
     tallas: ['S', 'M', 'L', 'XL', '2XL'],
     tallasInfantiles: ['1/2', '3/4', '5/6', '7/8', '9/10', '11/12'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['tecnica'],
     posiciones: [
@@ -453,7 +442,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '100 % polyester piqué',
     gramaje: 140,
     tallas: ['S', 'M', 'L', 'XL', '2XL'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['tecnica', 'mujer'],
     posiciones: [
@@ -485,7 +473,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 280,
     tallas: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
     tallasInfantiles: ['1/2', '3/4', '5/6', '7/8', '9/10', '11/12'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: true,
     etiquetas: [],
     posiciones: [
@@ -548,7 +535,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 280,
     tallas: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'],
     tallasInfantiles: ['3/4', '5/6', '7/8', '9/10', '11/12'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: [],
     posiciones: [
@@ -617,7 +603,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 280,
     tallas: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
     tallasInfantiles: ['3/4', '5/6', '7/8', '9/10', '11/12'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: [],
     posiciones: [
@@ -647,7 +632,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '50 % coton / 50 % polyester',
     gramaje: 320,
     tallas: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['oversize'],
     posiciones: [
@@ -678,7 +662,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '88 % polyester recyclé / 12 % élasthanne',
     gramaje: 200,
     tallas: ['S', 'M', 'L', 'XL', '2XL'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['tecnica', 'mujer', 'eco'],
     posiciones: [
@@ -709,7 +692,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 210,
     tallas: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
     tallasInfantiles: ['4', '6', '8', '10', '12', '14', '16'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['tecnica'],
     posiciones: [
@@ -744,7 +726,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 170,
     tallas: ['Taille unique réglable · adulte (57-59 cm)'],
     tallasInfantiles: ['Taille unique réglable · enfant (54-56 cm)'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: true, // fase 4.6: destacada en la home (decisión del equipo, 17/10/2026)
     etiquetas: [],
     posiciones: [
@@ -779,7 +760,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '90 % polyester / 10 % élasthanne',
     gramaje: 140,
     tallas: ['Taille unique réglable (58 cm)'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: ['tecnica'],
     posiciones: [
@@ -805,7 +785,6 @@ const PRODUCTOS_BASE: Producto[] = [
     gramaje: 290,
     medidas: 'Fermeture à boucle métallique',
     tallas: ['Taille unique réglable · adulte (57-59 cm)'],
-    precioDesde: null, // [PRECIO] pendiente
     destacado: false,
     etiquetas: [],
     posiciones: [
@@ -831,7 +810,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: 'Polypropylène non tissé',
     gramaje: 80,
     medidas: '36 × 40 cm',
-    precioDesde: null,
     destacado: false,
     etiquetas: [],
     posiciones: [
@@ -864,7 +842,6 @@ const PRODUCTOS_BASE: Producto[] = [
     material: '100 % coton naturel',
     gramaje: 180,
     medidas: '37 × 41 cm',
-    precioDesde: null,
     destacado: true, // fase 4.4: destacado en la home (decisión del equipo, 17/10/2026)
     etiquetas: [],
     posiciones: [
@@ -885,7 +862,6 @@ const PRODUCTOS_BASE: Producto[] = [
     tipo: 'Gourde',
     material: 'Acier inoxydable, finition mate',
     medidas: '790 ml',
-    precioDesde: null,
     destacado: false,
     etiquetas: [],
     posiciones: [],
@@ -912,7 +888,6 @@ const PRODUCTOS_BASE: Producto[] = [
     tipo: 'Mug isotherme',
     material: 'Acier inoxydable recyclé',
     medidas: '870 ml',
-    precioDesde: null,
     destacado: false,
     etiquetas: ['eco'],
     posiciones: [],
@@ -934,7 +909,6 @@ const PRODUCTOS_BASE: Producto[] = [
     tipo: 'Carnet A5',
     material: 'Carton recyclé de briques alimentaires',
     medidas: '70 feuilles blanches',
-    precioDesde: null,
     destacado: false,
     etiquetas: ['eco'],
     posiciones: [],
@@ -955,7 +929,6 @@ const PRODUCTOS_BASE: Producto[] = [
     tipo: 'Stylo',
     material: 'Bambou',
     medidas: '13,8 cm · encre bleue',
-    precioDesde: null,
     estado: 'consultar-disponibilidad',
     destacado: false,
     etiquetas: ['eco'],
@@ -974,7 +947,6 @@ const PRODUCTOS_BASE: Producto[] = [
     tipo: 'Clé USB',
     material: 'Bambou naturel',
     medidas: '16 Go',
-    precioDesde: null,
     destacado: false,
     etiquetas: ['eco'],
     posiciones: [],
@@ -992,7 +964,6 @@ const PRODUCTOS_BASE: Producto[] = [
     tipo: 'Porte-clés',
     material: 'Bambou et métal',
     medidas: '3,2 × 5,3 cm',
-    precioDesde: null,
     destacado: false,
     etiquetas: ['eco'],
     posiciones: [],
@@ -1011,7 +982,6 @@ const PRODUCTOS_BASE: Producto[] = [
     tipo: 'Outil multifonction',
     material: 'Acier inoxydable et bambou',
     medidas: '10 cm',
-    precioDesde: null,
     destacado: false,
     etiquetas: ['eco'],
     posiciones: [],
@@ -1025,11 +995,10 @@ const PRODUCTOS_BASE: Producto[] = [
   {
     slug: 'zora',
     nombre: 'Zora',
-    categoria: 'goodies',
+    categoria: 'couteaux',
     tipo: 'Couteau multifonction',
     material: 'Aluminium et acier inoxydable',
     medidas: '7,6 cm · 6 fonctions',
-    precioDesde: null,
     destacado: false,
     etiquetas: [],
     posiciones: [],
@@ -1047,7 +1016,6 @@ const PRODUCTOS_BASE: Producto[] = [
     tipo: 'Porte-clés',
     material: 'Cuir recyclé',
     medidas: '8,5 × 2,5 cm',
-    precioDesde: null,
     estado: 'consultar-disponibilidad',
     destacado: false,
     etiquetas: ['eco'],
@@ -1063,7 +1031,7 @@ const PRODUCTOS_BASE: Producto[] = [
 ];
 
 // 30 productos de la base + los modelos nuevos (atrapasueños, bolsos, sombreros, toallas), definidos en otro archivo.
-export const PRODUCTOS: Producto[] = [...PRODUCTOS_BASE, ...OTROS_PRODUCTOS];
+export const PRODUCTOS: Producto[] = [...PRODUCTOS_BASE, ...OTROS_PRODUCTOS, ...DRIVE_NUEVOS_PRODUCTOS];
 
 export const PRODUCTOS_POR_SLUG: Record<string, Producto> = Object.fromEntries(
   PRODUCTOS.map((p) => [p.slug, p]),

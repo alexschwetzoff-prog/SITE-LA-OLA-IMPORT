@@ -71,7 +71,7 @@ export default function MentionsLegales() {
       <Apartado titulo="Objet du site">
         <p>
           Ce site présente l’atelier, le catalogue et les services de personnalisation de {SITE.nombre} (textiles, objets
-          publicitaires, souvenirs). Il permet de demander un devis, de préparer un projet et de prévisualiser un logo sur un
+          publicitaires, souvenirs). Il permet aux professionnels de commander en ligne et de prévisualiser un logo sur un
           produit. Les conditions de vente sont détaillées dans nos <Link href="/cgv">conditions générales de vente</Link>.
         </p>
       </Apartado>
@@ -81,7 +81,7 @@ export default function MentionsLegales() {
           Les aperçus sont indicatifs : la couleur, la taille et la position du marquage sur le produit fini peuvent
           différer de l’écran. Vous validez toujours un bon à tirer (BAT) avant impression. En déposant un logo ou un visuel,
           vous déclarez avoir le droit de l’utiliser et vous autorisez {SITE.nombre} à s’en servir uniquement pour préparer
-          l’aperçu, le devis et, le cas échéant, la fabrication de votre commande.
+          l’aperçu et, le cas échéant, la fabrication de votre commande.
         </p>
       </Apartado>
 

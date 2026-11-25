@@ -5,6 +5,8 @@ import Link from 'next/link';
 import type { ColorTarjeta, DatosTarjeta, Ejemplo } from '@/lib/catalogo';
 import { precargarFotos } from '@/lib/fotos';
 import FotoProducto, { precalentarReveal } from '@/components/producto/FotoProducto';
+import BloquePrecio from '@/components/cuenta/BloquePrecio';
+import BotonFavorito from '@/components/cuenta/BotonFavorito';
 import { Etiquetas } from './Etiquetas';
 import { Muestras } from './Muestras';
 
@@ -101,7 +103,10 @@ export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width:
           </div>
         )}
         <div className="pointer-events-none absolute top-3 left-3 z-10">
-          <Etiquetas destacado={datos.destacado} etiquetas={datos.etiquetas} conEstudio={datos.conEstudio} />
+          <Etiquetas destacado={datos.destacado} etiquetas={datos.etiquetas} conEstudio={datos.conEstudio} personalizable={datos.personalizable} />
+        </div>
+        <div className="absolute top-3 right-3 z-20">
+          <BotonFavorito slug={datos.slug} variante={color.nombre} nombre={datos.nombre} />
         </div>
       </div>
 
@@ -120,11 +125,12 @@ export function TarjetaProducto({ datos, prioridad = false, sizes = '(min-width:
             </h3>
             <p className="mt-0.5 text-sm text-ardoise">{datos.tipo}</p>
           </div>
-          {/* « Consulter le prix » tant qu'il n'y a pas de tarif : badge pastel, texte marine. */}
-          <p className={`shrink-0 rounded-full px-2.5 py-1 text-right text-xs font-semibold ${datos.desde ? 'text-marine' : 'bg-fuchsia-50 text-marine'}`}>{datos.precio}</p>
+          {/* Prix : seulement pour les comptes validés (components/cuenta/BloquePrecio.tsx) ; jamais dans le HTML. */}
+          <div className="shrink-0">
+            <BloquePrecio slug={datos.slug} compacto />
+          </div>
         </div>
         {datos.material && <p className="text-xs text-ardoise">{datos.material}</p>}
-        {datos.condiciones && <p className="text-xs font-medium text-marine">{datos.condiciones}</p>}
         <div className="mt-auto flex items-end justify-between gap-3 pt-1">
           <div className="min-w-0" onPointerEnter={() => setSobreMuestras(true)} onPointerLeave={() => setSobreMuestras(false)}>
             <Muestras colores={datos.colores} elegido={color} onElegir={setColor} tipo={datos.tipoVariante} />

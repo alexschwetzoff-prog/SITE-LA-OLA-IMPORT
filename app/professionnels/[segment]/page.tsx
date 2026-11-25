@@ -8,7 +8,7 @@ import { CONTENU_SEGMENTS, getSegment } from '@/data/segments';
 import { PRODUCTOS_ACTIVOS, datosTarjeta } from '@/lib/catalogo';
 
 // Pages segment B2B, statiques : une par cible (clubs, campings, boutiques, entreprises). Ici, le bouton principal
-// (fuchsia) est « Demander un devis » : c'est l'intention dominante d'un acheteur professionnel.
+// (fuchsia) est « Créer mon compte professionnel » : c'est l'intention dominante d'un acheteur professionnel.
 export const ensureStatic = 'navigation';
 
 export function generateStaticParams() {
@@ -41,8 +41,8 @@ export default async function PageSegment({ params }: PageProps<'/professionnels
           <p className="text-sm font-bold tracking-wide text-violet-600 uppercase">Professionnels · {s.titre}</p>
           <h1 className="mt-2 max-w-3xl font-display text-4xl font-extrabold tracking-tight text-marine sm:text-5xl">{s.accroche}</h1>
           <div className="mt-6 flex flex-wrap gap-3">
-            <BotonEnlace href={`/devis?segment=${s.slug}`} tamano="grande">
-              Demander un devis
+            <BotonEnlace href="/inscription" tamano="grande">
+              Créer mon compte professionnel
             </BotonEnlace>
             <BotonEnlace href="/catalogue" variante="secundario" tamano="grande">
               Voir le catalogue

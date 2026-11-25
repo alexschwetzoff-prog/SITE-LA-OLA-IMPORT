@@ -7,7 +7,7 @@ import { datosTarjeta } from '@/lib/catalogo';
 /** Les produits phares, juste sous la grille des catégories : raccourci direct vers les fiches. */
 export default function ProduitsPhares() {
   return (
-    <Seccion id="incontournables" etiqueta="Produits phares" titulo="Nos incontournables" intro="Les pièces qu’on nous demande le plus. Tous les prix sont sur devis : chaque projet est différent.">
+    <Seccion id="incontournables" etiqueta="Produits phares" titulo="Nos incontournables" intro="Les pièces qu’on nous demande le plus. Les prix sont réservés aux professionnels connectés.">
       <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {DESTACADOS.slice(0, 6).map((p) => (
           <li key={p.slug}>

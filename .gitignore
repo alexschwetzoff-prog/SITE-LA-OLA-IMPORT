@@ -69,3 +69,6 @@ __pycache__/
 
 # Origen de las fotos «La Ola autres produits» (no se sube: son fotos del proveedor)
 /assets/productos/la-ola-autres-produits-origen/
+
+# Fotos nuevas del Drive (originales del proveedor / del equipo, no se suben)
+/assets/productos/drive-nuevos/

@@ -18,7 +18,7 @@ export const ensureStatic = 'navigation';
 const FAQ = [
   { q: 'Quels fichiers faut-il pour mon logo ?', r: 'Idéalement un fichier vectoriel (SVG, PDF, AI) ou un PNG de bonne qualité. Si vous n’avez qu’une photo ou un croquis, envoyez-le quand même : on regarde ensemble.' },
   { q: 'Est-ce que je vois le résultat avant l’impression ?', r: 'Oui. Vous recevez un BAT (bon à tirer) et rien n’est imprimé sans votre accord.' },
-  { q: 'Y a-t-il une quantité minimale ?', r: TEXTOS.pedidoMinimo },
+  { q: 'Y a-t-il une quantité minimale ?', r: 'Cela dépend du produit : le lot minimum figure sur la fiche, avec les prix, pour les professionnels connectés.' },
   { q: 'Quels sont les délais ?', r: TEXTOS.plazoEntrega },
   { q: 'Puis-je venir à l’atelier ?', r: 'Notre showroom est à Monteux. Horaires et modalités de visite : [à confirmer].' },
 ];

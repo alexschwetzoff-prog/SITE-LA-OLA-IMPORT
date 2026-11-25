@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Dato, Falta } from '@/components/legal/Legal';
 import { BotonEnlace, ESTILO_BOTON, Flecha } from '@/components/ui/Botones';
 import { Pagina } from '@/components/ui/Pagina';
-import { CTA, SITE } from '@/lib/site';
+import { CONTACTO, SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Livraison et paiement',
@@ -20,8 +20,8 @@ export default function LivraisonEtPaiement() {
   return (
     <Pagina titulo="Livraison et paiement">
       <p className="mt-6 max-w-2xl text-lg text-ardoise">
-        Pas de surprise : chaque devis indique le mode de retrait ou de livraison, les frais éventuels et les modalités de
-        paiement. Vous ne payez rien avant d’avoir accepté le devis.
+        Les professionnels dont le compte est validé commandent en ligne depuis leur espace client. Retrait ou livraison, frais
+        et modalités de paiement : <Falta que="à définir avec La Ola Import" />.
       </p>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -93,7 +93,7 @@ export default function LivraisonEtPaiement() {
       <div className="mt-10 max-w-3xl rounded-2xl bg-perle p-6 sm:p-8">
         <h2 className="font-display text-xl font-bold text-marine">Et avant tout ça ?</h2>
         <p className="mt-3 text-ardoise">
-          Vous recevez un devis clair, puis un bon à tirer (BAT) à valider. Nous ne lançons l’impression qu’avec votre
+          Pour une personnalisation, vous validez un bon à tirer (BAT) avant la fabrication. Nous ne lançons l’impression qu’avec votre
           accord. Tous les détails sont dans nos{' '}
           <Link href="/cgv" className="font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
             conditions générales de vente
@@ -101,8 +101,8 @@ export default function LivraisonEtPaiement() {
           .
         </p>
         <div className="mt-6">
-          <BotonEnlace href={CTA.href} tamano="grande">
-            {CTA.etiqueta}
+          <BotonEnlace href={CONTACTO.href} tamano="grande">
+            {CONTACTO.etiqueta}
           </BotonEnlace>
         </div>
       </div>

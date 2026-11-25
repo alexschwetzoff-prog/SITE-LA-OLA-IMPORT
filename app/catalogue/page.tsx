@@ -36,8 +36,8 @@ export default function PaginaCatalogo() {
         <div className="max-w-2xl">
           <h1 className="font-display text-4xl font-extrabold tracking-tight text-marine sm:text-5xl">Catalogue</h1>
           <p className="mt-3 text-lg text-ardoise">
-            Textiles, objets et articles de plage, à personnaliser avec votre logo dans notre atelier de Monteux quand c’est possible. Choisissez un article : nous vous
-            préparons un devis sur mesure.
+            Textiles, objets et articles de plage, à personnaliser avec votre logo dans notre atelier de Monteux quand c’est possible. Choisissez un article ; les professionnels connectés
+            voient les prix et commandent en ligne.
           </p>
         </div>
         <NotaPrecios className="max-w-md" />

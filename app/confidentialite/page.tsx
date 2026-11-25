@@ -74,6 +74,12 @@ export default function Confidentialite() {
       <Apartado titulo="Les données que nous traitons">
         <Lista>
           <li>
+            <strong className="font-semibold">Compte professionnel</strong> : raison sociale, SIRET, numéro de TVA
+            intracommunautaire (facultatif), nom, prénom, email, téléphone (facultatif), adresse de facturation, secteur
+            d’activité, mot de passe (conservé uniquement sous forme chiffrée, nous ne pouvons pas le lire) et état de
+            validation du compte. Ensuite : produits favoris, panier et historique des commandes passées depuis le compte.
+          </li>
+          <li>
             <strong className="font-semibold">Demande de devis et panier</strong> : nom, structure (entreprise, club,
             camping, boutique, association) le cas échéant, email, téléphone (facultatif), code postal, préférence de
             contact, produits, quantités, délai souhaité, message et fichiers joints (logo, visuels).
@@ -137,6 +143,10 @@ export default function Confidentialite() {
           <li>
             Messagerie (réception des demandes et envoi des emails) : <Falta que="à confirmer : Google (Gmail / Google Workspace)" />
             {conResend ? ' et Resend (envoi des emails du site)' : ''}
+          </li>
+          <li>
+            Comptes professionnels, favoris, paniers et commandes : base de données et authentification hébergées chez
+            Supabase <Falta que="à confirmer : région d’hébergement du projet et contrat de sous-traitance" />
           </li>
           <li>
             Gestion des avis publiés : Google Sheets <Falta que="à confirmer" />

@@ -51,7 +51,7 @@ export default function Cgv() {
       <Apartado titulo="4. Devis et commande">
         <Lista>
           <li>
-            Une demande envoyée depuis le site (panier, formulaire de <Link href="/devis">devis</Link>, WhatsApp ou email)
+            Une demande envoyée depuis le site (formulaire de <Link href="/contact">contact</Link>, WhatsApp ou email)
             n’engage pas le client : elle permet à l’atelier d’établir un devis.
           </li>
           <li>
@@ -89,6 +89,18 @@ export default function Cgv() {
           réclamation de tiers à ce sujet. {SITE.nombre} peut refuser une commande dont le contenu est illicite, injurieux ou
           porte atteinte aux droits d’un tiers. Les maquettes créées par l’atelier restent sa propriété, sauf accord contraire{' '}
           <Falta que="à confirmer" />.
+        </p>
+      </Apartado>
+
+      <Apartado titulo="Commandes en ligne des professionnels (projet)">
+        <p>
+          <Falta que="PENDIENTE DE REVISIÓN LEGAL : texte provisoire, non définitif" />
+        </p>
+        <p>
+          Les professionnels dont le compte a été validé par {SITE.nombre} peuvent consulter les prix, enregistrer des
+          favoris et constituer un panier depuis leur espace client. Les prix de l’espace client sont indiqués hors taxes
+          ; la TVA applicable est ajoutée au total. Une commande enregistrée dans l’espace client reste en attente de paiement
+          tant que le paiement en ligne n’est pas ouvert <Falta que="modalités de paiement, délais, minimums et frais de livraison à définir" />.
         </p>
       </Apartado>
 

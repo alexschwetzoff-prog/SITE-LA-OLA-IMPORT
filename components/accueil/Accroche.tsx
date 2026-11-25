@@ -1,24 +1,14 @@
 import Link from 'next/link';
 import { BotonEnlace, Flecha } from '@/components/ui/Botones';
 import Vague from '@/components/ui/Vague';
-import { CATEGORIAS } from '@/data/categorias';
-import { PRODUCTOS_ACTIVOS, conteoPorCategoria, fotosDe } from '@/lib/catalogo';
-import { srcDeAncho } from '@/lib/fotos';
+import Personnalisables from './Personnalisables';
 import { CTA, SITE, TEXTOS } from '@/lib/site';
 
 // Premier écran : accroche courte FUSIONNÉE avec la grille des catégories, pour que l'offre soit visible tout de suite
 // (pas de grand visuel qui la repousse). L'élément LCP est le titre texte ; seules les deux premières vignettes sont
 // chargées en priorité.
 
-function vignette(categoria: string): { src: string; alt: string } | null {
-  const p = PRODUCTOS_ACTIVOS.find((x) => x.categoria === categoria && x.destacado) ?? PRODUCTOS_ACTIVOS.find((x) => x.categoria === categoria);
-  const f = p ? fotosDe(p) : undefined;
-  if (!p || !f) return null;
-  return { src: srcDeAncho(f.delante, 800, f.anchos), alt: `${p.nombre}, ${p.tipo.toLowerCase()}` };
-}
-
 export default function Accroche() {
-  const conteo = conteoPorCategoria();
   return (
     <section className="fond-alt relative pt-24 lg:pt-28">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -37,48 +27,18 @@ export default function Accroche() {
             <BotonEnlace href={CTA.href} tamano="grande">
               {CTA.etiqueta}
             </BotonEnlace>
-            <BotonEnlace href="/catalogue" variante="secundario" tamano="grande">
-              Voir le catalogue
+            <BotonEnlace href="/boutique" variante="secundario" tamano="grande">
+              Voir la boutique
               <Flecha />
             </BotonEnlace>
           </div>
         </div>
 
-        <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5" aria-label="Catégories du catalogue">
-          {CATEGORIAS.map((c, i) => {
-            const v = vignette(c.id);
-            return (
-              <li key={c.id}>
-                <Link
-                  href={`/catalogue?categoria=${c.id}`}
-                  className="carte-produit group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-carte ring-1 ring-marine/5"
-                >
-                  <span className="block aspect-square overflow-hidden bg-white">
-                    {v && (
-                      // Photos produit hors next/image (BASE-TECNICA : pas de seconde compression), en WebP 800 px.
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={v.src}
-                        alt=""
-                        width={800}
-                        height={800}
-                        loading={i < 2 ? 'eager' : 'lazy'}
-                        fetchPriority={i < 2 ? 'high' : undefined}
-                        decoding="async"
-                        sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 46vw"
-                        className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none"
-                      />
-                    )}
-                  </span>
-                  <span className="flex items-baseline justify-between gap-2 px-3 py-3">
-                    <span className="font-display text-base font-extrabold text-marine">{c.nombre}</span>
-                    <span className="text-xs text-ardoise">{conteo[c.id]}</span>
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <h2 className="mt-8 font-display text-2xl font-extrabold text-marine">Des produits à personnaliser avec votre logo</h2>
+        <Personnalisables />
+        <p className="mt-3 text-sm text-ardoise">
+          Chapeaux, serviettes de plage, ponchos et le reste du catalogue : <Link href="/boutique" className="font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">voir toute la boutique</Link>.
+        </p>
 
         <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 pb-10 text-sm text-marine" aria-label="Nos engagements">
           {TEXTOS.datosCatalogo.map((t) => (

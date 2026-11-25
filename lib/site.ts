@@ -40,10 +40,7 @@ export const SITE = {
 
 /** Textes répétés sur tout le site. Aucune promesse commerciale tant que La Ola Import ne l'a pas validée. */
 export const TEXTOS = {
-  precio: 'Consulter le prix',
-  sinIva: 'Prix [HT ou TTC à confirmer].',
-  notaPrecios: 'Le prix dépend de la quantité, de la technique et du nombre de couleurs : nous vous faisons un devis sur mesure.',
-  pedidoMinimo: 'Quantité minimale : [à confirmer].',
+  precioProfesional: 'Les prix sont réservés aux professionnels : connectez-vous avec un compte validé pour les voir.',
   plazoPresupuesto: 'Réponse de l’atelier sous [délai à confirmer]',
   plazoEntrega: 'Délai de fabrication : [à confirmer].',
   datosCatalogo: ['Atelier à Monteux (Vaucluse)', 'Vous validez le visuel avant impression', 'Retrait ou livraison [à confirmer]'],
@@ -51,12 +48,15 @@ export const TEXTOS = {
 
 export const NAV = [
   { href: '/catalogue', etiqueta: 'Catalogue' },
+  { href: '/boutique', etiqueta: 'Boutique' },
   { href: '/comment-nous-travaillons', etiqueta: 'Comment nous travaillons' },
   { href: '/qui-sommes-nous', etiqueta: 'Qui sommes-nous' },
-  { href: '/espace-client', etiqueta: 'Espace client' },
 ] as const;
 
-export const CTA = { href: '/devis', etiqueta: 'Demander un devis' } as const;
+/** Contact direct (question, produit introuvable, projet sur mesure). */
+export const CONTACTO = { href: '/contact', etiqueta: 'Nous contacter' } as const;
+
+export const CTA = { href: '/inscription', etiqueta: 'Compte professionnel' } as const;
 
 export const SEGMENTS = [
   { slug: 'clubs-sportifs', nom: 'Clubs sportifs', court: 'Club sportif', accroche: 'Maillots, sweats et sacs aux couleurs du club.' },

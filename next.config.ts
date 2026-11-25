@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
   outputFileTracingExcludes: {
     '*': ['./assets/**', './docs/**', './public/**', './video/**', './archivo/**', './scripts/**', './.correo-local/**', './.netlify/**', './.claude/**', './*.md'],
   },
+  // El antiguo «Espace client» (V1, sin cuentas) pasa al espacio cliente real.
+  async redirects() {
+    return [
+      { source: '/espace-client', destination: '/compte', permanent: true },
+      { source: '/projet', destination: '/compte/panier', permanent: true },
+      { source: '/devis', destination: '/contact', permanent: true },
+      { source: '/merci', destination: '/', permanent: true },
+    ];
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     // 90 para las fotos de producto (fase 4.2: el recoloreado no se vuelve a degradar al servirlo); 75 para el resto

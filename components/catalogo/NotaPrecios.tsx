@@ -1,11 +1,10 @@
 import { TEXTOS } from '@/lib/site';
 
-/** Note sur les prix (devis sur mesure) et la ligne de quantité minimale [à confirmer], près des mentions de prix. */
+/** Rappel près des listes de produits : les prix sont réservés aux comptes professionnels validés. */
 export function NotaPrecios({ className = '' }: { className?: string }) {
   return (
     <div className={`text-xs leading-relaxed text-ardoise ${className}`}>
-      <p>{TEXTOS.notaPrecios}</p>
-      <p className="mt-1 font-medium text-marine">{TEXTOS.pedidoMinimo}</p>
+      <p>{TEXTOS.precioProfesional}</p>
     </div>
   );
 }

@@ -15117,13 +15117,33 @@
   },
   "zora": {
     "Argenté": {
-      "delante": "/productos/catalogo/zora-plateado-delante.webp",
+      "delante": "/productos/catalogo/zora/argente.webp",
       "real": true,
-      "anchos": [
-        1024,
-        800
-      ],
-      "ejemplo": "tu-logo-aqui"
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 248.8,
+        "y": 276.5,
+        "ancho": 60.8,
+        "giro": 27,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          553,
+          553
+        ]
+      },
+      "detras": "/productos/catalogo/zora/argente-detras.webp",
+      "realDetras": true,
+      "disenoDetras": {
+        "x": 213.0,
+        "y": 234.3,
+        "ancho": 59.6,
+        "giro": 90,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          426,
+          426
+        ]
+      }
     }
   },
   "luxor": {
@@ -15155,6 +15175,293 @@
         800
       ],
       "ejemplo": "tu-logo-aqui"
+    }
+  },
+  "barny": {
+    "Blanc et rouge": {
+      "delante": "/productos/catalogo/barny/blanc-rouge.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 210.4,
+        "y": 157.8,
+        "ancho": 105.2,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          526,
+          526
+        ]
+      }
+    },
+    "Blanc et bleu royal": {
+      "delante": "/productos/catalogo/barny/blanc-bleu.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 242.5,
+        "y": 143.5,
+        "ancho": 138.6,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          495,
+          495
+        ]
+      }
+    },
+    "Blanc et noir": {
+      "delante": "/productos/catalogo/barny/blanc-noir.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 232.2,
+        "y": 143.3,
+        "ancho": 138.3,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          494,
+          494
+        ]
+      }
+    }
+  },
+  "calisto": {
+    "Rouge": {
+      "delante": "/productos/catalogo/calisto/rouge.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 257.0,
+        "y": 195.3,
+        "ancho": 154.2,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          514,
+          514
+        ]
+      },
+      "detras": "/productos/catalogo/calisto/rouge-detras.webp",
+      "realDetras": true
+    }
+  },
+  "eris": {
+    "Blanc": {
+      "delante": "/productos/catalogo/eris/blanc.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 255.0,
+        "y": 173.4,
+        "ancho": 163.2,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          510,
+          510
+        ]
+      }
+    },
+    "Bleu roi": {
+      "delante": "/productos/catalogo/eris/bleu-roi.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 257.5,
+        "y": 175.1,
+        "ancho": 164.8,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          515,
+          515
+        ]
+      }
+    },
+    "Orange": {
+      "delante": "/productos/catalogo/eris/orange.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 257.5,
+        "y": 175.1,
+        "ancho": 164.8,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          515,
+          515
+        ]
+      }
+    },
+    "Bleu marine": {
+      "delante": "/productos/catalogo/eris/bleu-marine.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 257.5,
+        "y": 175.1,
+        "ancho": 164.8,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          515,
+          515
+        ]
+      }
+    },
+    "Noir": {
+      "delante": "/productos/catalogo/eris/noir.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 257.0,
+        "y": 174.8,
+        "ancho": 164.5,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          514,
+          514
+        ]
+      }
+    },
+    "Rouge": {
+      "delante": "/productos/catalogo/eris/rouge.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 257.5,
+        "y": 175.1,
+        "ancho": 164.8,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          515,
+          515
+        ]
+      }
+    },
+    "Vert citron": {
+      "delante": "/productos/catalogo/eris/vert-citron.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 258.0,
+        "y": 175.4,
+        "ancho": 165.1,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          516,
+          516
+        ]
+      }
+    },
+    "Turquoise": {
+      "delante": "/productos/catalogo/eris/turquoise.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 257.5,
+        "y": 175.1,
+        "ancho": 164.8,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          515,
+          515
+        ]
+      }
+    }
+  },
+  "tarvos": {
+    "Écru": {
+      "delante": "/productos/catalogo/tarvos/ecru.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 258.5,
+        "y": 196.5,
+        "ancho": 155.1,
+        "giro": 0,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          517,
+          517
+        ]
+      },
+      "detras": "/productos/catalogo/tarvos/ecru-detras.webp",
+      "realDetras": true
+    }
+  },
+  "couteau-kaide": {
+    "Bambou": {
+      "delante": "/productos/catalogo/couteau-kaide/bambou.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 250.4,
+        "y": 240.2,
+        "ancho": 46.0,
+        "giro": 50,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          511,
+          511
+        ]
+      },
+      "detras": "/productos/catalogo/couteau-kaide/bambou-detras.webp",
+      "realDetras": true,
+      "disenoDetras": {
+        "x": 146.6,
+        "y": 271.5,
+        "ancho": 76.0,
+        "giro": 90,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          543,
+          543
+        ]
+      }
+    }
+  },
+  "couteau-multifonction-noir": {
+    "Noir": {
+      "delante": "/productos/catalogo/couteau-multifonction-noir/noir.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 792.0,
+        "y": 684.0,
+        "ancho": 240.0,
+        "giro": -33,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          1200,
+          1200
+        ]
+      }
+    }
+  },
+  "couteau-multifonction-bois": {
+    "Bois": {
+      "delante": "/productos/catalogo/couteau-multifonction-bois/bois.webp",
+      "real": true,
+      "ejemplo": "tu-logo-aqui",
+      "diseno": {
+        "x": 173.4,
+        "y": 472.8,
+        "ancho": 78.8,
+        "giro": 35,
+        "marca": "tu-logo-aqui",
+        "lienzo": [
+          788,
+          788
+        ]
+      }
     }
   }
 }

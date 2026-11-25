@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { IconoWhatsApp } from '@/components/layout/Iconos';
-import { CTA, SITE, enlaceTelefono, enlaceWhatsApp } from '@/lib/site';
+import { CONTACTO, SITE, enlaceTelefono, enlaceWhatsApp } from '@/lib/site';
 
-/** Dernier appel à l'action avant le pied de page : devis, WhatsApp ou téléphone, selon la préférence de chacun. */
+/** Dernier appel à l'action avant le pied de page : contact, WhatsApp ou téléphone, selon la préférence de chacun. */
 export default function BandeauFinal() {
   return (
     <section className="px-4 py-14 sm:px-6 lg:px-8">
@@ -13,8 +13,8 @@ export default function BandeauFinal() {
             <p className="mt-2 text-lg text-ardoise">Dites-nous ce que vous imaginez : l’équipe de l’atelier vous répond avec une proposition claire.</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href={CTA.href} className="inline-flex min-h-12 items-center rounded-full bg-fuchsia-700 px-6 text-base font-semibold text-white shadow-md shadow-fuchsia-700/25 hover:bg-fuchsia-800">
-              {CTA.etiqueta}
+            <Link href={CONTACTO.href} className="inline-flex min-h-12 items-center rounded-full bg-fuchsia-700 px-6 text-base font-semibold text-white shadow-md shadow-fuchsia-700/25 hover:bg-fuchsia-800">
+              {CONTACTO.etiqueta}
             </Link>
             <a
               href={enlaceWhatsApp()}

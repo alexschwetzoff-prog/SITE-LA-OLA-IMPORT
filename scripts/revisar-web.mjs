@@ -20,7 +20,7 @@ const PROHIBIDAS = ['lorem', 'ipsum', '[à confirmer', 'à confirmer]', '[photo 
 // Marcadores que sí se admiten mientras el equipo no aporte el dato (se listan aparte, no cuentan como error).
 const PENDIENTES_ADMITIDOS = [];
 
-const RUTAS_INICIALES = ['/', '/catalogue', '/personnaliser/atomic-150', '/personnaliser/austral', '/projet', '/devis', '/avis', '/merci', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/clubs-sportifs', '/professionnels/campings', '/professionnels/boutiques-souvenirs', '/professionnels/entreprises', '/espace-client', '/contact', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cookies', '/cgv', '/page-introuvable-404', '/sitemap.xml', '/robots.txt'];
+const RUTAS_INICIALES = ['/', '/catalogue', '/personnaliser/atomic-150', '/personnaliser/austral', '/avis', '/donner-mon-avis', '/comment-nous-travaillons', '/qui-sommes-nous', '/professionnels/clubs-sportifs', '/professionnels/campings', '/professionnels/boutiques-souvenirs', '/professionnels/entreprises', '/espace-client', '/contact', '/livraison-et-paiement', '/mentions-legales', '/confidentialite', '/cookies', '/cgv', '/page-introuvable-404', '/sitemap.xml', '/robots.txt'];
 
 const b = await chromium.launch();
 const resultados = [];
@@ -151,7 +151,7 @@ for (const [nombreVista, opciones] of Object.entries(vistas)) {
     }
     if (consola.length) console.log(`    consola: ${consola.slice(0, 3).join(' · ')}`);
     if (peticionesMal.length) mal(`${resumen}: peticiones fallidas: ${peticionesMal.slice(0, 5).join(' · ')}`);
-    if (carpetaCapturas && ['/', '/catalogue', '/catalogue/atomic-150', '/projet', '/avis', '/merci', '/mentions-legales', '/no-existe-404'].includes(ruta)) {
+    if (carpetaCapturas && ['/', '/catalogue', '/catalogue/atomic-150', '/avis', '/mentions-legales', '/no-existe-404'].includes(ruta)) {
       await mkdir(carpetaCapturas, { recursive: true });
       const nombre = ruta === '/' ? 'inicio' : ruta.replace(/^\//, '').replace(/\//g, '-');
       await p.screenshot({ path: path.join(carpetaCapturas, `${nombre}-${nombreVista}.png`), fullPage: ruta !== '/' });

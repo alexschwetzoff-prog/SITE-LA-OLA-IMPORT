@@ -3,7 +3,6 @@
 
 import { CATEGORIAS, ETIQUETAS } from '@/data/categorias';
 import type { Categoria, Color, Etiqueta, Posicion, Producto } from '@/data/catalogo';
-import { TEXTOS } from '@/lib/site';
 
 export const NOMBRE_CATEGORIA = Object.fromEntries(CATEGORIAS.map((c) => [c.id, c.nombre])) as Record<Categoria, string>;
 export const NOMBRE_ETIQUETA = Object.fromEntries(ETIQUETAS.map((e) => [e.id, e.nombre])) as Record<Etiqueta, string>;
@@ -29,20 +28,6 @@ export function colorPorDefecto(p: Pick<Producto, 'colores'>): Color {
 export function fotoPrincipal(p: Pick<Producto, 'colores'>): { delante: string; detras?: string } | undefined {
   const color = p.colores.find((c) => c.porDefecto && c.fotoDelante) ?? p.colores.find((c) => c.fotoDelante);
   return color?.fotoDelante ? { delante: color.fotoDelante, detras: color.fotoDetras } : undefined;
-}
-
-/** Le produit affiche-t-il un vrai prix (« À partir de … ») ? Aujourd'hui non : tous les prix sont à null. */
-export function conPrecio(p: Pick<Producto, 'estado' | 'precioDesde' | 'precioTexto'>): boolean {
-  return p.estado !== 'consultar-disponibilidad' && (p.precioDesde !== null || Boolean(p.precioTexto));
-}
-
-/** Texte public du prix : « Consulter le prix » tant que precioDesde est null, ou « Consulter la disponibilité ». */
-export function textoPrecio(p: Pick<Producto, 'estado' | 'precioDesde' | 'precioTexto'>): string {
-  if (p.estado === 'consultar-disponibilidad') return 'Consulter la disponibilité';
-  if (p.precioTexto) return p.precioTexto;
-  if (p.precioDesde === null) return TEXTOS.precio;
-  const n = p.precioDesde.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  return `À partir de ${n} € / pièce`;
 }
 
 /** Le produit se personnalise-t-il avec un logo ? (Les produits des nouvelles familles ne le promettent que si c'est confirmé.) */
@@ -98,19 +83,14 @@ export function tituloSeo(p: Pick<Producto, 'tipo' | 'nombre' | 'personalizable'
   return `${nombre} ${p.nombre} personnalisé${femenino ? 'e' : ''} avec votre logo`;
 }
 
-/** Description SEO : personnalisation dans l'atelier de Monteux, matière, prix sur devis. Aucune promesse (délai, minimum). */
-export function descripcionSeo(p: Pick<Producto, 'tipo' | 'nombre' | 'material' | 'gramaje' | 'medidas' | 'estado' | 'precioDesde' | 'precioTexto' | 'personalizable'>): string {
+/** Description SEO : personnalisation dans l'atelier de Monteux, matière. Jamais de prix (réservés aux comptes validés). Aucune promesse (délai, minimum). */
+export function descripcionSeo(p: Pick<Producto, 'tipo' | 'nombre' | 'material' | 'gramaje' | 'medidas' | 'estado' | 'personalizable'>): string {
   if (!sePersonaliza(p)) {
     const caract = textoMaterial(p);
-    return `${p.tipo} ${p.nombre} au catalogue de La Ola Import (Monteux, Vaucluse).${caract ? ` ${caract}.` : ''} ${p.precioTexto ? `${p.precioTexto}.` : 'Prix sur devis.'}`;
+    return `${p.tipo} ${p.nombre} au catalogue de La Ola Import (Monteux, Vaucluse).${caract ? ` ${caract}.` : ''} Prix réservés aux professionnels.`;
   }
   const { femenino } = sustantivo(p);
   const e = femenino ? 'e' : '';
-  const prix =
-    p.estado === 'consultar-disponibilidad'
-      ? 'Disponibilité à confirmer : demandez-nous.'
-      : conPrecio(p)
-        ? `${textoPrecio(p)}, devis sur mesure selon la quantité et la technique.`
-        : 'Prix sur devis, selon la quantité et la technique.';
+  const prix = p.estado === 'consultar-disponibilidad' ? 'Disponibilité à confirmer : demandez-nous.' : 'Prix réservés aux professionnels connectés.';
   return `${p.tipo} ${p.nombre} personnalisé${e} avec votre logo dans notre atelier de Monteux (Vaucluse). ${textoMaterial(p) ? `${textoMaterial(p)}. ` : ''}${prix}`;
 }

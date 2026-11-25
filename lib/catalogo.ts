@@ -7,7 +7,7 @@ import fotosCatalogo from '@/data/fotos-catalogo.json';
 import { CATEGORIAS } from '@/data/categorias';
 import { PRODUCTOS, type Categoria, type Color, type Etiqueta, type Producto } from '@/data/catalogo';
 import type { ColocacionDiseno } from '@/lib/diseno-ejemplo';
-import { NOMBRE_ETIQUETA, colorPorDefecto, conPrecio, fotoPrincipal, textoMaterial, textoPrecio, tieneEstudio } from './producto';
+import { NOMBRE_ETIQUETA, colorPorDefecto, fotoPrincipal, sePersonaliza, textoMaterial, tieneEstudio } from './producto';
 
 export * from './producto';
 export * from './filtros';
@@ -116,11 +116,9 @@ export interface DatosTarjeta {
   chips: string[]; // nombres públicos de las etiquetas
   activo: boolean;
   orden: number;
-  precio: string;
-  desde: boolean; // le prix est un vrai prix (« À partir de X € / pièce »)
   material: string;
-  condiciones?: string;
   conEstudio: boolean;
+  personalizable: boolean; // false : article de la boutique (non personnalisable)
   colores: ColorTarjeta[];
   colorInicial: string;
   tipoVariante: 'color' | 'diseno';
@@ -133,7 +131,6 @@ function mismaColocacion(a?: ColocacionDiseno, b?: ColocacionDiseno): boolean {
 }
 
 export function datosTarjeta(p: Producto): DatosTarjeta {
-  const precio = textoPrecio(p);
   const inicial = colorPorDefecto(p);
   const base = fotosDe(p, inicial);
   const diseno = base?.diseno || base?.disenoDetras ? { delante: base.diseno, detras: base.disenoDetras } : undefined;
@@ -147,11 +144,9 @@ export function datosTarjeta(p: Producto): DatosTarjeta {
     chips: p.etiquetas.map((e) => NOMBRE_ETIQUETA[e]),
     activo: p.activo,
     orden: p.orden,
-    precio,
-    desde: conPrecio(p),
     material: textoMaterial(p),
-    condiciones: p.condiciones,
     conEstudio: tieneEstudio(p),
+    personalizable: sePersonaliza(p),
     colores: p.colores.map((c) => {
       const fotos = fotosDe(p, c);
       if (fotos && diseno) {
@@ -172,9 +167,10 @@ const PREFERENCIA_COMBINA: Record<Categoria, Categoria[]> = {
   sudaderas: ['camisetas-polos', 'sudaderas', 'gorras'],
   gorras: ['camisetas-polos', 'sudaderas', 'bolsas'],
   bolsas: ['camisetas-polos', 'goodies', 'gorras'],
-  goodies: ['goodies', 'bolsas', 'camisetas-polos'],
+  goodies: ['goodies', 'couteaux', 'bolsas'],
   sombreros: ['sombreros', 'gorras', 'toallas-ponchos'],
   'toallas-ponchos': ['toallas-ponchos', 'sombreros', 'bolsas'],
+  couteaux: ['couteaux', 'goodies', 'gorras'],
 };
 
 /** Tres productos relacionados: uno por categoría preferida, primero los destacados y luego el siguiente en orden. */

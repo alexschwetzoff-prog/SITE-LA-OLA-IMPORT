@@ -1,0 +1,19 @@
+{
+  "_nota": "Colocación del motivo « Votre logo ici » sobre cada foto, en fracción del lienzo: x, y = centro; ancho = ancho del motivo; giro en grados (antihorario). \"delante\" y \"detras\" = foto principal y trasera de cada variante.",
+  "barny": {
+    "Blanc et rouge": { "delante": [0.40, 0.30, 0.20, 0] },
+    "Blanc et bleu royal": { "delante": [0.49, 0.29, 0.28, 0] },
+    "Blanc et noir": { "delante": [0.47, 0.29, 0.28, 0] }
+  },
+  "calisto": { "Rouge": { "delante": [0.50, 0.38, 0.30, 0] } },
+  "eris": {
+    "Blanc": { "delante": [0.50, 0.34, 0.32, 0] }, "Bleu roi": { "delante": [0.50, 0.34, 0.32, 0] }, "Orange": { "delante": [0.50, 0.34, 0.32, 0] },
+    "Bleu marine": { "delante": [0.50, 0.34, 0.32, 0] }, "Noir": { "delante": [0.50, 0.34, 0.32, 0] }, "Rouge": { "delante": [0.50, 0.34, 0.32, 0] },
+    "Vert citron": { "delante": [0.50, 0.34, 0.32, 0] }, "Turquoise": { "delante": [0.50, 0.34, 0.32, 0] }
+  },
+  "tarvos": { "Écru": { "delante": [0.50, 0.38, 0.30, 0] } },
+  "couteau-kaide": { "Bambou": { "delante": [0.49, 0.47, 0.09, 50], "detras": [0.27, 0.50, 0.14, 90] } },
+  "zora": { "Argenté": { "delante": [0.45, 0.50, 0.11, 27], "detras": [0.50, 0.55, 0.14, 90] } },
+  "couteau-multifonction-noir": { "Noir": { "delante": [0.66, 0.57, 0.20, -33] } },
+  "couteau-multifonction-bois": { "Bois": { "delante": [0.22, 0.60, 0.10, 35] } }
+}

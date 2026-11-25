@@ -12,12 +12,14 @@ import Link from 'next/link';
 import type { Color, Posicion, Producto } from '@/data/catalogo';
 import { Etiquetas } from '@/components/catalogo/Etiquetas';
 import { fondoMuestra } from '@/components/catalogo/Muestras';
-import AnadirAlPresupuesto from '@/components/presupuesto/AnadirAlPresupuesto';
+import AnadirAlCarrito from '@/components/cuenta/AnadirAlCarrito';
+import BloquePrecio from '@/components/cuenta/BloquePrecio';
+import BotonFavorito from '@/components/cuenta/BotonFavorito';
 import FotoProducto, { precalentarReveal } from '@/components/producto/FotoProducto';
 import { ESTILO_BOTON } from '@/components/ui/Botones';
 import type { FotosProducto } from '@/lib/catalogo';
 import { precargarFotos } from '@/lib/fotos';
-import { POSICIONES, colorPorDefecto, conPrecio, esGoodie, sePersonaliza, textoMaterial, textoPrecio, tieneEstudio } from '@/lib/producto';
+import { POSICIONES, colorPorDefecto, esGoodie, sePersonaliza, textoMaterial, tieneEstudio } from '@/lib/producto';
 import { TEXTOS } from '@/lib/site';
 import { abonnerSurfi, definirSurfi, prechargerSurfi, surfiDesactive } from '@/lib/surfi';
 
@@ -28,25 +30,11 @@ const SIZES = '(min-width: 1024px) 556px, 92vw';
 const BASE_CONTOUR =
   'inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 bg-white px-6 py-2.5 text-base font-semibold transition-colors duration-200 motion-safe:active:scale-[0.98]';
 const ESTILO_PERSONALIZAR = `${BASE_CONTOUR} border-violet-600 text-violet-600 hover:bg-[#F2EDFB]`;
-const ESTILO_DEVIS = `${BASE_CONTOUR} border-marine text-marine hover:bg-perle`;
 
 function enlaceEstudio(producto: Producto, color: Color) {
   return `/personnaliser/${producto.slug}?color=${encodeURIComponent(color.nombre)}`;
 }
 
-function enlaceDevis(producto: Producto) {
-  return `/devis?produit=${encodeURIComponent(producto.slug)}`;
-}
-
-/** Icône document du bouton devis. */
-function IconoDevis({ className = 'h-5 w-5' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
-      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-      <path d="M14 3v5h5M9 13h6M9 17h4" />
-    </svg>
-  );
-}
 
 interface Props {
   producto: Producto;
@@ -75,8 +63,6 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
   const esDiseno = producto.tipoVariante === 'diseno';
   const palabraVariante = esDiseno ? 'Motif' : 'Couleur';
   const personaliza = sePersonaliza(producto);
-  const precio = textoPrecio(producto);
-  const desde = conPrecio(producto);
   const colorFoto = colorBase ? producto.colores.find((c) => c.nombre === colorBase) : undefined;
   // Une couleur sans photo propre, montrée avec la photo de base non recolorée (goodies d'une seule matière).
   const fotoDelBase = Boolean(fotos && !fotos.real && colorBase && colorBase !== color.nombre && fotos.delante === fotosPorColor[colorBase]?.delante);
@@ -187,18 +173,15 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
 
       {/* Données et actions, sur carte perle */}
       <div className="rounded-2xl bg-perle p-5 text-encre shadow-carte ring-1 ring-marine/5 sm:p-7">
-        <Etiquetas destacado={producto.destacado} etiquetas={producto.etiquetas} conEstudio={conEstudio} />
+        <Etiquetas destacado={producto.destacado} etiquetas={producto.etiquetas} conEstudio={conEstudio} personalizable={personaliza} />
         <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-marine sm:text-4xl">{producto.nombre}</h1>
         <p className="mt-1 text-lg text-ardoise">{producto.tipo}</p>
 
-        <p className="mt-4">
-          <span className={`inline-flex rounded-full px-3.5 py-1.5 text-sm font-semibold text-marine ${desde ? 'bg-white ring-1 ring-marine/10' : 'bg-fuchsia-50'}`}>{precio}</span>
-        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <BloquePrecio slug={producto.slug} variante={color.nombre} />
+          <BotonFavorito slug={producto.slug} variante={color.nombre} nombre={producto.nombre} />
+        </div>
         {producto.estado === 'consultar-disponibilidad' && <p className="mt-2 text-sm text-ardoise">Disponibilité à confirmer : posez-nous la question.</p>}
-        <p className="mt-2 text-xs leading-relaxed text-ardoise">
-          {desde && !producto.precioTexto ? `${TEXTOS.sinIva} ` : ''}
-          {TEXTOS.notaPrecios} {producto.precioTexto ? (producto.condiciones ? `Conditions : ${producto.condiciones}.` : '') : TEXTOS.pedidoMinimo}
-        </p>
 
         <dl className="mt-6 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-[auto_1fr]">
           {textoMaterial(producto) && (
@@ -319,23 +302,22 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
               </ul>
               <p id={`${idPosiciones}-ayuda`} className="mt-2 text-xs text-ardoise">
                 {posicionesCesta.length ? `Choisi : ${posicionesCesta.map((p) => p.nombre).join(' + ')}.` : 'Aucun emplacement choisi pour l’instant.'}
-                {!goodie && lados.length > 1 ? ' Avec deux marquages, nous en tenons compte dans le devis.' : ''}
+                {!goodie && lados.length > 1 ? ' Avec deux marquages, la personnalisation est facturée sur chaque face.' : ''}
               </p>
             </fieldset>
           ) : personaliza ? (
             <>
               <h2 className="text-sm font-medium text-ardoise">Personnalisation</h2>
-              <p className="mt-2 text-sm text-marine">Marquage de votre logo sur la zone prévue du produit : nous précisons la taille dans le devis.</p>
+              <p className="mt-2 text-sm text-marine">Marquage de votre logo sur la zone prévue du produit : la taille exacte est précisée à la commande.</p>
             </>
           ) : null}
         </div>
 
-        {/* Actions : un seul bouton fuchsia (panier), puis studio (violet) et devis (marine) */}
+        {/* Actions : un seul bouton fuchsia (panier), puis studio (violet) */}
         <div className="mt-8 border-t border-marine/10 pt-6">
-          <AnadirAlPresupuesto
+          <AnadirAlCarrito
             producto={producto}
             color={color}
-            foto={fotos?.delante}
             posiciones={posicionesCesta}
             requierePosicion={requierePosicion}
             idPosiciones={idPosiciones}
@@ -347,17 +329,12 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
                 Personnaliser avec mon logo
               </Link>
             )}
-            <Link href={enlaceDevis(producto)} className={ESTILO_DEVIS}>
-              <IconoDevis />
-              Demander un devis
-            </Link>
           </div>
           <p className="mt-3 text-xs text-ardoise">
             {conEstudio ? 'Le studio vous permet de poser votre logo sur le vêtement avant de nous l’envoyer. ' : ''}
-            Une commande pour votre entreprise, votre club ou votre camping ? Le devis est le plus direct.
           </p>
           <ul className="mt-5 space-y-1.5 text-sm text-marine">
-            {[TEXTOS.datosCatalogo[0], TEXTOS.datosCatalogo[1], TEXTOS.plazoPresupuesto].map((t) => (
+            {[TEXTOS.datosCatalogo[0], TEXTOS.datosCatalogo[1]].map((t) => (
               <li key={t} className="flex items-start gap-2">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-cyan-700">
                   <path d="M5 10.5l3.2 3L15 7" />
@@ -369,7 +346,7 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
         </div>
       </div>
 
-      {/* Mobile : barre collante avec le panier et le devis (laisse la place au bouton WhatsApp) */}
+      {/* Mobile : barre collante avec le panier (laisse la place au bouton WhatsApp) */}
       <div
         inert={ctaVisible}
         className={`barra-inferior fixed inset-x-0 bottom-0 z-30 flex items-center gap-2 border-t border-marine/10 bg-white/90 p-3 pr-24 backdrop-blur-md transition-[transform,opacity] duration-200 motion-reduce:transition-none lg:hidden ${ctaVisible ? 'pointer-events-none translate-y-full opacity-0' : ''}`}
@@ -377,9 +354,6 @@ export default function Ficha({ producto, fotosPorColor, colorBase }: Props) {
         <a href={`#${id}-principal`} className={`${ESTILO_BOTON.principal} min-h-12 flex-1`}>
           Ajouter au panier
         </a>
-        <Link href={enlaceDevis(producto)} aria-label="Demander un devis" title="Demander un devis" className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-marine bg-white text-marine">
-          <IconoDevis />
-        </Link>
       </div>
     </div>
   );

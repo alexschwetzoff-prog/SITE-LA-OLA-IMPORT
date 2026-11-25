@@ -14,8 +14,8 @@ import { procesarLogo, recortarTransparente } from '@/lib/estudio/logo';
 import { crearStoreEstudio } from '@/lib/estudio/store';
 import { fotosDeColor } from '@/lib/estudio/siluetas';
 import { tomarLogoPendiente } from '@/lib/logo-pendiente';
-import { textoPrecio } from '@/lib/producto';
-import { SITE, TEXTOS } from '@/lib/site';
+import BloquePrecio from '@/components/cuenta/BloquePrecio';
+import { SITE } from '@/lib/site';
 import { Etiquetas } from '@/components/catalogo/Etiquetas';
 import { Surfi, type RefsSurfi } from '@/components/producto/Surfi';
 import { prechargerSurfi } from '@/lib/surfi';
@@ -49,7 +49,6 @@ export default function Estudio({ productos, slugInicial, clavesFoto }: Props) {
   const fotoLista = useStore(store, (s) => s.fotoLista);
   const aviso = useStore(store, (s) => s.aviso);
   const conGanchos = params.get('capturas') === '1';
-  const precio = textoPrecio(producto);
 
   // Logo que viene de la home («Essayez avec votre logo»): se recoge del navegador y entra como si se hubiera subido aquí.
   useEffect(() => {
@@ -134,10 +133,9 @@ export default function Estudio({ productos, slugInicial, clavesFoto }: Props) {
           <div className="mt-2">
             <Etiquetas destacado={producto.destacado} etiquetas={producto.etiquetas} conEstudio={false} tono="claro" conDisena={false} />
           </div>
-          <p className="mt-2 text-sm text-marine">
-            <span className="font-display font-bold text-marine">{precio}</span>
-          </p>
-          <p className="mt-1 max-w-2xl text-xs text-ardoise">{TEXTOS.pedidoMinimo}</p>
+          <div className="mt-2">
+            <BloquePrecio slug={producto.slug} />
+          </div>
         </div>
         <Link href={`/catalogue/${producto.slug}`} className="text-sm font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
           Voir la fiche produit

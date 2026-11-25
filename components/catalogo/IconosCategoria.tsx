@@ -73,6 +73,15 @@ function Toalla(props: Props) {
   );
 }
 
+function Couteau(props: Props) {
+  return (
+    <svg {...comun} {...props}>
+      <path d="M6 22l15-15c2-2 5 0 4 2l-3 6-6 4-7 4z" />
+      <path d="M8 24l-2 2" />
+    </svg>
+  );
+}
+
 export const ICONO_CATEGORIA: Record<Categoria, (p: Props) => React.JSX.Element> = {
   'camisetas-polos': Camiseta,
   sudaderas: Sudadera,
@@ -80,6 +89,7 @@ export const ICONO_CATEGORIA: Record<Categoria, (p: Props) => React.JSX.Element>
   bolsas: Bolsa,
   goodies: Goodies,
   sombreros: Sombrero,
+  couteaux: Couteau,
   'toallas-ponchos': Toalla,
 };
 

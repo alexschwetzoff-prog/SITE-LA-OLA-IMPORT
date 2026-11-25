@@ -10,6 +10,8 @@
     "test": "node --no-warnings --test --import ./scripts/cargador-ts.mjs \"lib/**/*.test.ts\""
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.119.2",
     "next": "^16.4.2",
     "nodemailer": "^10.1.2",
     "react": "19.3.0",

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CombinaCon } from '@/components/ficha/CombinaCon';
 import Ficha from '@/components/ficha/Ficha';
-import { PRODUCTOS, colorPorDefecto, getProducto, textoPrecio } from '@/data/catalogo';
+import { PRODUCTOS, colorPorDefecto, getProducto } from '@/data/catalogo';
 import { NOMBRE_CATEGORIA, colorDeLaFoto, descripcionSeo, fotosDe, fotosPorColor, textoMaterial, tituloSeo } from '@/lib/catalogo';
 import { SITE } from '@/lib/site';
 
@@ -38,7 +38,6 @@ export default async function PaginaFicha({ params }: PageProps<'/catalogue/[slu
   if (!producto) notFound();
   const categoria = NOMBRE_CATEGORIA[producto.categoria];
   const foto = fotosDe(producto, colorPorDefecto(producto));
-  const precio = textoPrecio(producto);
 
   // Données structurées : produit (sans offre : prix sur devis) et fil d'Ariane.
   const jsonLd = [
@@ -86,9 +85,6 @@ export default async function PaginaFicha({ params }: PageProps<'/catalogue/[slu
           </li>
         </ol>
       </nav>
-      <p className="sr-only">
-        {producto.nombre}: {precio}
-      </p>
       <Ficha producto={producto} fotosPorColor={fotosPorColor(producto)} colorBase={colorDeLaFoto(producto)?.nombre} />
       <CombinaCon producto={producto} />
     </article>

@@ -5,7 +5,7 @@ import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Politique cookies',
-  description: 'Le site de La Ola Import n’utilise ni cookie publicitaire ni mesure d’audience : seulement le stockage de votre navigateur pour le panier et votre logo.',
+  description: 'Le site de La Ola Import n’utilise ni cookie publicitaire ni mesure d’audience : seulement le stockage de votre navigateur et, si vous vous connectez à votre compte professionnel, des cookies de session techniques.',
   alternates: { canonical: '/cookies' },
 };
 
@@ -38,6 +38,13 @@ export default function Cookies() {
           <li>
             <strong className="font-semibold">Stockage de session (sessionStorage)</strong> : le visuel en cours dans le
             studio, effacé à la fermeture de l’onglet.
+          </li>
+          <li>
+            <strong className="font-semibold">Cookies de session (compte professionnel)</strong> : si vous vous connectez,
+            des cookies techniques conservent votre connexion (jeton de session, de type « sb-…-auth-token »). Ils
+            ne sont déposés qu’à la connexion ou à l’inscription, ne servent pas à vous suivre et sont effacés à la
+            déconnexion ou à leur expiration. Vos produits favoris de visiteur sont aussi gardés dans le stockage local
+            (« laola:favoris ») jusqu’à votre connexion.
           </li>
         </Lista>
         <p>

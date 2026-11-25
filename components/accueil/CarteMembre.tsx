@@ -8,7 +8,7 @@ export default function CarteMembre({ membre, detail = false }: { membre: Membre
       {membre.photo ? (
         // Photo réelle de l'équipe, 800 × 1000.
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={membre.photo} alt={`${membre.prenom}, ${membre.role.toLowerCase()} chez La Ola Import`} width={800} height={1000} loading="lazy" className="aspect-[4/5] w-full object-cover" />
+        <img src={membre.photo} alt={membre.alt ?? `${membre.prenom}, ${membre.role.toLowerCase()} chez La Ola Import`} width={800} height={1000} loading="lazy" className="aspect-[4/5] w-full object-cover" />
       ) : (
         <PhotoAFournir sujet={`${membre.prenom} à l’atelier`} dimensions="800 × 1000 (4:5)" ratio="4 / 5" className="rounded-none border-0 border-b-2" />
       )}

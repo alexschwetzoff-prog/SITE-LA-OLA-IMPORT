@@ -1,0 +1,25 @@
+# Configuración del CLI oficial de Supabase (`supabase start`) para quien tenga Docker con acceso a public.ecr.aws.
+# En este repositorio también hay una pila local alternativa y mínima en supabase/local/ (solo imágenes de Docker Hub).
+project_id = "laola-import"
+
+[api]
+port = 54321
+schemas = ["public"]
+
+[db]
+port = 54322
+major_version = 17
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/confirmation"]
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+double_confirm_changes = true

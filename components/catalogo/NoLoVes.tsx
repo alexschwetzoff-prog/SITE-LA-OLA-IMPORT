@@ -1,6 +1,6 @@
 import { IconoWhatsApp } from '@/components/layout/Iconos';
 import { BotonEnlace, ESTILO_BOTON } from '@/components/ui/Botones';
-import { CTA, enlaceWhatsApp } from '@/lib/site';
+import { CONTACTO, enlaceWhatsApp } from '@/lib/site';
 
 /** Bloc de fin de catalogue : l'article cherché n'y est pas ? On en parle (devis ou WhatsApp). Sans promesse. */
 export function NoLoVes() {
@@ -11,7 +11,7 @@ export function NoLoVes() {
         Dites-nous ce que vous avez en tête : nous regardons avec vous ce qu’il est possible de personnaliser.
       </p>
       <div className="mt-6 flex flex-wrap gap-3">
-        <BotonEnlace href={CTA.href}>{CTA.etiqueta}</BotonEnlace>
+        <BotonEnlace href={CONTACTO.href}>{CONTACTO.etiqueta}</BotonEnlace>
         <a href={enlaceWhatsApp()} target="_blank" rel="noopener noreferrer" className={ESTILO_BOTON.secundario}>
           <IconoWhatsApp className="h-4 w-4" />
           Écrire sur WhatsApp

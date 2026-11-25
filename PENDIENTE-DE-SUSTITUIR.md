@@ -164,3 +164,30 @@ Todo lo que en esta copia sigue siendo de la empresa de la que sale la base, o e
 - [ ] **Precios y lotes**: no publicados; decidir si se muestran. Zona de marcaje: ninguno es personalizable de momento (`personalizable: false`).
 - [ ] **Categorías creadas**: `sombreros` («Chapeaux») y `toallas-ponchos` («Serviettes et ponchos»); las casquettes van a «Casquettes».
 - [ ] **Fotos de baja calidad con restos de fondo**: poncho pirate (esquina gris), chapeau noir cowboy (línea de sombra).
+
+## 10. Casquettes, couteaux, équipe, home et boutique (25/11/2026)
+
+- [ ] **Noms réels des couteaux**: « Couteau multifonction illustré », « Couteau de poche en bois gravé », « Couteau multifonction noir à mousqueton » et « Couteau multifonction en bois » sont des noms provisoires (images sans nom). Les trois PNG à nom aléatoire ressemblent à des maquettes: confirmer que ce sont de vraies photos produit.
+- [ ] **Zone de gravure des couteaux** (dimensions): `posiciones: []`, texte « Personnalisation par gravure sur le manche ».
+- [ ] **Zone de marquage des casquettes** Barny, Calisto, Eris, Tarvos: même zone que Freya/Mercury/Fred (9 × 5 cm), à confirmer.
+- [ ] **Prix et références** des nouveaux modèles: seulement dans `docs/otros-productos/INVENTARIO-DRIVE.md` (interne).
+- [ ] **Noms de modèle** (Barny, Calisto, Eris, Tarvos, Kaide) = noms de modèle du fournisseur: confirmer qu'on peut les publier tels quels.
+- [ ] **Poste d'Arthur**: la fiche garde « Technicien » (rôle déjà confirmé dans `data/equipe.ts`). Phrase personnelle: `[Phrase personnelle à fournir]`.
+- [ ] **Home**: textes des techniques (UV, DTF et sublimation, flocage, gravure) à relire avec La Ola Import.
+- [ ] **/boutique vs /catalogue**: les deux coexistent; décision à prendre (redirection 301 ou non).
+- [x] **Motif « Votre logo ici »** posé sur les photos des casquettes (Barny, Calisto, Eris, Tarvos) et des couteaux (Kaide, Zora, noir à mousqueton, en bois): `scripts/fotos/drive-nuevos-logo.json` + `scripts/fotos/drive-nuevos-indice.py` (écrit `data/fotos-catalogo.json`). Pas posé sur les deux couteaux qui montrent déjà un décor (Avignon, croix camarguaise).
+- [x] **Personnalisable / Article boutique** (25/11/2026): la home ne met en avant que les produits personnalisables (textile, casquettes, goodies, couteaux, tote bags); les autres articles (chapeaux, serviettes, ponchos…) vivent dans /boutique. Pastille « Personnalisable » ou « Article boutique » sur les cartes et les fiches (`personalizable: false` dans les données) et onglets « Personnalisables » / « Articles boutique » dans /boutique.
+- [ ] **Plus tard (décidé par Alex)**: noms réels des couteaux (on garde les noms provisoires), prix, phrase personnelle d'Arthur.
+
+## 11. Espace client professionnel (25/11/2026) — ver `docs/ESPACIO-CLIENTE.md`
+
+- [ ] **Prix réels et lots minimum**: aucun prix chargé (tout affiche « Prix sur demande »). `node scripts/supabase-local.mjs precios-demo` charge des prix FICTIFS, uniquement en local.
+- [ ] **TVA 20 %** (`configuracion.tasa_iva`): à confirmer.
+- [ ] **Projet Supabase propre à La Ola Import** (aujourd'hui pile locale Docker `supabase/local/`), SMTP et modèles d'email en français.
+- [ ] **Premier administrateur** à créer (SQL de `docs/ESPACIO-CLIENTE.md`).
+- [ ] **Paiement simulé** (`lib/pagos/`) et **emails stub** (`lib/correo/cuenta.ts`, notification de commande): à brancher.
+- [ ] **Textes légaux**: bloc « Commandes en ligne des professionnels » des CGV (`[PENDIENTE DE REVISIÓN LEGAL]`), mentions de comptes/cookies de session dans confidentialité et cookies, sous-traitant Supabase à confirmer.
+- [x] **Ancien flux devis retiré** (25/11/2026): `/projet`, `/devis`, `/merci`, `/espace-client` supprimés (redirections 308). Reste à relire les textes légaux (CGV §4-§10, livraison et paiement) qui parlent encore de devis/BAT.
+- [x] `/espace-client` redirige maintenant en permanence vers `/compte`.
+- [ ] **Lots minimum**: à décider plus tard (Alex).
+- [ ] **Types TypeScript** de la base: à générer (`supabase gen types`) avec le projet réel.

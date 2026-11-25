@@ -31,6 +31,7 @@ export const MENU_CATALOGUE: ColonneMenu[] = [
     liens: [
       { href: '/catalogue?categoria=bolsas', etiqueta: 'Sacs et tote bags' },
       { href: '/catalogue?categoria=goodies', etiqueta: 'Goodies et objets' },
+      { href: '/catalogue?categoria=couteaux', etiqueta: 'Couteaux' },
     ],
   },
   {

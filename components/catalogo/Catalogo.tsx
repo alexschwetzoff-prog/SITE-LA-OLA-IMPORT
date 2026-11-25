@@ -9,7 +9,7 @@ import { ViewTransition, startTransition, useEffect, useId, useLayoutEffect, use
 import Link from 'next/link';
 import type { Categoria } from '@/data/catalogo';
 import type { DatosTarjeta } from '@/lib/catalogo';
-import { CTA } from '@/lib/site';
+import { CONTACTO } from '@/lib/site';
 import { FILTROS_ETIQUETA, esCategoria, esFiltroEtiqueta, filtrarProductos, type FiltroEtiqueta } from '@/lib/filtros';
 import { IconoCategoria } from './IconosCategoria';
 import { TarjetaProducto } from './TarjetaProducto';
@@ -183,7 +183,7 @@ export default function Catalogo({ productos, categorias, conteo }: Props) {
           </button>
           <p className="mt-4 text-sm text-ardoise">
             Vous cherchez autre chose ?{' '}
-            <Link href={CTA.href} className="font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
+            <Link href={CONTACTO.href} className="font-semibold text-bleu-600 underline underline-offset-4 hover:text-indigo-700">
               Demandez-nous
             </Link>
             , nous regardons ce qu’il est possible de faire.
